@@ -5,6 +5,7 @@
   <title>wdh.chm</title>
 
 <script>
+   let isLogoShowed = false;
    var qs=location.search.substr(1)
    var A=qs.split("&")
    var B=null
@@ -13,14 +14,13 @@
    for(var j=0;j<A.length;j++){if(A[j][0]=='page'){ F=A[j][1];break}}
 
    function loadContentCss() {
-    const f = document.getElementById("content"); //.getElementsByTagName("body"); //.querySelector("body");
-    console.log("f", f);
-    const d = f.contentDocument || f.contentWindow.document;
-    console.log("d", d)
-    const c = d.body;
-    c.style.background = "url(./images/splash.gif) no-repeat 50%";
-    // c.style.backgroundColor = "#f0f0f0";
-    // c.style.opacity = 0.5
+     if (isLogoShowed) return;
+     isLogoShowed = true;
+     const f = document.getElementById("content");
+     const d = f.contentDocument || f.contentWindow.document;
+     const c = d.body;
+     c.style.background = "url(./images/splash.gif) no-repeat 50%";
+     setTimeout(function() {c.style.background = "";}, 2000);
    }
   </script> 
  </head>
