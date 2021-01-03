@@ -1,0 +1,488 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: CSS - Таблицы</title>
+<link rel="Prev" href="css09.htm" title="Текст">
+<link rel="Next" href="css11.htm" title="Генерация содержимого, нумерация и списки">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref210">Глава 2.10. Таблицы</a></h2>
+
+      <h3><a name="ref2101">2.10.1. Общее описание</a></h3>
+
+      <p><em>Таблицы</em> обеспечивают возможность расположения многомерных данных по строкам и столбцам.
+        Структура и содержание таблицы описываются на языке документа, а CSS позволяет описать правила
+        ее отображения&nbsp;&#151; либо визуального, либо звукового.</p>
+
+      <p>Визуальное отображение таблиц состоит в задании правил отображения заголовков и ячеек таблицы,
+        их выравнивания относительно друг друга, изображения рамок вокруг них и т.&nbsp;д. При звуковом
+        отображении таблицы задаются правила того, как должны произноситься заголовки и содержимое ячеек.</p>
+
+      <p>Строение таблиц в CSS основано на <a href="html05.htm#ref151">строении таблиц в HTML</a> и
+        наследует все их составляющие. Каждая таблица может иметь <em>заголовок</em>, содержащий ее
+        краткое описание. Кроме того, она может иметь <em>наздаголовок</em> и <em>подзаголовок</em>.
+        Тело таблицы состоит из <em>строк</em>, в свою очередь, состоящих из <em>ячеек</em>. <em>Столбцы</em>
+        таблиц явно не описываются, а определяются строением строк: первая ячейка каждой строки относится
+        к первому столбцу, вторая ко второму и т.&nbsp;д. Строки и столбцы могут объединяться в <em>группы</em>,
+        которые могут иметь свои особенности отображения.</p>
+
+      <p>CSS не требует, чтобы язык документа включал в себя элементы для каждой из перечисленных составляющих
+        таблиц. Например, XML-приложения не содержат предопределенных табличных структур. Тем не менее,
+        авторы могут отобразить элементы на таблицы с помощью свойства <a href="css05.htm#pdisplay"><strong>display</strong></a>.
+        Для присвоения табличной семантики произвольным элементам языка документа используются следующие
+        значения этого свойства:</p>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+          <th>Значение</th>
+          <th>Элемент HTML</th>
+          <th>Описание</th>
+        </tr>
+        <tr>
+          <td><dfn>table</dfn></td>
+          <td><a href="html05.htm#etable"><strong>TABLE</strong></a></td>
+          <td>Блочная таблица. Элемент должен отображаться как блочный.</td>
+        </tr>
+        <tr>
+          <td><dfn>inline-table</dfn></td>
+          <td><a href="html05.htm#etable"><strong>TABLE</strong></a></td>
+          <td>Текстовая таблица. Элемент должен отображаться как текстовый.</td>
+        </tr>
+        <tr>
+          <td><dfn>table-row</dfn></td>
+          <td><a href="html05.htm#etr"><strong>TR</strong></a></td>
+          <td>Элемент должен отображаться как строка таблицы.</td>
+        </tr>
+        <tr>
+          <td><dfn>table-row-group</dfn></td>
+          <td><a href="html05.htm#etbody"><strong>TBODY</strong></a></td>
+          <td>Элемент описывает группу строк таблицы.</td>
+        </tr>
+        <tr>
+          <td><dfn>table-header-group</dfn></td>
+          <td><a href="html05.htm#ethead"><strong>THEAD</strong></a></td>
+          <td>Элемент должен отображаться как группа надзаголовков таблицы. Отображается перед всеми
+            остальными группами строк таблицы. При выводе на принтер может использоваться в качестве
+            надзаголовка при печати каждой страницы таблицы.</td>
+        </tr>
+        <tr>
+          <td><dfn>table-footer-group</dfn></td>
+          <td><a href="html05.htm#etfoot"><strong>TFOOT</strong></a></td>
+          <td>Элемент должен отображаться как группа подзаголовков таблицы. Отображается после всех
+            остальных групп строк таблицы. При выводе на принтер может использоваться в качестве подзаголовка
+            при печати каждой страницы таблицы.</td>
+        </tr>
+        <tr>
+          <td><dfn>table-column-group</dfn></td>
+          <td><a href="html05.htm#ecolgroup"><strong>COLGROUP</strong></a></td>
+          <td>Элемент описывает группу столбцов таблицы. Не отображается, но может влиять на отображение
+            столбцов данной группы.</td>
+        </tr>
+        <tr>
+          <td><dfn>table-column</dfn></td>
+          <td><a href="html05.htm#ecol"><strong>COL</strong></a></td>
+          <td>Элемент описывает столбец таблицы. Не отображается, но может влиять на отображение ячеек
+            данного столбца.</td>
+        </tr>
+        <tr>
+          <td><dfn>table-cell</dfn></td>
+          <td><strong><a href="html05.htm#etd">TD</a></strong>, <strong><a href="html05.htm#eth">TH</a></strong></td>
+          <td>Элемент должен отображаться как ячейка таблицы.</td>
+        </tr>
+        <tr>
+          <td><dfn>table-caption</dfn></td>
+          <td><a href="html05.htm#ecaption"><strong>CAPTION</strong></a></td>
+          <td>Элемент должен отображаться как заголовок таблицы.</td>
+        </tr>
+      </table>
+
+      <p><a href="defcss.htm">Таблица стилей для HTML</a> по умолчанию задает следующие свойства элементов:</p>
+
+      <div class="code">
+<pre class="code">TABLE    { display: table }
+TR       { display: table-row }
+THEAD    { display: table-header-group }
+TBODY    { display: table-row-group }
+TFOOT    { display: table-footer-group }
+COL      { display: table-column }
+COLGROUP&nbsp;{ display: table-column-group }
+TD, TH   { display: table-cell }
+CAPTION  { display: table-caption }</pre>
+      </div>
+
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Поддерживаются только table-header-group и table-footer-group (5.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживаются</pre>
+
+      <h3><a name="ref2102">2.10.2. Селекторы столбцов</a></h3>
+
+      <p>Ячейки таблиц принадлежат одновременно к двум контекстам: строкам и столбцам. При этом в тексте
+        документа ячейки являются потомками строк, но не столбцов. Тем не менее, задание определенных
+        свойств столбцов или их групп влияет на отображение ячеек. Такими свойствами являются:</p>
+
+      <dl>
+        <dt><strong><a href="css04.htm#pborder">border</a></strong></dt>
+        <dd>Свойства рамок применяются к столбцам только тогда, когда таблица имеет <a href="#ref21041">слившиеся
+          рамки</a>. В этом случае обозреватель выбирает рамку для каждой границы ячейки с учетом рамок
+          столбцов, как описано в <a href="#ref21041">п. 2.10.4.1</a>.</dd>
+        <dt><a href="css07.htm#pbackground"><strong>background</strong></a></dt>
+        <dd>Свойства фона столбца применяются к его ячейкам только в том случае, когда и строка, и сама
+          ячейка имеют прозрачный фон.</dd>
+        <dt><a href="css06.htm#pwidth"><strong>width</strong></a></dt>
+        <dd>Это свойство задает минимальную ширину столбца.</dd>
+        <dt><a href="css06.htm#pvisibility"><strong>visibility</strong></a></dt>
+        <dd>Если это свойство для столбца имеет значение <dfn>collapse</dfn>, то ячейки этого столбца
+          не отображаются, а те ячейки, которые распространяются на несколько столбцов, обрезаются.
+          Кроме того, ширина таблицы уменьшается на ширину данного столбца. Подробности см. ниже в описании
+          <a href="#ref21033">динамических эффектов</a>. Другие значения этого свойства игнорируются.</dd>
+      </dl>
+
+      <p>Приведем два примера:</p>
+
+      <div class="code">
+<pre class="code">TABLE { border-style: hidden }
+COL { border-style: none solid }
+
+TABLE { table-layout: fixed }
+COL.total { width: 5em }</pre>
+      </div>
+
+      <p>В первом примере показано, как реализовать на языке CSS значение <dfn>cols</dfn> атрибута <a href="html05.htm#etable"><strong>rules</strong></a>
+        таблиц HTML (выделение рамкой только границ столбцов). Второй пример показывает, как задать
+        фиксированную ширину столбца.</p>
+
+      <h3><a name="ref2103">2.10.3. Визуальное отображение таблиц</a></h3>
+
+      <h4><a name="ref21031">2.10.3.1. Расположение заголовка таблицы: свойство caption-side</a></h4>
+
+<pre class="syntax"><strong><a name="pcaption-side">Синтаксис</a></strong>:  caption-side: <dfn>top</dfn> | <dfn>bottom</dfn> | <dfn>left</dfn> | <dfn>right</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>top</dfn>
+<strong>Применимо</strong>:  к элементам типа table-caption
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>caption-side</strong> определяет <em>расположение заголовка таблицы</em> относительно
+        тела таблицы при ее отображении. Оно может принимать следующие значения:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>top</dfn></td>
+            <td>Заголовок отображается над телом таблицы.</td>
+          </tr>
+          <tr>
+            <td><dfn>bottom</dfn></td>
+            <td>Заголовок отображается под телом таблицы.</td>
+          </tr>
+          <tr>
+            <td><dfn>left</dfn></td>
+            <td>Заголовок отображается слева от тела таблицы.</td>
+          </tr>
+          <tr>
+            <td><dfn>right</dfn></td>
+            <td>Заголовок отображается справа от тела таблицы.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Отображение заголовка над или под телом таблицы производится так же, как отображение двух последовательно
+        расположенных блочных элементов. При отображении заголовка слева или справа от тела таблицы
+        следует явно задавать его ширину свойством <a href="css06.htm#pwidth"><strong>width</strong></a>,
+        т.&nbsp;к. не ясно, что в данном случае означает значение <dfn>auto</dfn>, принятое по умолчанию.
+        Горизонтальное выравнивание заголовка задается свойством <a href="css09.htm#ptext-align"><strong>text-align</strong></a>,
+        а вертикальное&nbsp;&#151; свойством <a href="css06.htm#pvertical-align"><strong>vertical-align</strong></a>,
+        которое должно иметь значение <dfn>top</dfn>, <dfn>middle</dfn> или <dfn>bottom</dfn>.</p>
+
+      <p>В следующем примере заголовок таблицы размещается слева от нее, сама таблица центрируется (заданием
+        левой и правой границам значения <dfn>auto</dfn>), и весь прямоугольник, объемлющий заголовок
+        и тело таблицы, сдвигается влево на ширину заголовка.</p>
+
+      <div class="code">
+<pre class="code">BODY {
+  margin-left: 10em
+}
+TABLE {
+  margin-left: auto;
+  margin-right: auto
+}
+CAPTION {
+  caption-side: left;
+  margin-left: -10em;
+  width: 10em;
+  text-align: right;
+  vertical-align: bottom
+}</pre>
+      </div>
+
+      <h4><a name="ref21032">2.10.3.2. Задание ширины столбцов: свойство table-layout</a></h4>
+
+<pre class="syntax"><strong><a name="ptable-layout">Синтаксис</a></strong>:  table-layout: <dfn>auto</dfn> | <dfn>fixed</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>auto</dfn>
+<strong>Применимо</strong>:  к элементам типа table и inline-table
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (5.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>table-layout</strong> определяет <em>способ вычисления ширины столбцов таблицы</em>
+        при ее отображении. Оно может принимать следующие значения:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>auto</dfn></td>
+            <td>Автоматическое вычисление ширины столбцов.</td>
+          </tr>
+          <tr>
+            <td><dfn>fixed</dfn></td>
+            <td>Фиксированная ширина столбцов.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Задание <em>фиксированной ширины столбцов</em> означает следующее. Обозреватель анализирует
+        первую строку таблицы, и на основе этого анализа вычисляет ширины всех столбцов (последующие
+        строки не учитываются, поэтому этот алгоритм обеспечивает более быстрое отображение таблицы,
+        чем автоматический расчет ширин столбцов). В этом случае ширина таблицы должна быть задана явно
+        свойством <a href="css06.htm#pwidth"><strong>width</strong></a>, иначе производится автоматический
+        расчет ширин. Вычисление фиксированной ширины столбцов производится так:</p>
+
+      <ol>
+        <li>Если для столбца задано свойство <a href="css06.htm#pwidth"><strong>width</strong></a> и
+          его значение отлично от <dfn>auto</dfn>, то оно задает ширину столбца.</li>
+        <li>В противном случае, если для ячейки в первой строке таблицы задано свойство <a href="css06.htm#pwidth"><strong>width</strong></a>
+          и его значение отлично от <dfn>auto</dfn>, то оно задает ширину столбца.</li>
+        <li>Между оставшимися столбцами поровну делится оставшееся пространство таблицы по горизонтали.</li>
+      </ol>
+
+      <p>Если при отображении последующих строк таблицы окажется, что содержимое какой-либо ячейки не
+        помещается в столбец, то оно может быть обрезано. Обрезкой содержимого ячеек управляет свойство
+        <a href="css06.htm#poverflow"><strong>overflow</strong></a>.</p>
+
+      <p><em>Автоматическое вычисление ширины столбцов</em> занимает больше времени, так как требует
+        просмотра всей таблицы, но дает более аккуратные результаты. Оно основано на том, что для каждого
+        столбца просматриваются все его ячейки, и ширина столбца определяется шириной наибольшей части
+        ячейки, которая не может быть разорвана переходом на новую строку. Если при этом для столбца
+        задано свойство <a href="css06.htm#pwidth"><strong>width</strong></a> и его значение отлично
+        от <dfn>auto</dfn>, то оно задает минимальную ширину столбца. Задание этого значения в процентах
+        означает процент от ширины всей таблицы.</p>
+
+      <p>В следующем примере ширина столбцов таблицы фиксирована и равна 100px, 300px и 200px соответственно:</p>
+
+      <div class="code">
+<pre class="code">&lt;TABLE style=&quot;<strong>table-layout:fixed</strong>; width: 600px&gt;
+&lt;COL style=&quot;width: 100px&quot;&gt;&lt;COL style=&quot;width: 300px&quot;&gt;&lt;COL style=&quot;width: 200px&quot;&gt;
+...
+&lt;/TABLE&gt;</pre>
+      </div>
+
+      <h4><a name="ref21033">2.10.3.3. Динамические эффекты при отображении таблиц</a></h4>
+
+      <p>Свойство <strong><a href="css06.htm#pvisibility">visibility</a></strong> может принимать значение
+        <dfn>collapse</dfn> для строк, групп строк, столбцов и групп столбцов. Это значение приводит
+        к тому, что строка или столбец таблицы полностью исчезают с экрана, а пространство, которое
+        они занимали, становится доступным для отображения другого содержания. Однако, подавление отображения
+        строк или столбцов не вызывает перерасчета высот и ширин ячеек таблицы. Благодаря этому становится
+        возможным динамически удалять строки и столбцы таблицы, не изменяя в остальном ее внешнего вида.</p>
+
+      <h3><a name="ref2104">2.10.4. Отображение рамок таблиц</a></h3>
+
+      <h4><a name="ref21041">2.10.4.1. Задание типа рамок: свойство border-collapse</a></h4>
+
+<pre class="syntax"><strong><a name="pborder-collapse">Синтаксис</a></strong>:  border-collapse: <dfn>collapse</dfn> | <dfn>separate</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>collapse</dfn>
+<strong>Применимо</strong>:  к элементам типа table и inline-table
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (5.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>border-collapse</strong> задает <em>тип рамок таблицы</em>. CSS поддерживает
+        для таблиц два типа рамок: <em>слившиеся рамки</em> (<dfn>collapse</dfn>) и <em>раздельные рамки</em>
+        (<dfn>separate</dfn>). Раздельные рамки соответствуют стандарту HTML; слившиеся рамки отличаются
+        тем, что соседние рамки сливаются в единую рамку. Различие между ними наглядно демонстрируется
+        следующим примером (Netscape Navigator отображает его неверно!):</p>
+
+      <div style="margin-left: 3em; width: 400px">
+        <table style="float:left; border-collapse:collapse">
+          <caption><samp>Слившиеся рамки</samp></caption>
+          <tr>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+          </tr>
+          <tr>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+          </tr>
+          <tr>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+          </tr>
+        </table>
+        <table style="float:right; border-collapse:separate">
+          <caption><samp>Раздельные рамки</samp></caption>
+          <tr>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+          </tr>
+          <tr>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+          </tr>
+          <tr>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+            <td style="border: 2pt solid purple"><samp>Ячейка</samp></td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Тип рамки таблицы определяет и то, какие свойства рамки применимы к данной таблице, и то, как
+        именно отображается тот или иной стиль рамки.</p>
+
+      <p>В таблице с раздельными рамками каждая ячейка имеет собственную рамку, поэтому задание рамок
+        для строк, столбцов, групп строк и групп столбцов игнорируется обозревателем. К таблице с раздельными
+        рамками применимы свойства <a href="#pborder-spacing"><strong>border-spacing</strong></a> и
+        <a href="#pempty-cells"><strong>empty-cells</strong></a>; для таблиц со слившимися рамками они
+        игнорируются.</p>
+
+      <p>В таблице со слившимся рамками можно задавать рамки как для ячеек, так и для строк, столбцов,
+        групп строк и групп столбцов. Если рамки отдельных составляющих противоречат друг другу, то
+        используется следующий алгоритм разрешения конфликтов:</p>
+
+      <ol>
+        <li>Рамки со значением <a href="css04.htm#pborder-style"><strong>border-style</strong></a>,
+          равным <dfn>hidden</dfn>, имеют приоритет над остальными конфликтующими рамками. Любая рамка
+          этого стиля подавляет все рамки в данном месте таблицы.</li>
+        <li>Рамки со стилем <dfn>none</dfn> имеют наименьший приоритет. Рамка не будет отображаться
+          только тогда, когда все элементы, расположенные в данном месте, имеют этот стиль рамки.</li>
+        <li>В остальных случаях более широкие рамки имеют приоритет перед более узкими. Если же несколько
+          рамок имеют одно значение <a href="css04.htm#pborder-width"><strong>border-width</strong></a>,
+          то стили рамок в порядке убывания приоритетов таковы: <dfn>double</dfn>, <dfn>solid</dfn>,
+          <dfn>dashed</dfn>, <dfn>dotted</dfn>, <dfn>ridge</dfn>, <dfn>outset</dfn>, <dfn>groove</dfn>,
+          <dfn>inset</dfn>.</li>
+        <li>Если рамки отличаются только цветами, то порядок убывания приоритетов таков: рамка ячейки,
+          рамка строки, рамка группы строк, рамка столбца, рамка группы столбцов, рамка таблицы.</li>
+      </ol>
+
+      <p>Отображение некоторых <a href="css04.htm#ref247">стилей рамок</a> для таблиц также зависит
+        от типа рамки и несколько отлично от обычного, а именно:</p>
+
+<pre class="syntax"><dfn>hidden</dfn>
+  Скрытая рамка. То же, что <dfn>none</dfn>, но для слившихся рамок подавляет все остальные рамки.
+<dfn>inset</dfn>
+  Для раздельных рамок изображается в виде трехмерной врезки;
+  для слившихся рамок совпадает с <dfn>groove</dfn>.
+<dfn>outset</dfn>
+  Для раздельных рамок изображается в виде трехмерной вырезки;
+  для слившихся рамок совпадает с <dfn>ridge</dfn>.</pre>
+
+      <h4><a name="ref21042">2.10.4.2. Расстояние между рамками: свойство border-spacing</a></h4>
+
+<pre class="syntax"><strong><a name="pborder-spacing">Синтаксис</a></strong>:  border-spacing: <a href="css01.htm#length">&lt;размер&gt;</a> <a href="css01.htm#length">&lt;размер&gt;</a> ? | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   0
+<strong>Применимо</strong>:  к элементам типа table и inline-table
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>border-spacing</strong> задает <em>расстояние между соседними рамками таблицы</em>
+        в том случае, когда таблица имеет раздельные рамки. Если указан только один размер, то он задает
+        расстояние между рамками и по вертикали, и по горизонтали. Если указаны два размера, то первый
+        задает расстояние между рамками по горизонтали, а второй&nbsp;&#151; по вертикали. Расстояния
+        не могут быть отрицательными. Пример:</p>
+
+      <div class="code">
+<pre class="code">TABLE { border: outset 10pt; border-collapse: separate; <strong>border-spacing: 15pt</strong> }</pre>
+      </div>
+
+      <h4><a name="ref21043">2.10.4.3. Рамки вокруг пустых ячеек: свойство empty-cells</a></h4>
+
+<pre class="syntax"><strong><a name="pempty-cells">Синтаксис</a></strong>:  empty-cells: <dfn>show</dfn> | <dfn>hide</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>show</dfn>
+<strong>Применимо</strong>:  к элементам типа table-cell
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>empty-cells</strong> управляет отображением <em>рамок вокруг пустых ячеек
+        </em>в том случае, когда таблица имеет раздельные рамки. Ячейка таблицы считается пустой, если
+        не содержит ничего, кроме пробелов (&quot;\20&quot;), табуляций (&quot;\09&quot;), переводов
+        строки (&quot;\0D&quot;)и возвратов каретки (&quot;\0A&quot;). Кроме того, пустыми считаются
+        ячейки, у которых значение свойства <a href="css06.htm#pvisibility"><strong>visibility</strong></a>
+        равно <dfn>hidden</dfn>.</p>
+
+      <p>Если данное свойство имеет значение <dfn>show</dfn>, то рамки вокруг пустых ячеек отображаются
+        обычным образом. Если оно имеет значение <dfn>hide</dfn>, то рамки вокруг пустых ячеек не отображаются;
+        более того, если вся строка таблицы состоит из пустых ячеек, то она ведет себя так, как если
+        бы имела свойство <a href="css05.htm#pdisplay"><strong>display</strong></a> со значением <dfn>none</dfn>.
+        Пример:</p>
+
+      <div class="code">
+<pre class="code">TABLE { border-collapse: separate; <strong>empty-cells: show</strong> }</pre>
+      </div>
+
+      <h3><a name="ref2105">2.10.5. Звуковое отображение таблиц: свойство speak-header</a></h3>
+
+<pre class="syntax"><strong><a name="pspeak-header">Синтаксис</a></strong>:  speak-header: <dfn>once</dfn> | <dfn>always</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>once</dfn>
+<strong>Применимо</strong>:  к элементам, содержащим заголовки таблиц
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Если таблица произносится синтезатором речи, то взаимоотношения между ячейками данных и ячейками
+        заголовков выражаются иначе, чем при визуальном отображении таблицы. Свойство <strong>speak-header</strong>
+        позволяет нам указать, <em>в какой момент должны произноситься заголовки</em>. Оно может принимать
+        следующие значения:</p>
+
+<pre class="syntax"><dfn>once</dfn>
+  Заголовок произносится один раз, перед серией ячеек.
+<dfn>always</dfn>
+  Заголовок произносится перед каждой ячейкой, к которой он относится.</pre>
+
+      <p>Способ задания заголовков зависит от языка документа. В частности, HTML содержит три атрибута
+        элементов <a href="html05.htm#etd"><strong>TD</strong></a> и <a href="html05.htm#eth"><strong>TH</strong></a>&nbsp;
+        (<strong>headers</strong>, <strong>scope</strong> и <strong>axis</strong>), которые позволяют
+        связать с каждой ячейкой таблицы соответствующий заголовок.</p>
+
+      <p>Пример:</p>
+
+      <div class="code">
+<pre class="code">TH.totals { speak-header: always }</pre>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

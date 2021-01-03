@@ -1,0 +1,455 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Стандартные пакеты Java</title>
+<link rel="Prev" href="keycodes.htm" title="Виртуальные коды клавиш">
+<link rel="Next" href="perlopt.htm" title="Опции интерпретатора perl">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+    <h1><a name="jdk">Приложение 19.<br>
+      Стандартные пакеты Java</a></h1>
+
+    <p>В приведенных ниже таблицах перечислены все стандартные пакеты платформы Java 2 согласно JDK 1.3.1.
+      Для каждого пакета приведены его имя, краткое описание и версия JDK, в которой он впервые появился.</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><a name="table191a">Таблица П19.1. Стандартные пакеты java.*</a></caption>
+  <tr>
+    <th>Имя пакета</th>
+    <th>Краткое описание</th>
+    <th>JDK</th>
+  </tr>
+  <tr>
+    <td>java.applet</td>
+    <td>Классы, необходимые для создания аплетов.</td>
+    <td>1.0</td>
+  </tr>
+  <tr>
+    <td>java.awt</td>
+    <td>Графический пользовательский интерфейс на базе Abstract Windows Toolkit (AWT).</td>
+    <td>1.0</td>
+  </tr>
+  <tr>
+    <td>java.awt.color</td>
+    <td>Пространства цветов для AWT.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.awt.datatransfer</td>
+    <td>Передача данных внутри программы и между программами.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.awt.dnd</td>
+    <td>Поддержка технологии drag-and-drop.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.awt.dnd.peer</td>
+    <td>Служебный пакет AWT.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.awt.event</td>
+    <td>Обработка событий AWT.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.awt.font</td>
+    <td>Поддержка основных форматов шрифтов для AWT.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.awt.geom</td>
+    <td>Операции двумерной геометрии для AWT.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.awt.im</td>
+    <td>Поддержка нестандартных методов ввода текста.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.awt.im.spi</td>
+    <td>Интерфейсы для создания нестандартных методов ввода текста.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>java.awt.image</td>
+    <td>Создание и редактирование графических изображений.</td>
+    <td>1.0</td>
+  </tr>
+  <tr>
+    <td>java.awt.image.renderable</td>
+    <td>Создание графических изображений, независимых от устройства отображения.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.awt.peer</td>
+    <td>Служебный пакет AWT.</td>
+    <td>1.0</td>
+  </tr>
+  <tr>
+    <td>java.awt.print</td>
+    <td>Поддержка печати в AWT.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.beans</td>
+    <td>Классы, связанные с созданием компонентов JavaBeans.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.beans.beancontext</td>
+    <td>Поддержка контейнеров JavaBeans.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.io</td>
+    <td>Базовые классы и интерфейсы ввода-вывода.</td>
+    <td>1.0</td>
+  </tr>
+  <tr>
+    <td>java.lang</td>
+    <td>Базовые классы языка Java.</td>
+    <td>1.0</td>
+  </tr>
+  <tr>
+    <td>java.lang.ref</td>
+    <td>Управление ссылками на объекты.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.lang.reflect</td>
+    <td>Доступ к структуре классов и объектов.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.math</td>
+    <td>Целая и десятичная арифметика произвольной точности.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.net</td>
+    <td>Классы для создания сетевых приложений.</td>
+    <td>1.0</td>
+  </tr>
+  <tr>
+    <td>java.rmi</td>
+    <td>Вызов методов объектов в другой виртуальной машине (Remote Metode Invocation).</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.rmi.activation</td>
+    <td>Сохранение ссылок на объекты RMI и их активация.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.rmi.dgc</td>
+    <td>Управление распределенной сборкой мусора.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.rmi.registry</td>
+    <td>Поддержка реестров RMI.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.rmi.server</td>
+    <td>Поддержка серверной стороны RMI.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.security</td>
+    <td>Базовые классы и интерфейсы управления безопасностью.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.security.acl</td>
+    <td>Устаревший пакет управления списками прав доступа.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.security.cert</td>
+    <td>Поддержка сертификатов X.509.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.security.interfaces</td>
+    <td>Интерфейсы генерации ключей шифрования по RSA и DSA.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.security.spec</td>
+    <td>Спецификации ключей и параметров алгоритмов шифрования.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.sql</td>
+    <td>Средства доступа к базам данных посредством JDBC (Java Data Base Connectivity).</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.text</td>
+    <td>Манипулирование текстами, датами, числами и сообщениями.</td>
+    <td>1.1</td>
+  </tr>
+  <tr>
+    <td>java.util</td>
+    <td>Коллекции, базовые события, поддержка даты/времени и различные утилиты.</td>
+    <td>1.0</td>
+  </tr>
+  <tr>
+    <td>java.util.jar</td>
+    <td>Поддержка архивов JAR (Java ARchive).</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>java.util.zip</td>
+    <td>Поддержка архивов ZIP и GZIP.</td>
+    <td>1.1</td>
+  </tr>
+</table>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><a name="table192a">Таблица П19.2. Стандартные пакеты javaх.*</a></caption>
+  <tr>
+    <th>Имя пакета</th>
+    <th>Краткое описание</th>
+    <th>JDK</th>
+  </tr>
+  <tr>
+    <td>javaх.accessibility</td>
+    <td>Стандартные контракты компонентов пользовательского интерфейса.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.naming</td>
+    <td>Доступ к сервисам управления именами JNDI (Java Naming and Directory Interface).</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>javaх.naming.directory</td>
+    <td>Доступ к сервисам управления каталогами JNDI.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>javaх.naming.event</td>
+    <td>Поддержка событий JNDI.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>javaх.naming.ldap</td>
+    <td>Доступ к сервисам JNDI по протоколу LDAP.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>javaх.naming.spi</td>
+    <td>Средства создания собственных JDNI-сервисов.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>javaх.rmi</td>
+    <td>Поддержка RMI-IIOP (Internet InterORB Protocol).</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.rmi.CORBA</td>
+    <td>Поддержка RMI-IIOP для CORBA ORB.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.sound.midi</td>
+    <td>Поддержка звукового интерфейса MIDI (Musical Instrument Digital Interface).</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>javaх.sound.midi.spi</td>
+    <td>Средства создания собственных MIDI-сервисов.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>javaх.sound.sampled</td>
+    <td>Сохранение, обработка и воспроизведение звуковых данных.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>javaх.sound.sampled.spi</td>
+    <td>Абстрактные классы для создания собственных аудиосервисов.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>javaх.swing</td>
+    <td>Платформо-независимый графический пользовательский интерфейс Swing.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.beeninfo</td>
+    <td>Служебный пакет свойств Swing.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.border</td>
+    <td>Поддержка рамок для Swing-компонентов.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.colorchooser</td>
+    <td>Компонент выбора цветов.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.event</td>
+    <td>Обработка событий Swing.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.filechooser</td>
+    <td>Компонент выбора файлов.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.plaf</td>
+    <td>Базовые интерфейсы настройки отображения пользовательского интерфейса.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.plaf.basic</td>
+    <td>Настройка отображения пользовательского интерфейса, принятая по умолчанию.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.plaf.metal</td>
+    <td>Настройка "металлического" отображения пользовательского интерфейса.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.plaf.multi</td>
+    <td>Сочетание нескольких настроек отображения пользовательского интерфейса.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.table</td>
+    <td>Поддержка табличных компонентов.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.text</td>
+    <td>Поддержка редактируемых и нередактируемых текстовых компонентов.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.text.html</td>
+    <td>Редактор HTML-документов.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.text.html.parser</td>
+    <td>Синтаксический анализатор HTML-документов.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.text.rtf</td>
+    <td>Редатор текстов в формате RTF (Rich Text Format).</td>
+    <td>пока нет</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.tree</td>
+    <td>Компонент отображения деревьев.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.swing.undo</td>
+    <td>Поддержка отмены и повторения операций редактирования.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>javaх.transaction</td>
+    <td>Исключения, генерируемые ORB в процессе демаршалинга.</td>
+    <td>1.3</td>
+  </tr>
+</table>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <caption><a name="table193a">Таблица П19.3. Стандартные пакеты org.omg.*</a></caption>
+  <tr>
+    <th>Имя пакета</th>
+    <th>Краткое описание</th>
+    <th>JDK</th>
+  </tr>
+  <tr>
+    <td>org.omg.CORBA</td>
+    <td>Интерфейс языка Java с CORBA ORB (Object Request Broker).</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>org.omg.CORBA.DynAnyPackage</td>
+    <td>Исключения, генерируемые интерфейсом DynAny.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>org.omg.CORBA.ORBPackage</td>
+    <td>Исключения пакетов CORBA ORB.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>org.omg.CORBA.portable</td>
+    <td>Слой совместимости брокеров CORBA.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>org.omg.CORBA.TypeCodePackage</td>
+    <td>Исключения, генерируемые классом TypeCode.</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td>org.omg.CORBA_2_3</td>
+    <td>Добавления для совместимости с CORBA 2.3.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>org.omg.CORBA_2_3.portable</td>
+    <td>Добавления для совместимости брокеров с CORBA 2.3.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>org.omg.CosNaming</td>
+    <td>Интерфейс языка Java с CORBA IDL (Interface Definition Language).</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>org.omg.CosNaming.NamingContextPackage</td>
+    <td>Исключения, генерируемые в org.omg.CosNaming.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>org.omg.SendingContext</td>
+    <td>Поддержка маршалинга типов значений.</td>
+    <td>1.3</td>
+  </tr>
+  <tr>
+    <td>org.omg.stub.java.rmi</td>
+    <td>Заглушки RMI-IIOP для пакета java.rmi.</td>
+    <td>1.3</td>
+  </tr>
+</table>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

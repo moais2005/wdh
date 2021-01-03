@@ -1,0 +1,604 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: CSS - Генерация содержимого, нумерация и списки</title>
+<link rel="Prev" href="css10.htm" title="Таблицы">
+<link rel="Next" href="css12.htm" title="Страничные устройства вывода">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref211">Глава 2.11. Генерация содержимого, нумерация и списки</a></h2>
+
+      <h3><a name="ref2111">2.11.1. Понятие генерации содержимого</a></h3>
+
+      <p>В некоторых случаях CSS позволяет отображать содержание, которого нет в дерева документа. Типичным
+        примером является нумерованный список: автор документа не нумерует его пункты, а требует от
+        обозревателя, чтобы тот генерировал номера пунктов автоматически. В этой главе собраны все возможности
+        CSS по генерации содержимого, а именно:</p>
+
+      <ul>
+        <li>генерация содержимого с помощью псевдоэлементов <strong>:before</strong> и <strong>:after</strong>;</li>
+        <li>автоматическая нумерация с использованием счетчиков;</li>
+        <li>создание маркеров и отображение списков.</li>
+      </ul>
+
+      <h3><a name="ref2112">2.11.2. Генерация содержимого</a></h3>
+
+      <h4><a name="ref21121">2.11.2.1. Задание содержимого: свойство content</a></h4>
+
+<pre class="syntax"><strong><a name="pcontent">Синтаксис</a></strong>:  content: [<a href="css01.htm#string">&lt;строка&gt;</a> | <a href="css01.htm#uri">&lt;uri&gt;</a> | <a href="css01.htm#counter">&lt;счетчик&gt;</a> | <dfn>attr(</dfn>X<dfn>)</dfn> | <dfn>open-quote</dfn> | <dfn>close-quote </dfn>|
+                     <dfn>no-open-quote </dfn>| <dfn>no-close-quote</dfn>]+ | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   пустая строка
+<strong>Применимо</strong>:  к псевдоэлементам <strong>:before</strong> и <strong>:after</strong>
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">все</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>content</strong> используется совместно с псевдоэлементами <strong>:before</strong>
+        и <strong>:after</strong> для генерации содержимого. Оно задает <em>текст содержимого для вставки</em>
+        и может принимать следующие значения:</p>
+
+<pre class="syntax"><a href="css01.htm#string">&lt;строка&gt;</a>
+  Вставляется данный текст.
+<a href="css01.htm#uri">&lt;uri&gt;</a>
+  Вставляется содержимое ресурса с данным URI.
+<a href="css01.htm#counter">&lt;счетчик&gt;</a>
+  Вставляется значение указанного <a href="#ref21131">счетчика</a> или счетчиков.
+<dfn>attr(</dfn>X<dfn>)</dfn>
+  Вставляется значение атрибута X субъекта селектора.
+<dfn>open-quote</dfn>
+  Вставляется открывающая кавычка (см. свойство <a href="#pquotes"><strong>quotes</strong></a>).
+<dfn>close-quote</dfn>
+  Вставляется закрывающая кавычка (см. свойство <a href="#pquotes"><strong>quotes</strong></a>).
+<dfn>no-open-quote</dfn>
+  Не вставляется ничего, но счетчик вложения кавычек увеличивается на 1.
+<dfn>no-close-quote</dfn>
+  Не вставляется ничего, но счетчик вложения кавычек уменьшается на 1.</pre>
+
+      <p>Место вставки текста определяется псевдоэлементом в селекторе данного элемента&nbsp;&#151;
+        <strong>:before</strong> означает вставку перед элементом, а <strong>:after</strong> после него.
+        Способ вставки (текстовый, блочный или маркер) задается значением свойства <a href="css05.htm#pdisplay"><strong>display</strong></a>.
+        Например, следующая декларация задает вывод текста &quot;Конец документа&quot; в центре последней
+        строки экрана.</p>
+
+      <div class="code">
+<pre class="code">BODY:after {
+  <strong>content: &quot;Конец документа&quot;</strong>;
+  display: block;
+  margin-top: 2em;
+  text-align: center;
+}</pre>
+      </div>
+
+      <h4><a name="ref21122">2.11.2.2. Кавычки: свойство quotes</a></h4>
+
+<pre class="syntax"><strong><a name="pquotes">Синтаксис</a></strong>:  quotes: [<a href="css01.htm#string">&lt;строка&gt;</a> <a href="css01.htm#string">&lt;строка&gt;</a>]+ | <dfn>none </dfn>| <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   зависит от обозревателя
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>quotes</strong> задает <em>символы кавычек</em> и может принимать следующие
+        значения:</p>
+
+<pre class="syntax"><dfn>none</dfn>
+  Значения <dfn>open-quote</dfn> и <dfn>close-quote</dfn> свойства <a href="#pcontent"><strong>content</strong></a> не генерируют символов кавычек.
+[<a href="css01.htm#string">&lt;строка&gt;</a> <a href="css01.htm#string">&lt;строка&gt;</a>]+
+  Задает пары символов кавычек для значений <dfn>open-quote</dfn> и <dfn>close-quote</dfn> свойства <strong><a href="#pcontent">content</a></strong>.
+  Каждая пара соответствует очередному уровню вложения кавычек.</pre>
+
+      <p>В качестве кавычек обычно используются следующие символы Unicode:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Код (16-ный)</th>
+            <th align="center">Вид</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td>0022</td>
+            <td align="center">&quot;</td>
+            <td>двойная кавычка</td>
+          </tr>
+          <tr>
+            <td>0027</td>
+            <td align="center">'</td>
+            <td>одинарная кавычка (апостроф)</td>
+          </tr>
+          <tr>
+            <td>2039</td>
+            <td align="center">&#8249;</td>
+            <td>открывающая одинарная угловая кавычка</td>
+          </tr>
+          <tr>
+            <td>203A</td>
+            <td align="center">&#8250;</td>
+            <td>закрывающая одинарная угловая кавычка</td>
+          </tr>
+          <tr>
+            <td>00AB</td>
+            <td align="center">&laquo;</td>
+            <td>открывающая двойная угловая кавычка</td>
+          </tr>
+          <tr>
+            <td>00BB</td>
+            <td align="center">&raquo;</td>
+            <td>закрывающая двойная угловая кавычка</td>
+          </tr>
+          <tr>
+            <td>2018</td>
+            <td align="center">&#8216;</td>
+            <td>открывающая одинарная кавычка</td>
+          </tr>
+          <tr>
+            <td>2019</td>
+            <td align="center">&#8217;</td>
+            <td>закрывающая одинарная кавычка</td>
+          </tr>
+          <tr>
+            <td>201A</td>
+            <td align="center">&#8218;</td>
+            <td>закрывающая нижняя одинарная кавычка</td>
+          </tr>
+          <tr>
+            <td>201C</td>
+            <td align="center">&#8220;</td>
+            <td>открывающая двойная кавычка</td>
+          </tr>
+          <tr>
+            <td>201D</td>
+            <td align="center">&#8221;</td>
+            <td>закрывающая двойная кавычка</td>
+          </tr>
+          <tr>
+            <td>201E</td>
+            <td align="center">&#8222;</td>
+            <td>закрывающая нижняя двойная кавычка</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>В следующем примере задан внешний вид кавычек и указано, что они должны вставляться в начале
+        и конце элемента <a href="html03.htm#eq"><strong>Q</strong></a>.</p>
+
+      <div class="code">
+<pre class="code">Q { quotes: &quot;\201C&quot; &quot;\201D&quot; &quot;\2018&quot; &quot;\2019&quot; }
+Q:before ( content: open-quote }
+Q:after ( content: close-quote }</pre>
+      </div>
+
+      <h3><a name="ref2113">2.11.3. Автоматическая нумерация</a></h3>
+
+      <h4><a name="ref21131">2.11.3.1. Счетчики</a></h4>
+
+      <p>Для автоматической нумерации в CSS используются <em><a href="css01.htm#counter">счетчики</a></em>.
+        Счетчик&nbsp;&#151; это идентификатор, которому присваиваются целые значения с помощью свойств
+        <a href="#pcounter-reset"><strong>counter-reset</strong></a> и <a href="#pcounter-increment"><strong>counter-increment</strong></a>.
+        Текущее значение счетчика может использоваться при генерации содержимого свойством <a href="#pcontent"><strong>content</strong></a>.</p>
+
+      <p>По умолчанию, счетчик обозначается как <dfn>counter(<em>name</em>)</dfn> и его значением являются
+        десятичные числа. Вместе с тем мы можем задавать стиль отображения значений счетчика в формате
+        <dfn>counter(<em>name</em>,<em>style</em>)</dfn>, где <dfn><em>style</em></dfn> может принимать
+        любые значения свойства <a href="#plist-style-type"><strong>list-style-type</strong></a>. Отметим,
+        что стиль <dfn>none</dfn> допустим: <dfn>counter(<em>name</em>,none)</dfn> генерирует пустую
+        строку. Примеры:</p>
+
+      <div class="code">
+<pre class="code">H1:before        { content: counter(chapter, upper-latin) &quot;. &quot; }
+H2:before        { content: counter(section, upper-roman) &quot; - &quot; }
+BLOCKQUOTE:after { content: &quot; [&quot; counter(bq, hebrew) &quot;]&quot; }
+DIV.note:before  { content: counter(notecnt, disc) &quot; &quot; }
+P:before         { content: counter(pcount, none) }</pre>
+      </div>
+
+      <p>Элементы со значением <dfn>none</dfn> свойства <a href="css05.htm#pdisplay"><strong>display</strong></a>
+        не изменяют значения счетчиков. С другой стороны, элементы со значением <dfn>hidden</dfn> свойства
+        <a href="css06.htm#pvisibility"><strong>visibility</strong></a> изменяют их значения, как обычные
+        элементы.</p>
+
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживаются
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживаются</pre>
+
+      <h4><a name="ref21132">2.11.3.2. Начальное значение счетчика: свойство counter-reset</a></h4>
+
+<pre class="syntax"><strong><a name="pcounter-reset">Синтаксис</a></strong>:  counter-reset: [&lt;идентификатор&gt; <a href="css01.htm#integer">&lt;целое&gt;</a> ?]+ | <dfn>none </dfn>| <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">все</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>counter-reset</strong> задает <em>начальные значения счетчиков</em>. Его значением
+        является список имен счетчиков, за каждым из которых может следовать необязательное целое число;
+        если такое число указано, то оно становится значением счетчика, если нет, то счетчику присваивается
+        значение 0.</p>
+
+      <p>Если элемент и задает начальное значение счетчика, и использует его значение в свойстве <strong><a href="#pcontent">content</a></strong>,
+        то значение используется <em>после</em> присваивания.</p>
+
+      <p>Данное свойство следует правилам каскадности. Поэтому следующие декларации</p>
+
+      <div class="code">
+<pre class="code">H1 { counter-reset: chapter 1 }
+H1 { counter-reset: section -1 }</pre>
+      </div>
+
+      <p class="noindent">зададут только значение счетчика section. Для задания начальных значений обоих
+        счетчиков их нужно указать в одном правиле:</p>
+
+      <div class="code">
+<pre class="code">H1 { counter-reset: chapter 1 section -1 }</pre>
+      </div>
+
+      <h4><a name="ref21133">2.11.3.3. Изменение значения счетчика: свойство counter-increment</a></h4>
+
+<pre class="syntax"><strong><a name="pcounter-increment">Синтаксис</a></strong>:  counter-increment: [&lt;идентификатор&gt; <a href="css01.htm#integer">&lt;целое&gt;</a> ?]+ | <dfn>none </dfn>| <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">все</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>counter-increment</strong> <em>изменяет значения счетчиков</em>.Его значением
+        является список имен счетчиков, за каждым из которых может следовать необязательное целое число;
+        если такое число указано, то оно добавляется к текущему значению счетчика, если нет, то значение
+        счетчика увеличивается на 1. Целое число может быть и нулем, и отрицательным.</p>
+
+      <p>Если использован счетчик, которому не присвоено начальное значение, то оно принимается равным
+        нулю. Если элемент и сбрасывает, и изменяет значение счетчика, то оно сначала сбрасывается,
+        а затем изменяется. Если элемент и изменяет значение счетчика, и использует его значение в свойстве
+        <strong><a href="#pcontent">content</a></strong>, то значение используется <em>после</em> изменения
+        значения.</p>
+
+      <p>Следующий пример показывает, как нумеровать главы текстом вида &quot;Глава 1.&nbsp;&quot;,
+        а разделы&nbsp;&#151; текстом вида &quot;1.1&nbsp;&quot; и т.&nbsp;д.</p>
+
+      <div class="code">
+<pre class="code">H1:before {
+  counter-increment: chapter;  /* Увеличить chapter на 1 */
+  counter-reset: section;      /* Обнулить section */
+  content: &quot;Глава &quot; counter(chapter) &quot;. &quot;;
+}
+H2:before {
+  counter-increment: section;  /* Увеличить section на 1 */
+  content: counter(chapter) &quot;.&quot; counter(section) &quot; &quot;;
+}</pre>
+      </div>
+
+      <h3><a name="ref2114">2.11.4. Маркеры</a></h3>
+
+      <h4><a name="ref21141">2.11.4.1. Создание маркеров</a></h4>
+
+      <p>Большинство блочных элементов в CSS генерируют один объемлющий прямоугольник. Однако, CSS содержит
+        два механизма, вынуждающих элемент генерировать два прямоугольника: главный прямоугольник для
+        содержимого элемента и <em>прямоугольник маркера</em>, который может располагаться как внутри,
+        так и вне главного прямоугольника. В отличие от генерируемого содержимого, прямоугольник маркера
+        не влияет на позицию главного прямоугольника. Более общий из этих механизмов называется <em>маркеры</em>
+        и описан в этом разделе. Второй, более ограниченный по возможностям, но чаще используемый, называется
+        <em>списки</em> и описан в следующем разделе.</p>
+
+      <p>Маркеры создаются присваиванием значения <dfn>marker</dfn> свойству <a href="css05.htm#pdisplay"><strong>display</strong></a>
+        в псевдоэлементах <strong>:before</strong> и <strong>:after</strong>. Прямоугольник маркера
+        форматируется как однострочный прямоугольник, расположенный вне главного прямоугольника элемента.
+        Он создается только в том случае, когда свойство <a href="#pcontent"><strong>content</strong></a>
+        псевдоэлемента действительно генерирует содержание. Прямоугольник маркера имеет рамку и заполнитель,
+        но не имеет границ.</p>
+
+      <p>Для псевдоэлемента <strong>:before</strong> базовая линия текста прямоугольника маркера вертикально
+        выравнивается по базовой линии текста первой строки содержимого главного прямоугольника, а для
+        псевдоэлемента <strong>:after</strong>&nbsp;&#151; по базовой линии текста последней строки.
+        Если главный прямоугольник не содержит текста, то выравнивание производится соответственно по
+        верхнему и нижнему внешнему краю главного прямоугольника.</p>
+
+      <p>Высота прямоугольника маркера задается свойством <a href="css06.htm#pline-height"><strong>line-height</strong></a>.
+        Вертикальное выравнивание маркера внутри его прямоугольника задается свойством <a href="css06.htm#pvertical-align"><strong>vertical-align</strong></a>.</p>
+
+      <p>Если свойство <a href="css06.htm#pwidth"><strong>width</strong></a> имеет значение <dfn>auto</dfn>,
+        то ширина прямоугольника маркера определяется его содержимым, в остальных случаях&nbsp;&#151;
+        значением <a href="css06.htm#pwidth"><strong>width</strong></a>. Если при этом ширина содержимого
+        больше ширины прямоугольника, то обрезка определяется значением свойства <a href="css06.htm#poverflow"><strong>overflow</strong></a>.
+        Прямоугольник маркера может накладываться на главный прямоугольник. Если ширина содержимого
+        меньше ширины прямоугольника, то горизонтальное выравнивание содержимого задается свойством
+        <a href="css09.htm#ptext-align"><strong>text-align</strong></a>.</p>
+
+      <p>Свойство <a href="#pmarker-offset"><strong>marker-offset</strong></a> задает смещение прямоугольника
+        маркера по горизонтали относительно главного прямоугольника, точнее, расстояние между ближайшими
+        краями их рамок.</p>
+
+      <p>Если свойство <a href="css05.htm#pdisplay"><strong>display</strong></a> имеет значение <dfn>marker</dfn>
+        для содержимого, сгенерированного элементом, у которого значение <a href="css05.htm#pdisplay"><strong>display</strong></a>
+        равно <dfn>list-item</dfn>, то прямоугольник маркера, сгенерированный для <strong>:before</strong>,
+        замещает обычный маркер элемента списка.</p>
+
+      <p>Например, следующий HTML-документ</p>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+  &lt;TITLE&gt;Создание списка с маркерами&lt;/TITLE&gt;
+  &lt;STYLE type=&quot;text/css&quot;&gt;
+    LI:before {
+      display: marker;
+      counter-increment: mycounter;
+      content: counter(mycounter, lower-roman) &quot;. &quot;;
+    }
+  &lt;/STYLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+  &lt;OL&gt;
+    &lt;LI&gt;Первый элемент списка.&lt;/LI&gt;
+    &lt;LI&gt;Второй элемент списка.&lt;/LI&gt;
+    &lt;LI&gt;Третий элемент списка.&lt;/LI&gt;
+  &lt;/OL&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;</pre>
+      </div>
+
+      <p class="noindent">будет отображаться так:</p>
+
+      <p class="noindent"><samp>&nbsp;&nbsp;i. Первый элемент списка.<br>
+        &nbsp;ii. Второй элемент списка.<br>
+        iii. Третий элемент списка. </samp></p>
+
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживаются
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживаются</pre>
+
+      <h4><a name="ref21142">2.11.4.2. Позиция маркера: свойство marker-offset</a></h4>
+
+<pre class="syntax"><strong><a name="pmarker-offset">Синтаксис</a></strong>:  marker-offset: <a href="css01.htm#length">&lt;размер&gt;</a> | <dfn>auto</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>auto</dfn>
+<strong>Применимо</strong>:  к элементам типа display: marker
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>marker-offset</strong> задает <em>смещение прямоугольника маркера</em> по
+        горизонтали относительно главного прямоугольника, точнее, расстояние между ближайшими краями
+        их рамок. Оно может быть задано явно (<a href="css01.htm#length">&lt;размер&gt;</a>) или оставлено
+        на усмотрение обозревателя (<dfn>auto</dfn>). Размер может быть отрицательным. Пример:</p>
+
+      <div class="code">
+<pre class="code">LI:before { marker-offset: 3em }</pre>
+      </div>
+
+      <h3><a name="ref2115">2.11.5. Списки</a></h3>
+
+      <h4><a name="ref21151">2.11.5.1. Введение в списки</a></h4>
+
+      <p><em>Элементы списков</em> создаются присваиванием значения <dfn>list-item</dfn> свойству <strong><a href="css05.htm#pdisplay">display</a></strong>.
+        Как и в более общем случае маркеров, они отображаются в виде двух прямоугольников: главного
+        прямоугольника для содержимого элемента и необязательного прямоугольника маркера списка. Свойства
+        списков позволяют задать тип этого маркера и его положение относительно главного прямоугольника.
+        Отметим, что при отображении списков фон элемента распространяется только на главный прямоугольник;
+        прямоугольник маркера всегда прозрачен.</p>
+
+      <h4><a name="ref21152">2.11.5.2. Тип маркера списка: свойство list-style-type</a></h4>
+
+<pre class="syntax"><strong><a name="plist-style-type">Синтаксис</a></strong>:  list-style-type: <dfn>disc</dfn> | <dfn>circle</dfn> | <dfn>square</dfn> | <dfn>decimal</dfn> | <dfn>decimal-leading-zero</dfn> |
+                             <dfn>lower-roman</dfn> | <dfn>upper-roman</dfn> | <dfn>lower-greek</dfn> | <dfn>lower-alpha</dfn> |
+                             <dfn>lower-latin</dfn> | <dfn>upper-alpha</dfn> | <dfn>upper-latin</dfn> | <dfn>hebrew</dfn> |
+                             <dfn>armenian</dfn> | <dfn>georgian</dfn> | <dfn>cjk-ideographic</dfn> | <dfn>hiragana</dfn> | <dfn>katakana</dfn> |
+                             <dfn>hiragana-iroha</dfn> | <dfn>katakana-iroha</dfn> | <dfn>none</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>disc</dfn>
+<strong>Применимо</strong>:  к элементам типа display: list-item
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Поддерживаются только disc, circle, square, none, decimal, lower-roman,
+               upper-roman, lower-alpha, upper-alpha (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Поддерживаются только disc, circle, square, none, decimal, lower-roman,
+               upper-roman, lower-alpha, upper-alpha (4.0+)</pre>
+
+      <p>Свойство <strong>list-style-type</strong> задает <em>тип маркера списка</em>. Оно может принимать
+        следующие значения:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>disc</dfn></td>
+            <td align="left">Черный кружок (зависит от обозревателя)</td>
+          </tr>
+          <tr>
+            <td><dfn>circle</dfn></td>
+            <td align="left">Светлый кружок (зависит от обозревателя)</td>
+          </tr>
+          <tr>
+            <td><dfn>square</dfn></td>
+            <td align="left">Черный квадратик (зависит от обозревателя)</td>
+          </tr>
+          <tr>
+            <td><dfn>decimal</dfn></td>
+            <td align="left">Десятичные числа (1, 2, 3, &#133;)</td>
+          </tr>
+          <tr>
+            <td><dfn>decimal-leading-zero</dfn></td>
+            <td align="left">Десятичные числа с ведущим нулем (01, 02, 03, &#133; 98, 99)</td>
+          </tr>
+          <tr>
+            <td><dfn>lower-roman</dfn></td>
+            <td align="left">Строчные римские числа (i, ii, iii, iv, v, &#133;)</td>
+          </tr>
+          <tr>
+            <td><dfn>upper-roman</dfn></td>
+            <td align="left">Прописные римские числа (I, II, III, IV, V, &#133;)</td>
+          </tr>
+          <tr>
+            <td><dfn>lower-greek</dfn></td>
+            <td align="left">Строчные греческие буквы (&#945;, &#946;, &#947;, &#133;, &#969;)</td>
+          </tr>
+          <tr>
+            <td><dfn>lower-alpha</dfn></td>
+            <td align="left">Строчные латинские буквы (a, b, c, &#133;, z)</td>
+          </tr>
+          <tr>
+            <td><dfn>lower-latin</dfn></td>
+            <td align="left">Строчные латинские буквы (a, b, c, &#133;, z)</td>
+          </tr>
+          <tr>
+            <td><dfn>upper-alpha</dfn></td>
+            <td align="left">Прописные латинские буквы (A, B, C, &#133;, Z)</td>
+          </tr>
+          <tr>
+            <td><dfn>upper-latin</dfn></td>
+            <td align="left">Прописные латинские буквы (A, B, C, &#133;, Z)</td>
+          </tr>
+          <tr>
+            <td><dfn>hebrew</dfn></td>
+            <td align="left">Традиционная ивритская нумерация</td>
+          </tr>
+          <tr>
+            <td><dfn>armenian</dfn></td>
+            <td align="left">Традиционная армянская нумерация</td>
+          </tr>
+          <tr>
+            <td><dfn>georgian</dfn></td>
+            <td align="left">Традиционная грузинская нумерация (an, ban, gan, &#133;, he, tan, in, in-an,
+              &#133;)</td>
+          </tr>
+          <tr>
+            <td><dfn>cjk-ideographic</dfn></td>
+            <td align="left">Дальневосточная идеографическая нумерация</td>
+          </tr>
+          <tr>
+            <td><dfn>hiragana</dfn></td>
+            <td align="left">Японская нумерация азбукой хирагана (a, i, u, e, o, ka, ki, &#133;)</td>
+          </tr>
+          <tr>
+            <td><dfn>katakana</dfn></td>
+            <td align="left">Японская нумерация азбукой катакана (A, I, U, E, O, KA, KI, &#133;)</td>
+          </tr>
+          <tr>
+            <td><dfn>hiragana-iroha</dfn></td>
+            <td align="left">Японская нумерация хирагана-ироха (i, ro, ha, ni, ho, he, to, &#133;)</td>
+          </tr>
+          <tr>
+            <td><dfn>katakana-iroha</dfn></td>
+            <td align="left">Японская нумерация катакана-ироха (I, RO, HA, NI, HO, HE, TO, &#133;)</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Спецификация CSS не определяет, какие символы должны использоваться в качестве маркеров списка,
+        когда заданный алфавит будет исчерпан. Например, 27-й элемент списка типа <dfn>lower-alpha</dfn>
+        не определен. Поэтому алфавитные типы маркеров должны использоваться только для коротких списков
+        заранее известного размера. Если обозреватель не поддерживает заданный тип маркера, то он должен
+        заменяться на <dfn>decimal</dfn>.</p>
+
+      <p>Это свойство применяется к списку только тогда, когда значением свойства <a href="#plist-style-image"><strong>list-style-image</strong></a>
+        является <dfn>none</dfn> или указанный в нем графический образ не может быть загружен.</p>
+
+      <p>Следующий пример нумерует элементы нумерованного списка строчными римскими числительными:</p>
+
+      <div class="code">
+<pre class="code">OL { list-style-type: lower-roman }</pre>
+      </div>
+
+      <h4><a name="ref21153">2.11.5.3. Графический маркер списка: свойство list-style-image</a></h4>
+
+<pre class="syntax"><strong><a name="plist-style-image">Синтаксис</a></strong>:  list-style-image: <a href="css01.htm#uri">&lt;uri&gt;</a> | <dfn>none</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  к элементам типа display: list-item
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>list-style-image</strong> задает <em>графический маркер списка</em> указанием
+        на URI соответствующего графического образа. Если оно равно <dfn>none</dfn>, то тип маркера
+        списка задается свойством <a href="#plist-style-type"><strong>list-style-type</strong></a>.</p>
+
+      <p>Следующий пример помещает в начало каждого элемента маркированного списка графический образ
+        &quot;ellipse.gif&quot;:</p>
+
+      <div class="code">
+<pre class="code">UL { list-style-image: url(&quot;http://mylibrary.com/ellipse.gif&quot;) }</pre>
+      </div>
+
+      <h4><a name="ref21154">2.11.5.4. Позиция маркера списка: свойство list-style-position</a></h4>
+
+<pre class="syntax"><strong><a name="plist-style-position">Синтаксис</a></strong>:  list-style-position: <dfn>inside</dfn> | <dfn>outside</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>outside</dfn>
+<strong>Применимо</strong>:  к элементам типа display: list-item
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>list-style-position</strong> задает <em>положение маркера списка</em> относительно
+        элемента списка. Оно может принимать следующие значения:</p>
+
+<pre class="syntax"><dfn>inside</dfn>
+  Прямоугольник маркера становится первым текстовым блоком главного прямоугольника.
+<dfn>outside</dfn>
+  Прямоугольник маркера размещается вне главного прямоугольника.</pre>
+
+      <p>Например, следующий фрагмент HTML-документа</p>
+
+      <div class="code">
+<pre class="code">&lt;UL style=&quot;list-style-type: square; <strong>list-style-position: inside</strong>; width: 40%&quot;&gt;
+  &lt;LI&gt;Первый элемент списка расположен таким вот образом.&lt;/LI&gt;
+  &lt;LI&gt;Второй элемент списка располагается так же.&lt;/LI&gt;
+&lt;/UL&gt;</pre>
+      </div>
+
+      <p class="noindent">будет отображаться так (Netscape Navigator 4.x отображает этот пример неверно!):
+
+      <ul style="list-style-type: square; list-style-position: inside; width: 40%">
+        <li style="list-style-type: square"><samp>Первый элемент списка расположен таким вот образом.</samp></li>
+        <li style="list-style-type: square"><samp>Второй элемент списка располагается так же.</samp></li>
+      </ul>
+
+      <h4><a name="ref21155">2.11.5.5. Задание свойств списка: свойство list-style</a></h4>
+
+<pre class="syntax"><strong><a name="plist-style">Синтаксис</a></strong>:  list-style: [<a href="#plist-style-type">&lt;list-style-type&gt;</a> || <a href="#plist-style-image">&lt;list-style-image&gt;</a> ||
+                        <a href="#plist-style-position">&lt;list-style-position&gt;</a>] | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   не определено для сокращений
+<strong>Применимо</strong>:  к элементам типа display: list-item
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>list-style</strong> является сокращением для свойств <a href="#plist-style-type"><strong>list-style-type</strong></a>,
+        <a href="#plist-style-image"><strong>list-style-image</strong></a> и <a href="#plist-style-position"><strong>list-style-position</strong></a>.
+        Оно позволяет задать все свойства списка одновременно. С его помощью стиль маркированного списка
+        из предыдущего примера мог бы быть задан так:</p>
+
+      <div class="code">
+<pre class="code">&lt;UL style=&quot;list-style: square inside; width: 40%&quot;&gt;</pre>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

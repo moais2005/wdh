@@ -1,0 +1,1152 @@
+r"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref516">Глава 5.16. Стандартные пакеты: java.io</a></h2>
+
+      <h3><a name="ref5161">5.16.1. Обзор пакета</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Стандартные пакеты: java.net</title>
+<link rel="Prev" href="java16.htm" title="Стандартные пакеты: java.io">
+<link rel="Next" href="java18.htm" title="Создание аплетов">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref517">Глава 5.17. Стандартные пакеты: java.net</a></h2>
+
+      <h3><a name="ref5171">5.17.1. Обзор пакета</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html<strong>do&#133;while</strong></a>,
+          <a href="#ref3645"><strong>break</strong></a> и <a href="#ref3646"><strong>continue</strong></a>;</li>
+        <li>оператор итерации <a href="#ref365"><strong>for&#133;in</strong></a>;</li>
+        <li>оператор указания объекта <a href="#ref366"><strong>with</strong></a>;</li>
+        <li>операторы обработки исключений <a href="#ref3672"><strong>try&#133;catch</strong></a> и
+          <a href="#ref3673"><strong>throw</strong></a>;</li>
+        <li>операторы декларации функций <a href="#ref3681"><strong>function</strong></a> и возврата
+          из функции <strong><a href="#ref3684">return</a></strong>.</li>
+      </ul>
+
+      <p>Следующие операторы описаны в других разделах справочника:</p>
+
+      <ul>
+        <li><a href="js02.htm#empty-stat">пустой оператор</a>;</li>
+        <li>оператор декларации переменных <strong><a href="js02.htm#ref3251">var</a></strong>.</li>
+      </ul>
+
+      <p>Любое выражение JavaScript также является оператором.</p>
+
+      <h3><a name="ref362">3.6.2. Условный оператор</a></h3>
+
+      <p>Условный оператор <strong>if&#133;else</strong> позволяет проверить определенное условие и,
+        в зависимости от его истинности, выполнить ту или иную последовательность операторов. Он имеет
+        две формы:</p>
+
+<pre class="syntax"><strong>if</strong> (<i>условие</i>) <i>оператор1</i>
+<strong>if</strong> (<i>условие</i>) <i>оператор1</i> <strong>else</strong> <i>оператор2</i></pre>
+
+      <p>Здесь <em>условие</em>&nbsp;&#151; это любое выражение, значение которого может быть преобразовано
+        к логическому типу, <em>оператор1</em> и <em>оператор2</em>&nbsp;&#151; любые группы операторов
+        JavaScript; если эти группы содержат более одного оператора, то они должны быть заключены в
+        фигурные скобки <tt>{}</tt>.</p>
+
+      <p>Первая форма оператора означает, что если значение <em>условия</em> истинно, то выполняются
+        <em>операторы1</em>; если оно ложно, то управление передается оператору, следующему за <strong>if</strong>.</p>
+
+      <p>Вторая форма оператора означает, что если значение <em>условия</em> истинно, то выполняются
+        <em>операторы1</em>; если оно ложно, то выполняются <em>операторы2</em>.</p>
+
+      <p>Пример использования условного оператора в теле функции, возвращающей наибольшее из трех чисел:</p>
+
+      <div class="code">
+<pre class="code">function maxValue(x, y, z) {
+  if (x &gt;= y) {
+    if (x &gt;= z)
+      return x;
+    else
+      return z;
+  }
+  else {
+    if (y &gt;= z)
+      return y;
+    else
+      return z;
+  }
+}</pre>
+      </div>
+
+      <h3><a name="ref363">3.6.3. Оператор выбора</a></h3>
+
+      <p>Оператор выбора <strong>switch</strong> выполняет ту или иную последовательность операторов
+        в зависимости от значения определенного выражения. Он имеет вид:</p>
+
+<pre class="syntax"><strong>switch</strong> (<i>выражение</i>) {
+   <strong>case</strong> <i>значение</i>:
+     <i>операторы</i>
+     <strong>break</strong>;
+   <strong>case</strong> <i>значение</i>:
+    <i> операторы</i>
+     <strong>break</strong>;
+   ...
+   <strong>default</strong>:
+     <i>операторы</i>
+}</pre>
+
+      <p>Здесь <em>выражение</em>&nbsp;&#151; это любое выражение, <em>значение</em>&nbsp;&#151; это
+        возможное значение выражения, а <em>операторы</em>&nbsp;&#151; любые группы операторов JavaScript.</p>
+
+      <p>Оператор выбора сначала вычисляет значение <em>выражения</em>, а затем проверяет, нет ли этого
+        значения в одной из меток <strong>case </strong><em>значение</em>. Если такая метка есть, то
+        выполняются <em>операторы</em>, следующие за ней; если нет, то выполняются <em>операторы</em>,
+        следующие за меткой <strong>default</strong> (если она отсутствует, то управление передается
+        оператору, следующему за <strong>switch</strong>).</p>
+
+      <p>Необязательный оператор <a href="#ref3645"><strong>break</strong></a> указывает, что после
+        выполнения <em>операторов</em> управление передается оператору, следующему за <strong>switch</strong>.
+        Если <strong>break</strong> отсутствует, то после выполнения <em>операторов</em> начинают выполняться
+        <em>операторы</em>, стоящие после следующей метки <strong>case</strong> (управление как бы &quot;проваливается&quot;
+        в следующую метку).</p>
+
+      <p>В следующем примере значение переменной <tt>length</tt> преобразуется в метры в зависимости
+        от начальной единицы измерений, заданной в переменной <tt>str</tt>. Обратите внимание, что после
+        <tt>case &quot;м&quot;</tt> нет оператора <strong>break</strong>; в данном случае это означает,
+        что эта метка и метка <strong>default</strong> обрабатываются одинаково, а именно значение
+        переменной <tt>length</tt> не изменяется.</p>
+
+      <div class="code">
+<pre class="code">var str = &quot;см&quot;;
+var length = 25;
+switch (str) {
+  case &quot;км&quot;:
+    length *= 1000;
+    break;
+  case &quot;см&quot;:
+    length /= 100;
+    break;
+  case &quot;м&quot;:
+  default:
+    break;
+}</pre>
+      </div>
+
+      <h3><a name="ref364">3.6.4. Операторы цикла</a></h3>
+
+      <p><em>Цикл</em>&nbsp;&#151; это последовательность операторов, выполнение которой повторяется
+        до тех пор, пока определенное условие не станет ложным. JavaScript содержит три оператора цикла:
+        <a
+href="#ref3641"><strong>for</strong></a>, <a href="#ref3642"><strong>while</strong></a> и <a href="#ref3643"><strong>do&#133;while</strong></a>,
+        а также операторы <a
+href="#ref3645"><strong>break</strong></a> и <a href="#ref3646"><strong>continue</strong></a>, которые
+        используются внутри циклов.</p>
+
+      <p>Близок к операторам цикла и оператор итерации <a href="#ref365"><strong>for&#133;in</strong></a>,
+        используемый при работе с объектами.</p>
+
+      <h4><a name="ref3641">3.6.4.1. Оператор for</a></h4>
+
+      <p>Оператор цикла <strong>for</strong> имеет вид:</p>
+
+<pre class="syntax"><strong>for</strong> (<i>инициализация</i>; <em>условие</em>; <em>изменение</em>) <i>оператор</i></pre>
+
+      <p>Здесь <em>инициализация</em>&nbsp;и <em>изменение</em> &#151; это любое выражения, <em>условие</em>&nbsp;&#151;
+        любое выражение, значение которого может быть преобразовано к логическому типу, <em>оператор</em>
+        &#151; любая группа операторов JavaScript; если эти группа содержит более одного оператора,
+        то она должны быть заключена в фигурные скобки <tt>{}</tt>. <em>Инициализация</em> может содержать
+        <a href="js02.htm#ref3251">декларацию переменной</a>.</p>
+
+      <p>Оператор <strong>for </strong>выполняется следующим образом:</p>
+
+      <ol>
+        <li>Выполняется выражение <em>инициализация</em> (обычно это выражение инициализирует счетчик
+          или счетчики цикла).</li>
+        <li>Вычисляется значение выражения <em>условие</em>. Если оно ложно, то управление передается
+          оператору, следующему за данным оператором.</li>
+        <li>Выполняется <em>оператор</em>.</li>
+        <li>Выполняется выражение <em>изменение</em> (обычно это выражение увеличивает или уменьшает
+          счетчик или счетчики цикла) и управление передается этапу 2.</li>
+      </ol>
+
+      <p>Данный оператор обычно используется в тех случаях, когда количество повторений цикла известно
+        заранее. Например, следующая функция обнуляет все элементы массива, переданного ей в качестве
+        аргумента:</p>
+
+      <div class="code">
+<pre class="code">function initArray(a) {
+  for (var i = 0; i &lt; a.length; i++)
+    a[i] = 0;
+}</pre>
+      </div>
+
+      <h4><a name="ref3642">3.6.4.2. Оператор while</a></h4>
+
+      <p>Оператор цикла <strong>while</strong> имеет вид:</p>
+
+<pre class="syntax"><strong>while</strong> (<em>условие</em>) <i>оператор</i></pre>
+
+      <p>Здесь <em>условие</em>&nbsp;&#151; любое выражение, значение которого может быть преобразовано
+        к логическому типу, <em>оператор</em> - любая группа операторов JavaScript; если эти группа
+        содержит более одного оператора, то она должны быть заключена в фигурные скобки <tt>{}</tt>.</p>
+
+      <p>Оператор <strong>while </strong>выполняется следующим образом:</p>
+
+      <ol>
+        <li>Вычисляется значение выражения <em>условие</em>. Если оно ложно, то управление передается
+          оператору, следующему за данным оператором.</li>
+        <li>Выполняется <em>оператор</em> и управление передается этапу 1.</li>
+      </ol>
+
+      <p>При использовании данного оператора необходимо убедиться, что рано или поздно <em>условие</em>
+        станет ложным, т.&nbsp;к. иначе сценарий войдет в бесконечный цикл, например:</p>
+
+      <div class="code">
+<pre class="code">while (true)
+  document.write(&quot;Привет всем!&quot;);</pre>
+      </div>
+
+      <h4><a name="ref3643">3.6.4.3. Оператор do&#133;while</a></h4>
+
+      <p>Оператор цикла <strong>do&#133;while</strong> имеет вид:</p>
+
+<pre class="syntax"><strong>do</strong> <i>оператор</i> <strong>while</strong> (<em>условие</em>)</pre>
+
+      <p>Здесь <em>условие</em>&nbsp;&#151; любое выражение, значение которого может быть преобразовано
+        к логическому типу, <em>оператор</em> - любая группа операторов JavaScript; если эти группа
+        содержит более одного оператора, то она должны быть заключена в фигурные скобки <tt>{}</tt>.</p>
+
+      <p>Оператор <strong>do &#133; while </strong>выполняется следующим образом:</p>
+
+      <ol>
+        <li>Выполняется <em>оператор</em>.</li>
+        <li>Вычисляется значение выражения <em>условие</em>. Если оно ложно, то управление передается
+          оператору, следующему за данным оператором.</li>
+        <li>Управление передается этапу 1.</li>
+      </ol>
+
+      <p>Этот оператор отличается от оператора <a href="#ref3642"><strong>while</strong></a> тем, что
+        цикл обязательно выполняется хотя бы раз. Пример:</p>
+
+      <div class="code">
+<pre class="code">var i = 0;
+do
+  document.write(i++);
+while (i &lt; 10);</pre>
+      </div>
+
+      <h4><a name="ref3644">3.6.4.4. Метки операторов</a></h4>
+
+      <p>Любой оператор или блок операторов в сценарии на языке JavaScript может иметь любое количество
+        <em>меток</em>. Метки используются операторами <a href="#ref3645"><strong>break</strong></a>
+        и <a href="#ref3646"><strong>continue</strong></a> для указания того, к какому оператору они
+        относятся. Помеченный оператор имеет вид:</p>
+
+<pre class="syntax"><em>метка</em>:
+ <i>оператор</i></pre>
+
+      <p>В качестве метки может использоваться любой идентификатор, который не является <a href="js02.htm#ref323">зарезервированным
+        словом</a>.</p>
+
+      <p>Хотя в современном программировании использование меток считается дурным тоном, в некоторых
+        случаях их применение существенно упрощает логику программы. Чаще всего это происходит, когда
+        метки используются для передачи управления из глубоко вложенного цикла к внешнему.</p>
+
+      <h4><a name="ref3645">3.6.4.5. Оператор break</a></h4>
+
+      <p>Оператор <strong>break</strong> прерывает выполнение текущего цикла, оператора <a href="#ref363"><strong>switch</strong></a>
+        или помеченный оператора и передает управление оператору, следующему за прерванным. Этот оператор
+        может употребляться только внутри циклов <a href="#ref3642"><strong>while</strong></a>, <a href="#ref3643"><strong>do&#133;while</strong></a>,
+        <a href="#ref3641"><strong>for</strong></a> или <a href="#ref365"><strong>for&#133;in</strong></a>,
+        а также внутри оператора <a href="#ref363"><strong>switch</strong></a>. Он имеет две формы:</p>
+
+<pre class="syntax"><strong>break
+break</strong> метка</pre>
+
+      <p>Первая форма оператора прерывает выполнение самого внутреннего из циклов или операторов <a
+href="#ref363"><strong>switch</strong></a>. Вторая форма оператора прерывает выполнение оператора с
+        заданной меткой.</p>
+
+      <p>Пример оператора <strong>break</strong> в теле функции, возвращающей номер элемента массива,
+        содержащего заданное значение:</p>
+
+      <div class="code">
+<pre class="code">function findValue(a, theValue) {
+  for (var i = 0; i &lt; a.length; i++) {
+    if (a[i] == theValue)
+      break;
+  }
+  return i;
+}</pre>
+      </div>
+
+      <h4><a name="ref3646">3.6.4.6. Оператор continue</a></h4>
+
+      <p>Оператор <strong>continue</strong> завершает текущую итерацию текущего цикла или цикла, помеченного
+        соответствующей меткой, и начинает новую итерацию. Этот оператор может употребляться только
+        внутри циклов <a href="#ref3642"><strong>while</strong></a>, <a
+href="#ref3643"><strong>do&#133;while</strong></a>, <a href="#ref3641"><strong>for</strong></a> или
+        <a href="#ref365"><strong>for&#133;in</strong></a>. Он имеет две формы:</p>
+
+<pre class="syntax"><strong>continue
+continue</strong> метка</pre>
+
+      <p>Первая форма оператора завершает текущую итерацию самого внутреннего из циклов. Вторая форма
+        оператора завершает текущую итерацию оператора с заданной меткой. При этом переход к следующей
+        итерации цикла происходит следующим образом:</p>
+
+      <ul>
+        <li>циклы <a href="#ref3642"><strong>while</strong></a> и <strong><a href="#ref3643">do&#133;while</a></strong>
+          проверяют условие цикла и, если оно истинно, начинают очередное выполнение цикла;</li>
+        <li>цикл <a href="#ref3641"><strong>for</strong></a> выполняет выражение <em>изменение</em>,
+          проверяет условие цикла и, если оно истинно, начинает очередное выполнение цикла;</li>
+        <li>цикл <a href="#ref365"><strong>for&#133;in</strong></a> переходит к следующему полю переменной
+          и начинает очередное выполнение цикла.</li>
+      </ul>
+
+      <p>В следующем примере к переменной <tt>n</tt> последовательно добавляются значения 1, 2, 4 и
+        5:</p>
+
+      <div class="code">
+<pre class="code">var i = 0;
+var n = 0;
+while (i &lt; 5) {
+  i++;
+  if (i == 3)
+    continue;
+  n += i;
+}</pre>
+      </div>
+
+      <h3><a name="ref365">3.6.5. Оператор for&#133;in</a></h3>
+
+      <p>Оператор <strong>for&#133;in</strong> выполняет заданные действия для каждого свойства объекта
+        или для каждого элемента массива. Он имеет вид:</p>
+
+<pre class="syntax"><strong>for</strong> (<i>переменная</i> <strong>in</strong> <em>выражение</em>) <i>оператор</i></pre>
+
+      <p>Здесь <em>переменная</em> &#151; это <a href="js02.htm#ref3251">декларация переменной</a>,
+        <em>выражение</em>&nbsp;&#151; любое выражение, значением которого является объект или массив,
+        <em>оператор</em> &#151; любая группа операторов JavaScript; если эти группа содержит более
+        одного оператора, то она должны быть заключена в фигурные скобки <tt>{}</tt>.</p>
+
+      <p>Оператор <strong>for&#133;in</strong> выполняется следующим образом:</p>
+
+      <ol>
+        <li><em>Переменной</em> присваивается имя очередного свойства объекта или очередного элемента
+          массива (это зависит от того, является значением <em>выражения</em> объект или массив).</li>
+        <li>Выполняется <em>оператор</em>.</li>
+        <li>Управление передается этапу 1.</li>
+      </ol>
+
+      <p>При итерации массива переменной последовательно присваиваются значение первого, второго, ...,
+        последнего элемента массива. Однако, при итерации свойств объекта невозможно предсказать, в
+        каком порядке они будут присваиваться переменной: этот оператор гарантирует только то, что все
+        они будут просмотрены.</p>
+
+      <p>Следующий сценарий создает новый объект <tt>ob</tt>, а затем последовательно выводит все его
+        свойства на экран обозревателя:</p>
+
+      <div class="code">
+<pre class="code">var ob = {&quot;а&quot; : &quot;Архангельск&quot;, &quot;б&quot; : &quot;Баку&quot;, &quot;в&quot; : &quot;Воронеж&quot;};
+for (var key in ob)
+  document.write(key + &quot;: &quot; + ob[key] + &quot;&lt;BR&gt;&quot;);</pre>
+      </div>
+
+      <p>На экране появится текст</p>
+
+      <pre><samp>а: Архангельск
+б: Баку
+в: Воронеж</samp></pre>
+
+      <h3><a name="ref366">3.6.6. Оператор with</a></h3>
+
+      <p>Оператор <strong>with</strong> задает имя объекта по умолчанию. Он имеет вид:</p>
+
+<pre class="syntax"><strong>with</strong> (<em>выражение</em>) <i>оператор</i></pre>
+
+      <p>Здесь <em>выражение</em>&nbsp;&#151; любое выражение, значением которого является объект, <em>оператор</em>
+        &#151; любая группа операторов JavaScript; если эти группа содержит более одного оператора,
+        то она должны быть заключена в фигурные скобки <tt>{}</tt>.</p>
+
+      <p>Этот оператор действует следующим образом. Для каждого идентификатора в <em>операторе</em>
+        исполняющая система проверяет, не является ли он именем свойства объекта, заданного по умолчанию.
+        Если да, то этот идентификатор считается именем свойства, если же нет, то именем переменной.</p>
+
+      <p>Оператор <strong>with</strong> используется для сокращения размера программного кода и ускорения
+        доступа к свойствам объектов. Например, для доступа к математическим функциям мы должны каждый
+        раз указывать имя объекта <strong>Math</strong>:</p>
+
+      <div class="code">
+<pre class="code">x = Math.cos(Math.PI / 2) + Math.sin(Math.LN10);
+y = Math.tan(2 * Math.E);</pre>
+      </div>
+
+      <p>С помощью оператора <strong>with</strong> этот фрагмент сценария можно существенно укоротить:</p>
+
+      <div class="code">
+<prame="ref354">3.5.4. Запоминание найденных подстрок</a></h3>
+
+      <p>Если часть регулярного выражения заключена в круглые скобки, то соответствующая ей подстрока
+        будет запомнена для последующего использования. Для доступа к запомненным подстрокам используются
+        свойства <a href="js12.htm#psave"> <tt>$1</tt>, &#133;, <tt>$9</tt></a> объекта <strong><a href="js12.htm##ref3123">RegExp</a></strong>
+        или элементы массива, возвращаемого методами <strong><a href="js12.htm#mexec">exec</a></strong>
+        и <strong><a href="js09.htm#mmatch">match</a></strong>. В последнем случае количество найденных
+        и запомненных подстрок не ограничено.</p>
+
+      <p>Например, следующий сценарий использует метод <strong><a href="js09.htm#mreplace">replace</a></strong>
+        для перестановки слов в строке. Для замены найденного текста используются свойства <tt>$1</tt>
+        и <tt>$2</tt>.</p>
+
+      <div class="code">
+<pre class="code">var re = /(\w+)\s(\w+)/;
+var str = &quot;Михаил Булгаков&quot;;
+document.write(str.replace(re, &quot;$2, $1&quot;))</pre>
+      </div>
+
+      <p>Этот сценарий выведет в окно обозревателя текст:</p>
+
+      <p><samp>Булгаков, Михаил</samp></p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+ pre class=AF      hr Нo  hr Нo  P‹H4ЎU  P‹H4ЎU     <p class="noindent">где <tt>property</tt>&nbsp;&#151; строковое выражение, значением которого
+        является имя свойства, или числовое выражение, задающее номер элемента массива, а <tt>object</tt>&nbsp;&#151;
+        любое объектное выражение. Примеры:</p>
+
+      <div class="code">
+<pre class="code">mynumber = new Number();	// новый объект
+mynumber.high = 100;		// новое свойство объекта
+&quot;high&quot; in mynumber		// возвращает true
+langs = new Array(&quot;HTML&quot;, &quot;CSS&quot;, &quot;JavaScript&quot;, &quot;Java&quot;);
+0 in langs			// возвращает true
+4 in langs			// возвращает false</pre>
+      </div>
+
+      <h4><a name="ref3475">3.4.7.5. Операция instanceof</a></h4>
+
+      <p><em>Операция instanceof</em> возвращает <strong>true</strong>, если данный объект относится
+        к данному классу объектов. Она имеет вид:</p>
+
+<pre class="syntax">object instanceof type</pre>
+
+      <p class="noindent">где <tt>object</tt>&nbsp;&#151; любое объектное выражение, а <tt>type</tt>&nbsp;&#151;
+        имя класса объектов. Примеры:</p>
+
+      <div class="code">
+<pre class="code">myDay = new Date(1958,5,21);	// новый объект
+myDay instanceof Date		// возвращает true</pre>
+      </div>
+
+      <h4><a name="ref3476">3.4.7.6. Операция new</a></h4>
+
+      <p><em>Операция new</em> создает новый объект путем вызова конструктора объектов. Она имеет вид:</p>
+
+<pre class="syntax">new type(arguments)</pre>
+
+      <p class="noindent">где <tt>type</tt>&nbsp;&#151; имя конструктора, а <tt>arguments</tt>&nbsp;&#151;
+        список параметров, разделенных запятыми, используемых для инициализации объекта. Если список
+        параметров пуст, то круглые скобки можно опустить. Примеры:</p>
+
+      <div class="code">
+<pre class="code">myObject = new Object;
+myArray = new Array();
+myDate = new Date(&quot;May 21 1958&quot;);
+myDay = new Date(1958,5,21);</pre>
+      </div>
+
+      <p>Подробнее о создании новых объектов см. <a href="js07.htm#ref3713">п. 3.7.1.3</a>.</p>
+
+      <h4><a name="ref3477">3.4.7.7. Операция this</a></h4>
+
+      <p><em>Операция this</em> возвращает указатель на текущий объект. Она должна использоваться в
+        выражениях вида:</p>
+
+<pre class="syntax">this.property</pre>
+
+      <p class="noindent">где <tt>property</tt>&nbsp;&#151; имя свойства объекта.</p>
+
+      <p>Эта операция широко применяется в <a href="html01.htm#ref1147">обработчиках событий</a> HTML
+        для указания на объект, вызвавший данное событие. Например, следующий фрагмент HTML-документа
+        содержит поле ввода возраста и сценарий, проверяющий допустимость введенного значения.</p>
+
+      <div class="code">
+<pre class="code">&lt;SCRIPT type=&quot;text/javascript&quot;&gt;
+function validate(obj, low, high) {
+  if ((obj.value &lt; low) || (obj.value &gt; high))
+    alert(&quot;Недопустимое значение!&quot;)
+}
+&lt;/SCRIPT&gt;
+&lt;INPUT type=&quot;text&quot; name=&quot;age&quot; size=&quot;3&quot; onchange=&quot;validate(this, 18, 99)&quot;&gt;</pre>
+      </div>
+
+      <p>Фактически, <tt>this</tt> указывает либо на <a href="js08.htm#ref381">глобальный объект</a>,
+        либо на тот объект, метод которого исполняется в данный момент. Об использовании этой операции
+        в конструкторах объектов см. <a href="js07.htm#ref3713">п. 3.7.1.3</a>.</p>
+
+      <h4><a name="ref3478">3.4.7.8. Операция typeof</a></h4>
+
+      <p><em>Операция typeof</em> возвращает строку, содержащую информацию о типе операнда. Она имеет
+        вид:</p>
+
+<pre class="syntax">typeof expr или typeof(expr)</pre>
+
+      <p class="noindent">где <tt>expr</tt>&nbsp;&#151; любое выражение. Возвращаемое значение может
+        быть одной из шести строк: &quot;number&quot; (число), &quot;string&quot; (строка), &quot;boolean&quot;
+        (логическое значение), &quot;object&quot; (объект), &quot;function&quot; (функция) или &quot;undefined&quot;
+        (неопределенное значение). Примеры:</p>
+
+      <div class="code">
+<pre class="code">var size = 1;
+var shape = &quot;круглый&quot;;
+var today = new Date();
+typeof(size);	// возвращает &quot;number&quot;
+typeof shape;	// возвращает &quot;string&quot;
+typeof today;	// возвращает &quot;object&quot;</pre>
+      </div>
+
+      <p class="note"><strong>Примечание</strong>. В Microsoft JScript операция <tt>typeof</tt> может
+        возвращать еще два значения: &quot;date&quot; (тип VT_DATE стандарта COM) и &quot;unknown&quot;
+        (COM-интерфейсы ActiveX).</p>
+
+      <h4><a name="ref3479">3.4.7.9. Операция void</a></h4>
+
+      <p><em>Операция void</em> вычисляет значение выражения и возвращает <strong>undefined</strong>.
+        Она имеет вид:</p>
+
+<pre class="syntax">void expr или void(expr)</pre>
+
+      <p class="noindent">где <tt>expr</tt>&nbsp;&#151; любое выражение. Эта операция полезна в тех
+        случаях, когда мы хотим вычислить значение выражения, но не хотим, чтобы оно передавалось последующей
+        части сценария.</p>
+
+      <h3><a name="ref348">3.4.8. Порядок выполнения операций</a></h3>
+
+      <p>При вычислении выражений JavaScript учитывает <em>приоритет операций</em>:
+        операции, имеющие больший приоритет, выполняются первыми. Если операции имеют равный приоритет,
+        то они выполняются слева направо. Для изменения порядка выполнения операций следует пользоваться
+        круглыми скобками: выражение, заключенное в них, имеет наивысший приоритет. В следующей таблице
+        приведен список всех операций языка JavaScript в порядке убывания их приоритетов; операции,
+        расположенные в одной строке таблицы, имеют равный приоритет.</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0" width="60%">
+          <caption><a name="table36">Таблица 3.6. Приоритеты операций</a></caption>
+          <tr>
+            <th>Операция</th>
+          </tr>
+          <tr>
+            <td><tt>. [] ()</tt></td>
+          </tr>
+          <tr>
+            <td><tt>++ -- - ~ ! delete new typeof void</tt></td>
+          </tr>
+          <tr>
+            <td><tt>* / %</tt></td>
+          </tr>
+          <tr>
+            <td><tt>+ -</tt></td>
+          </tr>
+          <tr>
+            <td><tt>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</tt></td>
+          </tr>
+          <tr>
+            <td><tt>&lt; &lt;= &gt; &gt;= instanceof</tt></td>
+          </tr>
+          <tr>
+            <td><tt>== != === !==</tt></td>
+          </tr>
+          <tr>
+            <td><tt>&amp;</tt></td>
+          </tr>
+          <tr>
+            <td><tt>^</tt></td>
+          </tr>
+          <tr>
+            <td><tt>|</tt></td>
+          </tr>
+          <tr>
+            <td><tt>&amp;&amp;</tt></td>
+          </tr>
+          <tr>
+            <td><tt>||</tt></td>
+          </tr>
+          <tr>
+            <td><tt>?:</tt></td>
+          </tr>
+          <tr>
+            <td><tt>= += -= *= /= %= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</tt></td>
+          </tr>
+          <tr>
+            <td><tt>,</tt></td>
+          </tr>
+        </table>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+ ЎU  б)      8r Нo  8r Нo  °§H4ЎU  °§H4ЎU  name="var"><em>Переменные</em></a> используются в качестве символических имен, принимающих
+        различные значения. Имена переменных задаются <a  dd!)      8r Нo  8r Нo  pЁH4ЎU  pЁH4ЎU  том языка, а поддерживается средой исполнения сценариев.</dd>
+        <dt><strong>Неопределенное значение</strong></dt>
+        <dd>Примитивное значение, которое означает, что переменной не присвоено никакого значения.</dd>
+        <dt><strong>Тип Undefined</strong></dt>
+        <dd>Этот тип состоит из единственного значения <strong>undefined</strong>, которое является
+          неопределенным.</dd>
+        <dt><strong>Нулевое значение</strong></dt>
+        <dd>Примитивное значение, которое означает нулевую, пустую или несуществующую ссылку.</dd>
+        <dt><strong>Тип Null</strong></dt>
+        <dd>Этот тип состоит из единственного значения <strong>null</strong>, которое является нулевым.</dd>
+        <dt><strong>Логическое значение</strong></dt>
+        <dd>Примитивное значение типа <strong>Boolean</strong>, означающее истину или ложь.</dd>
+        <dt><strong>Тип Boolean</strong></dt>
+        <dd>Тип, состоящий ровно из двух значений: <strong>true</strong> (истина) и <strong>false</strong>
+          (ложь).</dd>
+        <dt><strong>Логический объект</strong></dt>
+        <dd>Элемент типа <strong>Object</strong>, который является экземпляром встроенного логического
+          объекта. Иными словами, логический объект создается выражением <code>new Boolean(value)</code>,
+          где value&nbsp;&#151; логическое значение. Результирующий объект имеет неявное (безымянное)
+          свойство типа <strong>Boolean</strong>.</dd>
+        <dt><strong>Строковое значение</strong></dt>
+        <dd>Элемент типа <strong>String</strong>. Предсталяет собой строку символов, т .&nbsp;е. упорядоченный
+          массив из нуля или более символов Unicode (т.&nbsp;е. 16-битовых целых чисел без знака).</dd>
+        <dt><strong>Тип String</strong></dt>
+        <dd>Этот тип состоит из всех возможных строковых значений.</dd>
+        <dt><strong>Строковый объект</strong></dt>
+        <dd>Элемент типа <strong>Object</strong>, который является экземпляром встроенного строкового
+          объекта. Иными словами, строковый объект создается выражением <code>new String(value)</code>,
+          где value&nbsp;&#151; строковое значение. Результирующий объект имеет неявное (безымянное)
+          свойство типа <strong>String</strong>.</dd>
+        <dt><strong>Числовое значение</strong></dt>
+        <dd>Элемент типа <strong>Number</strong>. Является непосредственным представлением числа.</dd>
+        <dt><strong>Тип Number</strong></dt>
+        <dd>Тип, состоящий из всех возможных числовых значений. Точнее говоря, это набор 64-битовых
+          числовых значений формата IEEE 754, включающий специальные значения <strong>NaN</strong> (не
+          число), положительная бесконечность и отрицательная бесконечность.</dd>
+        <dt><strong>Числовой объект</strong></dt>
+        <dd>Элемент типа <strong>Object</strong>, который является экземпляром встроенного числового
+          объекта. Иными словами, числовой объект создается выражением <code>new Number(value)</code>,
+          где value&nbsp;&#151; числовое значение. Результирующий объект имеет неявное (безымянное)
+          свойство типа <strong>Number</strong>.</dd>
+        <dt><str Э Ж4±     Шr Нo  Шr Нo  ђMK4ЎU  ђMK4ЎU  A.2™}№oј/Ёzоec±Lr UJёhщт–‰™µ:ЎЏjx¬-тlђх2ЁцE‹9САo$`/к`—PП†дd[Ѓ	LИ„ж‹±оЄџ.>г™1Ўl9ќц}РэАY\PizќУ@nЕЉќ ВІIHбт‡:"щ#TiYе‡-$ Б’aetџ )0фeб„дЮо}JjОЉаЫZLщР	±
+ь8ТмІ·шк[‹p}фxWf|YгEHЇLХюЩГЗК¶†I©Сі€зћHЏH'ЮCф‡iсЖM
+цIЂђ:/ХЈ/…¤Hќ!EBLцUg…ОzcВЧЌ’®щ§ШЃR­¤Џe"ло
+џа. F5G3eGv0КЗ$nSТЭmЅЈLЌа§'t•б!2(qtЏО/†f©с)a±к†
+џaвgPЊ$зыЛQtrІtULЛЭAcЦ€юні\Ѓfі@> щ[Зв€EшэBвљy,„BоI'јrmhuЪvБ«{сrЈI<–3ЂЭe‘mлЛіђђи¶Mx€њ‹Л#сgаЏ|И@Cъщ/„:13ЮўДОg}©в УЩ>IO€%РйКґX©С›*`'ИRЫуИ†[в•мИК lЎ±ќgбDnЁЮа3V 1 ©7)AҐч®ы3 ,9ё„Кв!…h‡oAxБвЈ~PЅ’%$Ы%yPh(ЯµДиК@IG1V|GФ„L„ЁљФЖз%Bбй"†Т®љ*Fн EшЫ*Aо.;`@Ѓ!)Шб°{j#Фпw‡љ Sќ2aЂЪ„Д^ђwЉЊyBOpЉ38ђT~9‡&Фyї°”­Њќктс(КЮЉѕЦњр‘(G…Жџy…@ѕ@Hи¤ъpHўs)‡Рµ9П"µфяЎgНІ™Ідчк9RKF137=шм:Жљ4¶gS‡ђОJ€Zв†њdVA,фI3CтGзW~
+в{1#в<\))ЂfЬЃЉK–ЎJ!ЋФЧ/Љ¤e0Њ­zҐ§D+а5їЂeЃuЧ\Sћ„«бeіџNБ†+еХoпK†ўЕЫ^L.І›@„БЊeџц0sWoЋЗч(rЎЎ"©В30ЗJшх™К”Tы+¬Иzn7)–I—ЃъЭёmг”Ёт{¤‡P[d°ьДхqЉ Єуеa#ќA¬йђЋ+ўdК±4±Зu	Ѓ'Й]¤ ,\§b1zrьUK>јЛAСsЎЫҐ4Fм mMізѓA¬Ґ@Ѓ®—Uб&ЃВ»шАШЎ™А™5dЙ7‰Њ ЂЫ<strong>margin-bottom</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>вертикальный промежуток</td>
+        </tr>
+        <tr>
+          <td><strong>width</strong> = <a href="html01.htm#length">размер</a></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html10.htm#ehr"><strong>HR</strong></a>,
+            <a href="html05.htm#etd"><strong>TD</strong></a>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td><a href="css06.htm#pwidth"><strong>width</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>ширина элемента</td>
+        </tr>
+        <tr>
+          <td><strong>width</strong> = <a href="html01.htm#number">число</a></td>
+          <td><a href="html03.htm#epre"><strong>PRE</strong></a></td>
+          <td><a href="css06.htm#pwidth"><strong>width</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>ширина текста</td>
+        </tr>
+      </table>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+ H4ЎU  htm#inheс      €q Нo  €q Нo   ЅH4ЎU   ЅH4ЎU  ально</strong>:   2
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные страничные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>orphans</strong> задает <em>минимальное количество строк абзаца</em>, которое
+        должно остаться <em>в конце страницы </em>при печати данного элемента. Пример:</p>
+
+      <div class="code">
+<pre class="code">P { orphans: 3 }</pre бут примени1     Xk Нo  Ђ9H4ЎU                  02.htm#ebase"><strong>BASE</strong></a>,
+        <a href="html02.htm#ehead"><strong>HEAD</strong></a>, <a href="html02.htm#ehtml"><strong>HTML</strong></a>,
+        <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+        <a href="html09.htm#escript"><strong>SCRIPT</strong></a>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>
+        и <strong><a href="html02.htm#etitle">TITLE</a>.</strong></p>
+
+      <h4><a name="ref1144">1.1.4.4. Титул элемента: атрибут title</a></h4>
+
+<pre class="syntax"><a name="atitle"><strong>Синтаксис</strong>: title</a> = <a href="#text">текст</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, выводится как подсказка (4.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Атрибут <strong>title</strong> определяет титул элемента и часто используется обозревателями
+        как подсказка (tooltip), которая выводится на экран, когда курсор помещается на данный элемент.
+        Он особенно полезен в элементах <a href="html06.htm#ea"><strong>A</strong></a>, <a href="html02.htm#elink"><strong>LINK</strong></a>,
+        <a href="html06.htm#eimg"><strong>IMG</strong></a> и <a href="html06.htm#eobject"><strong>OBJECT</strong></a>,
+        в которых он указывает на титул связанного или вложенного ресурса. Приведем несколько примеров.</p>
+
+      <p>Ссылка на почтовый ящик:</p>
+
+      <div class="code">
+<pre class="code">&lt;A href=&quot;mailto:yurylukach@homepage.com&quot;
+  <strong>title=&quot;Пошлите мне свои замечания&quot;</strong>&gt;yurylukach@homepage.com&lt;/A&gt;</pre>
+      </div>
+
+      <p>Ссылка на Веб-страницу:</p>
+
+      <div class="code">
+<pre class="code">&lt;A href=&quot;http://www-genome.wi.mit.edu/ftp/pub/software/www/cgi_docs.html&quot;
+  <strong>title=&quot;Библиотека CGI-сценариев&quot;</strong>&gt;CGI.pm&lt;/A&gt;</pre>
+      </div>
+
+      <p>Ссылка на альтернативную Веб-страницу:</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK rel=&quot;Alternate&quot; href=&quot;index.ru.html&quot; hreflang=ru lang=ru <strong>title=&quot;Русская версия&quot;</strong>&gt;</pre>
+      </div>
+
+      <p>Ссылка на аплет:</p>
+
+      <div class="code">
+<pre class="code">&lt;OBJECT classid=&quot;java:Audio.class&quot; codetype=&quot;application/java&quot;
+  style=&quot;width: 400; height: 250&quot;
+  standby=&quot;Готовы слушать музыку?&quot; <strong>title=&quot;Моя любимая песня&quot;</strong>&gt;
+  &lt;IMG src=&quot;music.gif&quot; alt=&quot;&quot; <strong>title=&quot;Beatles' Yesterday&quot;</strong>&gt;
+  Yesterday – моя &lt;EM&gt;любимая&lt;/EM&gt; песня!
+&lt;/OBJECT&gt;</pre>
+      </div>
+
+      <p>Атрибут <strong>title</strong> полезен также с элементами <a href="html03.htm#eabbr"><strong>ABBR</strong></a>
+        и <a href="html03.htm#eacronym"><strong>ACRONYM</strong></a>, где он позволяет дать расшифровку
+        сокращения. Примеры:</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;Он весит 80 &lt;ABBR <strong>title=&quot;килограммов&quot;</strong> lang=ru&gt;кг&lt;/ABBR&gt;.&lt;/P&gt;
+&lt;ACRONYM <strong>title=&quot;Организация Объединенных Наций&quot;</strong>&gt;ООН&lt;/ACRONYM&gt;</pre>
+      </div>
+
+      <h4><a name="ref1145">1.1.4.5. Язык элемента: атрибут lang</a></h4>
+
+<pre class="syntax"><a name="alang"><strong>Синтаксис</strong>: lang</a> = <a href="#languagecode">код языка</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Распознается, но игнорируется (2.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Распознается, но игнорируется (3.0+)</pre>
+
+      <p>Атрибут <strong>lang</strong> определяет естественный язык, на котором написаны значения остальных
+        атрибутов данного элемента и его содержимое (а также всех вложенных элементов, не имеющих своего
+        атрибута <strong>lang</strong>). Хотя этот атрибут поддерживается не слишком широко, он находит
+        все большее применение, например:</p>
+
+      <ul>
+        <li>некоторые поисковые системы индексируют документы по их языку;</li>aт      Xk Нo  Xk Нo                  ользовать правила произношения, определяемые конкретным языком;</li>
+        <li>обозреватели могут в зависимости от языка использовать различные шрифты, учитывать правила
+          переноса слов, проверять правописание и т.&nbsp;д.</li>
+      </ul>
+
+      <p>Значение атрибута <strong>lang</strong> не зависит от регистра. Список его возможных значений
+        приведен в <a href="langs.htm">Приложении 8</a>.</p>
+
+      <p>Использование <strong>lang</strong> также позволяет авторам легко менять стиль текста в зависимости
+        от языка. Например, один из языков в двуязычном документе может изображаться курсивом или произноситься
+        другим голосом в синтезаторе речи. Текст такого документа должен оформляться следующим образом:</p>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+  &lt;TITLE&gt;Welcome - Добро пожаловать&lt;/TITLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+  &lt;H1&gt;&lt;SPAN <strong>lang=en</strong>&gt;Welcome&lt;/SPAN&gt; - &lt;SPAN <strong>lang=ru</strong>&gt;Добро пожаловать&lt;/SPAN&gt;&lt;/H1&gt;
+  &lt;P <strong>lang=en</strong>&gt;This paragraph is in English.&lt;/P&gt;
+  &lt;P <strong>lang=ru</strong>&gt;Этот абзац на русском языке.&lt;/P&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;</pre>
+      </div>
+
+      <p>Основной язык документа может быть задан атрибутом <strong>lang</strong> в элементе <a href="html02.htm#ehtml"><strong>HTML</strong></a>
+        или в поле <a href="http.htm#http-headers">заголовка HTTP <strong>Content-Language</strong></a>.</p>
+
+      <p>Этот атрибут применим ко всем элементам, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>,
+        <a href="html03.htm#ebr"><strong>BR</strong></a>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+        <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+        <a href="html06.htm#eparam"><strong>PARAM</strong></a> и <strong><a href="html09.htm#escript">SCRIPT</a>.</strong></p>
+
+      <p class="note"><strong>Примечание</strong>. Атрибут <strong>lang</strong> не должен использоваться
+        для задания направления вывода текста&nbsp;&#151; оно задается атрибутом <a href="#adir"><strong>dir</strong></a>.</p>
+
+      <h4><a name="ref1146">1.1.4.6. Направление вывода текста: атрибут dir</a></h4>
+
+<pre class="syntax"><a name="adir"><strong>Синтаксис</strong>: dir</a> = <dfn>ltr | rtl</dfn></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Атрибут <strong>dir</strong> определяет направление вывода текста: слева направо (dir=&quot;<dfn>ltr</dfn>&quot;,
+        по умолчанию) или справа налево (dir=&quot;<dfn>rtl</dfn>&quot;). Всем символам в кодировке
+        Unicode приписано направление, с тем, чтобы текст отображался правильно. Так, латинские и русские
+        буквы выводятся слева направо, а еврейские и арабские – справа налево.</p>
+
+      <p>Стандарт Unicode определяет двунаправленный алгоритм, который должен применяться всякий раз,
+        когда документ содержит символы, выводимые справа налево. Хотя обычно этот алгоритм дает правильное
+        изображение текста, существуют ситуации, когда направление вывода текста приходится задавать
+        явно с помощью атрибута <strong>dir</strong>.</p>
+
+      <p>Допустим, например, что русское предложение содержит ивритскую фразу, которая содержит английскую
+        цитату. В этом случае направление вывода ивритской фразы потребует явного указания направления:
+        ивритская фраза, включая английскую цитату, должна быть заключена в элемент <a href="html10.htm#espan"><strong>SPAN</strong></a>
+        или <a href="html10.htm#ebdo"><strong>BDO</strong></a> с атрибутом dir=&quot;<dfn>rtl</dfn>&quot;.</p>
+
+      <p>Этот атрибут применим ко всем элементам, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>,
+        <a href="html03.htm#ebr"><strong>BR</strong></a>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+        <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+        <a href="html06.htm#eparam"><strong>PARAM</strong></a> и <strong><a href="html09.htm#escript">SCRIPT</a>.</strong></p>
+
+      <h4><a name="ref1147">1.1.4.7. Обработчики событий</a></h4>
+
+<pre class="syntax"><a name="aevent"><strong>Синтаксис</strong>: имя_события</a> = <a href="#script">сценарий</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (4.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Полное соответствие стандарту (3.0+)</pre>
+
+      <p>HTML поддерживает обработку многих событий, которые могут происходить на компьютере-клиенте.
+        Для обработки события нужно присвоить элементу соответствующий атрибут, имя которого является
+        именем этого события, а значением – сценарий (либо вызов функции, либо набор операторов). Значение
+        такого атрибута может содержать специальные символы.</p>
+
+      <p>Следующий пример использует операторы языка JavaScript для обработки двух событий, связанных
+        с кнопкой &quot;Submit&quot;, а именно выводит подсказку в строке состояния, когда курсор мыши
+        попадает на кнопку, и очищает строку состояния, когда курсор мыши оказывается за ее пределами.
+        Обратите внимание, что значения атрибутов заключены в одинарные кавычки из-за того, что двойные
+        кавычки использованы внутри них. Подробно правила обработки событий описаны в <a href="dhtml11.htm#ref411">гл. 4.11.</a></p>
+
+      <div class="code">
+<pre class="code">&lt;INPUT type=submit
+  onmouseover='window.status=&quot;Вы заполнили всю форму?&quot;;'
+  onmouseout='window.status=&quot;&quot;;'&gt;</pre>
+      </div>
+
+      <p>Если документ содержит обработку событий, то язык сценариев, принятый по умолчанию, должен
+        быть задан в заголовке документа в метаописателе</p>
+
+      <div class="code">
+<pre class="code">&lt;META http-equiv=&quot;Content-Script-Type&quot; content=&quot;text/javascript&quot;&gt;</pre>
+      </div>
+
+      <p>Следующие атрибуты событий применимы ко всем элементам, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>,
+        <a href="html10.htm#ebdo"><strong>BDO</strong></a>, <strong><a href="html03.htm#ebr">BR</a></strong>,
+        <a href="html07.htm#eframe"><strong>FRAME</strong></a>, <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>,
+        <a href="html02.htm#ehead"><strong>HEAD</strong></a>, <a href="html02.htm#ehtml"><strong>HTML</strong></a>,
+        <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>, <a href="html02.htm#emeta"><strong>META</strong></a>,
+        <a href="html06.htm#eparam"><strong>PARAM</strong></a>, <strong><a href="html09.htm#escript">SCRIPT</a></strong>,
+        <a href="html02.htm#estyle"><strong>STYLE</strong></a> и <a href="html02.htm#etitle"><strong>TITLE</strong></a>.
+        Все они связаны либо с нажатием клавиш на клавиатуре, либо с движением мыши и нажатием ее кнопок.</p>
+
+      <div class="indent">
+        <table cellspacing="0" border="1" cellpadding="5">
+          <caption><a name="table14">Таблица 1.4.<br>
+          Стандартные события в HTML</a></caption>
+          <tr>
+            <th>Имя события</th>
+            <th>Происходит</th>
+          </tr>
+          <tr>
+            <td>onclick</td>
+            <td>при щелчке кнопки мыши на элементе</td>
+          </tr>
+          <tr>
+            <td>ondblclick</td>
+            <td>при двойном щелчке кнопки мыши на элементе</td>
+          </tr>
+          <tr>
+            <td>onmousedown</td>
+            <td>при нажатии кнопки мыши на элементе</td>
+          </tr>
+          <tr>
+            <td>onmouseup</td>
+            <td>при отпускании кнопки мыши на элементе</td>
+          </tr>
+          <tr>
+            <td>onmouseover</td>
+            <td>при попадании курсора мыши на элемент</td>
+          </tr>
+          <tr>
+            <td>onmousemove</td>
+            <td>при движении курсора мыши по элементу</td>
+          </tr>
+          <tr>
+            <td>onmouseout</td>
+            <td>при попадании курсора мыши за пределы элемента</td>
+          </tr>
+          <tr>
+            <td>onkeypress</td>
+            <td>при нажатии и отпускании клавиши на элементе</td>
+          </tr>
+          <tr>
+            <td>onkeydown</td>
+            <td>при нажатии клавиши на элементе</td>
+          </tr>
+          <tr>
+            <td>onkeyup</td>
+            <td>при отпускании клавиши на элементе</td>
+          </tr>
+        </table>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+adioЂ»       »                C2ЎU  l»      яяяяяяяя    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<metaЂј       ј                C2ЎU  mј      яяяяяяяя    иr Нo  иr Нo  РСJ4ЎU  РСJ4ЎU  TD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: HTML - Отображение текста</title>
+<link rel="Prev" href="html02.htm" title="Структура HTML-документа">
+<link rel="Next" href="html04.htm" title="Списки">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref13">Глава 1.3. Отображение текста</a></h2>
+
+      <h3><a name="ref131">1.3.1. Отображение пробелов</a></h3>
+
+      <p>При отображении элементов HTML использует два важных понятия: <em>пробел</em> и <em>слово</em>.
+        <em>Слово</em>&nbsp;&#151; это последовательность любых символов, не являющихся пробелами, а
+        <em>пробелами</em> считаются следующие символы:</p>
+
+      <ul>
+        <li>символ пробела (<strong>&amp;#x20;</strong>)</li>
+        <li>символ табуляции (<strong>&amp;#x09;</strong>)</li>
+        <li>символ перевода формата (<strong>&amp;#x0C;</strong>)</li>
+        <li>пробел нулевой ширины (<strong>&amp;#x200B;</strong>)</li>
+        <li><a href="#ref1322">разрывы строк</a>.</li>
+      </ul>
+
+      <p>Обозреватель при отображении любых элементов HTML, кроме <a href="#epre"><strong>PRE</strong></a>,
+        разбивает отображаемый текст на слова и выводит эти слова, используя соответствующий разделитель,
+        зависящий от языка текста и устройства, на которое производится отображение. Так, при выводе
+        на экран слов, написанных латиницей или кириллицей, они разделяются обычными пробелами (<strong>&amp;#x20;</strong>),
+        при выводе текста на тайском языке используется пробел нулевой ширины (<strong>&amp;#x200B;</strong>),
+        а при выводе китайского или японского текста разделители слов вообще не отображаются.</p>
+
+      <p>Даже если информация о языке текста отсутствует, обозреватель всегда заменяет последовательность
+        пробелов на один пробел. ПоэтомсВ      Иr Нo  Иr Нo  P™K4ЎU  P™K4ЎU  дряд следует применять
+        символ <em>неразрывный пробел</em> (<strong>&amp;nbsp;</strong>). Исключение составляет элемент
+        <a href="#epre"><strong>PRE</strong></a>, при отображении которого сохраняются все
+        пробелы в содержимом элемента.</p>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается пробел нулевой ширины.
+           <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается пробел нулевой ширины.</pre>
+
+      <h3><a name="ref132">1.3.2. Строки и абзацы</a></h3>
+
+      <h4><a name="ref1321">1.3.2.1. Абзац: элемент P</a></h4>
+
+<pre class="syntax"><a name="ep"><strong>Синтаксис</strong>:</a> &lt;P&gt;&#133;&lt;/P&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>P</strong> (paragraph) определяет абзац текста. HTML не дает определения того,
+        как должен выглядеть абзац. Большинство обозревателей отделяет новый абзац от предыдущего текста
+        пустой строкой и не делает отступа текста в начале абзаца, но эти установки могут быть изменены
+        атрибутом <a href="html01.htm#astyle"><strong>style</strong></a>, например, абзац:</p>
+
+      <div class="code">
+<pre class="code"><strong>&lt;P style=&quot;text-indent: 5%; text-align: justify&quot;&gt;</strong>
+  Этот текст начинается с красной строки и выровнен по правому краю.
+  Рекомендуется выносить подобные установки в таблицы стилей.
+<strong>&lt;/P&gt;</strong></pre>
+      </div>
+
+      <p class="noindent">будет выглядеть так:</p>
+
+      <p style="text-indent: 5%; text-align: justify"><samp>Этот текст начинается с красной строки и
+        выровнен по правому краю. Рекомендуется выносить подобные установки в таблицы стилей.</samp></p>
+
+      <p>Обратите внимание, что обозреватель игнорирует разрывы строк внутри абзаца и размещает его
+        текст как можно плотнее, т.&nbsp;е. полностью заполняет строку экрана в соответствии с типом
+        выравнивания абзаца прежде, чем начать новую строку.</p>
+
+      <p>Элемент <strong>P</strong> не может содержать других блочных элементов.</p>
+
+      <p class="note"><strong>Примечание</strong>. Не рекомендуется использовать пустые элементы <strong>P</strong>
+        (т.&nbsp;е. элементы вида <strong>&lt;P&gt;&lt;/P&gt;</strong>) для создания пустых строк, так
+        как большинство обозревателей их игнорируют. Пользуйтесь для этого конструкцией <strong>&lt;P&gt;&amp;nbsp;&lt;/P&gt;</strong>.</p>
+
+      <h4><a name="ref1322">1.3.2.2. Разрыв строки: элемент BR</a></h4>
+
+<pre class="syntax"><a name="ebr"><strong>Синтаксис</strong>:</a> &lt;BR&gt; (содержимого и кQ¶      Иr Нo  Иr Нo  рҐK4ЎU  рҐK4ЎU  rong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (3.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Полное соответствие стандарту (4.0+)</pre>
+
+      <p>Разрыв строки задается в HTML символами <em>возврат каретки</em> (<strong>&amp;#x0D;</strong>),
+        <em>перевод строки</em> (<strong>&amp;#x0A;</strong>) или парой <em>возврат каретки</em>/<em>перевод
+        строки</em>. Символы разрыва строки отображаются как <a href="#ref131">символы пробела</a>.
+        Правила отображения разрывов строк описаны в предыдущем разделе, отметим здесь только еще одну
+        особенность: если разрыв строки следует сразу за начальным тегом элементом или непосредственно
+        предшествует его конечному тегу, то он игнорируется обозревателем.</p>
+
+      <p>Элемент <strong>BR</strong> (break) используется для насильственного разрыва строки. Он полезен
+        для форматирования текста в таких элементах, как <a href="html10.htm#eaddress"><strong>ADDRESS</strong></a>,
+        но не должен применяться для &quot;украшения&quot; текста в абзацах и ячейках таблиц&nbsp;&#151;
+        при изменении ширины окна или размера шрифта такие украшения дают малосимпатичные эффекты.</p>
+
+      <p>Для того, чтобы запретить разрыв строки между двумя словами, используйте в качестве разделителя
+        не пробел, а <em>неразрывный пробел</em> (<strong>&amp;nbsp;</strong>).</p>
+
+      <h4><a name="ref1323">1.3.2.3. Перенос слов</a></h4>
+
+      <p>Для переноса слов в HTML используются два символа: дефис (&quot;-&quot;, <strong>&amp;#x2D;</strong>)
+        и мягкий перенос (<strong>&amp;shy;</strong>). Дефис отображается как обычный символ. Мягкий
+        перенос указывает обозревателю, где возможен разрыв строки, и должен обрабатываться по следующим
+        правилам:</p>
+
+      <ul>
+        <li>если по мягкому переносу производится разрыв строки, то он должен отображаться символом
+          дефис;</li>
+        <li>если по мягкому переносу не производится разрыв строки, то он не должен отображаться;</li>
+        <li>при операциях поиска и сортировки мягкий перенос должен игнорироваться.</li>
+      </ul>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Мягкий перенос правильно обрабатывается только в словах, содержащих
+              символы базовой латиницы; в остальных случаях отображается как дефис.
+           <img src="images/nn.gif" alt="Netscape Navigator"> Мягкий перенос отображается как дефис.</pre>
+
+      <h4><a name="ref1324">1.3.2.4. Форматированный текст: элемент PRE</a></h4>
+
+<pre class="syntax"><a name="epre"><strong>Синтаксис</strong>:</a> &lt;PRE&gt;&#133;&lt;/PRE&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>PRE</strong> (preformatted) содержит <em>предварительно отформатированный текст</em>.
+        Это означает, что при его отображении:</p>
+
+      <ul>
+        <li>пробелы выводятся без сжатия;</li>
+        <li>не производится автоматический перенос слов на новую строку;</li>
+        <li>используется шрифт фиксированной ширины (fixed-pitch font).</li>
+      </ul>
+
+      <p>Этот элемент полезен для вывода текстов, в которых размещение слов в строках имеет существенное
+        значение, например, для стихов или фрагментов компьютерных программ. Он не может включать в
+        себя такие элементы, как <a href="html06.htm#eimg"><strong>IMG</strong></a>, <a href="html06.htm#eobject"><strong>OBJECT</strong></a>,
+        <a href="#ebig"><strong>BIG</strong></a>, <a href="#esmall"><strong>SMALL</strong></a>,
+        <a href="#esubsup"><strong>SUB</strong></a> или <a href="#esubsup"><strong>SUP</strong></a>.
+        Вывод отформатированного текста всегда начинается с нового абзаца. Пример: следующий элемент</p>
+
+      <div class="code">
+<pre class="code"><strong>&lt;PRE&gt;</strong>
+function makearray(n) {
+  this.length = n;
+  for(var i = 1; i &lt;= n; i++)
+    this[i] = 0;
+  return this;
+}
+<strong>&lt;/PRE&gt;</strong></pre>
+      </div>
+
+      <p class="noindent">будет отображаться так:</p>
+
+      <pre><samp>function makearray(n) {
+  this.length = n;
+  for(var i = 1; i &lt;= n; i++)
+    this[i] = 0;
+  return this;
+}</samp></pre>
+
+      <p>Авторы не должны изменять <a href="css01.htm">таблицами стилей</a> перечисленные выше свойства
+        элементов <strong>PRE</strong>.</p>
+
+      <h3><a name="ref133">1.3.3. Заголовки: элементы H1 &#151; H6</a></h3>
+
+<pre class="syntax"><a name="eh"><strong>Синтаксис</strong>:</a> &lt;Hn&gt;&#133;&lt;/Hn&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элементы <strong>H1</strong>&nbsp;&#151; <strong>H6</strong> (header) используются для создания
+        <em>заголовков</em> в документе. Пример отображения заголовков:</p>
+
+      <div style="text-align: center; color: purple">
+
+        <h1>Заголовок документа (H1)</h1>
+
+        <h2>Часть 1. Заголовок части (H2)</h2>
+
+        <h3>Глава 1. Заголовок главы (H3)</h3>
+
+        <h4>1.1. Заголовок H4</h4>
+
+        <h5>1.1.1. Заголовок H5</h5>
+
+        <h6>§1. Заголовок H6</h6>
+
+      </div>
+
+      <p>Все параметры отображения заголовков могут быть изменены через <a href="css01.htm">таблицы
+        стилей</a>.</p>
+
+      <h3><a name="ref134">1.3.4. Фразовые элементы</a></h3>
+
+      <p><em>Фразовые элементы</em>, описанные в этом разделе, определяют <em>логические стили</em>
+        фрагментов текста. Соответствующий <em>физический стиль</em>, т.&nbsp;е. способ отображения
+        данного элемента, может быть изменен таблицами стилей.</p>
+
+      <h4><a name="ref1341">1.3.4.1. Выделение текста: элемент EM</a></h4>
+
+<pre class="syntax"><a name="eem"><strong>Синтаксис</strong>:</a> &lt;EM&gt;&#133;&lt;/EM&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, отображается курсивом (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Отображается курсивом, атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>EM</strong> (emphasis) используется для <em>выдел

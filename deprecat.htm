@@ -1,0 +1,498 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Устаревшие и нестандартные элементы HTML</title>
+<link rel="Prev" href="colors.htm" title="Коды цветов">
+<link rel="Next" href="supphtml.htm" title="Поддержка языка HTML обозревателями">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h1><a name="deprecat">Приложение 10.<br>
+        Устаревшие и нестандартные<br>
+        элементы HTML</a></h1>
+
+      <p>Как неоднократно отмечалось в основном тексте справочника, мы решили исключить из описания
+        языка HTML его морально устаревшие составляющие с тем, чтобы показать читателю, как создавать
+        Веб-страницы в соответствии с современными стандартами. Тем не менее, при просмотре чужих HTML-документов
+        каждый из нас постоянно сталкивается с употреблением устаревших или нестандартных элементов
+        и атрибутов. Поэтому мы сочли нужным добавить приложение, в котором кратко описаны эти элементы
+        и атрибуты и указаны способы их замены на эквивалентные конструкции, соответствующие стандарту.</p>
+
+      <h2><a name="deprecated">Морально устаревшие элементы</a></h2>
+
+      <h3><a name="eapplet">Аплеты Java: элемент APPLET</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;APPLET&gt;&#133;&lt;/APPLET&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#aevent">события</a>
+           code = <a href="html01.htm#cdata">CDATA</a> (имя файла класса)
+           codebase = <a href="html01.htm#uri">URI</a> (базовый URI для файлов класса)
+           <strong>width</strong> = <a href="html01.htm#length">размер</a> (ширина окна аплета)
+           <strong>height</strong> = <a href="html01.htm#length">размер</a> (высота окна аплета)
+           archive = <a href="html01.htm#cdata">CDATA</a> (список библиотек классов)
+           object = <a href="html01.htm#cdata">CDATA</a> (сериализованный аплет)
+           name = <a href="html01.htm#cdata">CDATA</a> (имя аплета для взаимодействия с другими аплетами)
+           alt = <a href="html01.htm#text">текст</a> (альтернативный текст)
+           align = <dfn>top</dfn> | <dfn>middle</dfn> | <dfn>bottom</dfn> | <dfn>left</dfn> |<dfn>right</dfn> (выравнивание аплета)
+           hspace = <a href="html01.htm#pixels">пиксели</a> (горизонтальный промежуток)
+           vspace = <a href="html01.htm#pixels">пиксели</a> (вертикальный промежуток)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>archive</strong> и <strong>object</strong> игнорируются (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>object</strong> игнорируется (4.0+)</pre>
+
+      <p>Элемент <strong>APPLET</strong> описывает <em>аплет на языке Java</em>. Его содержимым являются
+        один или несколько элементов <a href="html06.htm#eparam"><strong>PARAM</strong></a>, за которыми
+        следуют блочные и/или текстовые элементы, которые отображаются, если указанный аплет не удается
+        запустить. Этот морально устаревший элемент следует заменять на элемент <a href="html06.htm#eobject"><strong>OBJECT</strong></a>,
+        который имеет все атрибуты данного элемента, но является более общим. Пример: следующий морально
+        устаревший фрагмент HTML-кода</p>
+
+      <div class="code">
+<pre class="code">&lt;APPLET code=&quot;Animate.class&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+  &lt;PARAM name=&quot;img1&quot; VALUE=&quot;/images/1.jpg&quot;&gt;
+  &lt;PARAM name=&quot;img2&quot; VALUE=&quot;/images/2.jpg&quot;&gt;
+  &lt;IMG src=&quot;animation.gif&quot; alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+&lt;/APPLET&gt;</pre>
+      </div>
+
+      <p class="noindent">следует заменить на</p>
+
+      <div class="code">
+<pre class="code">&lt;OBJECT classid=&quot;java:Animate.class&quot; codetype=&quot;application/java&quot;
+  width=&quot;100&quot; height=&quot;100&quot;&gt;
+  &lt;PARAM name=&quot;img1&quot; VALUE=&quot;/images/1.jpg&quot;&gt;
+  &lt;PARAM name=&quot;img2&quot; VALUE=&quot;/images/2.jpg&quot;&gt;
+  &lt;IMG src=&quot;animation.gif&quot; alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+&lt;/OBJECT&gt;</pre>
+      </div>
+
+      <h3><a name="ebasefont">Базовый шрифт: элемент BASEFONT</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;BASEFONT&gt; (конечного тега и содержимого нет)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>
+           <strong>size</strong> = <a href="html01.htm#cdata">CDATA</a> (размер шрифта)
+           color = <a href="html01.htm#color">цвет</a> (цвет шрифта)
+           face = <a href="html01.htm#cdata">CDATA</a> (гарнитура шрифта)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>id</strong>, <strong>color</strong> и <strong>face</strong> игнорируются (4.0+)</pre>
+
+      <p>Элемент <strong>BASEFONT</strong> изменяет параметры <em>базового шрифта</em>, т.&nbsp;е. влияет
+        на внешний вид всех последующих за ним элементов, кроме заголовков. Обязательным атрибутом является
+        <strong>size</strong>, который может принимать значения от 1 до 7 (по умолчанию он равен 3).
+        Вместо использования этого морального устаревшего элемента следует пользоваться <a href="css08.htm">таблицами
+        стилей</a>.</p>
+
+      <h3><a name="ecenter">Горизонтальное центрирование: элемент CENTER</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;CENTER&gt;&#133;&lt;/CENTER&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>dir</strong> игнорируется (4.0+)</pre>
+
+      <p>Элемент <strong>CENTER</strong> определяет блок, содержимое которого <em>центрируется</em>
+        обозревателями <em>по горизонтали</em>. Этот морально устаревший элемент следует заменять на
+        эквивалентную конструкцию <code>&lt;DIV&nbsp;style=&quot;text-align: center&quot;&gt;&#133;&lt;/DIV&gt;</code>.</p>
+
+      <h3><a name="edir">Каталожный список: элемент DIR</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;DIR&gt;&#133;&lt;/DIR&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>title</strong> игнорируется (4.0+)</pre>
+
+      <p>Элемент <strong>DIR</strong> (directory list) определяет <em>каталожный список</em>, состоящий
+        из элементов списка<a href="html04.htm#eli"> <strong>LI</strong></a>. Этот морально устаревший
+        элемент следует заменять на элемент <a href="html04.htm#eul"><strong>UL</strong></a>.</p>
+
+      <h3><a name="efont">Задание шрифта: элемент FONT</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;FONT&gt;&#133;&lt;/FONT&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a>
+           size = <a href="html01.htm#cdata">CDATA</a> (размер шрифта)
+           color = <a href="html01.htm#color">цвет</a> (цвет шрифта)
+           face = <a href="html01.htm#cdata">CDATA</a> (гарнитура шрифта)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>title</strong>, <strong>class</strong>, <strong>id</strong>, <strong>dir</strong> и <strong>lang</strong> игнорируются (4.0+)</pre>
+
+      <p>Элемент <strong>FONT</strong> задает <em>параметры шрифта</em> для отображения своего содержимого.
+        Вместо использования этого морального устаревшего элемента следует пользоваться <a href="css08.htm">таблицами
+        стилей</a>.</p>
+
+      <h3><a name="eisindex">Ввод строки текста: элемент ISINDEX</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;ISINDEX&gt; (конечного тега и содержимого нет)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a>
+           prompt = <a href="html01.htm#text">текст</a> (метка поля ввода)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>title</strong>, <strong>dir</strong> и <strong>lang</strong> игнорируются (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>title</strong>, <strong>dir</strong> и <strong>lang</strong> игнорируются (4.0+)</pre>
+
+      <p>Элемент <strong>ISINDEX</strong> определяет <em>ввод одной строки текста</em>. Этот морально
+        устаревший элемент следует заменять на элемент <a href="html08.htm#einput"><strong>INPUT</strong></a>,
+        например</p>
+
+      <div class="code">
+<pre class="code">&lt;ISINDEX prompt=&quot;Введите искомый текст:&quot;&gt;</pre>
+      </div>
+
+      <p class="noindent">следует заменить на</p>
+
+      <div class="code">
+<pre class="code">&lt;FORM action=&quot;<dfn>URI документа, содержащего ISINDEX</dfn>&quot; method=&quot;get&quot;&gt;
+  &lt;P&gt;Введите искомый текст: &lt;INPUT type=&quot;text&quot;&gt;&lt;/P&gt;
+&lt;/FORM&gt;</pre>
+      </div>
+
+      <h3><a name="emenu">Список меню: элемент MENU</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;MENU&gt;&#133;&lt;/MENU&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>title</strong> игнорируется (4.0+)</pre>
+
+      <p>Элемент <strong>MENU</strong> (menu list) определяет <em>список меню</em>, состоящий из элементов
+        списка<a href="html04.htm#eli"> <strong>LI</strong></a>. Этот морально устаревший элемент следует
+        заменять на элемент <a href="html04.htm#eul"><strong>UL</strong></a>.</p>
+
+      <h3><a name="es">Перечеркнутый текст: элементы S и STRIKE</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;S&gt;&#133;&lt;/S&gt; (текстовый элемент)
+           &lt;STRIKE&gt;&#133;&lt;/STRIKE&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту (3.0+)</pre>
+
+      <p>Элементы <strong>S</strong> и <strong>STRIKE</strong> являются синонимами и указывают, что
+        содержащийся в них текст должен быть <em>перечеркнут</em> при отображении. Эти морально устаревшие
+        элементы следует заменять на эквивалентную конструкцию <code>&lt;SPAN&nbsp;style=&quot;text-decoration:
+        line-through&quot;&gt;&#133;&lt;/SPAN&gt;</code>.</p>
+
+      <h3><a name="eu">Подчеркнутый текст: элемент U</a></h3>
+
+<pre class="syntax">Синтаксис: &lt;U&gt;&#133;&lt;/U&gt; (текстовый элемент)
+Атрибуты:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту (3.0+)</pre>
+
+      <p>Элемент <strong>U</strong> указывает, что содержащийся в нем текст должен быть <em>подчеркнут</em>
+        при отображении. Этот морально устаревший элемент следует заменять на эквивалентную конструкцию: <code>&lt;SPAN&nbsp;style=&quot;text-decoration: underline&quot;&gt;&#133;&lt;/SPAN&gt;</code>.</p>
+
+      <h2><a name="non-standard">Нестандартные элементы</a></h2>
+
+      <p>В этом разделе собраны описания элементов, которые не входят в стандарт HTML, но поддерживаются
+        основными обозревателями, а потому встречаются на многих Веб-страницах.</p>
+
+      <h3><a name="eembed">Вложенные объекты: элемент EMBED</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;EMBED&gt; (блочный элемент, конечного тега и содержимого нет)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#aevent">события</a>
+           code = <a href="html01.htm#cdata">CDATA</a> (имя файла, содержащего Java-аплет)
+           src = <a href="html01.htm#uri">URI</a> (URI загружаемого файла)
+           width = <a href="html01.htm#length">размер</a> (ширина окна объекта)
+           height = <a href="html01.htm#length">размер</a> (высота окна объекта)
+           units = <dfn>px</dfn> | <dfn>em</dfn> (единица измерения высоты и щирины)
+           name = <a href="html01.htm#cdata">CDATA</a> (имя аплета)
+           alt = <a href="html01.htm#text">текст</a> (альтернативный текст)
+           align = <dfn>top</dfn> | <dfn>middle</dfn> | <dfn>bottom</dfn> | <dfn>left</dfn> |<dfn>right</dfn> (выравнивание объекта)
+           hspace = <a href="html01.htm#pixels">пиксели</a> (горизонтальный промежуток)
+           vspace = <a href="html01.htm#pixels">пиксели</a> (вертикальный промежуток)
+           pluginspage = <a href="html01.htm#uri">URI</a> (URI загружаемого модуля)
+           accesskey = <a href="html01.htm#character">символ</a> (имя клавиши быстрого доступа)
+           tabindex = <a href="html01.htm#number">число</a> (номер в порядке нажатия табуляции)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует описанию (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>style</strong>, <strong>title</strong>, <strong>accesskey</strong> и <strong>tabindex</strong> игнорируются (4.0+)</pre>
+
+      <p>Элемент <strong>EMBED</strong> (embedded) описывает <em>вложенный объект</em>. Первоначально
+        он был введен для загрузки аудиофайлов, а затем был расширен на любые файлы нестандартных типов.
+        Этот элемент следует заменять на более общий элемент <a href="html06.htm#eobject"><strong>OBJECT</strong></a>,
+        атрибуты которого зависят от типа загружаемого объекта.</p>
+
+      <h3><a name="enobr">Текст без разрывов строк: элемент NOBR</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;NOBR&gt;&#133;&lt;/NOBR&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует описанию (4.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>style</strong> и <strong>title</strong> игнорируются (4.0+)</pre>
+
+      <p>Элемент <strong>NOBR</strong> (no break) указывает, что содержащийся в нем текст должен отображаться
+        <em>без разрывов строк</em>. Это полезный нестандартный элемент, поскольку он не имеет замены
+        стандартными средствами. Согласно стандартам, его следует заменять на свойство стилей <a href="css09.htm#pwhite-space"><strong>white-space</strong></a>:
+        <dfn>nowrap</dfn>, но оно не поддерживается современными обозревателями. См. также элемент <a href="#ewbr"><strong>WBR</strong></a>.</p>
+
+      <h3><a name="ewbr">Мягкий разрыв строки: элемент WBR</a></h3>
+
+<pre class="syntax"><strong>Синтаксис</strong>: &lt;WBR&gt; (конечного тега и содержимого нет)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует описанию (4.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует описанию (4.0+)</pre>
+
+      <p>Элемент <strong>WBR</strong> (word break) употребляется только внутри элемента <a href="#enobr"><strong>NOBR</strong></a>
+        и указывает, что в этом месте <em>возможен разрыв строки</em>. Это полезный нестандартный элемент,
+        поскольку он не имеет замены стандартными средствами.</p>
+
+      <h2><a name="deprecated-attr">Морально устаревшие атрибуты</a></h2>
+
+      <p>Перечисленные в таблице атрибуты HTML являются морально устаревшими и там, где это возможно,
+        должны заменяться свойствами стилей. Для этого в таблице приведены свойства CSS, соответствующие
+        этим атрибутам, и их значения.</p>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <caption><a name="table101a">Таблица П10.1. Морально устаревшие атрибуты HTML</a></caption>
+        <tr>
+          <th>Атрибут HTML</th>
+          <th>В элементе</th>
+          <th>Свойство CSS</th>
+          <th>Описание</th>
+        </tr>
+        <tr>
+          <td><strong>align</strong> = <dfn>top</dfn> | <dfn>bottom</dfn> | <dfn>left</dfn> | <dfn>right</dfn></td>
+          <td><a href="html05.htm#ecaption"><strong>CAPTION</strong></a></td>
+          <td><a href="css10.htm#pcaption-side"><strong>caption-side</strong></a>: <dfn>top</dfn> |
+            <dfn>bottom</dfn> | <dfn>left</dfn> | <dfn>right</dfn></td>
+          <td>выравнивание относительно таблицы</td>
+        </tr>
+        <tr>
+          <td><strong>align</strong> = <dfn>top</dfn> | <dfn>middle</dfn> | <dfn>bottom</dfn> | <dfn>left</dfn>
+            | <dfn>right</dfn></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,<br>
+            <a href="html06.htm#eimg"><strong>IMG</strong></a>, <a href="html08.htm#einput"><strong>INPUT</strong></a>,
+            <a href="html06.htm#eobject"><strong>OBJECT</strong></a></td>
+          <td><a href="css06.htm#pvertical-align"><strong>vertical-align</strong></a>: <dfn>top</dfn>
+            | <dfn>middle</dfn> | <dfn>bottom</dfn>; <a href="css05.htm#pfloat"><strong>float</strong></a>:
+            <dfn>left</dfn> | <dfn>right</dfn></td>
+          <td>вертикальное или горизонтальное выравнивание</td>
+        </tr>
+        <tr>
+          <td><strong>align</strong> = <dfn>top</dfn> | <dfn>bottom</dfn> | <dfn>left</dfn> | <dfn>right</dfn></td>
+          <td><a href="html08.htm#elegend"><strong>LEGEND</strong></a></td>
+          <td><em>нет</em></td>
+          <td>выравнивание относительно <a href="html08.htm#efieldset"><strong>FIELDSET</strong></a></td>
+        </tr>
+        <tr>
+          <td><strong>align</strong> = <dfn>left</dfn> | <dfn>center</dfn> | <dfn>right</dfn></td>
+          <td><a href="html10.htm#ehr"><strong>HR</strong></a>, <a href="html05.htm#etable"><strong>TABLE</strong></a></td>
+          <td>&lt;DIV style=&quot;<a href="css09.htm#ptext-align"><strong>text-align</strong></a>: <dfn>left</dfn>
+            | <dfn>center</dfn> | <dfn>right</dfn>&quot;&gt;&#133;&lt;/DIV&gt;</td>
+          <td>выравнивание относительно окна</td>
+        </tr>
+        <tr>
+          <td><strong>align</strong> = <dfn>left</dfn> | <dfn>center</dfn> | <dfn>right</dfn> | <dfn>justify</dfn></td>
+          <td><a href="html10.htm#ediv"><strong>DIV</strong></a>, <a href="html03.htm#eh"><strong>H1</strong>&nbsp;&#151;
+            <strong>H6</strong></a>, <a href="html03.htm#ep"><strong>P</strong></a></td>
+          <td><a href="css09.htm#ptext-align"><strong>text-align</strong></a>: <dfn>left</dfn> | <dfn>center</dfn>
+            | <dfn>right</dfn> | <dfn>justify</dfn></td>
+          <td>выравнивание текста</td>
+        </tr>
+        <tr>
+          <td><strong>alink</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>A<a href="css02.htm#ref2293">:active</a> { <a href="css07.htm#pcolor"><strong>color</strong></a>:
+            <a href="css01.htm#color">цвет</a> }</td>
+          <td>цвет активной гиперссылки</td>
+        </tr>
+        <tr>
+          <td><strong>background</strong> = <a href="html01.htm#uri">URI</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>BODY { <strong><a href="css07.htm#pbackground-image">background-image</a></strong>: url(<a href="css01.htm#uri">URI</a>)
+            }</td>
+          <td>файл фона документа</td>
+        </tr>
+        <tr>
+          <td><strong>bgcolor</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>BODY { <strong><a href="css07.htm#pbackground-color">background-color</a></strong>: <a href="css01.htm#color">цвет</a>
+            }</td>
+          <td>цвет фона документа</td>
+        </tr>
+        <tr>
+          <td><strong>bgcolor</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html05.htm#etable"><strong>TABLE</strong></a>, <a href="html05.htm#etr"><strong>TR</strong></a>,
+            <a href="html05.htm#etd"><strong>TD</strong></a>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td><a href="css07.htm#pbackground-color"><strong>background-color</strong></a>: <a href="css01.htm#color">цвет</a></td>
+          <td>цвет фона элемента</td>
+        </tr>
+        <tr>
+          <td><strong>border</strong> = <a href="html01.htm#pixels">пиксели</a></td>
+          <td><a href="html06.htm#eimg"><strong>IMG</strong></a>, <a href="html06.htm#eobject"><strong>OBJECT</strong></a></td>
+          <td><a href="css04.htm#pborder-width"><strong>border-width</strong></a>: thin | medium | thick
+            | <a href="css01.htm#length">размер</a></td>
+          <td>ширина рамки</td>
+        </tr>
+        <tr>
+          <td><strong>clear</strong> = <dfn>none</dfn> | <dfn>left</dfn> | <dfn>right</dfn> | <dfn>all</dfn></td>
+          <td><a href="html03.htm#ebr"><strong>BR</strong></a></td>
+          <td><a href="css05.htm#pclear"><strong>clear</strong></a>: <dfn>none</dfn> | <dfn>left</dfn>
+            | <dfn>right</dfn> | <dfn>both</dfn></td>
+          <td>тип обтекания текста</td>
+        </tr>
+        <tr>
+          <td><strong>color</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="#ebasefont"><strong>BASEFONT</strong></a>, <a href="#efont"><strong>FONT</strong></a></td>
+          <td><a href="css07.htm#pcolor"><strong>color</strong></a>: <a href="css01.htm#color">цвет</a></td>
+          <td>цвет шрифта</td>
+        </tr>
+        <tr>
+          <td><strong>compact</strong> = <dfn>compact</dfn></td>
+          <td><a href="#edir"><strong>DIR</strong></a>, <a href="html04.htm#edl"><strong>DL</strong></a>,
+            <a href="#emenu"><strong>MENU</strong></a>, <a href="html04.htm#eol"><strong>OL</strong></a>,
+            <a href="html04.htm#eul"><strong>UL</strong></a></td>
+          <td><a href="css11.htm#plist-style-position"><strong>list-style-position</strong></a>: <dfn>inside</dfn></td>
+          <td>компактное отображение списков</td>
+        </tr>
+        <tr>
+          <td><strong>face</strong> = <a href="html01.htm#cdata">CDATA</a></td>
+          <td><a href="#ebasefont"><strong>BASEFONT</strong></a>, <a href="#efont"><strong>FONT</strong></a></td>
+          <td><a href="css08.htm#pfont-family"><strong>font-family</strong></a>: список <a href="css01.htm#string">строк</a>
+            через запятую</td>
+          <td>гарнитура шрифта</td>
+        </tr>
+        <tr>
+          <td><strong>height</strong> = <a href="html01.htm#length">размер</a></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html05.htm#etd"><strong>TD</strong></a>,
+            <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td><a href="css06.htm#pheight"><strong>height</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>высота элемента</td>
+        </tr>
+        <tr>
+          <td><strong>hspace</strong> = <a href="html01.htm#pixels">пиксели</a></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html06.htm#eimg"><strong>IMG</strong></a>,
+            <a href="html06.htm#eobject"><strong>OBJECT</strong></a></td>
+          <td><a href="css04.htm#pmargin-left"><strong>margin-left</strong></a>: <a href="css01.htm#length">размер</a>;<br>
+            <a href="css04.htm#pmargin-right"><strong>margin-right</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>горизонтальный промежуток</td>
+        </tr>
+        <tr>
+          <td><strong>language</strong> = <a href="html01.htm#cdata">CDATA</a></td>
+          <td><a href="html09.htm#escript"><strong>SCRIPT</strong></a></td>
+          <td><em>нет</em></td>
+          <td>язык сценария</td>
+        </tr>
+        <tr>
+          <td><strong>link</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>A<a href="css02.htm#ref2292">:link</a> { <a href="css07.htm#pcolor"><strong>color</strong></a>:
+            <a href="css01.htm#color">цвет</a> }</td>
+          <td>цвет гиперссылок</td>
+        </tr>
+        <tr>
+          <td><strong>noshade</strong> = <dfn>noshade</dfn></td>
+          <td><a href="html10.htm#ehr"><strong>HR</strong></a></td>
+          <td><em>нет</em></td>
+          <td>отображение сплошным цветом</td>
+        </tr>
+        <tr>
+          <td><strong>nowrap</strong> = <dfn>nowrap</dfn></td>
+          <td><a href="html05.htm#etd"><strong>TD</strong></a>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td><a href="css09.htm#pwhite-space"><strong>white-space</strong></a>: <dfn>nowrap</dfn></td>
+          <td>без переноса слов на новую строку</td>
+        </tr>
+        <tr>
+          <td><strong>size</strong> = <a href="html01.htm#pixels">пиксели</a></td>
+          <td><a href="html10.htm#ehr"><strong>HR</strong></a></td>
+          <td><a href="css06.htm#pheight"><strong>height</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>высота разделителя</td>
+        </tr>
+        <tr>
+          <td><strong>size</strong> = <a href="html01.htm#cdata">CDATA</a></td>
+          <td><a href="#ebasefont"><strong>BASEFONT</strong></a>, <a href="#efont"><strong>FONT</strong></a></td>
+          <td><a href="css08.htm#pfont-size"><strong>font-size</strong></a>: <a href="css01.htm#number">число</a></td>
+          <td>размер шрифта</td>
+        </tr>
+        <tr>
+          <td><strong>start</strong> = <a href="html01.htm#number">число</a></td>
+          <td><a href="html04.htm#eol"><strong>OL</strong></a></td>
+          <td><em>нет</em></td>
+          <td>начальный номер элементов списка</td>
+        </tr>
+        <tr>
+          <td><strong>text</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>BODY { <a href="css07.htm#pcolor"><strong>color</strong></a>: <a href="css01.htm#color">цвет</a>
+            }</td>
+          <td>цвет текста документа</td>
+        </tr>
+        <tr>
+          <td><strong>type</strong> = 1 | a | A | i | I</td>
+          <td><a href="html04.htm#eol"><strong>OL</strong></a></td>
+          <td><a href="css11.htm#plist-style-type"><strong>list-style-type</strong></a>: <dfn>decimal</dfn>
+            |<br>
+            <dfn>lower-latin</dfn> | <dfn>upper-latin</dfn> |<br>
+            <dfn>lower-roman</dfn> | <dfn>upper-roman</dfn></td>
+          <td>тип нумерованного списка</td>
+        </tr>
+        <tr>
+          <td><strong>type</strong> = <dfn>disc</dfn> | <dfn>square</dfn> | <dfn>circle</dfn></td>
+          <td><a href="html04.htm#eul"><strong>UL</strong></a></td>
+          <td><a href="css11.htm#plist-style-type"><strong>list-style-type</strong></a>: <dfn>disc</dfn>|
+            <br>
+            <dfn>square</dfn> | <dfn>circle</dfn></td>
+          <td>тип маркированного списка</td>
+        </tr>
+        <tr>
+          <td><strong>type</strong> = <dfn>disc</dfn> | <dfn>square</dfn> | <dfn>circle</dfn> | 1 |
+            a | A | i | I</td>
+          <td><a href="html04.htm#eli"><strong>LI</strong></a></td>
+          <td><a href="css11.htm#plist-style-type"><strong>list-style-type</strong></a>: <dfn>disc</dfn>
+            |<br>
+            <dfn>square</dfn> | <dfn>circle</dfn> | <dfn>decimal</dfn> |<br>
+            <dfn>lower-latin</dfn> | <dfn>upper-latin</dfn> |<br>
+            <dfn>lower-roman</dfn> | <dfn>upper-roman</dfn></td>
+          <td>тип маркера элемента списка</td>
+        </tr>
+        <tr>
+          <td><strong>value</strong> = <a href="html01.htm#number">число</a></td>
+          <td><a href="html04.htm#eli"><strong>LI</strong></a></td>
+          <td><em>нет</em></td>
+          <td>изменение нумерации элементов списка</td>
+        </tr>
+        <tr>
+          <td><strong>version</strong> = <a href="html01.htm#cdata">CDATA</a></td>
+          <td><a href="html02.htm#ehtml"><strong>HTML</strong></a></td>
+          <td><em>нет</em></td>
+          <td>версия языка HTML</td>
+        </tr>
+        <tr>
+          <td><strong>vlink</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>A<a href="css02.htm#ref2292">:visited</a> { <a href="css07.htm#pcolor"><strong>color</strong></a>:
+            <a href="css01.htm#color">цвет</a> }</td>
+          <td>цвет посещенных гиперссылок</td>
+        </tr>
+        <tr>
+          <td><strong>vspace</strong> = <a href="html01.htm#pixels">пиксели</a></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html06.htm#eimg"><strong>IMG</strong></a>,
+            <a href="html06.htm#eobject"><strong>OBJECT</strong></a></td>
+          <td><a href="css04.htm#pmargin-top"><strong>margin-top</strong></a>: <a href="css01.htm#length">размер</a>;
+            <a href="css04.htm#pmargin-bottom"><strong>margin-bottom</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>вертикальный промежуток</td>
+        </tr>
+        <tr>
+          <td><strong>width</strong> = <a href="html01.htm#length">размер</a></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html10.htm#ehr"><strong>HR</strong></a>,
+            <a href="html05.htm#etd"><strong>TD</strong></a>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td><a href="css06.htm#pwidth"><strong>width</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>ширина элемента</td>
+        </tr>
+        <tr>
+          <td><strong>width</strong> = <a href="html01.htm#number">число</a></td>
+          <td><a href="html03.htm#epre"><strong>PRE</strong></a></td>
+          <td><a href="css06.htm#pwidth"><strong>width</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>ширина текста</td>
+        </tr>
+      </table>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

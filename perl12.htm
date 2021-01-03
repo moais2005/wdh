@@ -1,0 +1,800 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: PERL - Процессы и сокеты</title>
+<link rel="Prev" href="perl11.htm" title="Ввод-вывод, файлы и каталоги">
+<link rel="Next" href="perl13.htm" title="CGI-программирование">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref612">Глава 6.12. Процессы и сокеты</a></h2>
+
+      <h3><a name="ref6121">6.12.1. Функции управления процессами</a></h3>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Функция</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><a href="#fexec"><tt>exec</tt></a></td>
+            <td>Передает управление заданной системной команде.</td>
+          </tr>
+          <tr>
+            <td><a href="#ffork"><tt>fork</tt></a></td>
+            <td>Запускает копию текущей программы.</td>
+          </tr>
+          <tr>
+            <td><a href="#fkill"><tt>kill</tt></a></td>
+            <td>Посылает сигнал завершения списку процессов.</td>
+          </tr>
+          <tr>
+            <td><a href="#fpipe"><tt>pipe</tt></a></td>
+            <td>Создает канал межпроцессной коммуникации.</td>
+          </tr>
+          <tr>
+            <td><a href="#freadpipe"><tt>readpipe</tt></a></td>
+            <td>Выполняет системную команду.</td>
+          </tr>
+          <tr>
+            <td><a href="#fsleep"><tt>sleep</tt></a></td>
+            <td>Приостановка работы программы.</td>
+          </tr>
+          <tr>
+            <td><a href="#fsystem"><tt>system</tt></a></td>
+            <td>Запускает системную программу и ждет ее завершения.</td>
+          </tr>
+          <tr>
+            <td><a href="#fumask"><tt>umask</tt></a></td>
+            <td>Изменяет маску доступа к процессу.</td>
+          </tr>
+          <tr>
+            <td><a href="#fwait"><tt>wait</tt></a></td>
+            <td>Ожидает завершения процесса-потомка.</td>
+          </tr>
+          <tr>
+            <td><a href="#fwaitpid"><tt>waitpid</tt></a></td>
+            <td>Ожидает завершения процесса с заданным PID.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hexec">Функция exec</a></h4>
+
+<pre class="syntax"><strong><a name="fexec">Синтаксис</a></strong>: exec <em>список</em>
+<strong>Аргументы</strong>: <em>список</em>&nbsp;&#151; список строковых выражений</pre>
+
+      <p>Функция <strong>exec</strong> вызывает заданную аргументами системную команду и передает ей управление. После выполнения
+        этой команды управление в perl не возвращается; для вызова системных команд с возвратом управления нужно пользоваться
+        функцией <a href="#fsystem"><tt>system</tt></a>. Возврат управления в perl происходит только в том случае, когда запрошенной
+        команды не существует.</p>
+        
+      <p>Если <em>список</em> состоит из одного элемента, то этим элементом должна быть строка, содержащая вызываемую системную команду.
+        Если <em>список</em> состоит из нескольких элементов, то первый элемент должен содержать имя системной команды, второй&nbsp;&#151;
+        массив опций вызова команды, а третий&nbsp;&#151; массив аргументов, передаваемых команде. Пример:</p>
+
+      <div class="code">
+<pre class="code">exec('echo ha-ha-ha') or print STDERR "Не могу выполнить echo: $!";</pre>
+      </div>
+
+      <h4><a name="hfork">Функция fork</a></h4>
+
+<pre class="syntax"><strong><a name="ffork">Синтаксис</a></strong>: fork
+<strong>Результат</strong>: целое значение</pre>
+
+      <p>В Unix функция <strong>fork</strong> создает новый процесс, который является копией текущего.
+        Она возвращает PID дочернего процесса родительскому процессу, 0 дочернему процессу и <strong>undef</strong>,
+        если вызов функции звкочился неудачей.</p>
+      <p>В Windows нет системной поддержки для создания копий процессов, поэтому данная функция эмулируется запуском
+        нового интерпретатора perl в отдельном потоке. Это приводит к ряду несовместимостей с Unix, которые мы здесь
+        не рассматриваем.</p>
+        
+      <h4><a name="hkill">Функция kill</a></h4>
+
+<pre class="syntax"><strong><a name="fkill">Синтаксис</a></strong>: kill <em>сигнал</em>, <em>список</em>
+<strong>Аргументы</strong>: <em>сигнал</em>&nbsp;&#151; числовое или строковое выражение
+           <em>список</em>&nbsp;&#151; список числовых выражений
+<strong>Результат</strong>: целое значение</pre>
+
+      <p>В Unix функция <strong>kill</strong> посылает заданный <em>сигнал</em> завершения процессам, чьи PID перечислены в <em>списке</em>,
+        и возвращает количество процессов, отреагировавших на этот сигнал. <em>Сигнал</em> задается либо числовым идентификатором, либо
+        именем в кавычках (имена сигналов и соответствующие числовые значения хранятся в глобальном массиве <tt>%SIG</tt>). Если
+        <em>сигнал</em> является отрицательным числом, то он передается не процессам, а группам процессов. Если <em>сигнал</em> равен нулю,
+        то никакого сигнала не посылается; такая форма функции позволяет проверить, что процесс с заданным PID существует.</p>
+      <p>В Windows нет сигналов, поэтому здесь данная функция имеет вид <code>kill($sig, $pid)</code> и вызывает
+        немедленное завершение процесса с номером <tt>$pid</tt>, при этом статус завершения процесса равен <tt>$sig</tt>.
+        Как и в Unix, если <tt>$sig</tt> равно нулю и заданный процесс существует, то функция вернет 1, не завершая процесс.</p>
+        
+      <h4><a name="hpipe">Функция pipe</a></h4>
+
+<pre class="syntax"><strong><a name="fpipe">Синтаксис</a></strong>: pipe <em>ввод</em>, <em>вывод</em>
+<strong>Аргументы</strong>: <em>ввод</em>, <em>вывод</em>&nbsp;&#151; описатели файлов</pre>
+
+      <p>Функция <strong>pipe</strong> создает два взаимосвязанных конвейера, один на чтение из файла <em>ввод</em>,
+      а второй на запись в файл <em>вывод</em>. Самостоятельно используется очень редко, см.
+      документацию на PERL IPC (interprocess communication).</p>
+        
+      <h4><a name="hreadpipe">Функция readpipe</a></h4>
+
+<pre class="syntax"><strong><a name="freadpipe">Синтаксис</a></strong>: readpipe <em>выражение</em>
+<strong>Аргументы</strong>: <em>выражение</em>&nbsp;&#151; строковое выражение
+<strong>Результат</strong>: строка или массив строк</pre>
+
+      <p>Функция <strong>readpipe</strong> вызывает системную команду, заданную <em>выражением</em> и возвращает все,
+        что последняя выведет на стандартное устройство вывода (stdout). В скалярном контексте результат вывода возвращается как одна строка,
+        в списочном контексте&nbsp;&#151; как массив строк. Эта функция является внутренней для функции <tt><a href="perl02.htm#qx">qx()</a></tt>,
+        но может быть вызвана и непосредственно из программы.</p>
+        
+      <h4><a name="hsleep">Функция sleep</a></h4>
+
+<pre class="syntax"><strong><a name="fsleep">Синтаксис</a></strong>: sleep <em>выражение</em>?
+<strong>Аргументы</strong>: <em>выражение</em>&nbsp;&#151; числовое выражение
+<strong>Результат</strong>: целое значение</pre>
+
+      <p>Функция <strong>sleep</strong> вызывает приостановку работы сценария на количество секунд,
+        заданных <em>выражением</em>, или навсегда, если <em>выражение</em> опущено. В Unix приостановка
+        может быть прервана сигналом <tt>SIGALRM</tt>. Возвращает количество секунд, на которые сценарий был
+        фактически приостановлен. Пример:</p>
+        
+      <div class="code">
+<pre class="code">sleep 10; # подождать 10 секунд</pre>
+      </div>
+
+      <h4><a name="hsystem">Функция system</a></h4>
+
+<pre class="syntax"><strong><a name="fsystem">Синтаксис</a></strong>: system <em>список</em>
+<strong>Аргументы</strong>: <em>список</em>&nbsp;&#151; список строковых выражений
+<strong>Результат</strong>: целое значение</pre>
+
+      <p>Функция <strong>system</strong> полностью эквивалентна функции <tt><a href="#fexec">exec</a></tt> с одним отличием:
+        указанная системная команда выполняется в дочернем процессе, и сценарий ждет ее завершения. Возвращает код
+        завершения системной команды. Пример:</p>
+        
+      <div class="code">
+<pre class="code">system('echo ha-ha-ha');</pre>
+      </div>
+      
+      <p>В Windows должна вызывается в формате <code>system(1, @args)</code>, где <tt>@args</tt> состоит из имени запускаемой
+      программы и ее аргументов.</p>
+
+      <h4><a name="humask">Функция umask</a></h4>
+
+<pre class="syntax"><strong><a name="fumask">Синтаксис</a></strong>: umask <em>выражение</em>?
+<strong>Аргументы</strong>: <em>выражение</em>&nbsp;&#151; числовое выражение
+<strong>Результат</strong>: целое значение</pre>
+
+      <p>Функция <strong>umask</strong> изменяет маску прав текущего процесса на новую, заданную <em>выражением</em>.
+        Если <em>выражение</em> опущено, то возвращает маску прав текущего процесса. Структуру маски прав см. в
+        описании функции <tt><a href="perl11.htm#fchmod">chmod</a></tt>. В Windows игнорируется и всегда возвращает 0.</p>
+        
+      <h4><a name="hwait">Функция wait</a></h4>
+
+<pre class="syntax"><strong><a name="fwait">Синтаксис</a></strong>: wait
+<strong>Результат</strong>: целое значение</pre>
+
+      <p>Функция <strong>wait</strong> ждет завершения дочернего процесса и возвращает его PID или -1,
+        если дочерних процессов нет. В Windows применима только к процессам, запущенных вызовом
+        <code><a href="#fsystem">system</a>(1, @args)</code>.</p>
+        
+      <h4><a name="hwaitpid">Функция waitpid</a></h4>
+
+<pre class="syntax"><strong><a name="fwaitpid">Синтаксис</a></strong>: waitpid <em>pid</em>, <em>флаги</em>
+<strong>Аргументы</strong>: <em>pid</em>, <em>флаги</em>&nbsp;&#151; числовые выражения
+<strong>Результат</strong>: целое значение</pre>
+
+      <p>Функция <strong>waitpid</strong> ждет завершения дочернего процесса с заданным <em>pid</em> и возвращает его PID или -1,
+        если дочерних процессов нет. Допустимые значения параметра <em>флаги</em> зависят от операционной системы, но нулевое
+        значение <em>флагов</em> поддерживается везде. В Windows применима только к процессам, запущенных вызовом
+        <code><a href="#fsystem">system</a>(1, @args)</code>.</p>
+        
+      <h3><a name="ref6122">6.12.2. Функции управления сокетами</a></h3>
+
+      <p>Описанные в этом разделе функции выполняют базовые операции над сокетами. <em>Сокет</em> (socket)&nbsp;&#151;
+        это понятие, соответствующее временному соединению двух компьютеров сети, которые в этом случае принято называть
+        <em>хостами</em> (hosts). Сокеты оказались удобной абстракцией для описания сетевых сессий, позволяющей программисту писать
+        программы передачи данных по сети, не опускаясь на уровень сетевых и транспортных протоколов, поэтому они поддерживаются
+        сегодня и в Unix, и в Windows, а также во многих современных языках программирования.</p>
+      <p>Работа с сокетами построена аналогично работе с файлами. Новый сокет открывается функцией <tt><a href="#fsocket">socket</a></tt>,
+        которая создает для него описатель файла, и закрывается функцией <tt><a href="#fshutdown">shutdown</a></tt>. Остальные операции
+        с сокетами манипулируют с сетевыми адресами и именами, упакованными платформо-независимым образом, поэтому перед программированием
+        сокетов следует ознакомиться с описанием модуля Socket, который содержит стандартные функции преобразования таких структур
+        и символические имена различных констант.</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Функция</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><a href="#faccept"><tt>accept</tt></a></td>
+            <td>Создает новый сокет для сессии.</td>
+          </tr>
+          <tr>
+            <td><a href="#fbind"><tt>bind</tt></a></td>
+            <td>Связывает сокет с сетевым адресом.</td>
+          </tr>
+          <tr>
+            <td><a href="#fconnect"><tt>connect</tt></a></td>
+            <td>Устанавливает связь с удаленным сокетом.</td>
+          </tr>
+          <tr>
+            <td><a href="#fgetpeername"><tt>getpeername</tt></a></td>
+            <td>Возвращает адрес удаленного конца сокета.</td>
+          </tr>
+          <tr>
+            <td><a href="#fgetsockname"><tt>getsockname</tt></a></td>
+            <td>Возвращает адрес локального конца сокета.</td>
+          </tr>
+          <tr>
+            <td><a href="#fgetsockopt"><tt>getsockopt</tt></a></td>
+            <td>Возвращает параметры сокета.</td>
+          </tr>
+          <tr>
+            <td><a href="#flisten"><tt>listen</tt></a></td>
+            <td>Запускает прослушивание заданного сокета.</td>
+          </tr>
+          <tr>
+            <td><a href="#frecv"><tt>recv</tt></a></td>
+            <td>Принимает сообщение от сокета.</td>
+          </tr>
+          <tr>
+            <td><a href="#fsend"><tt>send</tt></a></td>
+            <td>Посылает сообщение сокету.</td>
+          </tr>
+          <tr>
+            <td><a href="#fsetsockopt"><tt>setsockopt</tt></a></td>
+            <td>Задает параметры сокета.</td>
+          </tr>
+          <tr>
+            <td><a href="#fshutdown"><tt>shutdown</tt></a></td>
+            <td>Разрывает соединение сокета.</td>
+          </tr>
+          <tr>
+            <td><a href="#fsocket"><tt>socket</tt></a></td>
+            <td>Создает новый сокет.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="haccept">Функция accept</a></h4>
+
+<pre class="syntax"><strong><a name="faccept">Синтаксис</a></strong>: accept <em>новый</em>, <em>старый</em>
+<strong>Аргументы</strong>: <em>новый</em>, <em>старый</em>&nbsp;&#151; описателb файлов
+<strong>Результат</strong>: адрес сокета</pre>
+
+      <p>Функция <strong>accept</strong> принимает входящее соединение от существующего сокета <em>старый</em>.
+        В случае успешного соединения в параметр <em>новый</em> заносится описатель нового сокета и возвращается
+        упакованный адрес соединения; в противном случае возвращается 0.</p>
+        
+      <h4><a name="hbind">Функция bind</a></h4>
+
+<pre class="syntax"><strong><a name="fbind">Синтаксис</a></strong>: bind <em>сокет</em>, <em>имя</em>
+<strong>Аргументы</strong>: <em>сокет</em>&nbsp;&#151; описатель файла
+           <em>имя</em>&nbsp;&#151; сетевой адрес
+<strong>Результат</strong>: логическое значение</pre>
+
+      <p>Функция <strong>connect</strong> связывает локальный <em>сокет</em> с сетевым адресом, заданным <em>именем</em>.
+        Она возвращает истину при успешном соединении и ложь при неудаче. <em>Имя</em> должно содержать упакованный сетевой адрес;
+        для его формирования проще всего использовать функции модуля Socket. Например, для прослушивания (случайно выбранного) порта
+        2345 по протоколу TCP мы можем написать:</p>
+        
+      <div class="code">
+<pre class="code">use Socket;
+$proto = getprotobyname('tcp');
+socket(SOCK, PF_INET, SOCK_STREAM, $proto) || die "socket: $!";
+bind(SOCK, sockaddr_in(2345, INADDR_ANY)) || die "bind: $!";
+listen(SOCK, SOMAXCONN) || die "listen: $!";</pre>
+      </div>
+      
+      <h4><a name="hconnect">Функция connect</a></h4>
+
+<pre class="syntax"><strong><a name="fconnect">Синтаксис</a></strong>: connect <em>сокет</em>, <em>имя</em>
+<strong>Аргументы</strong>: <em>сокет</em>&nbsp;&#151; описатель файла
+           <em>имя</em>&nbsp;&#151; адрес удаленного сокета
+<strong>Результат</strong>: логическое значение</pre>
+
+      <p>Функция <strong>connect</strong> пытается установить связь локального <em>сокета</em> с удаленным
+        сокетом, заданным <em>именем</em>. Она возвращает истину при успешном соединении и ложь при неудаче.
+        <em>Имя</em> должно содержать упакованный адрес удаленного сокета; для его формирования проще всего
+        использовать функции модуля Socket. Например, для связи с удаленным сокетом на том же компьютере по
+        протоколу TCP через (случайно выбранный) порт 2345 мы можем написать:</p>
+        
+      <div class="code">
+<pre class="code">use Socket;
+$iaddr = inet_aton('localhost') || die "no localhost";
+$paddr = sockaddr_in(2345, $iaddr);
+$proto = getprotobyname('tcp');
+socket(SOCK, PF_INET, SOCK_STREAM, $proto) || die "socket: $!";
+connect(SOCK, $paddr) || die "connect: $!";</pre>
+      </div>
+      
+      <h4><a name="hgetpeername">Функция getpeername</a></h4>
+
+<pre class="syntax"><strong><a name="fgetpeername">Синтаксис</a></strong>: getpeername <em>сокет</em>
+<strong>Аргументы</strong>: <em>сокет</em>&nbsp;&#151; описатель файла
+<strong>Результат</strong>: адрес сокета</pre>
+
+      <p>Функция <strong>getpeername</strong> возвращает упакованный адрес удаленного конца соединения,
+        заданого локальным <em>сокетом</em>. Если <em>сокет</em> не имеет соединения, то возникает фатальная
+        ошибка. Для распаковки полученного адреса проще всего пользоваться функциями модуля Socket, например:</p>
+        
+      <div class="code">
+<pre class="code">use Socket;
+$remoteaddr = getpeername(SOCK);
+($port, $iaddr) = sockaddr_in($remoteaddr);
+$remotehostname = gethostbyaddr($iaddr, AF_INET); // имя удаленного хоста
+$remoteaddr = inet_ntoa($iaddr); // строковый адрес удаленного хоста</pre>
+      </div>
+      
+      <h4><a name="hgetsockname">Функция getsockname</a></h4>
+
+<pre class="syntax"><strong><a name="fgetsockname">Синтаксис</a></strong>: getsockname <em>сокет</em>
+<strong>Аргументы</strong>: <em>сокет</em>&nbsp;&#151; описатель файла
+<strong>Результат</strong>: адрес сокета</pre>
+
+      <p>Функция <strong>getsockname</strong> возвращает упакованный адрес локального конца соединения,
+        заданого локальным <em>сокетом</em>. Если <em>сокет</em> не имеет соединения, то возникает фатальная
+        ошибка. Для распаковки полученного адреса проще всего пользоваться функциями модуля Socket, например:</p>
+        
+      <div class="code">
+<pre class="code">use Socket;
+$mysockaddr = getsockname(SOCK);
+($port, $iaddr) = sockaddr_in($mysockaddr);
+$myhostname = gethostbyaddr($iaddr, AF_INET); // имя локального хоста
+$myaddr = inet_ntoa($iaddr); // строковый адрес локального хоста</pre>
+      </div>
+      
+      <h4><a name="hgetsockopt">Функция getsockopt</a></h4>
+
+<pre class="syntax"><strong><a name="fgetsockopt">Синтаксис</a></strong>: getsockopt <em>сокет</em>, <em>уровень</em>, <em>имя</em>
+<strong>Аргументы</strong>: <em>сокет</em>&nbsp;&#151; описатель файла
+           <em>уровень</em>, <em>имя</em>&nbsp;&#151; числовые выражения
+<strong>Результат</strong>: строковое значение</pre>
+
+      <p>Функция <strong>getsockopt</strong> возвращает текущее значение параметра <em>имя</em> данного <em>сокета</em> или <strong>undef</strong>
+        при неудаче. <em>Уровень</em> определяет уровень абстракции, на котором данный параметр определен. Он может принимать значения, имеющие
+        следующие символические имена из модуля Socket: SOL_SOCKET (уровень сокетов) и IPPROTO_TCP (уровень TCP/IP). Допустимые
+        имена параметров и их значения зависят как от выбранного уровня, так и от операционной системы.</p>
+        
+      <h4><a name="hlisten">Функция listen</a></h4>
+
+<pre class="syntax"><strong><a name="flisten">Синтаксис</a></strong>: listen <em>сокет</em>, <em>очередь</em>
+<strong>Аргументы</strong>: <em>сокет</em>&nbsp;&#151; описатель файла
+           <em>очередь</em>&nbsp;&#151; числовое значение
+<strong>Результат</strong>: логическое значение</pre>
+
+      <p>Функция <strong>listen</strong> переводит <em>сокет</em> в режим прослушивания установленного соединения.
+        Она возвращает истину при успешном соединении и ложь при неудаче.
+        Параметр <em>очередь</em> задает максимальный размер очереди отложенных соединений; если он равен SOMAXCONN,
+        то он устанавливается максимально возможным для данного типа сокета. Пример см. в описании функции <tt><a href="#fbind">bind</a></tt>.</p>
+        
+      <h4><a name="hrecv">Функция recv</a></h4>
+
+<pre class="syntax"><strong><a name="frecv">Синтаксис</a></strong>: recv <em>сокет</em>, <em>буфер</em>, <em>длина</em>, <em>флаги</em>
+<strong>Аргументы</strong>: <em>сокет</em>&nbsp;&#151; описатель файла
+           <em>буфер</em>&nbsp;&#151; скалярная переменная
+           <em>длина</em>, <em>флаги</em>&nbsp;&#151; числовые выражения
+<strong>Результат</strong>: строковое значение</pre>
+
+      <p>Функция <strong>recv</strong> принимает данные от указанного <em>сокета</em>. Делается попытка считать
+        <em>длину</em> байтов в переменную <em>буфер</em>. Возвращается адрес удаленного сокета или пустая строка,
+        если протокол <em>сокета</em> не поддерживает передачу этого адреса. При ошибке возвращается <strong>undef</strong>.
+        Допустимые значения <em>флагов</em> зависят от операционной системы. Эта функция предназначена для приема датаграммных
+        сообщений по протоколам типа UDP.</p>
+        
+      <h4><a name="hsend">Функция send</a></h4>
+
+<pre class="syntax"><strong><a name="fsend">Синтаксис</a></strong>: send <em>сокет</em>, <em>сообщение</em>, <em>флаги</em>, <em>приемник</em>?
+<strong>Аргументы</strong>: <em>сокет</em>&nbsp;&#151; описатель файла
+           <em>сообщение</em>&nbsp;&#151; текстовое выражение
+           <em>длина</em>, <em>флаги</em>&nbsp;&#151; числовые выражения
+           <em>приемник</em>&nbsp;&#151; адрес сокета
+<strong>Результат</strong>: строковое значение</pre>
+
+      <p>Функция <strong>send</strong> посылает <em>сообщение</em> удаленному сокету. Если локальный <em>сокет</em> не соединен с удаленным,
+        то необходимо явно указать упакованный адрес <em>приемника</em>. Возвращается количество переданных символов; при ошибке возвращается
+        <sYFILE.TXT, содержащий следующие строки:</p>
+<samp>First<br>
+Second<br>
+Third</samp>
+
+      <p>Чаще всего связывание переменных используется для установления неявной связи ассоциативных массивов с базами данных,
+        но эта тема выходит за пределы нашего справочника.</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+ ђ”H4ЎU  б<      Xr Нo  Xr Нo  °”H4ЎU  °”H4ЎU  , то этот список рассматривается как набор правил,
+        управляющих списком импортируемых имен. Правила обрабатываются слева направо в соответствии со следующей таблицей:</p>
+
+      <div class="indent">
+        <table border="1" cellspacing="0" cellpadding="5">
+          <tr>
+            <th>Конструкция</th>
+            <th>Значение</th>
+          </tr>
+          <tr>
+            <td><tt><em>name</em></tt></td>
+            <td>Добавить имя <tt><em>name</em></tt>.</td>
+          </tr>
+          <tr>
+            <td><tt>!<em>name</em></tt></td>
+            <td>Удалить имя <tt><em>name</em></tt>.</td>
+          </tr>
+          <tr>
+            <td><tt>:DEFAULT</tt></td>
+            <td>Добавить все имена из списка <tt>@EXPORT</tt>.</td>
+          </tr>
+          <tr>
+            <td><tt>!:DEFAULT</tt></td>
+            <td>Удалить все имена из списка <tt>@EXPORT</tt>.</td>
+          </tr>
+          <tr>
+            <td><tt>:<em>tag</em></tt></td>
+            <td>Добавить все имена из списка <tt>%EXPORT_TAGS{<em>tag</em>}</tt>.</td>
+          </tr>
+          <tr>
+            <td><tt>!:<em>tag</em></tt></td>
+            <td>Удалить все имена из списка <tt>%EXPORT_TAGS{<em>tag</em>}</tt>.</td>
+          </tr>
+          <tr>
+            <td><tt>/<em>pattern</em>/</tt></td>
+            <td>Добавить все имена из списков <tt>@EXPORT</tt> и <tt>@EXPORT_OK</tt>, соответствующие образцу <tt><em>pattern</em></tt>.</td>
+          </tr>
+          <tr>
+            <td><tt>!/<em>pattern</em>/</tt></td>
+            <td>Удалить все имена из списков <tt>@EXPORT</tt> и <tt>@EXPORT_OK</tt>, соответствующие образцу <tt><em>pattern</em></tt>.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Если список начинается с операции удаления, то считается, что ей предшествует операция :<tt>DEFAULT</tt>.</p>
+
+      <p>Пусть наш модуль Sample содержит следующие операторы:</p>
+
+      <div class="code">
+<pre class="code">@EXPORT = qw(A1 A2 A3 A4 A5);
+@EXPORT_OK = qw(B1 B2 B3 B4 B5);
+%EXPORT_TAGS = (T1 =&gt; [qw(A1 A2 B1 B2)], T2 =&gt; [qw(A1 A2 B3 B4)]);</pre>
+      </div>
+
+      <p>Тогда программа, обращающаяся к Sample, могла бы содержать оператор</p>
+
+      <div class="code">
+<pre class="code">use Sample qw(:DEFAULT :T2 !B3 B5 /^.1/);
+</pre>
+      </div>
+
+      <p class="noindent">который в данном случае эквивалентен оператору</p>
+
+      <div class="code">
+<pre class="code">use Sample qw(A1 A2 A3 A4 A5 B4 B5 B1);
+</pre>
+      </div>
+
+      <p>Для отладки подобных конструкций удобно добавить в свою программу оператор <code>BEGIN { $Exporter::Verbose=1 }</code>,
+        который выводит на консоль информацию об обработке операций импорта.</p>
+
+      <p>Помимо описанных массивов модуль Exporter содержит несколько дополнительных возможностей, облегчающих управление экспортом символов.</p>
+
+      <p>Поскольку все символы, перечисленные в <tt>%EXPORT_TAGS</tt>, обязаны присутствовать в <tt>@EXPORT</tt> или <tt>@EXPORT_OK</tt>, предусмотрены
+        две функции <tt>export_tags</tt> и <tt>export_ok_tags</tt>, позволяющие легко добавлять символы в эти массивы. Пример:</p>
+
+      <div class="code">
+<pre class="code">%EXPORT_TAGS = (XXX =&gt; [qw(aa bb cc)], YYY =&gt; [qw(cc dd ee)]);
+Exporter::export_tags('XXX');    # добавляет aa, bb и cc в @EXPORT
+Exporter::export_ok_tags('YYY'); # добавляет cc, dd и ee в @EXPORT_OK</pre>
+      </div>
+
+      <p>Функция <tt>use()</tt> при проверке версии модуля вызывает метод <tt>$module_name-&gt;require_version($value)</tt>.
+        В модуле Exporter этот метод реализован и проверяет переменную модуля <tt>$VERSION</tt>. При ее использовании нужно
+        помнить, что версия рассматривается как плавающее число и потому 1.10 меньше, чем 1.9. Поэтому рекомендуется использовать
+        номера версий с двумя цифрами после десятичной точки вида 1.09.</p>
+
+      <p>Кроме того, Exporter содержит еще один метод, который используется в тех случаях, когда метод <tt>import</tt> модуля Exporter не
+        может быть вызван напрямую. Этот метод имеет вид</p>
+
+<pre class="syntax">MyPackage-&gt;export_to_level($level, $package, @what);</pre>
+
+      <p class="noindent">где <tt>$level</tt>&nbsp;&#151; целое число, задающее уровень экспорта, т.&nbsp;е. количество модулей в стеке вызовов,
+        на которое нужно подняться, а <tt>@what</tt>&nbsp;&#151; массив экспортируемых символов, обычно <tt>@_</tt>. Параметр <tt>$package</tt>
+        зарезервирован для будущих версий. Пусть, например, наш модуль Sample содержит строки</p>
+
+      <div class="code">
+<pre class="code">@EXPORT_OK = qw($b);
+sub import { $Sample::b = 1; Sample-&gt;export_to_level(1, @_); }</pre>
+      </div>
+
+      <p>Тогда оператор <code>use Sample ($b)</code> экспортирует переменную <tt>$Sample::b</tt> на один уровень вверх, т.&nbsp;е.
+        в программу или модуль, вызвавшие модуль Sample.</p>
+
+      <p>Наконец, Exporter позволяет нам явно запретить экспорт каких-либо символов. Имена таких символов должны быть указаны в
+        массиве <tt>@EXPORT_FAIL</tt>. При попытке импортировать эти символы Exporter вызывает оператор</p>
+
+      <div class="code">
+<pre class="code">@failed_symbols = $module_name-&gt;export_fail(@failed_symbols);</pre>
+      </div>
+
+      <p>Если список, возвращаемый методом <tt>export_fail</tt>, пуст, то запрошенные символы экспортируются. В противном случае
+        для каждого символа в этом списке генерируется соответствующее сообщение об ошибке. Мы можем переопределить в своем модуле метод
+        <tt>export_fail</tt> или воспользоваться его реализацией по умолчанию, которая просто возвращает переданный ей список.</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+ «H4ЎU  &      (r Нo  (r Нo  ђ«H4ЎU  ђ«H4ЎU  агальский</td>
+            <td>tl</td>
+          </tr>
+          <tr>
+            <td>Дзонг-кэ</td>
+            <td>dz</td>
+            <td>Таджикский</td>
+            <td>tg</td>
+          </tr>
+          <tr>
+            <td>Зулу</td>
+            <td>zu</td>
+            <td>Тайский (сиамский)</td>
+            <td>th</td>
+          </tr>
+          <tr>
+            <td>Иврит</td>
+            <td>he</td>
+            <td>Тамильский</td>
+            <td>ta</td>
+          </tr>
+          <tr>
+            <td>Идиш</td>
+            <td>yi</td>
+            <td>Татарский</td>
+            <td>tt</td>
+          </tr>
+          <tr>
+            <td>Индонезийский</td>
+            <td>id</td>
+            <td>Тви</td>
+            <td>tw</td>
+          </tr>
+          <tr>
+            <td>Интерлингва</td>
+            <td>ia</td>
+            <td>Телугу</td>
+            <td>te</td>
+          </tr>
+          <tr>
+            <td>Интерлингве</td>
+            <td>ie</td>
+            <td>Тибетский</td>
+            <td>bo</td>
+          </tr>
+          <tr>
+            <td>Ирландский</td>
+            <td>ga</td>
+            <td>Тигринья</td>
+            <td>ti</td>
+          </tr>
+          <tr>
+            <td>Исландский</td>
+            <td>is</td>
+            <td>Тонганский</td>
+            <td>to</td>
+          </tr>
+          <tr>
+            <td>Испанский
+              <ul class="sublang">
+                <li>Аргентина</li>
+                <li>Боливия</li>
+                <li>Венесуэла</li>
+                <li>Гватемала</li>
+                <li>Гондурас</li>
+                <li>Доминиканская р-ка</li>
+                <li>Испания</li>
+                <li>Колумбия</li>
+                <li>Коста-Рика</li>
+                <li>Мексика</li>
+                <li>Никарагуа</li>
+                <li>Панама</li>
+                <li>Парагвай</li>
+                <li>Перу</li>
+                <li>Пуэрто-Рико</li>
+                <li>Сальвадор</li>
+                <li>Уругвай</li>
+                <li>Чили</li>
+                <li>Эквадор</li>
+              </ul>
+            </td>
+            <td>es
+              <ul class="sublang">
+                <li>es-ar</li>
+                <li>es-bo</li>
+                <li>es-ve</li>
+                <li>es-gt</li>
+                <li>es-hn</li>
+                <li>es-do</li>
+                <li>es</li>
+                <li>es-co</li>
+                <li>es-cr</li>
+                <li>es-mx</li>
+                <li>es-ni</li>
+                <li>es-pa</li>
+                <li>es-py</li>
+                <li>es-pe</li>
+                <li>es-pr</li>
+                <li>es-sv</li>
+                <li>es-uy</li>
+                <li>es-cl</li>
+                <li>es-ec</li>
+              </ul>
+            </td>
+            <td>Тсонга (шангаан)</td>
+            <td>ts</td>
+          </tr>
+          <tr>
+            <td>Итальянский
+              <ul class="sublang">
+                <li>Италия</li>
+                <li>Швейцария</li>
+              </ul>
+            </td>
+            <td>it
+              <ul class="sublang">
+                <li>it</li>
+                <li>it-ch</li>
+              </ul>
+            </td>
+            <td>Турецкий</td>
+            <td>tr</td>
+          </tr>
+          <tr>
+            <td>Йоруба</td>
+            <td>yo</td>
+            <td>Туркменский</td>
+            <td>tk</td>
+          </tr>
+          <tr>
+            <td>Казахский</td>
+            <td>kk</td>
+            <td>Узбекский</td>
+            <td>uz</td>
+          </tr>
+          <tr>
+            <td>Каннада</td>
+            <td>kn</td>
+            <td>Уйгурский</td>
+            <td>ug</td>
+          </tr>
+          <tr>
+            <td>Каталанский</td>
+            <td>ca</td>
+            <td>Украинский</td>
+            <td>uk</td>
+          </tr>
+          <tr>
+            <td>Кашмири</td>
+            <td>ks</td>
+            <td>Урду</td>
+            <td>ur</td>
+          </tr>
+          <tr>
+            <td>Кечуа</td>
+            <td>qu</td>
+            <td>Фарерский</td>
+            <td>fo</td>
+          </tr>
+          <tr>
+            <td>Киньяруанда</td>
+            <td>rw</td      q Нo  q Нo  ђјH4ЎU  ђјH4ЎU          <td>fj</td>
+          </tr>
+          <tr>
+            <td>Киргизский</td>
+            <td>ky</td>
+            <td>Финский</td>
+            <td>fi</td>
+          </tr>
+          <tr>
+            <td>Китайский
+              <ul class="sublang">
+                <li>Гонконг</li>
+                <li>КНР</li>
+                <li>Сингапур</li>
+                <li>Тайвань</li>
+              </ul>
+            </td>
+            <td>zh
+              <ul class="sublang">
+                <li>zh-hk</li>
+                <li>zh-cn</li>
+                <li>zh-sg</li>
+                <li>zh-tw</li>
+              </ul>
+            </td>
+            <td>Французский
+              <ul class="sublang">
+                <li>Бельгия</li>
+                <li>Канада</li>
+                <li>Люксембург</li>
+                <li>Франция</li>
+                <li>Швейцария</li>
+              </ul>
+            </td>
+            <td>fr
+              <ul class="sublang">
+                <li>fr-be</li>
+                <li>fr-ca</li>
+                <li>fr-lu</li>
+                <li>fr</li>
+                <li>fr-ch</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Корейский</td>
+            <td>ko</td>
+            <td>Фризский</td>
+            <td>fy</td>
+          </tr>
+          <tr>
+            <td>Корсиканский</td>
+            <td>co</td>
+            <td>Хауса</td>
+            <td>ha</td>
+          </tr>
+          <tr>
+            <td>Коса</td>
+            <td>xh</td>
+            <td>Хинди</td>
+            <td>hi</td>
+          </tr>
+          <tr>
+            <td>Курдский</td>
+            <td>ku</td>
+            <td>Хорватский</td>
+            <td>hr</td>
+          </tr>
+          <tr>
+            <td>Курунди</td>
+            <td>rn</td>
+            <td>Чешский</td>
+            <td>cs</td>
+          </tr>
+          <tr>
+            <td>Кхмерский</td>
+            <td>km</td>
+            <td>Чивенда</td>
+            <td>ve</td>
+          </tr>
+          <tr>
+            <td>Лаосский</td>
+            <td>lo</td>
+            <td>Чишона</td>
+            <td>sn</td>
+          </tr>
+          <tr>
+            <td>Латвийский</td>
+            <td>lv</td>
+            <td>Шведский
+              <ul class="sublang">
+                <li>Финляндия</li>
+                <li>Швеция</li>
+              </ul>
+            </td>
+            <td>s

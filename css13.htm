@@ -1,0 +1,615 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: CSS - Звуковые таблицы стилей</title>
+<link rel="Prev" href="css12.htm" title="Страничные устройства вывода">
+<link rel="Next" href="js01.htm" title="Введение в JavaScript">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref213">Глава 2.13. Звуковые таблицы стилей</a></h2>
+
+      <h3><a name="ref2131">2.13.1. Общее описание</a></h3>
+
+      <p>Помимо визуального отображения документов, CSS поддерживает их <em>звуковое отображение</em>,
+        основанное на синтезации речи и звуковых сигналах. Звуковые таблицы стилей могут быть как дополнением
+        к визуальным, так и их альтернативой.</p>
+
+      <p>Звуковое отображение документа происходит в трехмерном физическом пространстве (звуковом окружении)
+        и во времени (мы можем указать, какие звуки должны предшествовать, следовать или звучать одновременно
+        с другими звуками). Кроме того, CSS позволяет авторам управлять качеством синтезированной речи
+        (типом голоса, частотой, модуляцией и т.&nbsp;п.).</p>
+
+      <h3><a name="ref2132">2.13.2. Громкость: свойство volume</a></h3>
+
+<pre class="syntax"><strong><a name="pvolume">Синтаксис</a></strong>:  volume: <a href="css01.htm#number">&lt;число&gt;</a> | <a href="css01.htm#percentage">&lt;процент&gt;</a> | <dfn>silent</dfn> | <dfn>x-soft</dfn> | <dfn>soft</dfn> | <dfn>medium</dfn> | <dfn>loud</dfn> |
+                    <dfn>x-loud</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>medium</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   относительно наследуемого значения
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>volume</strong> задает <em>громкость звука</em> (точнее, размер медианы звуковой
+        волны). Оно задается одним из следующих способов:</p>
+
+<pre class="syntax"><a href="css01.htm#number">&lt;число&gt;</a>
+  Задает громкость звука числом в диапазоне от 0 до 100. При этом 0 соответствует
+  минимально возможной громкости, а 100&nbsp;&#151; максимально приемлемой громкости.
+<a href="css01.htm#percentage">&lt;процент&gt;</a>
+  Вычисляется относительно наследуемого значения, а затем обрезается по диапазону
+  от 0 до 100.
+<dfn>silent</dfn>
+  Отключить звук. Это не то же самое, что громкость 0!
+<dfn>x-soft
+</dfn>  То же, что громкость 0.
+<dfn>soft
+</dfn>  То же, что громкость 25.
+<dfn>medium
+</dfn>  То же, что громкость 50.
+<dfn>loud
+</dfn>  То же, что громкость 75.
+<dfn>x-loud
+</dfn>  То же, что громкость 100.</pre>
+
+      <p>Фактическая громкость звука определяется обозревателем. Пример: следующее правило задает негромкое
+        звучание всего документа:</p>
+
+      <div class="code">
+<pre class="code">BODY { volume: soft }</pre>
+      </div>
+
+      <h3><a name="ref2133">2.13.3. Задание пауз</a></h3>
+
+      <p>CSS позволяет задать размеры пауз перед произнесением элемента и после него. Они имеют тип
+        &lt;размер-паузы&gt;, который определяется следующим образом:</p>
+
+<pre class="syntax">  <a name="pause">&lt;<strong>размер-паузы</strong>&gt;</a> = <a href="css01.htm#time">&lt;время&gt;</a> | <a href="css01.htm#percentage">&lt;процент&gt;</a>
+    <a href="css01.htm#time">&lt;время&gt;</a>
+      Задает абсолютный размер паузы в секундах или миллисекундах.
+    <a href="css01.htm#percentage">&lt;процент&gt;</a>
+      Основан на величине, обратной значению свойства <a href="#pspeech-rate"><strong>speech-rate</strong></a>. Если, например,
+      это значение равно 120 слов в минуту (т.&nbsp;е. одно слово занимает 500 мс), то
+      пауза в 20% равна 20% * 500 мс = 100 мс.</pre>
+
+      <p>Для того, чтобы таблица стилей была устойчива к изменению скорости речи, рекомендуется задавать
+        размеры пауз в процентах.</p>
+
+      <h4><a name="ref21331">2.13.3.1. Пауза перед элементом: свойство pause-before</a></h4>
+
+<pre class="syntax"><strong><a name="ppause-before">Синтаксис</a></strong>:  pause-before: <a href="#pause">&lt;размер-паузы&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   зависит от обозревателя
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   см. выше
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>pause-before</strong> задает <em>паузу перед произнесением элемента</em>.
+        Пауза вставляется между содержимым элемента и любым содержимым свойства <a href="#pcue-before"><strong>cue-before</strong></a>.
+        Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { pause-before: 20ms }</pre>
+      </div>
+
+      <h4><a name="ref21332">2.13.3.2. Пауза после элемента: свойство pause-after</a></h4>
+
+<pre class="syntax"><strong><a name="ppause-after">Синтаксис</a></strong>:  pause-after: <a href="#pause">&lt;размер-паузы&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   зависит от обозревателя
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   см. выше
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>pause-after</strong> задает <em>паузу после произнесения элемента</em>. Пауза
+        вставляется между содержимым элемента и любым содержимым свойства <a href="#pcue-after"><strong>cue-after</strong></a>.
+        Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { pause-after: 20ms }</pre>
+      </div>
+
+      <h4><a name="ref21333">2.13.3.3. Паузы до и после: свойство pause</a></h4>
+
+<pre class="syntax"><strong><a name="ppause">Синтаксис</a></strong>:  pause: <a href="#pause">&lt;размер-паузы&gt;</a>{1,2} | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   не определено для сокращений
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   см. выше
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>pause</strong> является сокращением для свойств <a href="#ppause-before"><strong>pause-before</strong></a>
+        и <a href="#ppause-after"><strong>pause-after</strong></a>. Если указаны два значения, то первое
+        из них задает паузу перед произнесением элемента, а второе&nbsp;&#151; паузу после его произнесения.
+        Если указано только одно значение, то оно задает значение обеих пауз. Примеры:</p>
+
+      <div class="code">
+<pre class="code">H1 { pause: 20ms }	/* pause-before: 20ms; pause-after: 20ms */
+H1 { pause: 30ms 40ms }	/* pause-before: 30ms; pause-after: 40ms */</pre>
+      </div>
+
+      <h3><a name="ref2134">2.13.4. Задание звуковых сигналов</a></h3>
+
+      <p>CSS позволяет выводить <em>звуковые сигналы</em> перед произнесением элемента и после него.
+        Они имеют тип &lt;звуковой-сигнал&gt;, который определяется следующим образом:</p>
+
+<pre class="syntax">  <a name="cue">&lt;<strong>звуковой-сигнал</strong>&gt;</a> = <a href="css01.htm#uri">&lt;uri&gt;</a> | <dfn>none</dfn>
+    <a href="css01.htm#uri">&lt;uri&gt;</a>
+      Задает URI ресурса, содержащего звуковой файл. Если ресурс не является
+      аудиофайлом, то он должен игнорироваться.
+    <dfn>none</dfn>
+      Не выводить звукового сигнала.</pre>
+
+      <h4><a name="ref21341">2.13.4.1. Сигнал перед элементом: свойство cue-before</a></h4>
+
+<pre class="syntax"><strong><a name="pcue-before">Синтаксис</a></strong>:  cue-before: <a href="#cue">&lt;звуковой-сигнал&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>cue-before</strong> задает <em>звуковой сигнал перед произнесением элемента</em>.
+        Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { cue-before: url(&quot;bell.wav&quot;) }</pre>
+      </div>
+
+      <h4><a name="ref21342">2.13.4.2. Сигнал после элемента: свойство cue-after</a></h4>
+
+<pre class="syntax"><strong><a name="pcue-after">Синтаксис</a></strong>:  cue-after: <a href="#cue">&lt;звуковой-сигнал&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>cue-after</strong> задает <em>звуковой сигнал после произнесения элемента</em>.
+        Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { cue-after: url(&quot;dong.aiff&quot;) }</pre>
+      </div>
+
+      <h4><a name="ref21343">2.13.4.3. Сигналы до и после: свойство cue</a></h4>
+
+<pre class="syntax"><strong><a name="pcue">Синтаксис</a></strong>:  cue: <a href="#cue">&lt;звуковой-сигнал&gt;</a>{1,2} | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   не определено для сокращений
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>cue</strong> является сокращением для свойств <a href="#pcue-before"><strong>cue-before</strong></a>
+        и <a href="#pcue-after"><strong>cue-after</strong></a>. Если указаны два значения, то первое
+        из них задает сигнал перед произнесением элемента, а второе&nbsp;&#151; сигнал после его произнесения.
+        Если указано только одно значение, то оно задает значение обоих звуковых сигналов. Например,
+        следующие два правила эквивалентны:</p>
+
+      <div class="code">
+<pre class="code">H1 { cue: url(pop.au) }
+H1 { cue-before: url(pop.au); cue-after: url(pop.au) }</pre>
+      </div>
+
+      <h3><a name="ref2135">2.13.5. Фоновый звук: свойство play-during</a></h3>
+
+<pre class="syntax"><strong><a name="pplay-during">Синтаксис</a></strong>:  play-during: <a href="css01.htm#uri">&lt;uri&gt;</a> <dfn>mix</dfn>? <dfn>repeat</dfn>? | <dfn>auto</dfn> | <dfn>none</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>auto</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>play-during</strong> задает <em>фоновый звук</em>, который должен звучать
+        во время произнесения содержимого элемента. Оно задается одним из следующих способов:</p>
+
+<pre class="syntax"><a href="css01.htm#uri">&lt;uri&gt;</a>
+  Задает URI ресурса, содержащего звуковой файл. Если ресурс не является
+  аудиофайлом, то он должен игнорироваться.
+<dfn>mix</dfn>
+  Если задано это ключевое слово, то фоновый звук элемента должен смешиваться с
+  фоновым звуком его родителя. Если его нет, то фоновый звук элемента заменяет
+  фоновый звук его родителя.
+<dfn>repeat
+</dfn>  Если задано это ключевое слово, то фоновый звук элемента повторяется до тех пор, пока
+  не закончится произнесение элемента. В противном случае фоновый звук звучит один раз.
+<dfn>auto
+</dfn>  Продолжает звучать фоновый звук родительского элемента.
+<dfn>none
+</dfn>  На время произнесения данного элемента фоновый звук отключается.</pre>
+
+      <p>Примеры:</p>
+
+      <div class="code">
+<pre class="code">P.sad { play-during: url(&quot;violin.wav&quot;) repeat }
+SPAN.quite { play-during: none }</pre>
+      </div>
+
+      <h3><a name="ref2136">2.13.6. Пространственные характеристики звука</a></h3>
+
+      <p>Пространственное звучание обеспечивает естественный способ нескольких голосов из разных точек
+        пространства, как в реальной жизни. Воспроизведение такого звучания обеспечивается различными
+        аудиосистемами: от обычных стереонаушников до домашних театров. Для управления такими эффектами
+        CSS позволяет задавать два угла поворота звука: по горизонтали (<a href="#pazimuth"><strong>azimuth</strong></a>)
+        и по вертикали (<a href="#pelevation"><strong>elevation</strong></a>).</p>
+
+      <h4><a name="ref21361">2.13.6.1. Горизонтальный угол звука: свойство azimuth</a></h4>
+
+<pre class="syntax"><strong><a name="pazimuth">Синтаксис</a></strong>:  azimuth: <a href="css01.htm#angle">&lt;угол&gt;</a> | [[<dfn>left-side</dfn> | <dfn>far-left</dfn> | <dfn>left</dfn> | <dfn>center-left</dfn> | <dfn>center</dfn> |
+                     <dfn>center-right</dfn> | <dfn>right</dfn> | <dfn>far-right</dfn> | <dfn>right-side</dfn>] || <dfn>behind</dfn>] |
+                     <dfn>leftwards</dfn> | <dfn>rightwards</dfn> |<dfn> <a href="css03.htm#inherit">inherit</a></dfn>
+<strong>Начально</strong>:   <dfn>center</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>azimuth</strong> задает <em>горизонтальный угол звучания</em>. Оно задается
+        одним из следующих способов:</p>
+
+<pre class="syntax"><a href="css01.htm#angle">&lt;угол&gt;</a>
+  Задает угол в диапазоне от -360deg до 360deg. При этом 0deg соответствует
+  звучанию из центра, 90deg&nbsp;&#151; повороту направо, 180deg&nbsp;&#151; повороту назад, а 270deg&nbsp;&#151;
+  повороту налево.
+<dfn>left-side</dfn>
+  То же, что 270deg. Вместе с <dfn>behind</dfn>, 270deg.
+<dfn>far-left</dfn>
+  То же, что 300deg. Вместе с <dfn>behind</dfn>, 240deg.
+<dfn>left</dfn>
+  То же, что 320deg. Вместе с <dfn>behind</dfn>, 220deg.
+<dfn>center-left</dfn>
+  То же, что 340deg. Вместе с <dfn>behind</dfn>, 200deg.
+<dfn>center</dfn>
+  То же, что 0deg. Вместе с <dfn>behind</dfn>, 180deg.
+<dfn>center-right</dfn>
+  То же, что 20deg. Вместе с <dfn>behind</dfn>, 160deg.
+<dfn>right</dfn>
+  То же, что 40deg. Вместе с <dfn>behind</dfn>, 140deg.
+<dfn>far-right</dfn>
+  То же, что 60deg. Вместе с <dfn>behind</dfn>, 120deg.
+<dfn>right-side</dfn>
+  То же, что 90deg. Вместе с <dfn>behind</dfn>, 90deg.
+<dfn>leftwards</dfn>
+  Поворот против часовой стрелки на 20deg (т.&nbsp;е. вычитание 20deg).
+<dfn>rightwards</dfn>
+  Поворот по часовой стрелке на 20deg (т.&nbsp;е. добавление 20deg).</pre>
+
+      <p>Примеры:</p>
+
+      <div class="code">
+<pre class="code">H1 { azimuth: 30deg }
+TD.a { azimuth: far-right }	    /* 60deg */
+#id12 { azimuth: behind far-right } /* 120deg */
+P.comment { azimuth: behind }	    /* 180deg */</pre>
+      </div>
+
+      <h4><a name="ref21362">2.13.6.2. Вертикальный угол звука: свойство elevation</a></h4>
+
+<pre class="syntax"><strong><a name="pelevation">Синтаксис</a></strong>:  elevation: <a href="css01.htm#angle">&lt;угол&gt;</a> | <dfn>below</dfn> | <dfn>level</dfn> | <dfn>above</dfn> | <dfn>higher</dfn> | <dfn>lower</dfn> |<dfn> <a href="css03.htm#inherit">inherit</a></dfn>
+<strong>Начально</strong>:   <dfn>level</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>elevation</strong> задает <em>вертикальный угол звучания</em>. Оно задается
+        одним из следующих способов:</p>
+
+<pre class="syntax"><a href="css01.htm#angle">&lt;угол&gt;</a>
+  Задает угол в диапазоне от -90deg до 90deg. При этом 0deg соответствует
+  звучанию на уровне слушателя, 90deg&nbsp;&#151; звучанию прямо над его головой, а
+  -90deg&nbsp;&#151; звучанию прямо у него под ногами.
+<dfn>below</dfn>
+  То же, что -90deg.
+<dfn>level</dfn>
+  То же, что 0deg.
+<dfn>above</dfn>
+  То же, что 90deg.
+<dfn>higher</dfn>
+  Увеличивает текущий угол на 10deg.
+<dfn>lower</dfn>
+  Уменьшает текущий угол на 10deg.</pre>
+
+      <p>Примеры:</p>
+
+      <div class="code">
+<pre class="code">H1 { elevation: above }
+TR.a { elevation: 60deg }
+TR.b { elevation: 30deg }
+TR.c { elevation: level }</pre>
+      </div>
+
+      <h3><a name="ref2137">2.13.7. Характеристики речи</a></h3>
+
+      <h4><a name="ref21371">2.13.7.1. Скорость речи: свойство speech-rate</a></h4>
+
+<pre class="syntax"><strong><a name="pspeech-rate">Синтаксис</a></strong>:  speech-rate: <a href="css01.htm#number">&lt;число&gt;</a> | <dfn>x-slow</dfn> | <dfn>slow</dfn> | <dfn>medium</dfn> | <dfn>fast</dfn> | <dfn>x-fast</dfn> |
+                        <dfn> faster</dfn> | <dfn>slower</dfn> | <dfn><a href="css03.htm#inherit">inherit</a></dfn>
+<strong>Начально</strong>:   <dfn>medium</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>speech-rate</strong> задает <em>скорость речи</em>. Оно задается одним из
+        следующих способов:</p>
+
+<pre class="syntax"><a href="css01.htm#number">&lt;число&gt;</a>
+  Явно задает количество слов, произносимых в минуту.
+<dfn>x-slow</dfn>
+  80 слов в минуту.
+<dfn>slow</dfn>
+  120 слов в минуту.
+<dfn>medium</dfn>
+  180 - 200 слов в минуту.
+<dfn>fast</dfn>
+  300 слов в минуту.
+<dfn>x-fast</dfn>
+  500 слов в минуту.
+<dfn>faster</dfn>
+  Увеличивает текущую скорость речи на 40 слов в минуту.
+<dfn>slower</dfn>
+  Уменьшает текущую скорость речи на 40 слов в минуту.</pre>
+
+      <p>Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { speech-rate: slow}</pre>
+      </div>
+
+      <h4><a name="ref21372">2.13.7.2. Голос: свойство voice-family</a></h4>
+
+<pre class="syntax"><strong><a name="pvoice-family">Синтаксис</a></strong>:  voice-family: [[<a href="#voice-name">&lt;имя-голоса&gt;</a> | <a href="#generic-voice">&lt;родовое-имя&gt;</a>],]*
+                          [<a href="#voice-name">&lt;имя-голоса&gt;</a> | <a href="#generic-voice">&lt;родовое-имя&gt;</a>] | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   зависит от обозревателя
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>voice-family</strong> задает <em>список имен голосов</em> для произнесения
+        содержимого элемента. Этот список состоит из имен голосов, разделенных запятыми. Имена располагаются
+        в порядке предпочтения. Например, следующее свойство</p>
+
+      <div class="code">
+<pre class="code">voice-family: romeo, male;</pre>
+      </div>
+
+      <p class="noindent">следует понимать так: &quot;использовать голос romeo; если его нет, то использовать
+        родовой голос male&quot;. Такой список необходим, поскольку мы заранее не знаем, какие именно
+        голоса поддерживаются синтезаторами речи наших пользователей.</p>
+
+      <p>Имя голоса может быть задано двумя способами:</p>
+
+<pre class="syntax"><a name="voice-name">&lt;<strong>имя-голоса</strong>&gt;</a>
+  Задает название конкретного голоса. Если это название содержит пробелы, то оно
+  должно быть заключено в кавычки или апострофы.
+<a name="generic-voice">&lt;<strong>родовое-имя</strong>&gt;</a>
+  Одно из следующих предопределенных имен голосов: <dfn>male</dfn> (мужской), <dfn>female</dfn> (женский)
+  и <dfn>child</dfn> (детский).</pre>
+
+      <p>Для достижения наибольшей совместимости рекомендуется задавать родовое имя последним в списке.
+        В этом случае, если обозреватель не найдет на компьютере-клиенте заданных голосов, он использует
+        свой родовой голос с заданным именем.</p>
+
+      <h4><a name="ref21373">2.13.7.3. Частота звука: свойство pitch</a></h4>
+
+<pre class="syntax"><strong><a name="ppitch">Синтаксис</a></strong>:  pitch: <a href="css01.htm#frequency">&lt;частота&gt;</a> | <dfn>x-low</dfn> | <dfn>low</dfn> | <dfn>medium</dfn> | <dfn>high</dfn> | <dfn>x-high</dfn> | <dfn><a href="css03.htm#inherit">inherit</a></dfn>
+<strong>Начально</strong>:   <dfn>medium</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>pitch</strong> задает <em>среднюю частоту звука</em>. Отметим, что средняя
+        частота звука зависит от типа голоса. Например, средняя частота мужских голосов 120 Гц, а женских&nbsp;&#151;
+        210 Гц. Частота задается одним из следующих способов:</p>
+
+<pre class="syntax"><a href="css01.htm#frequency">&lt;частота&gt;</a>
+  Явно задает частоту звука в герцах.
+<dfn>x-low</dfn>, <dfn>low</dfn>, <dfn>medium</dfn>, <dfn>high</dfn>, <dfn>x-high</dfn>
+  Указывают относительную частоту звука в порядке ее увеличения. Обозреватель
+  должен подобрать соответствующую частоту в зависимости от типа голоса.</pre>
+
+      <p>Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { pitch: high }</pre>
+      </div>
+
+      <h4><a name="ref21374">2.13.7.4. Вариация частоты: свойство pitch-range</a></h4>
+
+<pre class="syntax"><strong><a name="ppitch-range">Синтаксис</a></strong>:  pitch-range: <a href="css01.htm#number">&lt;число&gt;</a> | <dfn><a href="css03.htm#inherit">inherit</a></dfn>
+<strong>Начально</strong>:   50
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>pitch-range</strong> задает <em>вариацию средней частоты звука</em>. Его значением
+        является число в диапазоне от 0 до 100. При этом значение 0 соответствует абсолютно монотонному
+        голосу, значение 50&nbsp;&#151; обычному голосу, а значения больше 50 создают анимированные
+        голоса. Пример:</p>
+
+      <div class="code">
+<pre class="code">P { pitch-range: 30 }</pre>
+      </div>
+
+      <h4><a name="ref21375">2.13.7.5. Ударение: свойство stress</a></h4>
+
+<pre class="syntax"><strong><a name="pstress">Синтаксис</a></strong>:  stress: <a href="css01.htm#number">&lt;число&gt;</a> | <dfn><a href="css03.htm#inherit">inherit</a></dfn>
+<strong>Начально</strong>:   50
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>stress</strong> задает <em>высоту пиков в интонации голоса</em>. Его смысл
+        существенно зависит от языка, на котором произносится текст документа. В нетоновых языках, таких,
+        как русский или английский, оно позволяет указать, какова вариация частоты звука в тех речевых
+        фрагментах, которые находятся под ударением.</p>
+
+      <p>Значением этого свойства является число в диапазоне от 0 до 100, причем значение 50 должно
+        соответствовать обычному способу интонирования ударений для данного языка. Пример:</p>
+
+      <div class="code">
+<pre class="code">P.stressed { stress: 70 }</pre>
+      </div>
+
+      <h4><a name="ref21376">2.13.7.6. Тембр: свойство richness</a></h4>
+
+<pre class="syntax"><strong><a name="prichness">Синтаксис</a></strong>:  richness: <a href="css01.htm#number">&lt;число&gt;</a> | <dfn><a href="css03.htm#inherit">inherit</a></dfn>
+<strong>Начально</strong>:   50
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>richness</strong> задает <em>тембр голоса</em>. Его значением является число
+        в диапазоне от 0 до 100. Чем больше это значение, тем богаче тембр голоса, тем лучше он наполняет
+        помещение. Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { richness: 75 }</pre>
+      </div>
+
+      <h3><a name="ref2138">2.13.8. Характеристики произношения</a></h3>
+
+      <h4><a name="ref21381">2.13.8.1. Способ произношения: свойство speak</a></h4>
+
+<pre class="syntax"><strong><a name="pspeak">Синтаксис</a></strong>:  speak: <dfn>none</dfn> | <dfn>normal</dfn> | <dfn>spell-out</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>speak</strong> задает <em>способ произношения</em>. Оно может принимать следующие
+        значения:</p>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+          <td><dfn>none</dfn></td>
+          <td>Элемент не произносится. Однако, его потомки могут переопределить значение этого свойства
+            и тогда будут произноситься.</td>
+        </tr>
+        <tr>
+          <td><dfn>normal</dfn></td>
+          <td>Обычное произношение в соответствии с нормами языка.</td>
+        </tr>
+        <tr>
+          <td><dfn>spell-out</dfn></td>
+          <td>Произношение по буквам. Полезно для аббревиатур и акронимов.</td>
+        </tr>
+      </table>
+
+      <p class="note"><strong>Примечание</strong>. Элемент со свойством <a href="#pvolume"><strong>volume</strong></a>:
+        <dfn>silent</dfn> не произносится, но время, требующееся ему для произнесения, все равно ему
+        выделяется, включая паузы перед ним и после него. Элемент с свойством <strong>speak</strong>:
+        <dfn>none</dfn> не произносится, и время на его произнесение не выделяется.</p>
+
+      <p>Пример. Следующее правило задает произношение аббревиатур по буквам:</p>
+
+      <div class="code">
+<pre class="code">ABBR { speak: spell-out }</pre>
+      </div>
+
+      <h4><a name="ref21382">2.13.8.2. Произношение пунктуации: свойство speak-punctuation</a></h4>
+
+<pre class="syntax"><strong><a name="pspeak-punctuation">Синтаксис</a></strong>:  speak-punctuation: <dfn>code</dfn> | <dfn>none</dfn> |<dfn> <a href="css03.htm#inherit">inherit</a></dfn>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>speak-punctuation</strong> задает <em>способ произношения знаков пунктуации</em>
+        (запятых, двоеточий и т.&nbsp;п.). По умолчанию, его значение равно <dfn>none</dfn>, т.&nbsp;е.
+        названия знаков пунктуации не произносятся, а их наличие выделяется паузами. Если же значение
+        этого свойства <dfn>code</dfn>, то названия знаков пунктуации произносятся в процессе синтезации
+        речи. Пример:</p>
+
+      <div class="code">
+<pre class="code">P { speak-punctuation: code }</pre>
+      </div>
+
+      <h4><a name="ref21383">2.13.8.3. Произношение числительных: свойство speak-numeral</a></h4>
+
+<pre class="syntax"><strong><a name="pspeak-numeral">Синтаксис</a></strong>:  speak-numeral: <dfn>digit</dfn> | <dfn>continuous</dfn> |<dfn> <a href="css03.htm#inherit">inherit</a></dfn>
+<strong>Начально</strong>:   <dfn>continuous</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">звуковые</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>speak-numeral</strong> задает <em>способ произношения числительных</em>. По
+        умолчанию, его значение равно <dfn>continuous</dfn>, т.&nbsp;е. число &quot;123&quot; произносится
+        &quot;Сто двадцать три&quot;. Если же значение этого свойства <dfn>digit</dfn>, то это число
+        произносится по цифрам, т.&nbsp;е. &quot;Один два три&quot;. Пример:</p>
+
+      <div class="code">
+<pre class="code">TD { speak-numeral: digit }</pre>
+      </div>
+
+      <h4><a name="ref21384">2.13.8.4. Произношение заголовков таблиц: свойство speak-header</a></h4>
+
+      <p>Описание этого свойства приведено в <a href="css10.htm#pspeak-header">разделе, посвященном
+        таблицам</a>.</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

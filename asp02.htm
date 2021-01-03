@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: ASP - Объектная модель</title>
+<link rel="Prev" href="asp01.htm" title="Введение в ASP">
+<link rel="Next" href="asp03.htm" title="Работа с базами данных">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td>
+  </tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref72">Глава 7.2. Объектная модель</a></h2>
+
+      <h3><a name="ref721">7.2.1. Объекты ASP</a></h3>
+
+      <p>ASP содержит несколько встроенных объектов, которые обеспечивают всю работу по взаимодействию и с клиентом, и с сервером.
+        Эти объекты перечислены в следующей таблице:</p>
+
+      <div class="indent">
+        <table cellspacing="0" border="1" cellpadding="5">
+          <caption><a name="table73">Таблица 7.3. Объекты ASP</a></caption>
+          <tr>
+            <td><a href="#ref722">Application</a></td>
+            <td>Доступ к свойствам и методам Веб-приложения в целом.</td>
+          </tr>
+          <tr>
+            <td><a href="#ref723">ASPError</a></td>
+            <td>Информация о последней ошибке сценария в ASP-странице.</td>
+          </tr>
+          <tr>
+            <td><a href="#ref724">ObjectContext</a></td>
+            <td>Управление транзакциями.</td>
+          </tr>
+          <tr>
+            <td><a href="#ref725">Request</a></td>
+            <td>Доступ к содержимому HTTP-запроса, посланного клиентом серверу.</td>
+          </tr>
+          <tr>
+            <td><a href="#ref726">Response</a></td>
+            <td>Доступ к содержимому HTTP-отклика, который посылается сервером клиенту.</td>
+          </tr>
+          <tr>
+            <td><a href="#ref727">Server</a></td>
+            <td>Доступ к свойствам и методам сервера.</td>
+          </tr>
+          <tr>
+            <td><a href="#ref728">Session</a></td>
+            <td>Доступ к свойствам и методам текущей пользовательской сессии.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3><a name="ref722">7.2.2. Веб-приложение: объект Application</a></h3>
+
+      <p>Объект <strong>Application</strong> соответствует Веб-приложению и позволяет разделять информацию
+        между всеми пользователями данного приложения. Для синхронизации доступа к разделяемым
+        объектам предусмотрены методы <tt><a href="#mlock">Lock</a></tt> и <tt><a href="#munlock">Unlock</a></tt>.</p>
+
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Свойства объекта Application</caption>
+          <tr>
+            <th>Свойство</th>
+            <th>Изменяемое</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcontents">Contents</a></tt></td>
+            <td>Да</td>
+            <td>Коллекция динамически определенных объектов.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pstaticobjects">StaticObjects</a></tt></td>
+            <td>Нет</td>
+            <td>Коллекция статически определенных объектов.</td>
+          </tr>
+        </table>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Методы объекта Application</caption>
+          <tr>
+            <th>Метод</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#mlock">Lock</a></tt></td>
+            <td>Блокирует доступ к данному объекту.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#munlock">Unlock</a></tt></td>
+            <td>Разблокирует доступ к данному объекту.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hcontents">Свойство Contents</a></h4>
+
+<pre class="syntax"><strong><a name="pcontents">Синтаксис</a></strong>:  Application.Contents
+<strong>Изменяемое</strong>: да</pre>
+
+      <p>Значением свойства <tt>Contents</tt> является коллекция объектов, добавленных к объекту
+        <strong>Application</strong> операторами сценарных языков. Такими объектами могут быть
+        как обычные переменные, так и объекты ActiveX, создаваемые методом <tt>Server.CreateObject</tt>,
+        например:</p>
+
+      <div class="code">
+<pre class="code">
+&lt;% 
+  Application("PageCount") = 0;
+  Application("HelloText") = "Hello";
+  Application("FsoObject") = Server.CreateObject("Scripting.FileSystemObject");
+%&gt;
+</pre>
+      </div>
+
+      <p>Обратите внимание, что при добавлении динамического объекта мы не указываем имя <tt>Contents</tt>!
+        Удалить элемент этой коллекции можно методами</p>
+<pre class="syntax">Application.Contents.Remove(<em>имя</em>)
+Application.Contents.Remove(<em>индекс</em>)</pre>
+
+      <p>Здесь <em>имя</em>&nbsp;&#151; это строка, задающая имя удаляемого объекта, а <em>индекс</em>&nbsp;&#151;
+      порядковый номер удаляемого объекта в коллекции, считая с 1. Для удаления всех элементов коллекции
+      используется метод:</p>
+<pre class="syntax">Application.Contents.RemoveAll()</pre>
+
+      <p>Примеры удаления объектов:</p>
+
+      <div class="code">
+<pre class="code">
+&lt;% 
+  Application.Contents.Remove("PageCount");
+  Application.Contents.Remove(1);
+  Application.Contents.RemoveAll();
+%&gt;
+</pre>
+      </div>
+
+      <p>Кроме того, мы можем перечислить все элементы данной коллекции следующим образом:</p>
+
+      <div class="code">
+<pre class="code">
+&lt;% 
+  var e = new Enumerator(Application.Contents);
+  for (e.moveFirst(); !e.atEnd(); e.moveNext()) {
+    var o = e.item();
+    Response.Write(o + ": " + Application(o) + "&lt;BR&gt;");
+  }
+%&gt;
+</pre>
+      </div>
+
+      <p>Для приведенных выше переменных этот пример вернет HTML-страницу такого вида:</p>
+      <div class="indent">
+<samp>
+PAGECOUNT: 0<br>
+HELLOTEXT: Hello<br>
+FSOOBJECT:
+</samp>
+      </div>
+      <p>Еще один способ перечисления всех элементов данной коллекции:</p>
+
+      <div class="code">
+<pre class="code">
+&lt;% 
+  for (var i = 1; i < Application.Contents.Count; i++)
+    Response.Write(i + ": " + Application.Contents(i) + "&lt;BR&gt;");
+%&gt;
+</pre>
+      </div>
+
+      <h4><a name="hstaticobjects">Свойство StaticObjects</a></h4>
+
+<pre class="syntax"><strong><a name="pstaticobjects">Синтаксис</a></strong>:  Application.StaticObjects
+<strong>Изменяемое</strong>: нет</pre>
+
+      <p>Значением свойства <tt>StaticObjects</tt> является коллекция всех объектов, созданных в
+        в файле <a href="asp01.htm#ref715">GLOBAL.ASA</a> в контексте приложения. Для доступа к объекту
+       используется конструкция <tt>Application.StaticObjects(id)</tt>, где <tt>id</tt>&nbsp;&#151; идентификатор объекта.
+       Например, к объекту MyAd, объявленному в примере из <a href="asp01.htm#ref715">п. 7.1.5</a>, можно обратиться так:</p>
+        
+      <div class="code">
+<pre class="code">
+&lt;%
+  Application.StaticObjects("MyAd")
+%&gt;
+</pre>
+      </div>
+
+      <p>Кроме того, мы можем перечислить все элементы данной коллекции следующим образом:</p>
+
+      <div class="code">
+<pre class="code">
+&lt;% 
+  var e = new Enumerator(Application.StaticObjects);
+  for (e.moveFirst(); !e.atEnd(); e.moveNext())
+    Response.Write(e.item() + "&lt;BR&gt;");
+%&gt;
+</pre>
+      </div>
+
+      <h4><a name="hlock">Метод Lock</a></h4>
+
+<pre class="syntax"><strong><a name="mlock">Синтаксис</a></strong>:  Application.Lock()</pre>
+
+      <p>Метод <tt>Lock</tt> блокирует доступ других клиентов ко всем переменным объекта
+        <strong>Application</strong>. Блокировка доступа снимается:</p>
+      <ul>
+        <li>при вызове метода <tt><a href="#munlock">Unlock</a></tt>;</li>
+        <li>при нормальном завершении текущей ASP-страницы;</li>
+        <li>при завершении текущей ASP-страницы в результате таймаута.</li>
+      </ul>
+      <p>См. пример в описании метода <tt><a href="#munlock">Unlock</a></tt>.</p>
+
+      <h4><a name="hunlock">Метод Unlock</a></h4>
+
+<pre class="syntax"><strong><a name="munlock">Синтаксис</a></strong>:  Application.Unlock()</pre>
+
+      <p>Метод <tt>Unlock</tt> отменяет блокировку переменных, созданную методом 
+        <tt><a href="#mlock">Lock</a></tt>. Следующий пример показывает, как организовать
+        счетчик количества посещений ASP-страницы:</p>
+
+      <div class="code">
+<pre class="code">
+&lt;% 
+Application.Lock();
+Application("NumVisits") = Application("NumVisits") + 1;
+Application.Unlock();
+%&gt;
+&lt;P&gt;Эта страница была посещена &lt;%= Application("NumVisits") %&gt;  раз.&lt;/P&gt;
+</pre>
+      </div>
+
+      <p>Поскольку данная ASP-страница может быть одновременно открыта несколькими клиентами,
+        мы используем блокировку доступа. Без нее два клиента могут попытаться
+        одновременно увеличить значение переменной <tt>NumVisits</tt>, а это означает, что
+        подсчитанное количество посещений будет меньше истинного (проанализируйте, почему меньше).</p>
+
+      <p class="note"><strong>Примечание</strong>. Для въедливых читателей отметим, что как раз в этом
+        примере блокировка на самом деле не нужна. Дело в том, что исполняющая система сценарных языков
+        Windows гарантирует, что выполнение каждого оператора неделимо в том смысле, что он исполнится
+        полностью, прежде чем произойдет переключение потоков выполнения.</p>
+
+      <h3><a name="ref723">7.2.3. Информация об ошибках: объект ASPError</a></h3>
+
+      <p>Объект <strong>ASPError</strong> .</p>
+
+      <h3><a name="ref724">7.2.4. Управление транзакциями: объект ObjectContext</a></h3>
+
+      <p>Объект <strong>ObjectContext</strong> .</p>
+
+      <h3><a name="ref725">7.2.5. HTTP-запрос: объект Request</a></h3>
+
+      <p>Объект <strong>Request</strong> .</p>
+
+      <h3><a name="ref726">7.2.6. HTTP-отклик: объект Response</a></h3>
+
+      <p>Объект <strong>Response</strong> .</p>
+
+      <h3><a name="ref727">7.2.7. Веб-сервер: объект Server</a></h3>
+
+      <p>Объект <strong>Server</strong> .</p>
+
+      <h3><a name="ref728">7.2.8. Пользовательская сессия: объект Session</a></h3>
+
+      <p>Объект <strong>Session</strong> .</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

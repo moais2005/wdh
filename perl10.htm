@@ -1,0 +1,950 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: PERL - Встроенные функции (продолжение)</title>
+<link rel="Prev" href="perl09.htm" title="Встроенные функции">
+<link rel="Next" href="perl11.htm" title="Ввод-вывод, файлы и каталоги">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref610">Глава 6.10. Встроенные функции (продолжение)</a></h2>
+
+      <h3><a name="ref6101">6.10.1. Функции работы с массивами и списками</a></h3>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Функция</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><a href="#fgrep"><tt>grep</tt></a></td>
+            <td>Проверяет заданное выражение для каждого элемента списка.</td>
+          </tr>
+          <tr>
+            <td><a href="#fjoin"><tt>join</tt></a></td>
+            <td>Объединяет элементы списка в одну строку.</td>
+          </tr>
+          <tr>
+            <td><a href="#fmap"><tt>map</tt></a></td>
+            <td>Вычисляет заданное выражение для каждого элемента списка.</td>
+          </tr>
+          <tr>
+            <td><a href="#fpop"><tt>pop</tt></a></td>
+            <td>Выталкивает последний элемент массива.</td>
+          </tr>
+          <tr>
+            <td><a href="#fpush"><tt>push</tt></a></td>
+            <td>Вталкивает элементы в конец массива.</td>
+          </tr>
+          <tr>
+            <td><a href="#freverse"><tt>reverse</tt></a></td>
+            <td>Переставляет элементы списка в обратном порядке.</td>
+          </tr>
+          <tr>
+            <td><a href="#fshift"><tt>shift</tt></a></td>
+            <td>Выталкивает первый элемент массива.</td>
+          </tr>
+          <tr>
+            <td><a href="#fsort"><tt>sort</tt></a></td>
+            <td>Сортирует список.</td>
+          </tr>
+          <tr>
+            <td><a href="#fsplice"><tt>splice</tt></a></td>
+            <td>Удаляет или заменяет часть элементов массива.</td>
+          </tr>
+          <tr>
+            <td><a href="#funshift"><tt>unshift</tt></a></td>
+            <td>Вталкивает элементы в начало массива.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hgrep">Функция grep</a></h4>
+
+<pre class="syntax"><strong><a name="fgrep">Синтаксис</a></strong>: grep <em>аргумент</em>, <em>список</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; выражение или блок
+           <em>список</em>&nbsp;&#151; список выражений
+<strong>Результат</strong>: список значений</pre>
+
+      <p>Функция <strong>grep</strong> просматривает элементы <em>списка</em>, поочередно
+        присваивая их переменной <tt>$_</tt>, для каждого элемента вычисляет значение <em>аргумента</em>
+        и возвращает список тех элементов, для которых это значение истинно. В скалярном
+        контексте возвращает количество элементов <em>списка</em>, для которых значение <em>аргумента</em>
+        истинно. Помните, что возвращаемый список состоит из синонимов элементов исходного списка,
+        поэтому изменение значений его элементов влечет изменение соответствующих элементов исходного списка.
+        Следующий пример удаляет все комментарии из списка:</p>
+
+      <div class="code">
+<pre class="code">@x = ('aaa', '#comment1', 'bbb', '#comment2')
+@y = grep {!/^#/} @x; # 'aaa', 'bbb'
+@y = grep(!/^#/, @x); # то же самое</pre>
+      </div>
+
+      <h4><a name="hjoin">Функция join</a></h4>
+
+<pre class="syntax"><strong><a name="fjoin">Синтаксис</a></strong>: join <em>разделитель</em>, <em>список</em>
+<strong>Аргументы</strong>: <em>разделитель</em>&nbsp;&#151; строковое выражение
+           <em>список</em>&nbsp;&#151; список выражений
+<strong>Результат</strong>: строковое значение</pre>
+
+      <p>Функция <strong>join</strong> возвращает новую строку, состоящую из всех элементов <em>списка</em>,
+        между которыми вставлено значение <em>разделителя</em>. Пример:</p>
+
+      <div class="code">
+<pre class="code">print join(': ', 'aaa', 'bbb', 'ccc');	# 'aaa: bbb: ccc'</pre>
+      </div>
+
+      <h4><a name="hmap">Функция map</a></h4>
+
+<pre class="syntax"><strong><a name="fmap">Синтаксис</a></strong>: map <em>аргумент</em>, <em>список</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; выражение или блок
+           <em>список</em>&nbsp;&#151; список выражений
+<strong>Результат</strong>: список значений</pre>
+
+      <p>Функция <strong>map</strong> просматривает элементы <em>списка</em>, поочередно
+        присваивая их переменной <tt>$_</tt>, для каждого элемента вычисляет значение <em>аргумента</em>
+        и возвращает список полученных значений. В скалярном контексте возвращает размер списка,
+        сгенерированного таким образом. Следующий пример преобразует числовые элементы массива в
+        соответствующие символы:</p>
+
+      <div class="code">
+<pre class="code">@nums = (97, 98, 99);
+@chars = map(chr, @nums); # ('a', 'b', 'c')</pre>
+      </div>
+
+      <h4><a name="hpop">Функция pop</a></h4>
+
+<pre class="syntax"><strong><a name="fpop">Синтаксис</a></strong>: pop <em>массив</em>
+<strong>Аргументы</strong>: <em>массив</em>&nbsp;&#151; именованный массив
+<strong>Результат</strong>: скалярное значение</pre>
+
+      <p>Функция <strong>pop</strong> удаляет из <em>массива</em> его последний элемент и возвращает его
+        в качестве результата. Если аргумент опущен, то <em>массив</em> принимается равным переменной
+        <tt>@ARGV</tt> в главной программе и <tt>@_</tt> в подпрограммах. Если <em>массив</em> пуст, то
+        эта функция возвращает <strong>undef</strong>. Пример:</p>
+
+      <div class="code">
+<pre class="code">@a = (1, 2, 3, 4, 5);
+print pop @a; # 5
+print @a;     # (1, 2, 3, 4)</pre>
+      </div>
+
+      <h4><a name="hpush">Функция push</a></h4>
+
+<pre class="syntax"><strong><a name="fpush">Синтаксис</a></strong>: push <em>массив</em>, <em>список</em>
+<strong>Аргументы</strong>: <em>массив</em>&nbsp;&#151; именованный массив
+           <em>список</em>&nbsp;&#151; список выражений
+<strong>Результат</strong>: числовое значение</pre>
+
+      <p>Функция <strong>push</strong> добавляет элементы <em>списка</em> в конец <em>массива</em> и возвращает
+        количество добавленных элементов. Пример:</p>
+
+      <div class="code">
+<pre class="code">@a = (1, 2, 3);
+push @a, 4, 5;
+print @a; # (1, 2, 3, 4, 5)</pre>
+      </div>
+
+      <h4><a name="hreverse">Функция reverse</a></h4>
+
+<pre class="syntax"><strong><a name="freverse">Синтаксис</a></strong>: reverse <em>список</em>
+<strong>Аргументы</strong>: <em>список</em>&nbsp;&#151; список выражений
+<strong>Результат</strong>: список значений</pre>
+
+      <p>Функция <strong>reverse</strong> возвращает список, состоящий из элементов исходного
+        <em>списка</em>, расположенных в обратном порядке. В скалярном контексте она объединяет
+        все элементы <em>списка</em> в строку и возвращает эту строку в обратном порядке символов.
+        Примеры:</p>
+
+      <div class="code">
+<pre class="code">@a = (1, 2, 3);
+@b = reverse @a; # (3, 2, 1)
+$s = reverse @a; # '321'</pre>
+      </div>
+
+      <h4><a name="hshift">Функция shift</a></h4>
+
+<pre class="syntax"><strong><a name="fshift">Синтаксис</a></strong>: shift <em>массив</em>
+<strong>Аргументы</strong>: <em>массив</em>&nbsp;&#151; именованный массив
+<strong>Результат</strong>: скалярное значение</pre>
+
+      <p>Функция <strong>shift</strong> удаляет из <em>массива</em> его первый элемент и возвращает его
+        в качестве результата. Если аргумент опущен, то <em>массив</em> принимается равным переменной
+        <tt>@ARGV</tt> в главной программе и <tt>@_</tt> в подпрограммах. Если <em>массив</em> пуст, то
+        эта функция возвращает <strong>undef</strong>. Пример:</p>
+
+      <div class="code">
+<pre class="code">@a = (1, 2, 3, 4, 5);
+print shift @a; # 1
+print @a;       # (2, 3, 4, 5)</pre>
+      </div>
+
+      <h4><a name="hsort">Функция sort</a></h4>
+
+<pre class="syntax"><strong><a name="fsort">Синтаксис</a></strong>: sort <em>аргумент</em>, <em>список</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; подпрограмма или блок
+           <em>список</em>&nbsp;&#151; список выражений
+<strong>Результат</strong>: список значений</pre>
+
+      <p>Функция <strong>sort</strong> сортирует элементы <em>списка</em> и возвращает новый отсортированный список.
+        Порядок сортировки задается <em>аргументом</em>. Если он опущен, то производится сортировка в лексикографическом
+        порядке. В противном случае <em>аргумент</em> должен быть либо именем подпрограммы, либо блоком, задающим
+        безымянную подпрограмму. Эта подпрограмма принимает два аргумента <tt>$a</tt> и <tt>$b</tt> и должна возвращать
+        отрицательное число, если <tt>$a</tt> &lt; <tt>$b</tt>, нуль, если <tt>$a</tt> = <tt>$b</tt>, и положительное число,
+        если <tt>$a</tt> &gt; <tt>$b</tt>. Следующий пример сортирует массив строк без учета регистра символов:</p>
+
+      <div class="code">
+<pre class="code">@sorted = sort {uc($a) cmp uc($b)} @array;</pre>
+      </div>
+
+      <h4><a name="hsplice">Функция splice</a></h4>
+
+<pre class="syntax"><strong><a name="fsplice">Синтаксис</a></strong>: splice <em>массив</em>, <em>начало</em>, <em>длина</em>, <em>список</em>
+<strong>Аргументы</strong>: <em>массив</em>&nbsp;&#151; именованный массив
+           <em>начало</em>, <em>длина</em>&nbsp;&#151; числовые выражения
+           <em>список</em>&nbsp;&#151; список выражений
+<strong>Результат</strong>: числовое значение</pre>
+
+      <p>Функция <strong>splice</strong> удаляет элементы <em>массива</em>, начиная с индекса <em>начало</em>
+        и в количестве <em>длина</em>. Если задан <em>список</em>, то его элементы вставляются вместо удаленных.
+        Функция возвращает список удаленных элементов, а в скалярном контексте&nbsp;&#151; последний удаленный элемент
+        или <strong>undef</strong>, если ничего не удалено.</p>
+      <p>Если <em>начало</em> отрицательно, то оно отсчитывается от конца массива. Если <em>длина</em> опущена, то удаляются
+        элементы до конца массива; если она отрицательна, то она складывается с длиной массива. Если и <em>начало</em>, и
+        <em>длина</em> опущены, то удаляются все элементы массива.</p>
+      <p>Пример: следующие операторы эквивалентны по своему результату:</p>
+
+      <div class="code">
+<pre class="code">push(@a, $x, $y)       splice(@a, @a, 0, $x, $y)
+pop(@a)                splice(@a, -1)
+shift(@a)              splice(@a, 0, 1)
+unshift(@a, $x, $y)    splice(@a, 0, 0, $x, $y)
+$a[$x] = $y            splice(@a, $x, 1, $y)</pre>
+      </div>
+
+      <h4><a name="hunshift">Функция unshift</a></h4>
+
+<pre class="syntax"><strong><a name="funshift">Синтаксис</a></strong>: unshift <em>массив</em>, <em>список</em>
+<strong>Аргументы</strong>: <em>массив</em>&nbsp;&#151; именованный массив
+           <em>список</em>&nbsp;&#151; список выражений
+<strong>Результат</strong>: числовое значение</pre>
+
+      <p>Функция <strong>unshift</strong> добавляет элементы <em>списка</em> в начало <em>массива</em> и возвращает
+        количество добавленных элементов. Пример:</p>
+
+      <div class="code">
+<pre class="code">@a = (1, 2, 3);
+unshift @a, 4, 5;
+print @a; # (4, 5, 1, 2, 3)</pre>
+      </div>
+
+      <h3><a name="ref6102">6.10.2. Функции работы с ассоциативными массивами</a></h3>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Функция</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><a href="#fdelete"><tt>delete</tt></a></td>
+            <td>Удаляет элемент(ы) массива или ассоциативного массива.</td>
+          </tr>
+          <tr>
+            <td><a href="#feach"><tt>each</tt></a></td>
+            <td>Итерация ассоциативных массивов.</td>
+          </tr>
+          <tr>
+            <td><a href="#fexists"><tt>exists</tt></a></td>
+            <td>Проверяет наличие элемента в массиве или ассоциативном массиве.</td>
+          </tr>
+          <tr>
+            <td><a href="#fkeys"><tt>keys</tt></a></td>
+            <td>Возвращает список ключей ассоциативного массива.</td>
+          </tr>
+          <tr>
+            <td><a href="#fvalues"><tt>values</tt></a></td>
+            <td>Возвращает список значений ассоциативного массива.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hdelete">Функция delete</a></h4>
+
+<pre class="syntax"><strong><a name="fdelete">Синтаксис</a></strong>: delete <em>аргумент</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; выражение
+<strong>Результат</strong>: значение или список значений</pre>
+
+      <p>Функция <strong>delete</strong> удаляет элемент или вырезку массива или ассоциативного массива,
+        заданные <em>аргументом</em> и возвращает их (или <strong>undef</strong>, если ничего не удалено).
+        Если удаляются элементы в конце массива, то длина массива соответственно уменьшается; если же
+        удаляются элементы в середине массива, то им присваивается неопределенное значение, и размер массива
+        не изменяется. Примеры:</p>
+
+      <div class="code">
+<pre class="code">@a = (1, 2, 3, 4, 5);
+@b = delete @a[1..2];	# @b = (2, 3)
+%colors = (black => 0x000000, red => 0xff0000, blue => 0x0000ff, green => 0x008000);
+@x = delete @colors{'black', 'red'}; # @x = (0x000000, 0xff0000)</pre>
+      </div>
+
+      <h4><a name="heach">Функция each</a></h4>
+
+<pre class="syntax"><strong><a name="feach">Синтаксис</a></strong>: each <em>аргумент</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; ассоциативный массив
+<strong>Результат</strong>: список (ключ, значение)</pre>
+
+      <p>Функция <strong>each</strong> предназначена для итеративного просмотра ассоциативного массива.
+        При каждом вызове она возвращает список (ключ, значение) для очередного элемента <em>аргумента</em>
+        (в скалярном контексте возвращается ключ очередного массива). Когда ассоциативный массив просмотрен
+        полностью, возвращается пустой список или <strong>undef</strong> в скалярном контексте. Для каждого
+        ассоциативного массива создается один итератор, который сбрасывается по завершении итерации массива
+        или при вызове функции <a href="#fkeys"><tt>keys</tt></a> или <a href="#fvalues"><tt>values</tt></a>.
+        Типичный цикл просмотра ассоциативного массива имеет вид:</p>
+
+      <div class="code">
+<pre class="code">%colors = (red => 0xff0000, blue => 0x0000ff, green => 0x008000);
+while (($key, $value) = each %colors) {
+  print "$key = $value\n";
+}</pre>
+      </div>
+
+      <h4><a name="hexists">Функция exists</a></h4>
+
+<pre class="syntax"><strong><a name="fexists">Синтаксис</a></strong>: exists <em>аргумент</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; выражение
+<strong>Результат</strong>: логическое значение</pre>
+
+      <p>Функция <strong>exists</strong> проверяет существование элемента массива или ассоциативного массива,
+        заданного <em>аргументом</em>. Она возвращает истину, если такой элемент когда-либо был инициализирован,
+        даже если сейчас он имеет неопределенное значение. Примеры:</p>
+
+      <div class="code">
+<pre class="code">print "Существует\n" if exists $array[$index];
+print "Существует\n" if exists $hash{$key};</pre>
+      </div>
+
+      <h4><a name="hkeys">Функция keys</a></h4>
+
+<pre class="syntax"><strong><a name="fkeys">Синтаксис</a></strong>: keys <em>аргумент</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; ассоциативный массив
+<strong>Результат</strong>: список ключей</pre>
+
+      <p>Функция <strong>keys</strong> возвращает список ключей данного ассоциативного массива.
+        (в скалярном контексте возвращается количество элементов массива). Порядок ключей в этом списке не определен,
+        но гарантируется, что он тот же, что и в функциях <a href="#feach"><tt>each</tt></a> или <a href="#fvalues"><tt>values</tt></a>.
+        Следующий пример выводит на экран содержимое системного окружения в алфавитном порядке.</p>
+
+      <div class="code">
+<pre class="code">foreach $key (sort(keys %ENV)) {
+  print $key, '=', $ENV{$key}, "\n";
+}</pre>
+      </div>
+
+      <h4><a name="hvalues">Функция values</a></h4>
+
+<pre class="syntax"><strong><a name="fvalues">Синтаксис</a></strong>: values <em>аргумент</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; ассоциативный массив
+<strong>Результат</strong>: список значений</pre>
+
+      <p>Функция <strong>values</strong> возвращает список значений данного ассоциативного массива.
+        (в скалярном контексте возвращается количество элементов массива). Порядок значений в этом списке не определен,
+        но гарантируется, что он тот же, что и в функциях <a href="#feach"><tt>each</tt></a> или <a href="#fkeys"><tt>keys</tt></a>.
+        Следующий пример выводит на экран содержимое системного окружения.</p>
+
+      <div class="code">
+<pre class="code">@keys = keys %ENV;
+@values = values %ENV;
+while (@keys) {
+  print pop(@keys), '=', pop(@values), "\n";
+}</pre>
+      </div>
+
+      <h3><a name="ref6103">6.10.3. Функции работы с временем</a></h3>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Функция</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><a href="#fgmtime"><tt>gmtime</tt></a></td>
+            <td>Преобразует время UTC в список значений.</td>
+          </tr>
+          <tr>
+            <td><a href="#flocaltime"><tt>localtime</tt></a></td>
+            <td>Преобразует местное время в список значений.</td>
+          </tr>
+          <tr>
+            <td><a href="#ftime"><tt>time</tt></a></td>
+            <td>Возвращает текущее время.</td>
+          </tr>
+          <tr>
+            <td><a href="#ftimes"><tt>times</tt></a></td>
+            <td>Возвращает список времен работы процесса.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hgmtime">Функция gmtime</a></h4>
+
+<pre class="syntax"><strong><a name="fgmtime">Синтаксис</a></strong>: gmtime <em>время</em>
+<strong>Аргументы</strong>: <em>время</em>&nbsp;&#151; значение функции time
+<strong>Результат</strong>: список числовых значений</pre>
+
+      <p>Функция <strong>gmtime</strong> преобразует время UTC, возвращенное функцией <tt><a href="#ftime">time</a></tt>, 
+        в список из восьми числовых значений и возвращает его. Результирующий список состоит из следующих элементов:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Номер элемента</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>Секунды (0 &#151; 59).</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Минуты (0 &#151; 59).</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Часы (0 &#151; 23).</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>День месяца (1 &#151; 31).</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Месяц (0 = январь, &#133;, 11 = декабрь).</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Номер года минус 1900.</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>День недели (0 = воскресенье, &#133;, 6 = суббота).</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>День года (0 &#151; 365).</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Если аргумент опущен, то возвращает указанный список значений для текущего времени. В скалярном контексте
+        возвращает строку, содержащую текстовое представление времени UTC. Примеры:</p>
+
+      <div class="code">
+<pre class="code">($sec, $min, $hour, $mday, $mon, $year, $wday, $yday) = gmtime(time);
+print scalar(gmtime); # "Friday Jun 22 05:09:20 2001"</pre>
+      </div>
+
+      <h4><a name="hlocaltime">Функция localtime</a></h4>
+
+<pre class="syntax"><strong><a name="flocaltime">Синтаксис</a></strong>: localtime <em>время</em>
+<strong>Аргументы</strong>: <em>время</em>&nbsp;&#151; значение функции time
+<strong>Результат</strong>: список числовых значений</pre>
+
+      <p>Функция <strong>localtime</strong> преобразует местное время, возвращенное функцией <tt><a href="#ftime">time</a></tt>, 
+        в список из девяти числовых значений и возвращает его. Результирующий список состоит из следующих элементов:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Номер элемента</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>Секунды (0 &#151; 59).</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Минуты (0 &#151; 59).</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Часы (0 &#151; 23).</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>День месяца (1 &#151; 31).</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Месяц (0 = январь, &#133;, 11 = декабрь).</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Номер года минус 1900.</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>День недели (0 = воскресенье, &#133;, 6 = суббота).</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>День года (0 &#151; 365).</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Истинно, если действует переход на летнее время.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Если аргумент опущен, то возвращает указанный список значений для текущего времени. В скалярном контексте
+        возвращает строку, содержащую текстовое представление местного времени. Примеры:</p>
+
+      <div class="code">
+<pre class="code">($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+print scalar(localtime); # "Friday Jun 22 11:09:20 2001"</pre>
+      </div>
+
+      <h4><a name="htime">Функция time</a></h4>
+
+<pre class="syntax"><strong><a name="ftime">Синтаксис</a></strong>: time
+<strong>Результат</strong>: числовое значение</pre>
+
+      <p>Функция <strong>time</strong> возвращает текущее время в виде числа, равного количеству секунд от
+        точки отсчета, определенной операционной системой (00:00:00 1 января 1904 г. в MacOS и 00:00:00 UTC
+        1 января 1970 г. в большинстве других ОС). Для преобразования полученного числа во время и дату используются
+        функции <tt><a href="#fgmtime">gmtime</a></tt> и <tt><a href="#flocaltime">localtime</a></tt>.</p>
+
+      <h4><a name="htimes">Функция times</a></h4>
+
+<pre class="syntax"><strong><a name="ftimes">Синтаксис</a></strong>: times
+<strong>Результат</strong>: список числовых значений</pre>
+
+      <p>Функция <strong>times</strong> возвращает список из четырех числовых значений. В Unix эти значения таковы:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Номер элемента</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>Пользовательское время процесса в секундах.</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Системное время процесса в секундах.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Пользовательское время дочернего процесса в секундах.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Системное время дочернего процесса в секундах.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>В Windows элемент списка с индексом 0 содержит время работы процесса, а остальные элементы равны нулю.
+        Пример:</p>
+
+      <div class="code">
+<pre class="code">($user, $system, $cuser, $csystem) = times;</pre>
+      </div>
+
+      <h3><a name="ref6104">6.10.4. Прочие функции общего назначения</a></h3>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Функция</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><a href="#fcaller"><tt>caller</tt></a></td>
+            <td>Возвращает информацию о контексте вызова подпрограммы.</td>
+          </tr>
+          <tr>
+            <td><a href="#fdefined"><tt>defined</tt></a></td>
+            <td>Проверяет, определено ли значение аргумента.</td>
+          </tr>
+          <tr>
+            <td><a href="#fdie"><tt>die</tt></a></td>
+            <td>Фатальное завершение программы.</td>
+          </tr>
+          <tr>
+            <td><a href="#feval"><tt>eval</tt></a></td>
+            <td>Выполняет аргумент как PERL-программу.</td>
+          </tr>
+          <tr>
+            <td><a href="#fexit"><tt>exit</tt></a></td>
+            <td>Завершение работы программы.</td>
+          </tr>
+          <tr>
+            <td><a href="#fref"><tt>ref</tt></a></td>
+            <td>Проверяет, является ли аргумент ссылкой.</td>
+          </tr>
+          <tr>
+            <td><a href="#freset"><tt>reset</tt></a></td>
+            <td>Сбрасывает значения заданных переменных.</td>
+          </tr>
+          <tr>
+            <td><a href="#fscalar"><tt>scalar</tt></a></td>
+            <td>Преобразует аргумент в скаляр.</td>
+          </tr>
+          <tr>
+            <td><a href="#fundef"><tt>undef</tt></a></td>
+            <td>Делает значение переменной неопределенным.</td>
+          </tr>
+          <tr>
+            <td><a href="#fwarn"><tt>warn</tt></a></td>
+            <td>Выводит сообщение на stderr.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hcaller">Функция caller</a></h4>
+
+<pre class="syntax"><strong><a name="fcaller">Синтаксис</a></strong>: caller <em>аргумент?</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; скалярное выражение
+<strong>Результат</strong>: список значений</pre>
+
+      <p>Функция <strong>caller</strong> возвращает контекст вызова текущей подпрограммы. В скалярном
+        контексте она возвращает имя пакета, вызвавшего текущую подпрограмму, или <strong>undef</strong>,
+        если функция вызвана не из подпрограммы или <a href="#feval"><tt>eval</tt></a>. В списочном контексте возвращается список</p>
+        
+<pre>($package, $filename, $line) = caller;</pre>
+
+      <p class="noindent">где <tt>$package</tt>&nbsp;&#151; имя вызвавшего подпрограмму пакета, <tt>$filename</tt>&nbsp;&#151;
+        имя соответствующего файла, <tt>$line</tt>&nbsp;&#151; номер строки файла, в которой произошел вызов.</p>
+      
+      <p>Задание <em>аргумента</em> позволяет нам получить дополнительную отладочную информацию о контексте вызова. В этом
+        случае <em>аргумент</em> задает количество фреймов, на которое мы должны вернуться по стеку вызова подпрограмм, а
+        результат функции имеет вид:</p>
+
+<pre>($package, $filename, $line, $subroutine, $hasargs, $wantarray, $evaltext,
+$is_require, $hints, $bitmask) = caller($n);</pre>
+
+      <p>Здесь <tt>$hasargs</tt> истинно, если подпрограмма вызвана с аргументами, а <tt>$hints</tt> и <tt>$bitmask</tt>
+        содержат внутренние флаги компилятора, описывающие процесс компиляции подпрограммы.</p>
+
+      <p>Если n-ый элемент фрейма&nbsp;&#151; это подпрограмма, то <tt>$subroutine</tt> содержит ее имя, а
+        <tt>$evaltext</tt> и <tt>$is_require</tt> не определены.</p>
+
+      <p>Если же n-ый элемент фрейма&nbsp;&#151; это <a href="#feval"><tt>eval</tt></a>, то <tt>$subroutine</tt> равно <tt>'(eval)'</tt>,
+        <tt>$evaltext</tt> содержит текст eval-выражения, а <tt>$is_require</tt> истинно, если фрейм создан
+        функциями <tt>require</tt> или <tt>use</tt>. В частности, для операции <code>eval <em>блок</em></code>
+        <tt>$filename</tt> равно <tt>'(eval)'</tt>, но <tt>$evaltext</tt> не определено.</p>
+        
+      <p>При использовании расширенной формы этой функции, помните, что в процессе компиляции оптимизатор
+        кода может удалять избыточные, по его мнению, фреймы вызова подпрограмм. Это означает, что при n > 1
+        нельзя быть уверенным в том, информацию о какой подпрограмме вернет <tt>caller(n)</tt>.</p>
+
+      <h4><a name="hdefined">Функция defined</a></h4>
+
+<pre class="syntax"><strong><a name="fdefined">Синтаксис</a></strong>: defined <em>выражение</em>
+<strong>Аргументы</strong>: <em>выражение</em>&nbsp;&#151; любое выражение
+<strong>Результат</strong>: логическое значение</pre>
+
+      <p>Функция <strong>defined</strong> возвращает истину, если значение <em>выражения</em> отлично от <strong>undef</strong>.
+        Если аргумент опущен, то <em>выражение</em> принимается равным значению переменной <tt>$_</tt>. Примеры:</p>
+      
+      <div class="code">
+<pre class="code">print "$val\n" while defined($val = pop(@array));
+$debug = 0 unless defined $debug;</pre>
+      </div>
+
+      <p>Применение этой функции к массивам и ассоциативным массивам является морально устаревшим. Вместо этого
+        рекомендуется просто проверять их размер:</p>
+
+      <div class="code">
+<pre class="code">if (@array) { ... }
+if (%hash)  { ... }</pre>
+      </div>
+
+      <h4><a name="hdie">Функция die</a></h4>
+
+<pre class="syntax"><strong><a name="fdie">Синтаксис</a></strong>: die <em>список</em>
+<strong>Аргументы</strong>: <em>список</em>&nbsp;&#151; список выражений</pre>
+
+      <p>Функция <strong>die</strong> выводит значения <em>списка</em> на устройство stderr и завершает работу программы. При
+        этом код завершения программы берется из переменной <tt>$!</tt>. Если значение этой переменной равно нулю,
+        то код завершения равен <tt>($? &gt;&gt; 8)</tt>. Если и это значение равно нулю, то код завершения равен 255.</p>
+
+      <p>Если сообщение об ошибке не заканчивается символом '\n', то после него выводится название файла и
+        номер строки в нем, содержащих эту функцию. Например, сценарий</p>
+        
+      <div class="code">
+<pre class="code">$name = 'list.txt';
+open(MYFILE, $name) or die 'File ', $name, ' not found';</pre>
+      </div>
+      
+      <p class="noindent">выведет на консоль строку вида <samp>File list.txt not found at test.pl line 2.</samp></p>
+      
+      <p>Если список пуст и переменная <tt>$@</tt> содержит значение, то выводится значение этой переменной с добалением строки
+      "\t...propagated", имени файла и номера строки. Если же и переменная <tt>$@</tt> пуста, то сообщение об
+      ошибке имеет вид "Died at <em>file</em>.pl line <em>nnn</em>".</p>
+
+      <p>Внутри <tt><a href="#feval">eval()</a></tt> эта функция заносит сообщение об ошибке в переменную <tt>$@</tt> и
+        завершает <tt>eval</tt> с неопределенным значением. Это позволяет использовать ее для генерации исключений.
+        Пример:</p>
+
+      <div class="code">
+<pre class="code">$a = 1; $b = 0;
+eval { die "Zero divide" if $b == 0; $answer = $a / $b; };
+die if $@;</pre>
+      </div>
+      
+      <p>Этот сценарий завершится с сообщением:</p>
+<samp>Zero divide at test.pl line2.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...propagated at test.pl line3.
+</samp>      
+
+      <h4><a name="heval">Функция eval</a></h4>
+
+<pre class="syntax"><strong><a name="feval">Синтаксис</a></strong>: eval <em>аргумент</em>
+<strong>Аргументы</strong>: <em>аргумент</em>&nbsp;&#151; выражение или блок</pre>
+
+      <p>Если <em>аргумент</em> является выражением, то его значение вычисляется в скалярном контексте, компилируется
+        и исполняется как PERL-сценарий. Если <em>аргумент</em> опущен, то вычисляется значение пераменной <tt>$_</tt>.
+        Эта форма функции <strong>eval</strong> позволяет динамически строить фрагменты PERL-программы.</p>
+      
+      <p>Если <em>аргумент</em> является блоком, то он компилируется во время компиляции самой функции <strong>eval</strong>,
+        а исполняется в контексте текущей программы. Обратите внимание, что такой вызов не считается <a href="perl05.htm#ref65211">вырожденным циклом</a>
+        и к нему не применимы операторы <a href="perl05.htm#ref6528"><strong>last</strong></a>, <a href="perl05.htm#ref6529"><strong>next</strong></a> и
+        <a href="perl05.htm#ref65210"><strong>redo</strong></a>. Эта форма функции обычно используется для обработки исключений.</p>
+
+      <p>И в значении выражения, и в блоке последний символ точка с запятой может быть опущен.</p>
+
+      <p>В обоих случаях функция eval возвращает значение последнего вычисленного в ней выражения. Можно использовать
+        и оператор <a href="perl06.htm#return"><strong>return</strong></a>, так же, как в подпрограммах.
+        ВОзвращаемое значение вычисляется в зависимости от контекста, в котором вызвана функция <strong>eval</strong>
+        (подробнее об этом см. описание <a href="perl06.htm#fwantarray"><tt>wantarray</tt></a>).</p>
+
+      <p>Если произошла ошибка компиляции или была вызвана функция <a href="#fdie"><tt>die()</tt></a>, то <strong>eval</strong>
+        возвращает неопределенное значение, а в переменную <tt>$@</tt> заносится сообщение об ошибке. Если ошибок не
+        возникло, то в <tt>$@</tt> заносится пустая строка.</p>
+        
+      <p>Пример использования <strong>eval</strong> для обработки исключения:</p>
+      
+      <div class="code">
+<pre class="code">$a = 1; $b = 0;
+eval { $answer = $a / $b };
+warn $@ if $@;</pre>
+      </div>
+      
+      <p>Примеры использования <strong>eval</strong> для динамического вычисления выражений:</p>
+      
+      <div class="code">
+<pre class="code">eval $x;       # 1
+eval "$x";     # 2
+eval '$x';     # 3
+eval { $x };   # 4</pre>
+      </div>
+
+      <p>Выражения 1 и 2 компилируют PERL-программу, содержащуюся в переменной <tt>$x</tt> и выполняют ее.
+        Выражения 3 и 4 просто возвращают значение переменной <tt>$x</tt>.</p>
+      
+      <h4><a name="hexit">Функция exit</a></h4>
+
+<pre class="syntax"><strong><a name="fexit">Синтаксис</a></strong>: exit <em>выражение</em>
+<strong>Аргументы</strong>: <em>выражение</em>&nbsp;&#151; любое выражение</pre>
+
+      <p>Функция <strong>exit</strong> вычисляет значение <em>выражения</em> и завершает работу программы с
+        полученным кодом завершения. Если аргумент опущен, то код завершения равен нулю (по системным соглашениям,
+        это означает нормальное завершение программы). Важно понимать, что работа программы не завершается немедленно;
+        перед этим будут вызваны <a href="perl07.htm#ref6713">деструкторы всех загруженных пакетов</a> и
+        <a href="perl08.htm#ref683">деструкторы всех созданных объектов</a>.
+        Пример:</p>
+      
+      <div class="code">
+<pre class="code">while (1) {
+  $ans = &lt;STDIN&gt;;             # принимаем строку с клавиатуры
+  exit 0 if $ans =~ /^[Xx]/;  # завершаем работу, если она начинается с X
+}</pre>
+      </div>
+
+      <p>В тех случаях, когда необходимо немедленное завершение программы без вызова деструкторов, нужно пользоваться
+        функцией <tt>POSIX:_exit()</tt>, например:</p>
+
+      <div class="code">
+<pre class="code">
+use POSIX;
+  . . .
+POSIX:_exit 0;
+}</pre>
+      </div>
+
+      <h4><a name="href">Функция ref</a></h4>
+
+<pre class="syntax"><strong><a name="fref">Синтаксис</a></strong>: ref <em>выражение</em>?
+<strong>Аргументы</strong>: <em>выражение</em>&nbsp;&#151; любое выражение
+<strong>Результат</strong>: строка или неопределенное значение</pre>
+
+      <p>Функция <strong>ref</strong> проверяет, является ли <em>выражением</em> ссылкой. Если аргумент опущен,
+        то <em>выражение</em> принимается равным значению переменной <tt>$_</tt>. Если <em>выражение</em> не является
+        ссылкой, то возвращается неопределенное значение. В противном случае возвращается строка, означающая
+        тип данных, на который ссылается <em>выражение</em>, в соответствии со следующей таблицей:</p>
+
+      <div class="indent">
+        <table border="1" cellspacing="0" cellpadding="5">
+          <tr>
+            <th>Строка</th>
+            <th>Значение</th>
+          </tr>
+          <tr>
+            <td><tt>"SCALAR"</tt></td>
+            <td>Ссылка на скалярную переменную.</td>
+          </tr>
+          <tr>
+            <td><tt>"ARRAY"</tt></td>
+            <td>Ссылка на массив.</td>
+          </tr>
+          <tr>
+            <td><tt>"HASH"</tt></td>
+            <td>Ссылка на ассоциативный массив.</td>
+          </tr>
+          <tr>
+            <td><tt>"CODE"</tt></td>
+            <td>Ссылка на подпрограмму.</td>
+          </tr>
+          <tr>
+            <td><tt>"REF"</tt></td>
+            <td>Ссылка на ссылку.</td>
+          </tr>
+          <tr>
+            <td><tt>"GLOB"</tt></td>
+            <td>Ссылка на typeglob.</td>
+          </tr>
+          <tr>
+            <td><tt>"LVALUE"</tt></td>
+            <td>Ссылка на выражение, допускающее присваивание.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Если ссылка была преобразована функцией <a href="perl08.htm#fbless"><tt>bless</tt></a> в на объект, то возвращается
+        строка, содержащая имя пакета. Примеры:</p>
+
+      <div class="code">
+<pre class="code">print "x не является ссылкой\n" unless ref($x);
+
+print ref(\$x);               # "SCALAR"
+print ref(\@a);               # "ARRAY"
+print ref(\%h);               # "HASH"
+print ref(\&amp;mysub);           # "CODE"
+print ref(\\$x);              # "REF"
+print ref(\*x);               # "GLOB"
+print ref(\substr($x, 0, 1)); # "LVALUE"</pre>
+      </div>
+      
+      <h4><a name="hreset">Функция reset</a></h4>
+
+<pre class="syntax"><strong><a name="freset">Синтаксис</a></strong>: reset <em>выражение</em>?
+<strong>Аргументы</strong>: <em>выражение</em>&nbsp;&#151; список букв</pre>
+
+      <p>Функция <strong>reset</strong> используется в блоке <strong>continue</strong> операторов цикла
+        для сброса значений переменных в конце цикла. Все переменные и массивы текущего пакета, имена которых
+        начинаются с букв, заданных <em>выражением</em>, получают неопределенное значение. Сбрасывается значение
+        только глобальных переменных; локальные переменные, объявленные функцией <a href="perl06.htm#ref663"><tt>my()</tt></a>,
+        не изменяют своего значения. Если <em>выражение</em>  опущено, то сбрасывается статус
+        <a href="perl04.htm#ref6462">единственного сопоставления с образцом</a>. Примеры:</p>
+
+      <div class="code">
+<pre class="code">reset 'XY';   # сбрасывает все переменные, чьи имена начинаются с X или Y
+reset 'a-z';  # сбрасывает переменные, чьи имена начинаются со строчной буквы
+reset;        # разрешает единственное сопоставление с образцом</pre>
+      </div>
+      
+      <p>Не следует использовать вызов <code>reset 'A-Z'</code>, поскольку он сбросит значения
+        специальных переменных <tt>@ARGV</tt>, <tt>@INC</tt> и <tt>%ENV</tt>.</p>
+
+      <h4><a name="hscalar">Функция scalar</a></h4>
+
+<pre class="syntax"><strong><a name="fscalar">Синтаксис</a></strong>: scalar <em>выражение</em>
+<strong>Аргументы</strong>: <em>выражение</em>&nbsp;&#151; любое выражение
+<strong>Результат</strong>: скалярное значение</pre>
+
+      <p>Функция <strong>scalar</strong> вычисляет значение <em>выражения</em> в скалярном контексте и
+        возвращает его. Иными словами:</p>
+      <ul>
+        <li>для скалярного выражения она возвращает его значение;</li>
+        <li>для массива или списка она возвращает его длину;</li>
+        <li>для ассоциативного массива она возвращает строку вида "m/n", где m — количество заполненных пар,
+          а n — общее количество пар в массиве.</li>
+      </ul>
+      <p>Для вычисления значения выражения в контексте списка аналогичной функции не предусмотрено. Чтобы его
+      получить, можно использовать конструкцию <tt>@{[(<em>выражение</em>)]}</tt>, хотя в большинстве случаев
+      достаточно использовать <tt>(<em>выражение</em>)</tt>. Следующий пример</p>
+
+      <div class="code">
+<pre class="code">@nums = (1, 2, 3);
+print "Size of my array is ".scalar(@nums)."\n";
+
+keys(%colors) = 16;
+%colors = (red => 0xff0000, blue => 0x0000ff, green => 0x008000);
+print "Size of my hash is ".scalar(%colors)."\n";
+
+print "My sub returned @{[mysub(1,2,3)]}\n";
+
+sub mysub { @_ }</pre>
+      </div>
+      
+      <p class="noindent">выведет на экран текст:</p>
+<samp>Size of my array is 3<br>
+Size of my hash is 3/16<br>
+My sub returned 1 2 3
+</samp>      
+      
+      <h4><a name="hundef">Функция undef</a></h4>
+
+<pre class="syntax"><strong><a name="fundef">Синтаксис</a></strong>: undef <em>выражение</em>?
+<strong>Аргументы</strong>: <em>выражение</em>&nbsp;&#151; любое выражение, допускающее присваивание
+<strong>Результат</strong>: неопределенное значение</pre>
+
+      <p>Функция <strong>undef</strong> присваивает переменной, заданной <em>выражением</em>, неопределенное
+        значение. Переменная может быть скаляром, массивом, ассоциативным массивом, подпрограммой или ссылкой на таблицу символов
+        (для сброса ключей ассоциативных массивов лучше использовать функцию <a href="#fdelete"><tt>delete</tt></a>).
+        Без аргумента эта функция просто возвращает неопределенное значение. Примеры:</p>
+
+      <div class="code">
+<pre class="code">undef $x;
+undef @array;
+undef %hash;
+undef &amp;mysub;
+undef *xyz;   # сбрасывает значения $xyz, @xyz, %xyz, &amp;xyz</pre>
+      </div>
+      
+      <h4><a name="hwarn">Функция warn</a></h4>
+
+<pre class="syntax"><strong><a name="fwarn">Синтаксис</a></strong>: warn <em>список</em>
+<strong>Аргументы</strong>: <em>список</em>&nbsp;&#151; список выражений</pre>
+
+      <p>Функция <strong>warn</strong> выводит значения <em>списка</em> на устройство stderr. Если <em>список</em>
+        не задан и переменная <tt>$@</tt> содержит непустую строку, то выводится ее содержимое с добавлением строки
+        "\t...caught at <em>file</em>.pl line <em>nnn</em>". Если же переменная <tt>$@</tt> пуста, то выводится сообщение
+        "Warning: Something's wrong at <em>file</em>.pl line <em>nnn</em>".</p>
+        
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,1003 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: CSS - Шрифты</title>
+<link rel="Prev" href="css07.htm" title="Цвет и фон">
+<link rel="Next" href="css09.htm" title="Текст">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref28">Глава 2.8. Шрифты</a></h2>
+
+      <h3><a name="ref281">2.8.1. Введение</a></h3>
+
+      <p>Уже в стандарте CSS1 была заложена возможность использования различных шрифтов для отображения
+        текста документа. При этом предполагалось, что необходимые шрифты установлены на компьютере-клиенте;
+        если же их нет, то вместо них обозреватель должен был использовать собственные шрифты, близкие
+        по характеристикам к требующимся.</p>
+
+      <p>Стандарт CSS2 внес существенные изменения в эту концепцию с тем, чтобы авторы имели большую
+        свободу в выборе шрифтов, а обозреватели&nbsp;&#151; в своих действиях, когда заданный автором
+        шрифт непосредственно не доступен. В основе новой концепции лежит понятие <em>загружаемых шрифтов</em>,
+        т.&nbsp;е. шрифтов, отсутствующих на компьютере-клиенте, но доступных для загрузки из Сети.
+        В дополнение к этому CSS2 предусматривает наличие базы данных о шрифтах, содержащей их разнообразные
+        характеристики и позволяющей по мере необходимости <em>синтезировать</em> недостающие <em>шрифты</em>
+        на основе доступных обозревателю шрифтов.</p>
+
+      <p>Ниже изложены все способы работы со шрифтами, предоставляемые CSS. При этом свойства, управляющие
+        отображением шрифтов и унаследованные из CSS1, описаны в <a href="#ref282">разделе
+        2.8.2</a>, а новые методы доступа к загружаемым шрифтам, появившиеся в CSS2, описываются в <a href="#ref283">разделе
+        2.8.3</a>.</p>
+
+      <h3><a name="ref282">2.8.2. Задание свойств шрифтов</a></h3>
+
+      <h4><a name="ref2821">2.8.2.1. Семейство шрифтов: свойство font-family</a></h4>
+
+<pre class="syntax"><strong><a name="pfont-family">Синтаксис</a></strong>:  font-family: [[<a href="#family-name">&lt;имя-семейства&gt;</a> | <a href="#generic-family">&lt;родовое-имя&gt;</a>],]*
+                         [<a href="#family-name">&lt;имя-семейства&gt;</a> | <a href="#generic-family">&lt;родовое-имя&gt;</a>] | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   зависит от обозревателя
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту (4.0+)</pre>
+
+      <p>Свойство <strong>font-family</strong> задает <em>список имен семейств шрифтов</em> для отображения
+        содержимого элемента. Этот список состоит из имен семейств шрифтов, разделенных запятыми. Имена
+        семейств располагаются в порядке предпочтения. Например, следующее свойство</p>
+
+      <div class="code">
+<pre class="code">font-family: Verdana, Arial, sans-serif;</pre>
+      </div>
+
+      <p class="noindent">следует понимать так: &quot;использовать шрифт Verdana; если его нет, то использовать
+        шрифт Arial; если его нет, то использовать родовой шрифт sans-serif&quot;. Такой список необходим,
+        поскольку мы заранее не знаем, какие именно шрифты установлены на компьютерах наших пользователей.</p>
+
+      <p>Имя семейства шрифтов может быть задано двумя способами:</p>
+
+<pre class="syntax">  <a name="family-name">&lt;<strong>имя-семейства</strong>&gt;</a>
+    Задает название семейства шрифтов. Если это название содержит пробелы, то оно
+    должно быть заключено в кавычки или апострофы.
+  <a name="generic-family">&lt;<strong>родовое-имя</strong>&gt;</a>
+    Одно из следующих имен: <dfn>serif</dfn>, <dfn>sans-serif</dfn>, <dfn>cursive</dfn>, <dfn>fantasy</dfn> и <dfn>monospace</dfn>.
+    См. <a href="#ref2822">раздел 2.8.2.2</a>.</pre>
+
+      <p>Для достижения наибольшей совместимости рекомендуется задавать родовое имя шрифта последним
+        в списке. В этом случае, если обозреватель не найдет на компьютере-клиенте ни одного из заданных
+        шрифтов, он использует свой родовой шрифт с заданным именем.</p>
+
+      <h4><a name="ref2822">2.8.2.2. Родовые имена шрифтов</a></h4>
+
+      <p>Родовые имена шрифтов были разработаны на тот наихудший случай, когда на компьютере-клиенте
+        не установлен ни один из шрифтов, заданных автором. В этом случае обозреватель использует родовой
+        шрифт, начертание которого напоминает авторский шрифт. Существует пять имен родовых шрифтов:</p>
+
+      <p style="font-family: serif"><span style="font-size: medium">serif</span> (шрифт с засечками)</p>
+
+      <p>Это пропорциональные шрифты с засечками на буквах. Типичные примеры: <span style="font-family: 'Times New Roman'">Times
+        New Roman</span>, <span style="font-family: Bodoni">Bodoni</span>, <span style="font-family: Garamond">Garamond</span>.</p>
+
+      <p style="font-family: sans-serif"><span style="font-size: medium">sans-serif</span> (шрифт без
+        засечек)</p>
+
+      <p>Это пропорциональные шрифты без засечек на буквах. Типичные примеры: <span style="font-family: Arial">Arial</span>,
+        <span style="font-family: Verdana">Verdana</span>, <span style="font-family: Helvetica">Helvetica</span>,
+        <span style="font-family: Tahoma">Tahoma</span>.</p>
+
+      <p style="font-family: cursive"><span style="font-size: medium">cursive</span> (каллиграфический
+        шрифт)</p>
+
+      <p>Это шрифты, стилизованные под рукописный текст, обычно с типичными для него соединениями между
+        буквами. Типичный пример: <span style="font-family: 'Zapf-Chancery'">Zapf-Chancery</span>.</p>
+
+      <p style="font-family: fantasy"><span style="font-size: medium">fantasy</span> (декоративный шрифт)</p>
+
+      <p>Это шрифты декоративного характера. Типичный пример: <span style="font-family: Western">Western.</span></p>
+
+      <p style="font-family: monospace"><span style="font-size: medium">monospace</span> (телетайпный
+        шрифт)</p>
+
+      <p>Это шрифты фиксированной ширины, напоминающие шрифт пишущей машинки. Типичные примеры: <span style="font-family: 'Courier New'">Courier
+        New</span>, <span style="font-family: Prestige">Prestige</span>, <span style="font-family: 'Everson Mono'">Everson
+        Mono</span>.</p>
+
+      <p>То, какой именно конкретный шрифт используется в качестве реализации родового, зависит от обозревателя.</p>
+
+      <h4><a name="ref2823">2.8.2.3. Стиль шрифта: свойство font-style</a></h4>
+
+<pre class="syntax"><strong><a name="pfont-style">Синтаксис</a></strong>:  font-style: <dfn>normal</dfn> | <dfn>italic</dfn> | <dfn>oblique</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту; oblique отображается как italic (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту; oblique не поддерживается (4.0+)</pre>
+
+      <p>Свойство <strong>font-style</strong> задает <em>стиль шрифта</em> для отображения содержимого
+        элемента. Оно может иметь следующие значения:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>normal</dfn></td>
+            <td>Обычный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>italic</dfn></td>
+            <td>Курсивный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>oblique</dfn></td>
+            <td>Наклонный шрифт</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Например, следующий фрагмент</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;
+  &lt;SPAN style=&quot;font-style: normal&quot;&gt;Обычный шрифт. &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-style: italic&quot;&gt;Курсивный шрифт. &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-style: oblique&quot;&gt;Наклонный шрифт. &lt;/SPAN&gt;
+&lt;/P&gt;</pre>
+      </div>
+
+      <p class="noindent">будет отображаться так:</p>
+
+      <p><samp><span style="font-style: normal">Обычный шрифт. </span><span style="font-style: italic">Курсивный
+        шрифт. </span><span style="font-style: oblique">Наклонный шрифт. </span></samp></p>
+
+      <h4><a name="ref2824">2.8.2.4. Вариант шрифта: свойство font-variant</a></h4>
+
+<pre class="syntax"><strong><a name="pfont-variant">Синтаксис</a></strong>:  font-variant: <dfn>normal</dfn> | <dfn>small-caps</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>font-variant</strong> задает <em>вариант шрифта</em> для отображения содержимого
+        элемента. Оно может принимать следующие значения:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>normal</dfn></td>
+            <td>Обычные буквы</td>
+          </tr>
+          <tr>
+            <td><dfn>small-caps</dfn></td>
+            <td>Малые прописные буквы</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Например, следующий фрагмент</p>
+
+      <div class="code">
+<pre class="code">&lt;P style=&quot;font-variant: small-caps&quot;&gt;Малые прописные буквы.&lt;/P&gt;</pre>
+      </div>
+
+      <p class="noindent">будет отображаться так:</p>
+
+      <p style="font-variant: small-caps"><samp>Малые прописные буквы.</samp></p>
+
+      <p>О преобразовании текста в прописные буквы см. также описание свойства <a href="css09.htm#ptext-transform"><strong>text-transform</strong></a>.</p>
+
+      <h4><a name="ref2825">2.8.2.5. Жирность шрифта: свойство font-weight</a></h4>
+
+<pre class="syntax"><strong><a name="pfont-weight">Синтаксис</a></strong>:  font-weight: <dfn>normal</dfn> | <dfn>bold</dfn> | <dfn>bolder</dfn> | <dfn>lighter</dfn> | <dfn>100</dfn> | <dfn>200</dfn> | <dfn>300</dfn> | <dfn>400</dfn> |
+                         <dfn>500</dfn> | <dfn>600</dfn> | <dfn>700</dfn> | <dfn>800</dfn> | <dfn>900</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да, наследуется вычисленное значение
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту (4.0+)</pre>
+
+      <p>Свойство <strong>font-weight</strong> задает <em>жирность шрифта</em> для отображения содержимого
+        элемента. Оно может принимать следующие значения:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>100 - 900</dfn></td>
+            <td>Задает жирность шрифта (чем больше значение, тем выше жирность шрифта).</td>
+          </tr>
+          <tr>
+            <td><dfn>normal</dfn></td>
+            <td>То же, что <dfn>400</dfn>.</td>
+          </tr>
+          <tr>
+            <td><dfn>bold</dfn></td>
+            <td>То же, что <dfn>700</dfn>.</td>
+          </tr>
+          <tr>
+            <td><dfn>bolder</dfn></td>
+            <td>Указывает, что шрифт должен быть более жирным, чем родительский шрифт.</td>
+          </tr>
+          <tr>
+            <td><dfn>lighter</dfn></td>
+            <td>Указывает, что шрифт должен быть менее жирным, чем родительский шрифт.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>То, как именно числовые значения соответствуют реальной жирности шрифта, зависит от обозревателя.
+        Например, следующий фрагмент</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;
+  &lt;SPAN style=&quot;font-weight: 100&quot;&gt;100 &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-weight: 200&quot;&gt;200 &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-weight: 300&quot;&gt;300 &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-weight: 400&quot;&gt;400 &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-weight: 500&quot;&gt;500 &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-weight: 600&quot;&gt;600 &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-weight: 700&quot;&gt;700 &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-weight: 800&quot;&gt;800 &lt;/SPAN&gt;
+  &lt;SPAN style=&quot;font-weight: 900&quot;&gt;900 &lt;/SPAN&gt;
+&lt;/P&gt;</pre>
+      </div>
+
+      <p class="noindent">может отображаться так:</p>
+
+      <p><samp><span style="font-weight: 100">100 </span><span style="font-weight: 200">200 </span><span style="font-weight: 300">300
+        </span><span style="font-weight: 400">400 </span><span style="font-weight: 500">500 </span><span style="font-weight: 600">600
+        </span><span style="font-weight: 700">700 </span><span style="font-weight: 800">800 </span><span style="font-weight: 900">900
+        </span></samp></p>
+
+      <h4><a name="ref2826">2.8.2.6. Выключка шрифта: свойство font-stretch</a></h4>
+
+<pre class="syntax"><strong><a name="pfont-stretch">Синтаксис</a></strong>:  font-stretch: <dfn>normal</dfn> | <dfn>wider</dfn> | <dfn>narrower</dfn> | <dfn>ultra-condensed</dfn> | <dfn>extra-condensed</dfn> |
+                          <dfn>condensed</dfn> | <dfn>semi-condensed</dfn> | <dfn>semi-expanded</dfn> | <dfn>expanded</dfn> |
+                          <dfn>extra-expanded</dfn> | <dfn>ultra-expanded</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>font-stretch</strong> задает <em>выключку шрифта</em>, т.&nbsp;е. интервал
+        между символами при отображении содержимого элемента. Оно может иметь следующие значения (в
+        порядке увеличения выключки):</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>ultra-condensed</dfn></td>
+            <td>Сверхуплотненный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>extra-condensed</dfn></td>
+            <td>Сильно уплотненный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>condensed</dfn></td>
+            <td>Уплотненный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>semi-condensed</dfn></td>
+            <td>Полууплотненный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>normal</dfn></td>
+            <td>Обычный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>semi-expanded</dfn></td>
+            <td>Полуразреженный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>expanded</dfn></td>
+            <td>Разреженный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>extra-expanded</dfn></td>
+            <td>Сильно разреженный шрифт</td>
+          </tr>
+          <tr>
+            <td><dfn>ultra-expanded</dfn></td>
+            <td>Сверхразреженный шрифт</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Кроме того, имеется возможность задавать относительную разрядку шрифта:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>wider</dfn></td>
+            <td>Указывает, что шрифт должен быть более разреженным, чем родительский шрифт.</td>
+          </tr>
+          <tr>
+            <td><dfn>narrower</dfn></td>
+            <td>Указывает, что шрифт должен быть более уплотненным, чем родительский шрифт.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>То, как именно эти значения соответствуют реальной выключке шрифта, зависит от обозревателя.
+        Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;&lt;SPAN style=&quot;font-stretch: expanded&quot;&gt;Разрядка моя &lt;/SPAN&gt;(Л. И. Брежнев).&lt;/P&gt;</pre>
+      </div>
+
+      <h4><a name="ref2827">2.8.2.7. Размер шрифта: свойство font-size</a></h4>
+
+<pre class="syntax"><strong><a name="pfont-size">Синтаксис</a></strong>:  font-size: <dfn>xx-small</dfn> | <dfn>x-small</dfn> | <dfn>small</dfn> | <dfn>medium</dfn> | <dfn>large</dfn> | <dfn>x-large</dfn> |
+                       <dfn>xx-large</dfn> | <dfn>larger</dfn> | <dfn>smaller</dfn> | <a href="css01.htm#length">&lt;размер&gt;</a> | <a href="css01.htm#percentage">&lt;процент&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>medium</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да, наследуется вычисленное значение
+<strong>Проценты</strong>:   относительно размера отцовского шрифта
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту (4.0+)</pre>
+
+      <p>Свойство <strong>font-size</strong> задает <em>размер шрифта</em> для отображения содержимого
+        элемента. Оно может задаваться несколькими способами:</p>
+
+<pre class="syntax">  <dfn>xx-small</dfn> | <dfn>x-small</dfn> | <dfn>small</dfn> | <dfn>medium</dfn> | <dfn>large</dfn> | <dfn>x-large</dfn> | <dfn>xx-large</dfn>
+    Задает абсолютный размер шрифта (от наименьшего к наибольшему).
+  <dfn>smaller</dfn>  | <dfn>larger</dfn>
+    Задает размер шрифта относительно родительского шрифта (меньше или больше).
+  <a href="css01.htm#length">&lt;размер&gt;</a>
+    Задает фиксированный размер. Отрицательные размеры недопустимы.
+  <a href="css01.htm#percentage">&lt;процент&gt;</a>
+    Вычисляется относительно размера отцовского шрифта.</pre>
+
+      <p>Фактическое значение этого свойства может отличаться от вычисленного по двум причинам: если
+        шрифт не имеет заданного размера или под воздействием свойства <a href="#pfont-size-adjust"><strong>font-size-adjust</strong></a>.</p>
+
+      <p>CSS2 рекомендует, чтобы последовательные значения абсолютных размеров шрифта отличались для
+        экрана в 1.2 раза, однако это зависит от обозревателя. Пример отображения семи абсолютных размеров
+        шрифтов:</p>
+
+      <p style="text-align: center; text-indent: 0"><samp><span style="font-size: xx-small">xx-small</span><br>
+        <span style="font-size: x-small">x-small</span><br>
+        <span style="font-size: small">small</span><br>
+        <span style="font-size: medium">medium</span><br>
+        <span style="font-size: large">large</span><br>
+        <span style="font-size: x-large">x-large</span><br>
+        <span style="font-size: xx-large">xx-large</span></samp></p>
+
+      <h4><a name="ref2828">2.8.2.8. Аспект шрифта: свойство font-size-adjust</a></h4>
+
+<pre class="syntax"><strong><a name="pfont-size-adjust">Синтаксис</a></strong>:  font-size-adjust: <dfn>none</dfn> | <a href="css01.htm#number">&lt;число&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>font-size-adjust</strong> задает <em>аспект шрифта</em>. Поясним его назначение
+        подробнее.</p>
+
+      <p>В шрифтах, содержащих и строчные, и прописные буквы, субъективный внешний вид символа (т.&nbsp;е.
+        то, насколько он кажется искаженным человеческому глазу) зависит от соотношения значения свойства
+        <a href="#pfont-size"><strong>font-size</strong></a> и величины <strong>x-height</strong>;
+        в действительности, определяющим является их отношение, которое называется <em>аспектом шрифта</em>
+        (aspect value) и равно <dfn>font-size / x-height</dfn>. Чем меньше аспект шрифта, тем скорее
+        шрифт становится искаженным при уменьшении его размеров. Поэтому простое задание размера шрифта
+        может приводить к неприятному для глаза отображению его символов.</p>
+
+      <p>Допустим теперь, что свойство <a href="#pfont-family"><strong>font-family</strong></a>
+        содержит список из нескольких названий шрифтов. Ясно, что размеры шрифта для отображения данного
+        элемента подбирались автором, исходя из того, что он будет отображаться первым шрифтом в списке.
+        Если же этот шрифт отсутствует на компьютере-клиенте, то обозреватель использует второй шрифт
+        из списка. Но аспект этого шрифта имеет иное значение, чем аспект первого и, в итоге, внешний
+        вид отображаемого текста может быть искажен. Для того, чтобы уменьшить возможное искажение,
+        необходимо пересчитать размер символов для второго шрифта с учетом изменения аспекта. Но для
+        этого обозреватель должен знать аспект первого шрифта, который на его компьютере как раз и отсутствует!
+        Именно для того, чтобы сообщить ему эту информацию, и было введено данное свойство, которое
+        может иметь следующие значения:</p>
+
+<pre class="syntax">  <dfn>none</dfn>
+    Не корректировать размер шрифта.
+  <a href="css01.htm#number">&lt;число&gt;</a>
+    Задает аспект шрифта, как описано выше.</pre>
+
+      <p>Рассмотрим следующий пример:</p>
+
+      <div class="code">
+<pre class="code">P {font-family: Verdana, sans-serif; font-size: 14px; font-size-adjust: 0.58 }</pre>
+      </div>
+
+      <p>Шрифт Verdana имеет аспект 0.58, что и указано в значении свойства <strong>font-size-adjust</strong>.
+        Если этот шрифт недоступен, то обозреватель использует родовой шрифт <dfn>sans-serif</dfn>.
+        Допустим, что аспект этого шрифта равен 0.46. Тогда обозреватель пересчитает размер шрифта <dfn>sans-serif</dfn>
+        по формуле 14px * (0.58 / 0.46) = 17.65px и будет отображать абзацы шрифтом с размером 18px (с
+        учетом округления).</p>
+
+      <h4><a name="ref2829">2.8.2.9. Свойства шрифта: свойство font</a></h4>
+
+<pre class="syntax"><strong><a name="pfont">Синтаксис</a></strong>:  font: [[<a href="#pfont-style">&lt;font-style&gt;</a> || <a href="#pfont-variant">&lt;font-variant&gt;</a> || <a href="#pfont-weight">&lt;font-weight&gt;</a>]? <a href="#pfont-size">&lt;font-size&gt;</a>
+                  [/ <a href="css06.htm#pline-height">&lt;line-height&gt;</a> ]? <a href="#pfont-family">&lt;font-family&gt;</a>] | caption | icon | menu |
+                  message-box | small-caption | status-bar | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   не определено для сокрашений
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   применимы только в <a href="#pfont-size">&lt;font-size&gt;</a> и <a href="css06.htm#pline-height">&lt;line-height&gt;</a>
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>font</strong> является сокращением для свойств <strong><a href="#pfont-style">font-style</a></strong>,
+        <strong><a href="#pfont-variant">font-variant</a></strong>, <strong><a href="#pfont-weight">font-weight</a></strong>,
+        <strong><a href="#pfont-size">font-size</a></strong>, <strong><a href="#pfont-family">font-family</a></strong>
+        и <strong><a href="css06.htm#pline-height">line-height</a></strong>. Оно позволяет задать все
+        свойства шрифта одновременно. При этом сначала всем свойствам шрифта (включая <a href="#pfont-stretch"><strong>font-stretch</strong></a>
+        и <a href="#pfont-size-adjust"><strong>font-size-adjust</strong></a>, хотя значения
+        этих свойств данным свойством заданы быть не могут) присваиваются их начальные значения, а затем
+        изменяются значения тех свойств, которые явно заданы в данном свойстве. Приведем несколько примеров:</p>
+
+      <div class="code">
+        <pre>P { font: 12pt/14pt sans-serif }
+P { font: 80% sans-serif }
+P { font: x-large/110% &quot;new century schoolbook&quot;, serif }
+P { font: bold italic large Georgia, serif; font-size-adjust: 1.16 }
+P { font: normal small-caps 120%/120% fantasy }
+P { font: oblique 12pt Helvetica, serif; font-stretch: condensed }</pre>
+      </div>
+
+      <p>Это свойство позволяет также указать, что необходимо использовать один из системных шрифтов;
+        в этом случае задается только название системного шрифта, и никакие другие характеристики шрифта
+        указывать больше нельзя. Существуют следующие названия системных шрифтов:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>caption</dfn></td>
+            <td>Шрифт текста управляющих элементов (кнопок, меток и т.&nbsp;д.)</td>
+          </tr>
+          <tr>
+            <td><dfn>icon</dfn></td>
+            <td>Шрифт меток иконок</td>
+          </tr>
+          <tr>
+            <td><dfn>menu</dfn></td>
+            <td>Шрифт пунктов меню</td>
+          </tr>
+          <tr>
+            <td><dfn>message-box</dfn></td>
+            <td>Шрифт диалоговых окон</td>
+          </tr>
+          <tr>
+            <td><dfn>small-caption</dfn></td>
+            <td>Шрифт текста малых управляющих элементов</td>
+          </tr>
+          <tr>
+            <td><dfn>status-bar</dfn></td>
+            <td>Шрифт статусной строки</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Пример отображения системных шрифтов:</p>
+
+      <p style="text-align: center; text-indent: 0"><samp><span style="font: caption">caption</span><br>
+        <span style="font: icon">icon</span><br>
+        <span style="font: menu">menu</span><br>
+        <span style="font: messag-boxe">message-box</span><br>
+        <span style="font: small-caption">small-caption</span><br>
+        <span style="font: status-bar">status-bar</span></samp></p>
+
+      <h3><a name="ref283">2.8.3. Подбор и загрузка шрифтов</a></h3>
+
+      <h4><a name="ref2831">2.8.3.1. Подбор шрифта</a></h4>
+
+      <p>В этом разделе полностью описан механизм CSS по работе со шрифтами, основанный на их подборе,
+        синтезе на основе базы данных или загрузке из Веб-узлов. Существуют четыре разновидности реализации
+        этого механизма:</p>
+
+      <dl>
+        <dt><strong>Подбор шрифта по его имени</strong></dt>
+        <dd>В этом случае обозреватель использует шрифт, установленный на компьютере-клиенте и имеющий
+          то же имя, что и запрошенный шрифт (при этом и гарнитура, и метрические характеристики шрифта
+          могут оказаться отличными от авторских, если автор и пользователь загружали шрифты из разных
+          источников).Таким образом, единственной основой для подбора шрифта является его имя. Это единственный
+          метод, который использовался в CSS1 и который описан в предыдущем разделе.</dd>
+        <dt><strong>Подбор шрифта по его характеристикам</strong></dt>
+        <dd>В этом случае обозреватель использует шрифт, установленный на компьютере-клиенте и имеющий
+          тот же внешний вид, что и запрошенный шрифт (при этом метрические характеристики шрифта могут
+          оказаться отличными от авторских). Основой для подбора шрифта в данном случае служат такие
+          его характеристики, как тип шрифта (текстовый или символьный), наличие или отсутствие засечек,
+          жирность, высота строчных и прописных букв, наклон символов и т.&nbsp;п.</dd>
+        <dt><strong>Синтез шрифта</strong></dt>
+        <dd>В этом случае обозреватель создает шрифт, не только имеющий тот же внешний вид, что и запрошенный
+          шрифт, но и соответствующий ему по метрическим характеристикам. Для такого синтеза шрифта
+          необходима более точная информация, чем в схемам подбора шрифта. В частности, обозревателю
+          необходимо знать точные ширины всех символов и правила отображения кодов Unicode в соответствующие
+          изображения.</dd>
+        <dt><strong>Загрузка шрифта</strong></dt>
+        <dd>Обозреватель может, наконец, загрузить искомый шрифт из заданного Веб-узла аналогично тому,
+          как при отображении документа загружаются графические образы, Java-аплеты и другие объекты.
+          Это, однако, может приводить к существенной задержке при загрузке документа.</dd>
+      </dl>
+
+      <p>Из четырех перечисленных схем в современных обозревателях реализованы две: первая и последняя.
+        Первая схема была описана в предыдущем разделе, а последняя, связанная с загрузкой шрифтов из
+        Сети, описывается здесь.</p>
+
+      <h4><a name="ref2832">2.8.3.2. Директива @font-face</a></h4>
+
+      <p>Директива <strong>@font-face</strong> позволяет нам включать в свою таблицу стилей <em>описания
+        шрифтов</em>. Она состоит из набора <em>дескрипторов шрифта</em> и их значений и имеет следующий
+        вид:</p>
+
+<pre class="syntax">@font-face {
+  дескриптор: значение;
+  ...
+  дескриптор: значение;
+}</pre>
+
+      <p>Дескрипторы шрифтов можно разбить на три группы:</p>
+
+      <ol>
+        <li>дескрипторы, обеспечивающие связь между описанием шрифта и его использованием в свойствах
+          CSS (они имеют те же названия, что и соответствующие свойства);</li>
+        <li>дескриптор, задающий URI, на котором находятся данные шрифта для загрузки;</li>
+        <li>дескрипторы, задающие дальнейшие характеристики шрифта и обеспечивающие связь описания шрифта
+          с его данными.</li>
+      </ol>
+
+      <p>Пример директивы <strong>@font-face</strong>:</p>
+
+      <div class="code">
+<pre class="code">@font-face {
+  font-family: comic;			    // имя шрифта для CSS
+  src: url(http://www.fonts.com/comic.eot); // адрес файла для загрузки
+}</pre>
+      </div>
+
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Поддерживаются только дескрипторы font-family и src (5.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <h4><a name="ref2833">2.8.3.3. Дескрипторы свойств шрифта</a></h4>
+
+      <p>Эта группа дескрипторов имеет те названия, что и соответствующие свойства CSS и могут иметь
+        одно значение или несколько значений, разделенных запятыми. Если дескриптор не указан в директиве
+        <a href="#ref2832"><strong>@font-face</strong></a>, то принимается его начальное значение.</p>
+
+<pre class="syntax"><strong><a name="dfont-family">Синтаксис</a></strong>:  font-family: [<a href="#family-name">&lt;имя-семейства&gt;</a> | <a href="#generic-family">&lt;родовое-имя&gt;</a>]
+                         [,[<a href="#family-name">&lt;имя-семейства&gt;</a> | <a href="#generic-family">&lt;родовое-имя&gt;</a>]]*
+<strong>Начально</strong>:   зависит от обозревателя
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (5.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>список имен семейств шрифтов</em> и принимает те же значения, что
+        и свойство <a href="#pfont-family"><strong>font-family</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="dfont-style">Синтаксис</a></strong>:  font-style: <dfn>all</dfn> | [<dfn>normal</dfn> | <dfn>italic</dfn> | <dfn>oblique</dfn>][,[<dfn>normal</dfn> | <dfn>italic</dfn> | <dfn>oblique</dfn>]]*
+<strong>Начально</strong>:   <dfn>all</dfn>
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>стиль шрифта</em> и может принимать те же значения, что и свойство
+        <a href="#pfont-style"><strong>font-style</strong></a>. Единственное отличие состоит
+        в том, что его значением может быть список стилей или значение <dfn>all</dfn> (все стили).</p>
+
+<pre class="syntax"><strong><a name="dfont-variant">Синтаксис</a></strong>:  font-variant: [<dfn>normal</dfn> | <dfn>small-caps</dfn>][,[<dfn>normal</dfn> | <dfn>small-caps</dfn>]]*
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>вариант шрифта</em> и может принимать те же значения, что и свойство
+        <a href="#pfont-variant"><strong>font-variant</strong></a>. Единственное отличие состоит
+        в том, что его значением может быть список вариантов.</p>
+
+<pre class="syntax"><strong><a name="dfont-weight">Синтаксис</a></strong>:  font-weight: <dfn>all</dfn> | [<dfn>normal</dfn> | <dfn>bold</dfn> | <dfn>100</dfn> | <dfn>200</dfn> | <dfn>300</dfn> | <dfn>400</dfn> | <dfn>500</dfn> | <dfn>600</dfn> | <dfn>700</dfn> |
+                         <dfn>800</dfn> | <dfn>900</dfn>][,[<dfn>normal</dfn> | <dfn>bold</dfn> | <dfn>100</dfn> | <dfn>200</dfn> | <dfn>300</dfn> | <dfn>400</dfn> | <dfn>500</dfn> | <dfn>600</dfn> |
+                         <dfn>700</dfn> | <dfn>800</dfn> | <dfn>900</dfn>]]*
+<strong>Начально</strong>:   <dfn>all</dfn>
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>жирность шрифта</em> и может принимать те же значения, что и свойство
+        <a href="#pfont-weight"><strong>font-weight</strong></a>, со следующими отличиями:</p>
+
+      <ul>
+        <li>относительные значения (<dfn>bolder</dfn> и <dfn>lighter</dfn>) не допускаются;</li>
+        <li>значением может быть список жирностей;</li>
+        <li>значением может быть <dfn>all</dfn> (все жирности).</li>
+      </ul>
+
+<pre class="syntax"><strong><a name="dfont-stretch">Синтаксис</a></strong>:  font-stretch: <dfn>all</dfn> | [<dfn>normal</dfn> | <dfn>ultra-condensed</dfn> | <dfn>extra-condensed</dfn> |
+                          <dfn>condensed</dfn> | <dfn>semi-condensed</dfn> | <dfn>semi-expanded</dfn> | <dfn>expanded</dfn> |
+                          <dfn>extra-expanded</dfn> | <dfn>ultra-expanded</dfn>][,[<dfn>normal</dfn> | <dfn>ultra-condensed</dfn> |
+                          <dfn>extra-condensed</dfn> | <dfn>condensed</dfn> | <dfn>semi-condensed</dfn> | <dfn>semi-expanded</dfn> |
+                          <dfn>expanded</dfn> | <dfn>extra-expanded</dfn> | <dfn>ultra-expanded</dfn>]]*
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>выключку шрифта</em> и может принимать те же значения, что и свойство
+        <a href="#pfont-stretch"><strong>font-stretch</strong></a>, со следующими отличиями:</p>
+
+      <ul>
+        <li>относительные значения (<dfn>wider</dfn> и <dfn>narrower</dfn>) не допускаются;</li>
+        <li>значением может быть список выключек;</li>
+        <li>значением может быть <dfn>all</dfn> (все выключки).</li>
+      </ul>
+
+<pre class="syntax"><strong><a name="dfont-size">Синтаксис</a></strong>:  font-size: <dfn>all</dfn> | <a href="css01.htm#length">&lt;размер&gt;</a> | [,<a href="css01.htm#length">&lt;размер&gt;</a>]*
+<strong>Начально</strong>:   <dfn>all</dfn>
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>размер шрифта</em> и может принимать те же значения, что и свойство
+        <a href="#pfont-size"><strong>font-size</strong></a>, со следующими отличиями:</p>
+
+      <ul>
+        <li>допускаются только абсолютные размеры шрифтов;</li>
+        <li>значением может быть список размеров;</li>
+        <li>значением может быть <dfn>all</dfn> (все размеры).</li>
+      </ul>
+
+      <h4><a name="ref2834">2.8.3.4. Дескриптор местоположения шрифта</a></h4>
+
+<pre class="syntax"><strong><a name="dsrc">Синтаксис</a></strong>:  src: [<a href="css01.htm#uri">&lt;uri&gt;</a> [<dfn>format</dfn>(<a href="css01.htm#string">&lt;строка&gt;</a> [,<a href="css01.htm#string">&lt;строка&gt;</a>]*)] | <a href="#font-face-name">&lt;спецификация-шрифта&gt;</a>]
+                 [,<a href="css01.htm#uri">&lt;uri&gt;</a> [<dfn>format</dfn>(<a href="css01.htm#string">&lt;строка&gt;</a> [,<a href="css01.htm#string">&lt;строка&gt;</a>]*)] | <a href="#font-face-name">&lt;спецификация-шрифта&gt;</a>]*
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Поддерживается в виде src: url(<em>URI</em>), где <em>URI</em> указывает на шрифт
+               формата Embedded OpenType (5.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>местоположение шрифта</em>. Его значением является список ссылок
+        на файлы данных шрифтов. Каждая из ссылок представляет собой либо URI внешнего шрифта, загружаемого
+        из Веб-узла, либо спецификацию локального шрифта, установленного на компьютере-клиенте. Список
+        содержит ссылки в порядке их приоритетов, т.&nbsp;е. сначала обозреватель пытается загрузить
+        шрифт из первой ссылки, затем, если это не удалось, из второй и т.&nbsp;д.</p>
+
+      <p>URI внешнего шрифта может сопровождаться подсказкой <dfn>format(...)</dfn>, содержащей информацию
+        о формате файла шрифта, для того, чтобы обозреватель мог игнорировать те шрифты, формат которых
+        он не поддерживает. Спецификация CSS перечисляет следующие типичные форматы шрифтов:</p>
+
+      <div class="indent">
+        <table cellspacing="0" border="1" cellpadding="5">
+          <caption><a name="table26">Таблица 2.6. Форматы загружаемых шрифтов</a></caption>
+          <tr>
+            <th>Строка</th>
+            <th>Формат шрифта</th>
+            <th>Расширение файла</th>
+          </tr>
+          <tr>
+            <td>&quot;embedded-opentype&quot;</td>
+            <td><a href="glossary.htm#opentype">Embedded OpenType</a></td>
+            <td>.eot, .ote</td>
+          </tr>
+          <tr>
+            <td>&quot;intellifont&quot;</td>
+            <td><a href="glossary.htm#intellifont">Intellifont</a></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&quot;openType&quot;</td>
+            <td><a href="glossary.htm#opentype">OpenType</a>, включая TrueType Open</td>
+            <td>.ttf</td>
+          </tr>
+          <tr>
+            <td>&quot;speedo&quot;</td>
+            <td><a href="glossary.htm#speedo">Speedo</a></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&quot;truedoc-pfr&quot;</td>
+            <td><a href="glossary.htm#truedoc">TrueDoc™ Portable Font Resource</a></td>
+            <td>.pfr</td>
+          </tr>
+          <tr>
+            <td>&quot;truetype&quot;</td>
+            <td><a href="glossary.htm#ttf">TrueType</a></td>
+            <td>.ttf</td>
+          </tr>
+          <tr>
+            <td>&quot;truetype-gx&quot;</td>
+            <td><a href="glossary.htm#ttf">TrueType</a> с расширениями GX</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&quot;type-1&quot;</td>
+            <td><a href="glossary.htm#posttype1">PostScript™ Type 1</a></td>
+            <td>.pfb, .pfa </td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Примеры ссылок на загружаемые шрифты:</p>
+
+      <div class="code">
+<pre class="code">src: url(http://www.fonts.com/comic.eot);
+src: url(&quot;http://site/magda-extra.pfr&quot;) format(&quot;truedoc-pfr&quot;);</pre>
+      </div>
+
+      <p><a name="font-face-name">Ссылка на локальный шрифт задается <em>спецификацией шрифта</em> вида
+        <dfn>local(</dfn><em>имя</em><dfn>)</dfn>, где <em>имя</em> - это полное название шрифта в операционной
+        системе (например, в Windows <em>имя</em> должно совпадать с названием шрифта в системном реестре).</a>
+        Пример ссылки на локальный шрифт:</p>
+
+      <div class="code">
+<pre class="code">src: local(&quot;BT Century 751 No. 2 Semi Bold Italic&quot;);</pre>
+      </div>
+
+      <p>Пример полного синтаксиса:</p>
+
+      <div class="code">
+<pre class="code">src: local(&quot;T-26 Typeka Mix&quot;), url(&quot;http://cgi-bin/bar?stuff&quot;)
+     format(&quot;type-1&quot;, &quot;opentype&quot;);</pre>
+      </div>
+
+      <p>Последний пример содержит две ссылки. Сначала обозреватель попытается загрузить локальный шрифт
+        &quot;T-26 Typeka Mix&quot;, а затем, если он не найден, будет загружать шрифт с узла&quot;http://cgi-bin/bar?stuff&quot;.
+        В данном случае это сценарий сервера, который может генерировать искомый шрифт в двух форматах:
+        Type 1 и OpenType.</p>
+
+      <h4><a name="ref2835">2.8.3.5. Дескриптор диапазона символов</a></h4>
+
+<pre class="syntax"><strong><a name="dunicode-range">Синтаксис</a></strong>:  unicode-range: [<a href="#urange">&lt;диапазон&gt;</a>][,<a href="#urange">&lt;диапазон&gt;</a>]*
+<strong>Начально</strong>:   U+0-7FFFFFFF
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>диапазон символов шрифта</em>. Его значением является список диапазонов
+        символов Unicode, которые имеются в данном шрифте. (См. <a href="unicode.htm">перечень стандартных
+        подмножеств Unicode</a>.)</p>
+
+      <p><a name="urange">&lt;Диапазон&gt;</a> задается шестнадцатеричным числом, соответствующим коду
+        символа в Unicode, с префиксом &quot;U+&quot;. При этом знак вопроса &quot;?&quot; вместо шестнадцатеричной
+        цифры означает, что она принимает любое значение (0 - F), например:</p>
+
+      <div class="code">
+<pre class="code">unicode-range: U+20A7; // один символ (символ испанской песеты)
+unicode-range: U+215?; // диапазон от 2150 до 215F (символы простых дробей)
+unicode-range: U+00??; // диапазон от 0000 до 00FF (базовая латиница)
+unicode-range: U+4??; // диапазон от 0400 до 04FF (кириллица)</pre>
+      </div>
+
+      <p>Для задания диапазона используется также пара чисел, разделенных дефисом &quot;-&quot;, например:</p>
+
+      <div class="code">
+<pre class="code">unicode-range: U+4E00-9FFF; // диапазон от 4E00 до 9FFF (унифицированные иероглифы)</pre>
+      </div>
+
+      <p>В общем случае, значение данного дескриптора является списком таких диапазонов, охватывающим
+        все символы, содержащиеся в данном шрифте, например:</p>
+
+      <div class="code">
+<pre class="code">unicode-range: U+370-3FF, U+1F??; // современные греческие буквы (370-3FF) и
+                                  // древнегреческие политонические буквы (1F00-1FFF)
+unicode-range: U+3000-303F, U+3100-312F, U+32??, U+33??, U+4E00-9FFF, U+F900-FAFF,
+               U+FE30-FE4F;       // полный китайский шрифт</pre>
+      </div>
+
+      <h4><a name="ref2836">2.8.3.6. Дескриптор координатной системы</a></h4>
+
+<pre class="syntax"><strong><a name="dunits-per-em">Синтаксис</a></strong>:  units-per-em: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>координатную систему метрики шрифта</em>. Его значением является
+        количество координатных единиц в стороне квадрата, который содержит наибольший символ шрифта
+        (обычно это буква 'M', отсюда название <em>em-квадрат</em>). Это значение обычно определяется
+        форматом шрифта. Типичные примеры его значений: 250 (Intellifont), 1000 (Type 1) и 2048 (TrueType,
+        TrueType GX и OpenType).</p>
+
+      <h4><a name="ref2837">2.8.3.7. Дескрипторы для подбора шрифтов</a></h4>
+
+      <p>Эта группа необязательных дескрипторов предназначена для подбора шрифта по его характеристикам.</p>
+
+<pre class="syntax"><strong><a name="dpanose-1">Синтаксис</a></strong>:  panose-1: <a href="css01.htm#integer">&lt;целое&gt;</a> {10}
+<strong>Начально</strong>:   0 0 0 0 0 0 0 0 0 0
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Это дескриптор <em>чисел Panose-1</em>. Его значением является десять целых чисел, разделенных
+        пробелами. Panose-1&nbsp;&#151; это стандартный механизм классификации и подбора шрифтов TrueType,
+        пригодный для всех шрифтов, имеющих строчные и прописные буквы (латиница, кириллица, греческое
+        письмо), но не позволяющий классифицировать другие системы письма (например, однорегистровые
+        письменности, такие, как армянское, арабское или ивритское письмо, и иероглифические, такие,
+        как китайское, корейское или японское письмо). Подробности см. в <a href="http://www.fonts.com/hp/panose/greybook" target="_blank">http://www.fonts.com/hp/panose/greybook</a>
+        <img src="images/extref.gif" alt="Внешняя ссылка">.</p>
+
+<pre class="syntax"><strong><a name="dstemv">Синтаксис</a></strong>:  stemv: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>ширину вертикального штриха</em> (vertical stem width) символов
+        шрифта. Если он присутствует в описании шрифта, то должен присутствовать и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="dstemh">Синтаксис</a></strong>:  stemh: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>ширину горизонтального штриха</em> (horizontal stem width) символов
+        шрифта. Если он присутствует в описании шрифта, то должен присутствовать и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="dslope">Синтаксис</a></strong>:  slope: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   0
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>угол наклона</em> (vertical stroke angle) в градусах символов шрифта
+        от вертикали против часовой стрелки (поэтому если символы наклонены вправо, то он отрицателен).</p>
+
+<pre class="syntax"><strong><a name="dcap-height">Синтаксис</a></strong>:  cap-height: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>высоту прописных букв</em> шрифта. Если он присутствует в описании
+        шрифта, то должен присутствовать и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="dx-height">Синтаксис</a></strong>:  x-height: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>высоту строчных букв</em> шрифта. Если он присутствует в описании
+        шрифта, то должен присутствовать и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="dascent">Синтаксис</a></strong>:  ascent: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>максимальную высоту символов</em> шрифта без учета диакритических
+        знаков (maximum unaccented height). Если он присутствует в описании шрифта, то должен присутствовать
+        и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="ddescent">Синтаксис</a></strong>:  descent: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>максимальную глубину символов</em> шрифта без учета диакритических
+        знаков (maximum unaccented depth). Если он присутствует в описании шрифта, то должен присутствовать
+        и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+      <h4><a name="ref2838">2.8.3.8. Дескрипторы для синтеза шрифтов</a></h4>
+
+      <p>Эта группа необязательных дескрипторов предназначена для синтеза шрифта и задает его дополнительные
+        метрические характеристики.</p>
+
+<pre class="syntax"><strong><a name="dwidths">Синтаксис</a></strong>:  widths: [<a href="#urange">&lt;диапазон&gt;</a>]?[<a href="css01.htm#number">&lt;число&gt;</a>]+[,[<a href="#urange">&lt;диапазон&gt;</a>]?[<a href="css01.htm#number">&lt;число&gt;</a>]+]
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>ширины символов шрифта</em>. Его значением является список диапазонов
+        символов, за каждым из которых следует одно или более значение ширины. Если этот дескриптор
+        присутствует в описании шрифта, то должен присутствовать и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.
+        Если диапазон опущен, то он предполагается равным <dfn>U+0-7FFFFFFF</dfn>, т.&nbsp;е. распространяется
+        на все символы шрифта. Если количество заданных ширин меньше, чем символов в диапазоне, то последняя
+        из ширин применяется ко всем символам, чья ширина не указана; если же ширин больше, чем символов,
+        то лишние ширины игнорируются. Поясним сказанное на примерах:</p>
+
+      <div class="code">
+<pre class="code">widths: U+4E00-4E1F 1736 1874 1692;
+widths: U+1A?? 1490, U+215? 1473 1838 1927 1684 1356 1792
+        1815 1848 1870 1492 1715 1745 1584 1992 1978 1770;</pre>
+      </div>
+
+      <p>В первом примере указан диапазон из 32 символов, от 4E00 до 4E1F. Первый символ (с кодом 4E00)
+        будет иметь ширину 1736, второй символ&nbsp;&#151; ширину 1874, третий&nbsp;&#151; ширину 1692.
+        Поскольку ширин задано меньше, чем символов, последняя ширина (1692) будет присвоена всем остальным
+        символам. Во втором примере задается единая ширина для 256 символов в диапазоне от 1A00 до 1AFF,
+        а затем явно указываются ширины еще для 16 символов.</p>
+
+<pre class="syntax"><strong><a name="dbbox">Синтаксис</a></strong>:  bbox: <a href="css01.htm#number">&lt;число&gt;</a>,<a href="css01.htm#number">&lt;число&gt;</a>,<a href="css01.htm#number">&lt;число&gt;</a>,<a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор определяет <em>максимальный объемлющий прямоугольник</em> (maximal bounding
+        box) шрифта. Его значением является список из четырех чисел, которые задают соответственно абсциссу
+        левого нижнего угла, ординату левого нижнего угла, абсциссу верхнего правого угла и ординату
+        верхнего правого угла объемлющего прямоугольника для всех символов шрифта.</p>
+
+<pre class="syntax"><strong><a name="ddefinition-src">Синтаксис</a></strong>:  definition-src: <a href="css01.htm#uri">&lt;uri&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор указывает, что остальные дескрипторы шрифта содержатся не в таблице стилей,
+        а в отдельном <em>ресурсе описания шрифта</em>, который хранится в указанном URI. Его использование
+        позволяет сэкономить объем данных, передаваемых по сети, если многие таблицы стилей обращаются
+        к одним и тем же шрифтам.</p>
+
+      <h4><a name="ref2839">2.8.3.9. Дескрипторы для выравнивания шрифтов</a></h4>
+
+      <p>Эта группа необязательных дескрипторов предназначена для выравнивания шрифта относительно других
+        шрифтов.</p>
+
+<pre class="syntax"><strong><a name="dbaseline">Синтаксис</a></strong>:  baseline: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   0
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>нижнюю базовую линию</em> символов шрифта. Если он присутствует
+        в описании шрифта, то должен присутствовать и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="dcenterline">Синтаксис</a></strong>:  centerline: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>центральную базовую линию</em> символов шрифта. Если он присутствует
+        в описании шрифта, то должен присутствовать и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="dmathline">Синтаксис</a></strong>:  mathline: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>математическую базовую линию</em> символов шрифта. Если он присутствует
+        в описании шрифта, то должен присутствовать и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="dtopline">Синтаксис</a></strong>:  topline: <a href="css01.htm#number">&lt;число&gt;</a>
+<strong>Начально</strong>:   не определено
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>верхнюю базовую линию</em> символов шрифта. Если он присутствует
+        в описании шрифта, то должен присутствовать и дескриптор <a href="#dunits-per-em"><strong>units-per-em</strong></a>.</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

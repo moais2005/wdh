@@ -1,0 +1,1328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Поддержка языка HTML обозревателями</title>
+<link rel="Prev" href="deprecat.htm" title="Устаревшие и нестандартные элементы HTML">
+<link rel="Next" href="defcss.htm" title="Рекомендуемая таблица стилей для HTML">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h1><a name="supphtml">Приложение 11.<br>
+        Поддержка языка HTML обозревателями</a></h1>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <caption><a name="table111a">Таблица П11.1. Поддержка элементов HTML обозревателями</a></caption>
+        <tr>
+          <th>Элемент HTML</th>
+          <th>Internet Explorer</th>
+          <th>Netscape Navigator</th>
+        </tr>
+        <tr>
+          <td><strong><a href="html06.htm#ea">A</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong><a href="html03.htm#eabbr">ABBR</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong><a href="html03.htm#eacronym">ACRONYM</a></strong></td>
+          <td>Да, подсказка в <strong>title</strong></td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html10.htm#eaddress"><strong>ADDRESS</strong></a></td>
+          <td>Да, курсивный шрифт</td>
+          <td>Да, курсивный шрифт</td>
+        </tr>
+        <tr>
+          <td><a href="html06.htm#earea"><strong>AREA</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#eb"><strong>B</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html02.htm#ebase"><strong>BASE</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html10.htm#ebdo"><strong>BDO</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#ebig"><strong>BIG</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#eblockquote"><strong>BLOCKQUOTE</strong></a></td>
+          <td>Да, отступ вправо</td>
+          <td>Да, отступ вправо</td>
+        </tr>
+        <tr>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#ebr"><strong>BR</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#ebutton"><strong>BUTTON</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#ecaption"><strong>CAPTION</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#ecite"><strong>CITE</strong></a></td>
+          <td>Да, курсивный шрифт</td>
+          <td>Да, курсивный шрифт</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#ecode"><strong>CODE</strong></a></td>
+          <td>Да, телетайпный шрифт</td>
+          <td>Да, телетайпный шрифт</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#ecol"><strong>COL</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#ecolgroup"><strong>COLGROUP</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html04.htm#edd"><strong>DD</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#edel"><strong>DEL</strong></a></td>
+          <td>Да, перечеркнутый шрифт</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#edfn"><strong>DFN</strong></a></td>
+          <td>Да, курсивный шрифт</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html10.htm#ediv"><strong>DIV</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html04.htm#edl"><strong>DL</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html04.htm#edt"><strong>DT</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#eem"><strong>EM</strong></a></td>
+          <td>Да, курсивный шрифт</td>
+          <td>Да, курсивный шрифт</td>
+        </tr>
+        <tr>
+          <td><strong><a href="deprecat.htm#eembed">EMBED</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#efieldset"><strong>FIELDSET</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#eform"><strong>FORM</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html07.htm#eframe"><strong>FRAME</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html07.htm#eframeset"><strong>FRAMESET</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#eh"><strong>H1&nbsp;&#151; H6</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html02.htm#ehead"><strong>HEAD</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html10.htm#ehr"><strong>HR</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html02.htm#ehtml"><strong>HTML</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#ei"><strong>I</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html07.htm#eiframe"><strong>IFRAME</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html06.htm#eimg"><strong>IMG</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#einput"><strong>INPUT</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#eins"><strong>INS</strong></a></td>
+          <td>Да, подчеркнутый шрифт</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#ekbd"><strong>KBD</strong></a></td>
+          <td>Да, телетайпный шрифт</td>
+          <td>Да, телетайпный шрифт</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#elabel"><strong>LABEL</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#elegend"><strong>LEGEND</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html04.htm#eli"><strong>LI</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html02.htm#elink"><strong>LINK</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html06.htm#emap"><strong>MAP</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html02.htm#emeta"><strong>META</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong><a href="deprecat.htm#enobr">NOBR</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html07.htm#enoframes"><strong>NOFRAMES</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html09.htm#enoscript"><strong>NOSCRIPT</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html06.htm#eobject"><strong>OBJECT</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html04.htm#eol"><strong>OL</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#eoptgroup"><strong>OPTGROUP</strong></a></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#eoption"><strong>OPTION</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#ep"><strong>P</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html06.htm#eparam"><strong>PARAM</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#epre"><strong>PRE</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#eq"><strong>Q</strong></a></td>
+          <td>Да, без добавления кавычек</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#esamp"><strong>SAMP</strong></a></td>
+          <td>Да, телетайпный шрифт</td>
+          <td>Да, телетайпный шрифт</td>
+        </tr>
+        <tr>
+          <td><a href="html09.htm#escript"><strong>SCRIPT</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#eselect"><strong>SELECT</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#esmall"><strong>SMALL</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html10.htm#espan"><strong>SPAN</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#estrong"><strong>STRONG</strong></a></td>
+          <td>Да, полужирный шрифт</td>
+          <td>Да, полужирный шрифт</td>
+        </tr>
+        <tr>
+          <td><a href="html02.htm#estyle"><strong>STYLE</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#esubsup"><strong>SUB</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#esubsup"><strong>SUP</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#etable"><strong>TABLE</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#etbody"><strong>TBODY</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#etd"><strong>TD</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html08.htm#etextarea"><strong>TEXTAREA</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#etfoot"><strong>TFOOT</strong></a></td>
+          <td>Да, без прокрутки</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#ethead"><strong>THEAD</strong></a></td>
+          <td>Да, без прокрутки</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html02.htm#etitle"><strong>TITLE</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html05.htm#etr"><strong>TR</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#ett"><strong>TT</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html04.htm#eul"><strong>UL</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html03.htm#evar"><strong>VAR</strong></a></td>
+          <td>Да, курсивный шрифт</td>
+          <td>Да, курсивный шрифт</td>
+        </tr>
+        <tr>
+          <td><strong><a href="deprecat.htm#ewbr">WBR</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+      </table>
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <caption><a name="table112a">Таблица П11.2. Поддержка атрибутов HTML обозревателями</a></caption>
+        <tr>
+          <th>Атрибут</th>
+          <th>Элемент HTML</th>
+          <th>Internet Explorer</th>
+          <th>Netscape Navigator</th>
+        </tr>
+        <tr>
+          <td><strong>abbr</strong></td>
+          <td><strong><a href="html05.htm#etd">TD</a></strong>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>accept</strong></td>
+          <td><strong><a href="html08.htm#eform">FORM</a></strong>, <strong><a
+    href="html08.htm#einput">INPUT</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>accept-charset</strong></td>
+          <td><strong><a href="html08.htm#eform">FORM</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>accesskey</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <a href="html06.htm#earea"><strong>AREA</strong></a>,
+            <a href="html08.htm#ebutton"><strong>BUTTON</strong></a>, <a href="html08.htm#einput"><strong>INPUT</strong></a>,
+            <a href="html08.htm#elabel"><strong>LABEL</strong></a>, <a href="html08.htm#elegend"><strong>LEGEND</strong></a>,
+            <strong><a href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да; клавиша, заданная в <strong>accesskey</strong>, должна нажиматься вместе с Alt</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>action</strong></td>
+          <td><strong><a href="html08.htm#eform">FORM</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>align</strong></td>
+          <td><strong><a href="html05.htm#ecol">COL</a></strong>, <strong><a
+    href="html05.htm#ecolgroup">COLGROUP</a></strong>, <strong><a href="html05.htm#etbody">TBODY</a></strong>,
+            <strong><a href="html05.htm#etfoot">TFOOT</a></strong>, <strong><a href="html05.htm#ethead">THEAD</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>align</strong></td>
+          <td><strong><a href="html05.htm#etd">TD</a></strong>, <strong><a href="html05.htm#eth">TH</a></strong>,
+            <strong><a href="html05.htm#etr">TR</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>alt</strong></td>
+          <td><strong><a href="html06.htm#earea">AREA</a></strong>, <strong><a
+    href="html08.htm#einput">INPUT</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>alt</strong></td>
+          <td><strong><a href="html06.htm#eimg">IMG</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>archive</strong></td>
+          <td><strong><a href="html06.htm#eobject">OBJECT</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>axis</strong></td>
+          <td><strong><a href="html05.htm#etd">TD</a></strong>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>border</strong></td>
+          <td><strong><a href="html05.htm#etable">TABLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>cellpadding</strong></td>
+          <td><strong><a href="html05.htm#etable">TABLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>cellspacing</strong></td>
+          <td><strong><a href="html05.htm#etable">TABLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>char</strong></td>
+          <td><strong><a href="html05.htm#ecol">COL</a></strong>, <strong><a
+    href="html05.htm#ecolgroup">COLGROUP</a></strong>, <strong><a href="html05.htm#etbody">TBODY</a></strong>,
+            <strong><a href="html05.htm#etd">TD</a></strong>, <strong><a href="html05.htm#etfoot">TFOOT</a></strong>,
+            <strong><a href="html05.htm#eth">TH</a></strong>, <strong><a href="html05.htm#ethead">THEAD</a></strong>,
+            <strong><a href="html05.htm#etr">TR</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>charoff</strong></td>
+          <td><strong><a href="html05.htm#ecol">COL</a></strong>, <strong><a
+    href="html05.htm#ecolgroup">COLGROUP</a></strong>, <strong><a href="html05.htm#etbody">TBODY</a></strong>,
+            <strong><a href="html05.htm#etd">TD</a></strong>, <strong><a href="html05.htm#etfoot">TFOOT</a></strong>,
+            <strong><a href="html05.htm#eth">TH</a></strong>, <strong><a href="html05.htm#ethead">THEAD</a></strong>,
+            <strong><a href="html05.htm#etr">TR</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>charset</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <a href="html02.htm#elink"><strong>LINK</strong></a>,
+            <strong><a href="html09.htm#escript">SCRIPT</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>checked</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>cite</strong></td>
+          <td><strong><a href="html03.htm#eblockquote">BLOCKQUOTE</a></strong>, <a
+    href="html03.htm#edel"><strong>DEL</strong></a>, <a href="html03.htm#eins"><strong>INS</strong></a>,
+            <strong><a href="html03.htm#eq">Q</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><a href="html01.htm#aclass"><strong>class</strong></a></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html02.htm#emeta"><strong>META</strong></a>,
+            <a href="html06.htm#eparam"><strong>PARAM</strong></a>, <a href="html09.htm#escript"><strong>SCRIPT</strong></a>,
+            <a href="html02.htm#estyle"><strong>STYLE</strong></a>, <a href="html02.htm#etitle"><strong>TITLE</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>classid</strong></td>
+          <td><strong><a href="html06.htm#eobject">OBJECT</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>codebase</strong></td>
+          <td><strong><a href="html06.htm#eobject">OBJECT</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>codetype</strong></td>
+          <td><strong><a href="html06.htm#eobject">OBJECT</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>cols</strong></td>
+          <td><strong><a href="html07.htm#eframeset">FRAMESET</a></strong>, <strong><a
+    href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>colspan</strong></td>
+          <td><strong><a href="html05.htm#etd">TD</a></strong>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>content</strong></td>
+          <td><strong><a href="html02.htm#emeta">META</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>coords</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>coords</strong></td>
+          <td><strong><a href="html06.htm#earea">AREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>data</strong></td>
+          <td><strong><a href="html06.htm#eobject">OBJECT</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>datetime</strong></td>
+          <td><strong><a href="html03.htm#edel">DEL</a></strong>, <strong><a href="html03.htm#eins">INS</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>declare</strong></td>
+          <td><strong><a href="html06.htm#eobject">OBJECT</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>defer</strong></td>
+          <td><strong><a href="html09.htm#escript">SCRIPT</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong><a href="html01.htm#adir">dir</a></strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html03.htm#ebr"><strong>BR</strong></a>,
+            <a href="html07.htm#eframe"><strong>FRAME</strong></a>, <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>,
+            <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>disabled</strong></td>
+          <td><strong><a href="html08.htm#ebutton">BUTTON</a></strong>, <a href="html08.htm#einput"><strong>INPUT</strong></a>,
+            <a href="html08.htm#eselect"><strong>SELECT</strong></a>, <strong><a
+    href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>disabled</strong></td>
+          <td><strong><a href="html08.htm#eoptgroup">OPTGROUP</a></strong>, <strong><a
+    href="html08.htm#eoption">OPTION</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>enctype</strong></td>
+          <td><strong><a href="html08.htm#eform">FORM</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>for</strong></td>
+          <td><strong><a href="html08.htm#elabel">LABEL</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>frame</strong></td>
+          <td><strong><a href="html05.htm#etable">TABLE</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>frameborder</strong></td>
+          <td><strong><a href="html07.htm#eframe">FRAME</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>frameborder</strong></td>
+          <td><strong><a href="html07.htm#eiframe">IFRAME</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>headers</strong></td>
+          <td><strong><a href="html05.htm#etd">TD</a></strong>, <strong><a href="html05.htm#eth">TH</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>height</strong></td>
+          <td><strong><a href="html07.htm#eiframe">IFRAME</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>height</strong></td>
+          <td><strong><a href="html06.htm#eimg">IMG</a></strong>, <strong><a
+    href="html06.htm#eobject">OBJECT</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>href</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <strong><a href="html06.htm#earea">AREA</a></strong>,
+            <a href="html02.htm#ebase"><strong>BASE</strong></a>, <strong><a href="html02.htm#elink">LINK</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>hreflang</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <strong><a href="html02.htm#elink">LINK</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>http-equiv</strong></td>
+          <td><strong><a href="html02.htm#emeta">META</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><a href="html01.htm#aid"><strong>id</strong></a></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html02.htm#emeta"><strong>META</strong></a>,
+            <a href="html09.htm#escript"><strong>SCRIPT</strong></a>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <a href="html02.htm#etitle"><strong>TITLE</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>ismap</strong></td>
+          <td><strong><a href="html06.htm#eimg">IMG</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>ismap</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>label</strong></td>
+          <td><strong><a href="html08.htm#eoptgroup">OPTGROUP</a></strong>, <strong><a
+    href="html08.htm#eoption">OPTION</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong><a href="html01.htm#alang">lang</a></strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html03.htm#ebr"><strong>BR</strong></a>,
+            <a href="html07.htm#eframe"><strong>FRAME</strong></a>, <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>,
+            <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>longdesc</strong></td>
+          <td><strong><a href="html07.htm#eframe">FRAME</a></strong>, <strong><a
+    href="html07.htm#eiframe">IFRAME</a></strong>, <strong><a href="html06.htm#eimg">IMG</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>marginheight</strong></td>
+          <td><strong><a href="html07.htm#eframe">FRAME</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>marginheight</strong></td>
+          <td><strong><a href="html07.htm#eiframe">IFRAME</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>marginwidth</strong></td>
+          <td><strong><a href="html07.htm#eframe">FRAME</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>marginwidth</strong></td>
+          <td><strong><a href="html07.htm#eiframe">IFRAME</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>maxlength</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>media</strong></td>
+          <td><strong><a href="html02.htm#elink">LINK</a></strong>, <strong><a
+    href="html02.htm#estyle">STYLE</a></strong></td>
+          <td>Только <dfn>screen</dfn>, <dfn>print</dfn> и <dfn>all</dfn></td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>method</strong></td>
+          <td><strong><a href="html08.htm#eform">FORM</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>multiple</strong></td>
+          <td><strong><a href="html08.htm#eselect">SELECT</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>name</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <strong><a href="html08.htm#eform">FORM</a></strong>,
+            <strong><a href="html07.htm#eframe">FRAME</a></strong>, <strong><a href="html06.htm#eimg">IMG</a></strong>,
+            <strong><a href="html08.htm#einput">INPUT</a></strong>, <a href="html06.htm#emap"><strong>MAP</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a href="html06.htm#eobject">OBJECT</a></strong>, <a href="html08.htm#eselect"><strong>SELECT</strong></a>,
+            <strong><a href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>name</strong></td>
+          <td><strong><a href="html08.htm#ebutton">BUTTON</a></strong>, <strong><a
+    href="html07.htm#eiframe">IFRAME</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>nohref</strong></td>
+          <td><strong><a href="html06.htm#earea">AREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>noresize</strong></td>
+          <td><strong><a href="html07.htm#eframe">FRAME</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onblur</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <strong><a href="html06.htm#earea">AREA</a></strong>,
+            <strong><a href="html08.htm#einput">INPUT</a></strong>, <strong><a
+    href="html08.htm#eselect">SELECT</a></strong>, <strong><a href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onblur</strong></td>
+          <td><strong><a href="html08.htm#ebutton">BUTTON</a></strong>, <a href="html08.htm#elabel"><strong>LABEL</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>onchange</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong>, <strong><a
+    href="html08.htm#eselect">SELECT</a></strong>, <strong><a href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onclick</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>ondblclick</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onfocus</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <strong><a href="html06.htm#earea">AREA</a></strong>,
+            <strong><a href="html08.htm#einput">INPUT</a></strong>, <strong><a
+    href="html08.htm#eselect">SELECT</a></strong>, <strong><a href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onfocus</strong></td>
+          <td><strong><a href="html08.htm#ebutton">BUTTON</a></strong>, <a href="html08.htm#elabel"><strong>LABEL</strong></a></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>onkeydown</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onkeypress</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onkeyup</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onload</strong></td>
+          <td><strong><a href="html02.htm#ebody">BODY</a></strong>, <strong><a
+    href="html07.htm#eframeset">FRAMESET</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onmousedown</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onmousemove</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onmouseout</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onmouseover</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onmouseup</strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html10.htm#ebdo"><strong>BDO</strong></a>,
+            <strong><a href="html03.htm#ebr">BR</a></strong>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+            <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+            <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+            <strong><a
+    href="html09.htm#escript">SCRIPT</a></strong>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>,
+            <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onreset</strong></td>
+          <td><strong><a href="html08.htm#eform">FORM</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onselect</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong>, <strong><a
+    href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onsubmit</strong></td>
+          <td><strong><a href="html08.htm#eform">FORM</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>onunload</strong></td>
+          <td><strong><a href="html02.htm#ebody">BODY</a></strong>, <strong><a
+    href="html07.htm#eframeset">FRAMESET</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>profile</strong></td>
+          <td><strong><a href="html02.htm#ehead">HEAD</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>readonly</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong>, <strong><a
+    href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>rel</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>rel</strong></td>
+          <td><strong><a href="html02.htm#elink">LINK</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>rev</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>rev</strong></td>
+          <td><strong><a href="html02.htm#elink">LINK</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>rows</strong></td>
+          <td><strong><a href="html07.htm#eframeset">FRAMESET</a></strong>, <strong><a
+    href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>rowspan</strong></td>
+          <td><strong><a href="html05.htm#etd">TD</a></strong>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>rules</strong></td>
+          <td><strong><a href="html05.htm#etable">TABLE</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>scheme</strong></td>
+          <td><strong><a href="html02.htm#emeta">META</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>scope</strong></td>
+          <td><strong><a href="html05.htm#etd">TD</a></strong>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>scrolling</strong></td>
+          <td><strong><a href="html07.htm#eframe">FRAME</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>scrolling</strong></td>
+          <td><strong><a href="html07.htm#eiframe">IFRAME</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>selected</strong></td>
+          <td><strong><a href="html08.htm#eoption">OPTION</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>shape</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong></td>
+          <td>Нет</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>shape</strong></td>
+          <td><strong><a href="html06.htm#earea">AREA</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>size</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong>, <strong><a
+    href="html08.htm#eselect">SELECT</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>span</strong></td>
+          <td><strong><a href="html05.htm#ecol">COL</a></strong>, <strong><a
+    href="html05.htm#ecolgroup">COLGROUP</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>src</strong></td>
+          <td><strong><a href="html07.htm#eframe">FRAME</a></strong>, <strong><a
+    href="html06.htm#eimg">IMG</a></strong>, <strong><a href="html08.htm#einput">INPUT</a></strong>,
+            <strong><a href="html09.htm#escript">SCRIPT</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>src</strong></td>
+          <td><strong><a href="html07.htm#eiframe">IFRAME</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>standby</strong></td>
+          <td><strong><a href="html06.htm#eobject">OBJECT</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong><a href="html01.htm#astyle">style</a></strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html02.htm#emeta"><strong>META</strong></a>,
+            <a href="html06.htm#eparam"><strong>PARAM</strong></a>, <strong><a href="html09.htm#escript">SCRIPT</a></strong>,
+            <a href="html02.htm#estyle"><strong>STYLE</strong></a>, <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>summary</strong></td>
+          <td><strong><a href="html05.htm#etable">TABLE</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>tabindex</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <a href="html06.htm#earea"><strong>AREA</strong></a>,
+            <a href="html08.htm#ebutton"><strong>BUTTON</strong></a>, <a href="html08.htm#einput"><strong>INPUT</strong></a>,
+            <strong><a href="html06.htm#eobject">OBJECT</a></strong>, <a href="html08.htm#eselect"><strong>SELECT</strong></a>,
+            <strong><a href="html08.htm#etextarea">TEXTAREA</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>target</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <a href="html06.htm#earea"><strong>AREA</strong></a>,
+            <a href="html02.htm#ebase"><strong>BASE</strong></a>, <strong><a href="html08.htm#eform">FORM</a></strong>,
+            <strong><a href="html02.htm#elink">LINK</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong><a href="html01.htm#atitle">title</a></strong></td>
+          <td>Все элементы, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>, <a href="html02.htm#ehead"><strong>HEAD</strong></a>,
+            <a href="html02.htm#ehtml"><strong>HTML</strong></a>, <a href="html02.htm#emeta"><strong>META</strong></a>,
+            <a href="html06.htm#eparam"><strong>PARAM</strong></a>, <strong><a href="html09.htm#escript">SCRIPT</a></strong>,
+            <a href="html02.htm#estyle"><strong>STYLE</strong></a>, <strong><a href="html02.htm#etitle">TITLE</a></strong></td>
+          <td>Да, отображается как подсказка</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>type</strong></td>
+          <td><strong><a href="html06.htm#ea">A</a></strong>, <strong><a href="html02.htm#elink">LINK</a></strong>,
+            <strong><a href="html06.htm#eparam">PARAM</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>type</strong></td>
+          <td><strong><a href="html08.htm#ebutton">BUTTON</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>type</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong>, <strong><a
+    href="html06.htm#eobject">OBJECT</a></strong>, <strong><a href="html09.htm#escript">SCRIPT</a></strong>,
+            <strong><a href="html02.htm#estyle">STYLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>usemap</strong></td>
+          <td><strong><a href="html06.htm#eimg">IMG</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>usemap</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong>, <strong><a
+    href="html06.htm#eobject">OBJECT</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>valign</strong></td>
+          <td><strong><a href="html05.htm#ecol">COL</a></strong>, <strong><a
+    href="html05.htm#ecolgroup">COLGROUP</a></strong>, <strong><a href="html05.htm#etbody">TBODY</a></strong>,
+            <strong><a href="html05.htm#etfoot">TFOOT</a></strong>, <strong><a href="html05.htm#ethead">THEAD</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>valign</strong></td>
+          <td><strong><a href="html05.htm#etd">TD</a></strong>, <strong><a href="html05.htm#eth">TH</a></strong>,
+            <strong><a href="html05.htm#etr">TR</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>value</strong></td>
+          <td><strong><a href="html08.htm#ebutton">BUTTON</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>value</strong></td>
+          <td><strong><a href="html08.htm#einput">INPUT</a></strong>, <strong><a
+    href="html08.htm#eoption">OPTION</a></strong>, <strong><a href="html06.htm#eparam">PARAM</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+        <tr>
+          <td><strong>valuetype</strong></td>
+          <td><strong><a href="html06.htm#eparam">PARAM</a></strong></td>
+          <td>Нет</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>width</strong></td>
+          <td><strong><a href="html05.htm#ecol">COL</a></strong>, <strong><a
+    href="html05.htm#ecolgroup">COLGROUP</a></strong>, <strong><a href="html07.htm#eiframe">IFRAME</a></strong></td>
+          <td>Да</td>
+          <td>Нет</td>
+        </tr>
+        <tr>
+          <td><strong>width</strong></td>
+          <td><strong><a href="html06.htm#eimg">IMG</a></strong>, <strong><a
+    href="html06.htm#eobject">OBJECT</a></strong>, <strong><a href="html05.htm#etable">TABLE</a></strong></td>
+          <td>Да</td>
+          <td>Да</td>
+        </tr>
+      </table>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

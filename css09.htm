@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: CSS - Текст</title>
+<link rel="Prev" href="css08.htm" title="Шрифты">
+<link rel="Next" href="css10.htm" title="Таблицы">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref29">Глава 2.9. Текст</a></h2>
+
+      <p>В этой главе приведено описание свойств, определяющих различные параметры отображения текста.</p>
+
+      <h3><a name="ref291">2.9.1. Красная строка: свойство text-indent</a></h3>
+
+<pre class="syntax"><strong><a name="ptext-indent">Синтаксис</a></strong>:  text-indent: <a href="css01.htm#length">&lt;размер&gt;</a> | <a href="css01.htm#percentage">&lt;процент&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   0
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   относительно ширины вмещающего блока
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту (4.0+)</pre>
+
+      <p>Свойство <strong>text-indent</strong> задает <em>отступ первой строки</em> при отображении
+        блочных элементов. Отступ может быть отрицательным и задается одним из следующих способов:</p>
+
+<pre class="syntax">  <a href="css01.htm#length">&lt;размер&gt;</a>
+    Задает фиксированный размер.
+  <a href="css01.htm#percentage">&lt;процент&gt;</a>
+    Вычисляется относительно ширины вмещающего блока.</pre>
+
+      <p>Пример: следующее правило указывает, что абзацы должны начинаться с красной строки, равной
+        3em:</p>
+
+      <div class="code">
+<pre class="code">P { text-indent: 3em }</pre>
+      </div>
+
+      <h3><a name="ref292">2.9.2. Выравнивание текста: свойство text-align</a></h3>
+
+<pre class="syntax"><strong><a name="ptext-align">Синтаксис</a></strong>:  text-align: <dfn>left</dfn> | <dfn>right</dfn> | <dfn>center</dfn> | <dfn>justify</dfn> | <a href="css01.htm#string">&lt;строка&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   зависит от обозревателя и направления вывода текста
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Поддерживаются только left, right, center и justify (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Поддерживаются только left, right и center (4.0+)</pre>
+
+      <p>Свойство <strong>text-align</strong> задает <em>выравнивание текста</em> при отображении блочных
+        элементов. Оно может принимать следующие значения:</p>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+          <td><dfn>left</dfn></td>
+          <td>Выравнивание по левому краю.</td>
+        </tr>
+        <tr>
+          <td><dfn>right</dfn></td>
+          <td>Выравнивание по правому краю.</td>
+        </tr>
+        <tr>
+          <td><dfn>center</dfn></td>
+          <td>Выравнивание по центру.</td>
+        </tr>
+        <tr>
+          <td><dfn>justify</dfn></td>
+          <td>Выравнивание по левому краю с выключкой по правому краю.</td>
+        </tr>
+        <tr>
+          <td><a href="css01.htm#string">&lt;строка&gt;</a></td>
+          <td>Задает строку, по которой будут выравниваться ячейки в столбце таблицы. Это значение применимо
+            только к ячейкам таблицы. Для остальных элементов должно трактоваться как <dfn>left</dfn>
+            или <dfn>right</dfn> в зависимости от значения свойства <a href="css05.htm#pdirection"><strong>direction</strong></a>
+            (<dfn>ltr</dfn> или <dfn>rtl</dfn> соответственно).</td>
+        </tr>
+      </table>
+
+      <p>Пример: следующее правило указывает, что все элементы, содержашиеся в элементе <a href="html10.htm#ediv"><strong>DIV</strong></a>
+        с атрибутом <dfn>class=&quot;center&quot;</dfn>, должны выравниваться по центру окна обозревателя
+        (это обеспечивается тем, что данное свойство является наследуемым):</p>
+
+      <div class="code">
+<pre class="code">DIV.center { text-align: center }</pre>
+      </div>
+
+      <h3><a name="ref293">2.9.3. Украшение текста: свойство text-decoration</a></h3>
+
+<pre class="syntax"><strong><a name="ptext-decoration">Синтаксис</a></strong>:  text-decoration: <dfn>none</dfn> | [<dfn>underline</dfn> || <dfn>overline</dfn> || <dfn>line-through</dfn> || <dfn>blink</dfn>] | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту; blink не поддерживается (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту; overline не поддерживается (4.0+)</pre>
+
+      <p>Свойство <strong>text-decoration</strong> задает <em>украшение текста</em> при отображении
+        элементов. Оно может принимать следующие значения:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>none</dfn></td>
+            <td>Обычный текст.</td>
+            <td style="text-decoration: none"><samp>пример</samp></td>
+          </tr>
+          <tr>
+            <td><dfn>underline</dfn></td>
+            <td>Подчеркнутый текст.</td>
+            <td style="text-decoration: underline"><samp>пример</samp></td>
+          </tr>
+          <tr>
+            <td><dfn>overline</dfn></td>
+            <td>Надчеркнутый текст.</td>
+            <td style="text-decoration: overline"><samp>пример</samp></td>
+          </tr>
+          <tr>
+            <td><dfn>line-through</dfn></td>
+            <td>Перечеркнутый текст.</td>
+            <td style="text-decoration: line-through"><samp>пример</samp></td>
+          </tr>
+          <tr>
+            <td><dfn>blink</dfn></td>
+            <td>Мигающий текст.</td>
+            <td style="text-decoration: blink"><samp>пример</samp></td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Это свойство не наследуемо, но все потомки блочного элемента будут иметь его украшения текста.
+        Цвет этих украшений будет тем же, что у блочного элемента, даже если потомки имеют другое значение
+        свойства <a href="css07.htm#pcolor"><strong>color</strong></a>.</p>
+
+      <p>Пример: следующее правило указывает, что гиперссылки должны подчеркиваться:</p>
+
+      <div class="code">
+<pre class="code">A:link { text-decoration: underline }</pre>
+      </div>
+
+      <h3><a name="ref294">2.9.4. Преобразование текста: свойство text-transform</a></h3>
+
+<pre class="syntax"><strong><a name="ptext-transform">Синтаксис</a></strong>:  text-transform: <dfn>none</dfn> | <dfn>capitalize</dfn> | <dfn>uppercase</dfn> | <dfn>lowercase</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту; реализовано с ошибками (4.0+)</pre>
+
+      <p>Свойство <strong>text-transform</strong> задает <em>преобразование текста</em> при отображении
+        элементов. Оно может принимать следующие значения (Netscape Navigator 4.x отображает примеры неверно!):</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>none</dfn></td>
+            <td>Без преобразования.</td>
+            <td style="text-transform: none"><samp>Это пример.</samp></td>
+          </tr>
+          <tr>
+            <td><dfn>capitalize</dfn></td>
+            <td>Делать первую букву каждого слова прописной.</td>
+            <td style="text-transform: capitalize"><samp>Это пример.</samp></td>
+          </tr>
+          <tr>
+            <td><dfn>uppercase</dfn></td>
+            <td>Выводить текст прописными буквами.</td>
+            <td style="text-transform: uppercase"><samp>Это пример.</samp></td>
+          </tr>
+          <tr>
+            <td><dfn>lowercase</dfn></td>
+            <td>Выводить текст строчными буквами.</td>
+            <td style="text-transform: lowercase"><samp>Это пример.</samp></td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Фактическое преобразование символов зависит от языка, на котором написан текст. Пример: следующее
+        правило указывает, что заголовок <a href="html03.htm#eh"><strong>H1</strong></a> должен выводиться
+        прописными буквами:</p>
+
+      <div class="code">
+<pre class="code">H1 { text-transform: uppercase }</pre>
+      </div>
+
+      <h3><a name="ref295">2.9.5. Задание тени: свойство text-shadow</a></h3>
+
+<pre class="syntax"><strong><a name="ptext-shadow">Синтаксис</a></strong>:  text-shadow: <dfn>none</dfn> | [<a href="css01.htm#color">&lt;цвет&gt;</a> || <a href="css01.htm#length">&lt;размер&gt;</a> <a href="css01.htm#length">&lt;размер&gt;</a> <a href="css01.htm#length">&lt;размер&gt;</a>?,]*
+                         [<a href="css01.htm#color">&lt;цвет&gt;</a> || <a href="css01.htm#length">&lt;размер&gt;</a> <a href="css01.htm#length">&lt;размер&gt;</a> <a href="css01.htm#length">&lt;размер&gt;</a>?] | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>text-shadow</strong> задает <em>тень текста</em> при отображении элементов.
+        Его значением является список эффектов, разделенных запятыми. Эти эффекты должны применяться
+        к тексту в том порядке, как они заданы, и могут перекрываться при отображении друг с другом
+        (но не с самим текстом!).</p>
+
+      <p>Каждый эффект задается обязательным смещением от текста и необязательными цветом тени и радиусом
+        пятна. Смещение тени относительно текста задается двумя значениями типа <a href="css01.htm#length">&lt;размер&gt;</a>,
+        первое из которых указывает горизонтальное смещение тени вправо от текста, а второе&nbsp;&#151;
+        вертикальное смещение тени вниз от текста. Эти значения могут быть отрицательными, что означает
+        смещение тени влево или вверх относительно текста соответственно.</p>
+
+      <p>После смещения может быть указан необязательный радиус пятна. Точный алгоритм вычисления пятна
+        не задан и зависит от обозревателя.</p>
+
+      <p>Кроме того, перед указанными размерами или после них может быть задан необязательный цвет тени.
+        Если он не задан, то используется значение свойства <a href="css07.htm#pcolor"><strong>color</strong></a>.</p>
+
+      <p>Тени могут применяться к псевдоэлементам <strong>:<a href="css02.htm#ref22102">first-letter</a></strong>
+        и <a href="css02.htm#ref22101"><strong>:first-line</strong></a>.</p>
+
+      <p>Примеры:</p>
+
+      <div class="code">
+<pre class="code">H1 { text-shadow: 0.2em 0.3em }
+H2 { text-shadow: 3px 3px 5px red }
+H3 { text-shadow: 3px 3px red, yellow -3px 3px 2px, 3px -3px }</pre>
+      </div>
+
+      <p>В первом примере задана тень со смещением 0.2em правее текста и 0.3em ниже его. Во втором примере
+        заданы смещения по 3px правее и ниже текста, радиус пятна 5px и красный цвет тени. Последний
+        пример содержит список из трех эффектов.</p>
+
+      <h3><a name="ref296">2.9.6. Интервал между буквами: свойство letter-spacing</a></h3>
+
+<pre class="syntax"><strong><a name="pletter-spacing">Синтаксис</a></strong>:  letter-spacing: <dfn>normal</dfn> | <a href="css01.htm#length">&lt;размер&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>letter-spacing</strong> задает <em>интервал между буквами</em> при отображении
+        текста. Его значение задается одним из следующих способов:</p>
+
+<pre class="syntax">  <dfn>normal</dfn>
+    Стандартный интервал для текущего шрифта.
+  <a href="css01.htm#length">&lt;размер&gt;</a>
+    Задает интервал <em>в дополнение к</em> стандартному интервалу. Это значение
+    может быть отрицательным.</pre>
+
+      <p>Пример: следующее правило увеличивает интервал между символами в заголовке <a href="html03.htm#eh"><strong>H1</strong></a>
+        на 0.5em:</p>
+
+      <div class="code">
+<pre class="code">H1 { letter-spacing: 0.5em }</pre>
+      </div>
+
+      <h3><a name="ref297">2.9.7. Интервал между словами: свойство word-spacing</a></h3>
+
+<pre class="syntax"><strong><a name="pword-spacing">Синтаксис</a></strong>:  word-spacing: <dfn>normal</dfn> | <a href="css01.htm#length">&lt;размер&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Применимо</strong>:  ко всем элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>word-spacing</strong> задает <em>интервал между словами</em> при отображении
+        текста. Его значение задается одним из следующих способов:</p>
+
+<pre class="syntax">  <dfn>normal</dfn>
+    Стандартный интервал для текущего шрифта.
+  <a href="css01.htm#length">&lt;размер&gt;</a>
+    Задает интервал <em>в дополнение к</em> стандартному интервалу. Это значение
+    может быть отрицательным.</pre>
+
+      <p>Алгоритм выбора интервалов между словами зависит от обозревателя и от наличия выключки текста
+        по правому краю (см. свойство <a href="#ptext-align"><strong>text-align</strong></a>).</p>
+
+      <p>Пример: следующее правило увеличивает интервал между словами в заголовке <a href="html03.htm#eh"><strong>H1</strong></a>
+        на 1em:</p>
+
+      <div class="code">
+<pre class="code">H1 { word-spacing: 1em }</pre>
+      </div>
+
+      <h3><a name="ref298">2.9.8. Обработка пробелов: свойство white-space</a></h3>
+
+<pre class="syntax"><strong><a name="pwhite-space">Синтаксис</a></strong>:  white-space: <dfn>normal</dfn> | <dfn>pre</dfn> | <dfn>nowrap</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>normal</dfn>
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Поддерживаются только значения normal и pre (4.0+)</pre>
+
+      <p>Свойство <strong>white-space</strong> задает правила <em>обработки пробелов</em> при отображении
+        блочного элемента. Оно может принимать следующие значения:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>normal</dfn></td>
+            <td>Пробелы и разрывы строк отображаются <a href="html03.htm#ref131">обычным образом</a>.</td>
+          </tr>
+          <tr>
+            <td><dfn>pre</dfn></td>
+            <td>Пробелы и разрывы строк отображаются как в <a href="html03.htm#ref1324">форматированном
+              тексте</a>.</td>
+          </tr>
+          <tr>
+            <td><dfn>nowrap</dfn></td>
+            <td>Пробелы отображаются <a href="html03.htm#ref131">обычным образом</a>, но разрывы строк
+              запрещены.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Пример: следующие правила соответствуют правилам HTML по отображению элементов <a href="html03.htm#ep"><strong>P</strong></a>
+        и <a href="html03.htm#epre"><strong>PRE</strong></a>:</p>
+
+      <div class="code">
+<pre class="code">P { white-space: normal }
+PRE { white-space: pre }</pre>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

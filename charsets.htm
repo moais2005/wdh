@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Кодировки символов</title>
+<link rel="Prev" href="entities.htm" title="Специальные символы HTML">
+<link rel="Next" href="langs.htm" title="Коды языков в HTML">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h1><a name="charsets">Приложение 7.<br>
+        Стандартные кодировки символов</a></h1>
+
+      <p>Следующие таблицы содержат все допустимые значения параметра <strong>charset</strong> в <a href="html02.htm#emeta">метаописателе</a>
+          HTML-документов <code>&lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=идентификатор&quot;&gt;</code> и в
+          атрибуте <strong>encoding</strong> <a href="xml01.htm#ref8132">пролога</a> XML-документов.</p>
+
+      <p>Для каждой кодировки приведены ее название, рекомендуемый в MIME идентификатор, допустимые синонимы
+        этого идентификатора и номер соответствующей кодовой страницы в Windows.</p>
+
+      <p><img src="images/plus.gif" alt="WDH+"> См. также WDH+:
+        <a target="_blank" href="http://go.suncloud.ru/to.asp?wdh+/encoding/encoding.htm">О кодировках символов</a>
+        и <a target="_blank" href="http://go.suncloud.ru/to.asp?wdh+/unicode/unicode.htm">Unicode и письменности мира</a>.</p>
+
+      <table border="1" cellspacing="0" width="100%">
+        <caption><a name="table71a">Таблица П7.1.<br>
+        Стандартные кодировки символов</a></caption>
+        <tr>
+          <th><strong>Наименование</strong></th>
+          <th><strong>Идентификатор</strong></th>
+          <th><strong>Синонимы</strong></th>
+          <th><strong>Кодовая страница</strong></th>
+        </tr>
+        <tr>
+          <td>Unicode (UTF-7)</td>
+          <td>utf-7</td>
+          <td>csUnicode11UTF7, unicode-utf_7, unicode-1-1-utf-7, unicode-2-0-utf-7, x-unicode-2-0-utf-7</td>
+          <td style="text-align: right">65000</td>
+        </tr>
+        <tr>
+          <td>Unicode (<a href="unicode.htm#utf8">UTF-8</a>)</td>
+          <td>utf-8</td>
+          <td>unicode-utf_8, unicode-utf_8-1_1, unicode-1-1-utf-8, unicode-2-0-utf-8, x-unicode-2-0-utf-8</td>
+          <td style="text-align: right">65001</td>
+        </tr>
+        <tr>
+          <td>Unicode (<a href="unicode.htm#utf16">UTF-16</a>)</td>
+          <td>unicode-utf_16</td>
+          <td>csUnicode11, csUnicodeASCII, csUnicodeLatin1, ISO-10646-UCS-2, ISO-10646-UCS-BASIC, ISO-10646-Unicode-Latin1,
+            ISO-10646, ISO-10646-J-1, unicode-utf_16-1.1</td>
+          <td style="text-align: right">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Unicode (UTF-32)</td>
+          <td>unicode-utf_32</td>
+          <td>ISO-10646-UCS-4</td>
+          <td style="text-align: right">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Арабский (ASMO 708)</td>
+          <td>ASMO-708</td>
+          <td>&nbsp;</td>
+          <td style="text-align: right">708</td>
+        </tr>
+        <tr>
+          <td>Арабский (DOS)</td>
+          <td>DOS-720</td>
+          <td>&nbsp;</td>
+          <td style="text-align: right">720</td>
+        </tr>
+        <tr>
+          <td>Арабский (ISO)</td>
+          <td>iso-8859-6</td>
+          <td>csISOLatinArabic, iso-ir-127, ISO_8859-6, ISO_8859-6:1987, iso-8859_6-1999, ECMA-114, arabic</td>
+          <td style="text-align: right">28596</td>
+        </tr>
+        <tr>
+          <td>Арабский (Windows)</td>
+          <td>windows-1256</td>
+          <td>cp1256, windows-1256-2000</td>
+          <td style="text-align: right">1256</td>
+        </tr>
+        <tr>
+          <td>Балтийские языки (Latin-4) </td>
+          <td>iso-8859-4</td>
+          <td>csISOLatin4, iso-ir-110, ISO_8859-4, ISO_8859-4:1988, iso-8859_4-1988, l4, latin4</td>
+          <td style="text-align: right">28594</td>
+        </tr>
+        <tr>
+          <td>Балтийские языки (Windows)</td>
+          <td>windows-1257</td>
+          <td>windows-1257-2000</td>
+          <td style="text-align: right">1257</td>
+        </tr>
+        <tr>
+          <td>Вьетнамский (Windows)</td>
+          <td>windows-1258</td>
+          <td>windows-1258-2000</td>
+          <td style="text-align: right">1258</td>
+        </tr>
+        <tr>
+          <td>Греческий (ISO)</td>
+          <td>iso-8859-7</td>
+          <td>csISOLatinGreek, iso-ir-126, ISO_8859-7, ISO_8859-7:1987, iso-8859_7-1987, ECMA-118, ELOT_928, greek, greek8</td>
+          <td style="text-align: right">28597</td>
+        </tr>
+        <tr>
+          <td>Греческий (Windows)</td>
+          <td>windows-1253</td>
+          <td>windows-1253-2000, x-cp1253</td>
+          <td style="text-align: right">1253</td>
+        </tr>
+        <tr>
+          <td>Европа (Latin-3)</td>
+          <td>iso-8859-3</td>
+          <td>iso-8859_3-1999</td>
+          <td style="text-align: right">28593</td>
+        </tr>
+        <tr>
+          <td>Европа (Latin-6)</td>
+          <td>iso-8859-10</td>
+          <td>iso-8859_10-1999</td>
+          <td style="text-align: right">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Европа (Latin-7)</td>
+          <td>iso-8859-13</td>
+          <td>iso-8859_13-1999</td>
+          <td style="text-align: right">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Европа (Latin-9)</td>
+          <td>iso-8859-15</td>
+          <td>iso-8859_15-1999</td>
+          <td style="text-align: right">28605</td>
+        </tr>
+        <tr>
+          <td>Западная Европа (ASCII)</td>
+          <td>us-ascii</td>
+          <td>ANSI_X3.4-1968, ANSI_X3.4-1986, cp367, csASCII, IBM367, iso-ir-6,
+            ISO646-US, ISO_646.irv:1991, ascii, us, us-ascii-1968, x-ansi</td>
+          <td style="text-align: right">20127</td>
+        </tr>
+        <tr>
+          <td>Западная Европа (Latin-1)</td>
+          <td>iso-8859-1</td>
+          <td>cp819, ibm819, iso-ir-100, iso8859-1, iso_8859-1, iso_8859-1:1987, iso-8859_1-1998,
+            ISO-8859-1-Windows-3.0-Latin-1, ISO-8859-1-Windows-3.1-Latin-1, latin1, l1</td>
+          <td style="text-align: right">29591</td>
+        </tr>
+        <tr>
+          <td>Западная Европа (Mac)</td>
+          <td>mac-roman-2000</td>
+          <td>x-mac-roman</td>
+          <td style="text-align: right">10000</td>
+        </tr>
+        <tr>
+          <td>Западная Европа (Windows)</td>
+          <td>windows-1252</td>
+          <td>&nbsp;</td>
+          <td style="text-align: right">1252</td>
+        </tr>
+        <tr>
+          <td>Иврит (DOS)</td>
+          <td>DOS-862</td>
+          <td>&nbsp;</td>
+          <td style="text-align: right">862</td>
+        </tr>
+        <tr>
+          <td>Иврит (ISO–визуальный)</td>
+          <td>iso-8859-8</td>
+          <td>csISOLatinHebrew, iso-ir-138, ISO_8859-8, iso-8859_8-1999, ISO-8859-8 Visual, visual, hebrew</td>
+          <td style="text-align: right">28598</td>
+        </tr>
+        <tr>
+          <td>Иврит (ISO–логический)</td>
+          <td>iso-8859-8-i</td>
+   виртуальные имена отображены в реальные каталоги сервера.</td>
+          </tr>
+          <tr>
+            <td>QUERY_STRING</td>
+            <td>Строка запроса к сценарию. Это все, что следует в URI запроса после &quot;?&quot;.</td>
+          </tr>
+          <tr>
+            <td>REMOTE_ADDR</td>
+            <td>IP-адрес клиента.</td>
+          </tr>
+          <tr>
+            <td>REMOTE_HOST</td>
+            <td>Полное имя домена клиента.</td>
+          </tr>
+          <tr>
+            <td>REMOTE_IDENT</td>
+            <td>Если Веб-сервер поддерживает идентификацию по <a href="http://www.faqs.org/rfcs/rfc1413.html" target="_blank">RFC
+              1413</a> <img src="images/extref.gif" alt="Внешняя ссылка">, сюда
+              заносится имя удаленного пользователя. Используется только для регистрации.</td>
+          </tr>
+          <tr>
+            <td>REMOTE_USER</td>
+            <td>Если AUTH_TYPE = &quot;Basic&quot;, то здесь содержится имя пользователя, переданное
+              клиентом и проверенное сервером на наличие прав доступа.</td>
+          </tr>
+          <tr>
+            <td>REQUEST_METHOD</td>
+            <td><a href="http.htm#http-methods">Метод запроса HTTP</a> (&quot;GET&quot;, &quot;HEAD&quot;,
+              &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;, &quot;OPTIONS&quot;, &quot;TRACE&quot;).</td>
+          </tr>
+          <tr>
+            <td>SCRIPT_NAME</td>
+            <td>Имя запускаемого сценария.</td>
+          </tr>
+          <tr>
+            <td>SERVER_NAME</td>
+            <td>Имя или IP-адрес сервера.</td>
+          </tr>
+          <tr>
+            <td>SERVER_PORT</td>
+            <td>Порт TCP/IP, на который пришел запрос.</td>
+          </tr>
+          <tr>
+            <td>SERVER_PROTOCOL</td>
+            <td>Имя и версия протокола, связанного с запросом. Обычно это &quot;HTTP/1.1&quot;.</td>
+          </tr>
+          <tr>
+            <td>SERVER_SOFTWARE</td>
+            <td>Имя и версия Веб-сервера в формате &quot;имя/версия&quot;.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h2><a name="processing">Обработка тела сообщения</a></h2>
+
+      <p>Если запрос помимо URI содержит присоединенные данные, то сервер должен занести размер этих
+        данных в байтах в переменную CONTENT_LENGTH и обеспечить сценарию доступ к этим данным. Если
+        не оговорено иное, доступ осуществляется через дескриптор файла &quot;стандартный ввод&quot;
+        (stdin).</p>
+      <p>Сценарий считывает переданные ему данные, при необходимости анализирует метапеременные и формирует
+         документ, который сервер должен передать клиенту.</p>
+
+      <h2><a name="dataflow">Передача данных от сценария к серверу</a></h2>
+
+      <p>Сценарий всегда должен вернуть какой-либо результат серверу, а сервер должен обеспечить механизм
+        передачи результатов от сценария к серверу. Если не оговорено иное, эта передача осуществляется
+        через дескриптор файла &quot;стандартный вывод&quot; (stdout). Сервер, в свою очередь, формирует
+        из полученных от сценария данных стандатный HTTP-отклик и передает его клиенту.</p>
+      <p>Результатом работы сценария может быть либо сгенерированный HTML-документ, либо указание серверу
+        вернуть пользователю определенный ресурс. Данные, передаваемые сценарием серверу, начинаются со
+        служебного заголовка, состоящего из текстовых строк и заканчивающегося пустой строкой (т.&nbsp;е.
+        строкой, состоящей из LF или CR/LF). Служебный заголовок может содержать три директивы,
+        аналогичные <a href="http.htm#http-headers">полям заголовка HTTP</a>:</p>
+
+      <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+          <th style="width: 23%">Поле</th>
+          <th>Описание</th>
+        </tr>
+        <tr>
+          <td style="width: 23%"><tt>Content-Type</tt></td>
+          <td>Содержит тип MIME возвращаемого документа.</td>
+        </tr>
+        <tr>
+          <td style="width: 23%"><tt>Location</tt></td>
+          <td>Возвращает URI ресурса. Используется в том случае, когда сценарий передает серверу
+            не сформированный документ, а ссылку на ресурс.</td>
+        </tr>
+        <tr>
+          <td style="width: 23%"><tt>Status</tt></td>
+          <td>Возвращает <a href="http.htm#http-status">код состояния</a> в формате <em>число&nbsp;строка</em>,
+            где <em>число</em>&nbsp;&#151; номер кода состояния, а <em>строка</em>&nbsp;&#151; соответствующее
+            сообщение. Этот код состояния заносится в строку состояния <a href="http.htm#http-response">HTTP-отклика</a>.</td>
+        </tr>
+      </table>
+      <p>Пример документа, сформированного сценарием:</p>
+      <div class="code">
+<pre>
+Content-type: text/html; charset=windows-1251
+Status: 200 OK
+
+&lt;HTML>&lt;HEAD>
+&lt;TITLE>Вывод HTML из CHI-сценария&lt;/TITLE>
+&lt;/HEAD>&lt;BODY>
+&lt;H1>Пример&lt;/H1>
+&lt;P>Как вам &lt;STRONG>это&lt;/STRONG> нравиться?&lt;/P>
+&lt;/BODY>&lt;/HTML>
+</pre>
+      </div>
+      <p>Реальные примеры CGI-сценариев приведены в <a href="perl13.htm">гл. 6.13</a>.</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+   ѓ>4ЎU  ±!       ѓ>4ЎU  шq Нo   ѓ>4ЎU   ѓ>4ЎU  ользуется специальный файл. Этот файл должен называться
+        GLOBAL.ASA и находиться в корневой виртуальной папке Веб-приложения. Приложение не может иметь
+        более одного файла GLOBAL.ASA. Приведем общий вид этого файла:</p>
+
+      <div class="code">
+<pre class="code">&lt;SCRIPT LANGUAGE=JScript RUNAT=Server&gt;
+// Исполняется, когда первый пользователь обратится к Веб-узлу.
+function Application_OnStart() {
+}
+&lt;/SCRIPT&gt;
+
+&lt;SCRIPT LANGUAGE=JScript RUNAT=Server&gt;
+// Исполняется при завершении работы Веб-сервера или при изменении файла GLOBAL.ASA.
+function Application_OnEnd() {
+}
+&lt;/SCRIPT&gt;
+
+
+&lt;SCRIPT LANGUAGE=JScript RUNAT=Server&gt;
+// Исполняется в начале новой пользовательской сессии.
+function Session_OnStart() {
+}
+&lt;/SCRIPT&gt;
+
+&lt;SCRIPT LANGUAGE=JScript RUNAT=Server&gt;
+// Исполняется при завершении пользовательской сессии.
+function Session_OnEnd() {
+}
+&lt;/SCRIPT&gt;</pre>
+      </div>
+
+      <p>Помимо перечисленных обработчиков событий, GLOBAL.ASA может содержать декларации
+        COM-объектов и библиотек типов. Областью действия объектов, определенных в GLOBAL.ASA,
+        могут быть приложение (<tt>SCOPE=Application</tt>) или сессия (<tt>SCOPE=Session</tt>).
+        Обратите внимание, что объявленные здесь объекты создаются только в тот момент, когда
+        какой-нибудь из серверных сценариев впервые обратится к такому объекту. Примеры:</p>
+
+      <div class="code">
+<pre class="code">&lt;OBJECT RUNAT=Server SCOPE=Session ID=MyConnection 
+  CLASSID="Clsid:8AD3067A-B3FC-11CF-A560-00A0C9081C21"&gt;
+&lt;/OBJECT&gt;
+
+&lt;OBJECT RUNAT=Server SCOPE=Application ID=MyAd PROGID="MSWC.AdRotator"&gt;
+&lt;/OBJECT&gt;</pre>
+      </div>
+
+      <p>Мы можем обращаться к подобным объектам из любой ASP-страницы нашего Веб-приложения по его идентификатору, например:</p>
+
+      <div class="code">
+<pre class="code">&lt;%= MyAd.GetAdvertisement("ads/advert.txt") %&gt;</pre>
+      </div>
+
+      <p>Использование библиотек типов мы здесь не описываем, поскольку эта тема выходит за пределы нашего справочника.</p>
+
+      <h3><a name="ref716">7.1.6. Дир

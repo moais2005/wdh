@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Лексические соглашения</title>
+<link rel="Prev" href="java01.htm" title="Введение в язык Java">
+<link rel="Next" href="java03.htm" title="Типы, значения и переменные">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref52">Глава 5.2. Лексические соглашения</a></h2>
+
+      <h3><a name="ref521">5.2.1. Структура программ на языке Java</a></h3>
+
+      <p>Программа на языке Java&nbsp;&#151; это текст, состоящий из <em>идентификаторов</em>, <em>ключевых
+        слов</em>, <em>констант</em>, <em>разделителей</em>, <em>символов операций</em> и <em>комментариев</em>.
+        Приведем классический пример (эта программа выводит на экран строку <samp>Hello, world</samp>):</p>
+
+      <div class="code">
+<pre class="code">class Test {
+  // главная программа
+  public static void main(String args[]) {
+    System.out.println(&quot;Hello, world&quot;);
+  }
+}</pre>
+      </div>
+
+      <p>Для удобства чтения программы и форматирования ее текста могут использоваться <a name="space-char"><em>символы
+        пробела</em></a>. Эти символы игнорируются всюду, кроме строковых и символьных констант, в которых
+        они являются значимыми. Символами пробела в Java считаются следующие символы Unicode:</p>
+
+      <ul>
+        <li>пробел (\u0020);</li>
+        <li>табуляция (\u0009);</li>
+        <li>перевод формата (\u000C);</li>
+      </ul>
+
+      <p><a name="line-break"><em>Символы разрыва строки</em></a> также используются для форматирования
+        текста, но они могут иметь значение и с точки зрения синтаксиса программы. Формальные правила
+        использования разрывов строк в Java довольно сложны, но на практике достаточно помнить только
+        то, что обычно рекомендуется начинать новый оператор с новой строки. Символами разрыва строки
+        в Java считаются следующие символы Unicode:</p>
+
+      <ul>
+        <li>перевод строки (\u000A);</li>
+        <li>возврат каретки (\u000D);</li>
+        <li>пара символов возврат каретки/перевод строки (считается одним разрывом строки).</li>
+      </ul>
+
+      <h3><a name="ref522">5.2.2. Комментарии</a></h3>
+
+      <p>Комментарии в Java могут быть однострочными и многострочными. Однострочные комментарии начинаются
+        с символов <tt>//</tt> и продолжаются до конца текущей строки, как показано в приведенном выше
+        примере. Многострочные комментарии заключаются в маркеры <tt>/*</tt> и <tt>*/</tt>, например:</p>
+
+      <div class="code">
+<pre class="code">/* Это пример комментария,
+   содержащего несколько строк. */</pre>
+      </div>
+
+      <p>Многострочные комментарии не могут быть вложены друг в друга. Текст комментария полностью игнорируется
+        при выполнении программы.</p>
+
+      <p>Java поддерживает специальную форму многострочного комментария вида <tt>/**</tt> &#133; <tt>*/</tt>.
+        Такие комментарии называются <em>документирующими</em> и используются для автоматического документирования
+        библиотек классов утилитой javadoc. Мы не приводим описания этой утилиты; его можно найти в документации к JDK.</p>
+
+      <h3><a name="ref523">5.2.3. Зарезервированные слова</a></h3>
+
+      <p>Следующие имена являются ключевыми словами языка Java и не могут употребляться в качестве идентификаторов:</p>
+
+      <div class="indent">
+        <table border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td><strong>abstract</strong></td>
+            <td><strong>default</strong></td>
+            <td><strong>if</strong></td>
+            <td><strong>private</strong></td>
+            <td><strong>throw</strong></td>
+          </tr>
+          <tr>
+            <td><strong>boolean</strong></td>
+            <td><strong>do</strong></td>
+            <td><strong>implements</strong></td>
+            <td><strong>protected</strong></td>
+            <td><strong>throws</strong></td>
+          </tr>
+          <tr>
+            <td><strong>break</strong></td>
+            <td><strong>double</strong></td>
+            <td><strong>import</strong></td>
+            <td><strong>public</strong></td>
+            <td><strong>transient</strong></td>
+          </tr>
+          <tr>
+            <td><strong>byte</strong></td>
+            <td><strong>else</strong></td>
+            <td><strong>instanceof</strong></td>
+            <td><strong>return</strong></td>
+            <td><strong>try</strong></td>
+          </tr>
+          <tr>
+            <td><strong>case</strong></td>
+            <td><strong>extends</strong></td>
+            <td><strong>int</strong></td>
+            <td><strong>short</strong></td>
+            <td><strong>void</strong></td>
+          </tr>
+          <tr>
+            <td><strong>catch</strong></td>
+            <td><strong>final</strong></td>
+            <td><strong>interface</strong></td>
+            <td><strong>static</strong></td>
+            <td><strong>volatile</strong></td>
+          </tr>
+          <tr>
+            <td><strong>char</strong></td>
+            <td><strong>finally</strong></td>
+            <td><strong>long</strong></td>
+            <td><strong>super</strong></td>
+            <td><strong>while</strong></td>
+          </tr>
+          <tr>
+            <td><strong>class</strong></td>
+            <td><strong>float</strong></td>
+            <td><strong>native</strong></td>
+            <td><strong>switch</strong></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>const</strong></td>
+            <td><strong>for</strong></td>
+            <td><strong>new</strong></td>
+            <td><strong>synchronized</strong></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>continue</strong></td>
+            <td><strong>goto</strong></td>
+            <td><strong>package</strong></td>
+            <td><strong>this</strong></td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Отметим, что ключевые слова <strong>const</strong> и <strong>goto</strong> в Java не используются,
+        но являются зарезервированными.</p>
+
+      <h3><a name="ref524">5.2.4. Идентификаторы</a></h3>
+
+      <p><a name="id"><em>Идентификаторы</em></a> используются в Java в качестве имен переменных, классов
+        и методов. Они могут начинаться с латинской буквы, символа &quot;$&quot; (знак доллара) или
+        символа &quot;_&quot; (подчеркивание) и должны состоять из латинских букв, цифр и символов &quot;$&quot;
+        и &quot;_&quot;. Знак доллара рекомендуется использовать только в идентификаторах программ,
+        которые автоматически генерируются другими программами. Идентификаторы не могут совпадать с
+        зарезервированными словами. Два идентификатора считаются равными, если они текстуально совпадают;
+        это означает, что Java проводит различие между строчными и прописными буквами. Примеры синтаксически
+        правильных идентификаторов:</p>
+
+      <div class="indent">
+        <table border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td><dfn>MyIdentfier</dfn></td>
+            <td><dfn>another_identifier</dfn></td>
+            <td><dfn>$id</dfn></td>
+            <td><dfn>_function123</dfn></td>
+          </tr>
+        </table>
+      </div>
+
+      <h3><a name="ref525">5.2.5. Константы</a></h3>
+
+      <p><a name="const"><em>Константы</em></a> используются для задания постоянных значений. В Java
+        имеется несколько типов констант, соответствующих его встроенным типам, а именно:</p>
+
+      <ul>
+        <li>константа <strong>null</strong> нулевого типа;</li>
+        <li>логические константы <strong>true</strong> (истина) и <strong>false</strong> (ложь) типа
+          <strong>boolean</strong>;</li>
+        <li>символьные константы типа <strong>char</strong>, например, 'a' или '\t';</li>
+        <li>строковые константы класса <tt>String</tt>, например, &quot;Привет всем!&quot;;</li>
+        <li>целые константы типов <strong>int</strong> и <strong>long</strong>, например, 111 или -2L;</li>
+        <li>плавающие константы типов <strong>float</strong> и <strong>double</strong>, например, 3.1415926.</li>
+      </ul>
+
+      <h4><a name="ref5251">5.2.5.1. Символьные константы</a></h4>
+
+      <p><em>Символьная константа</em>&nbsp;&#151; это один символ Unicode, заключенный в одинарные
+        кавычки. Символ может быть задан собственно символом или <em>escape-последовательностью</em>
+        вида <strong>\uXXXX</strong>, где XXXX&nbsp;&#151; шестнадцатеричный код символа Unicode. Примеры:</p>
+
+      <div class="code">
+<pre class="code">'a' 'Ю' '&copy;' '\u03A9'</pre>
+      </div>
+
+      <p>Несколько символов обозначаются специальными escape-последовательностями:</p>
+
+      <div class="indent">
+        <table border="1" cellspacing="0" cellpadding="7">
+          <tr>
+            <td><strong>\0</strong></td>
+            <td>\u0000</td>
+            <td>нуль (NUL)</td>
+          </tr>
+          <tr>
+            <td><strong>\b</strong></td>
+            <td>\u0008</td>
+            <td>забой (BS)</td>
+          </tr>
+          <tr>
+            <td><strong>\t</strong></td>
+            <td>\u0009</td>
+            <td>табуляция (HT)</td>
+          </tr>
+          <tr>
+            <td><strong>\n</strong></td>
+            <td>\u000A</td>
+            <td>перевод строки (LF)</td>
+          </tr>
+          <tr>
+            <td><strong>\f</strong></td>
+            <td>\u000C</td>
+            <td>перевод формата (FF)</td>
+          </tr>
+          <tr>
+            <td><strong>\r</strong></td>
+            <td>\u000D</td>
+            <td>возврат каретки (CR)</td>
+          </tr>
+          <tr>
+            <td><strong>\&quot;</strong></td>
+            <td>\u0022</td>
+            <td>двойная кавычка (&quot;)</td>
+          </tr>
+          <tr>
+            <td><strong>\'</strong></td>
+            <td>\u0027</td>
+            <td>одинарная кавычка (')</td>
+          </tr>
+          <tr>
+            <td><strong>\\</strong></td>
+            <td>\u005C</td>
+            <td>обратная косая черта (\)</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4><a name="ref5252">5.2.5.2. Строковые константы</a></h4>
+
+      <p><em>Строковая константа</em>&nbsp;&#151; это нуль или более символов Unicode, заключенных в
+        двойные кавычки. Строка, не содержащая символов (&quot;&quot;), называется пустой строкой. Символы
+        Unicode, входящие в состав строки, могут задаваться своим числовым кодом с помощью escape-последовательностей,
+        как описано в предыдущем параграфе. Примеры строковых констант:</p>
+
+      <div class="code">
+<pre class="code">&quot;Это строковая константа.&quot;
+&quot;Графический образ хранится в файле C:\\webstuff\\mypage\\gifs\\garden.gif.&quot;
+&quot;Эта строка заканчивается разрывом строки.\r\n&quot;</pre>
+      </div>
+
+      <h4><a name="ref5253">5.2.5.3. Целые константы</a></h4>
+
+      <p><em>Целые константы</em> могут быть положительными, отрицательными и нулем. По системе счисления
+        они могут быть десятичными, восьмеричными и шестнадцатеричными:</p>
+
+      <ul>
+        <li>Десятичные числа&nbsp;&#151; это просто набор десятичных цифр, например: 1234, -256.</li>
+        <li>Восьмеричные числа начинаются с <strong>0</strong> и состоят из цифр 0&nbsp;&#151; 7, например:
+          01234, -067.</li>
+        <li>Шестнадцатеричные числа начинаются с <strong>0x</strong> или <strong>0X</strong> и состоят
+          из цифр 0&nbsp;&#151; 9 и букв A&nbsp;&#151; F в любом регистре, например: 0xA000, 0Xa000,
+          -0x1234.</li>
+      </ul>
+
+      <p>Целые константы с суффиксом L или l имеют тип <strong>long</strong> (например, -1L или 0x12345678l);
+        все остальные целые константы имеют тип <strong>int</strong>. Диапазон допустимых значений констант
+        типа <strong>int</strong>: от -2147483648 (-2<sup>31</sup>) до 2147483647 (2<sup>31</sup>-1).
+        Диапазон допустимых значений констант типа <strong>long</strong>: от -9223372036854775808L (-2<sup>63</sup>)
+        до 9223372036854775807L (2<sup>63</sup>-1).</p>
+
+      <h4><a name="ref5254">5.2.5.4. Плавающие константы</a></h4>
+
+      <p><em>Плавающие константы</em> отличаются от целых наличием или десятичной точки, или буквы <strong>e</strong>
+        в любом регистре, задающей степень десяти в научной нотации, или того и другого. Примеры плавающих
+        чисел:</p>
+
+      <div class="indent">
+        <table border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td>0.0001, .0001, 1e-4, 1.0E-4</td>
+            <td>// Четыре плавающих числа, равных друг другу</td>
+          </tr>
+          <tr>
+            <td>-1.23e2</td>
+            <td>// Плавающее число, равное -123</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Плавающие константы с суффиксом F или f имеют тип <strong>float</strong> (например, -1.0F или
+        -123.45678f); все остальные плавающие константы имеют тип <strong>double</strong> (для подчеркивания
+        этого они могут иметь необязательный суффикс D или d). Тип <strong>float</strong> соответствует
+        32-битовому формату IEEE 754, а тип <strong>double</strong>&nbsp;&#151; 64-битовому формату
+        IEEE 754. Наибольшим возможным значением числа типа <strong>float</strong> является 3.40282347e+38f,
+        а наименьшим возможным положительным значением 1.40239846e-45f. Наибольшим возможным значением
+        числа типа <strong>double</strong> является 1.79769313486231570e+308, а наименьшим возможным
+        положительным значением 4.94065645841246544e-324.</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

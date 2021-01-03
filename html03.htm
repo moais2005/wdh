@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: HTML - Отображение текста</title>
+<link rel="Prev" href="html02.htm" title="Структура HTML-документа">
+<link rel="Next" href="html04.htm" title="Списки">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref13">Глава 1.3. Отображение текста</a></h2>
+
+      <h3><a name="ref131">1.3.1. Отображение пробелов</a></h3>
+
+      <p>При отображении элементов HTML использует два важных понятия: <em>пробел</em> и <em>слово</em>.
+        <em>Слово</em>&nbsp;&#151; это последовательность любых символов, не являющихся пробелами, а
+        <em>пробелами</em> считаются следующие символы:</p>
+
+      <ul>
+        <li>символ пробела (<strong>&amp;#x20;</strong>)</li>
+        <li>символ табуляции (<strong>&amp;#x09;</strong>)</li>
+        <li>символ перевода формата (<strong>&amp;#x0C;</strong>)</li>
+        <li>пробел нулевой ширины (<strong>&amp;#x200B;</strong>)</li>
+        <li><a href="#ref1322">разрывы строк</a>.</li>
+      </ul>
+
+      <p>Обозреватель при отображении любых элементов HTML, кроме <a href="#epre"><strong>PRE</strong></a>,
+        разбивает отображаемый текст на слова и выводит эти слова, используя соответствующий разделитель,
+        зависящий от языка текста и устройства, на которое производится отображение. Так, при выводе
+        на экран слов, написанных латиницей или кириллицей, они разделяются обычными пробелами (<strong>&amp;#x20;</strong>),
+        при выводе текста на тайском языке используется пробел нулевой ширины (<strong>&amp;#x200B;</strong>),
+        а при выводе китайского или японского текста разделители слов вообще не отображаются.</p>
+
+      <p>Даже если информация о языке текста отсутствует, обозреватель всегда заменяет последовательность
+        пробелов на один пробел. Поэтому для отображения нескольких пробелов подряд следует применять
+        символ <em>неразрывный пробел</em> (<strong>&amp;nbsp;</strong>). Исключение составляет элемент
+        <a href="#epre"><strong>PRE</strong></a>, при отображении которого сохраняются все
+        пробелы в содержимом элемента.</p>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается пробел нулевой ширины.
+           <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается пробел нулевой ширины.</pre>
+
+      <h3><a name="ref132">1.3.2. Строки и абзацы</a></h3>
+
+      <h4><a name="ref1321">1.3.2.1. Абзац: элемент P</a></h4>
+
+<pre class="syntax"><a name="ep"><strong>Синтаксис</strong>:</a> &lt;P&gt;&#133;&lt;/P&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>P</strong> (paragraph) определяет абзац текста. HTML не дает определения того,
+        как должен выглядеть абзац. Большинство обозревателей отделяет новый абзац от предыдущего текста
+        пустой строкой и не делает отступа текста в начале абзаца, но эти установки могут быть изменены
+        атрибутом <a href="html01.htm#astyle"><strong>style</strong></a>, например, абзац:</p>
+
+      <div class="code">
+<pre class="code"><strong>&lt;P style=&quot;text-indent: 5%; text-align: justify&quot;&gt;</strong>
+  Этот текст начинается с красной строки и выровнен по правому краю.
+  Рекомендуется выносить подобные установки в таблицы стилей.
+<strong>&lt;/P&gt;</strong></pre>
+      </div>
+
+      <p class="noindent">будет выглядеть так:</p>
+
+      <p style="text-indent: 5%; text-align: justify"><samp>Этот текст начинается с красной строки и
+        выровнен по правому краю. Рекомендуется выносить подобные установки в таблицы стилей.</samp></p>
+
+      <p>Обратите внимание, что обозреватель игнорирует разрывы строк внутри абзаца и размещает его
+        текст как можно плотнее, т.&nbsp;е. полностью заполняет строку экрана в соответствии с типом
+        выравнивания абзаца прежде, чем начать новую строку.</p>
+
+      <p>Элемент <strong>P</strong> не может содержать других блочных элементов.</p>
+
+      <p class="note"><strong>Примечание</strong>. Не рекомендуется использовать пустые элементы <strong>P</strong>
+        (т.&nbsp;е. элементы вида <strong>&lt;P&gt;&lt;/P&gt;</strong>) для создания пустых строк, так
+        как большинство обозревателей их игнорируют. Пользуйтесь для этого конструкцией <strong>&lt;P&gt;&amp;nbsp;&lt;/P&gt;</strong>.</p>
+
+      <h4><a name="ref1322">1.3.2.2. Разрыв строки: элемент BR</a></h4>
+
+<pre class="syntax"><a name="ebr"><strong>Синтаксис</strong>:</a> &lt;BR&gt; (содержимого и конечного тега нет)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (3.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Полное соответствие стандарту (4.0+)</pre>
+
+      <p>Разрыв строки задается в HTML символами <em>возврат каретки</em> (<strong>&amp;#x0D;</strong>),
+        <em>перевод строки</em> (<strong>&amp;#x0A;</strong>) или парой <em>возврат каретки</em>/<em>перевод
+        строки</em>. Символы разрыва строки отображаются как <a href="#ref131">символы пробела</a>.
+        Правила отображения разрывов строк описаны в предыдущем разделе, отметим здесь только еще одну
+        особенность: если разрыв строки следует сразу за начальным тегом элементом или непосредственно
+        предшествует его конечному тегу, то он игнорируется обозревателем.</p>
+
+      <p>Элемент <strong>BR</strong> (break) используется для насильственного разрыва строки. Он полезен
+        для форматирования текста в таких элементах, как <a href="html10.htm#eaddress"><strong>ADDRESS</strong></a>,
+        но не должен применяться для &quot;украшения&quot; текста в абзацах и ячейках таблиц&nbsp;&#151;
+        при изменении ширины окна или размера шрифта такие украшения дают малосимпатичные эффекты.</p>
+
+      <p>Для того, чтобы запретить разрыв строки между двумя словами, используйте в качестве разделителя
+        не пробел, а <em>неразрывный пробел</em> (<strong>&amp;nbsp;</strong>).</p>
+
+      <h4><a name="ref1323">1.3.2.3. Перенос слов</a></h4>
+
+      <p>Для переноса слов в HTML используются два символа: дефис (&quot;-&quot;, <strong>&amp;#x2D;</strong>)
+        и мягкий перенос (<strong>&amp;shy;</strong>). Дефис отображается как обычный символ. Мягкий
+        перенос указывает обозревателю, где возможен разрыв строки, и должен обрабатываться по следующим
+        правилам:</p>
+
+      <ul>
+        <li>если по мягкому переносу производится разрыв строки, то он должен отображаться символом
+          дефис;</li>
+        <li>если по мягкому переносу не производится разрыв строки, то он не должен отображаться;</li>
+        <li>при операциях поиска и сортировки мягкий перенос должен игнорироваться.</li>
+      </ul>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Мягкий перенос правильно обрабатывается только в словах, содержащих
+              символы базовой латиницы; в остальных случаях отображается как дефис.
+           <img src="images/nn.gif" alt="Netscape Navigator"> Мягкий перенос отображается как дефис.</pre>
+
+      <h4><a name="ref1324">1.3.2.4. Форматированный текст: элемент PRE</a></h4>
+
+<pre class="syntax"><a name="epre"><strong>Синтаксис</strong>:</a> &lt;PRE&gt;&#133;&lt;/PRE&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>PRE</strong> (preformatted) содержит <em>предварительно отформатированный текст</em>.
+        Это означает, что при его отображении:</p>
+
+      <ul>
+        <li>пробелы выводятся без сжатия;</li>
+        <li>не производится автоматический перенос слов на новую строку;</li>
+        <li>используется шрифт фиксированной ширины (fixed-pitch font).</li>
+      </ul>
+
+      <p>Этот элемент полезен для вывода текстов, в которых размещение слов в строках имеет существенное
+        значение, например, для стихов или фрагментов компьютерных программ. Он не может включать в
+        себя такие элементы, как <a href="html06.htm#eimg"><strong>IMG</strong></a>, <a href="html06.htm#eobject"><strong>OBJECT</strong></a>,
+        <a href="#ebig"><strong>BIG</strong></a>, <a href="#esmall"><strong>SMALL</strong></a>,
+        <a href="#esubsup"><strong>SUB</strong></a> или <a href="#esubsup"><strong>SUP</strong></a>.
+        Вывод отформатированного текста всегда начинается с нового абзаца. Пример: следующий элемент</p>
+
+      <div class="code">
+<pre class="code"><strong>&lt;PRE&gt;</strong>
+function makearray(n) {
+  this.length = n;
+  for(var i = 1; i &lt;= n; i++)
+    this[i] = 0;
+  return this;
+}
+<strong>&lt;/PRE&gt;</strong></pre>
+      </div>
+
+      <p class="noindent">будет отображаться так:</p>
+
+      <pre><samp>function makearray(n) {
+  this.length = n;
+  for(var i = 1; i &lt;= n; i++)
+    this[i] = 0;
+  return this;
+}</samp></pre>
+
+      <p>Авторы не должны изменять <a href="css01.htm">таблицами стилей</a> перечисленные выше свойства
+        элементов <strong>PRE</strong>.</p>
+
+      <h3><a name="ref133">1.3.3. Заголовки: элементы H1 &#151; H6</a></h3>
+
+<pre class="syntax"><a name="eh"><strong>Синтаксис</strong>:</a> &lt;Hn&gt;&#133;&lt;/Hn&gt; (блочный элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элементы <strong>H1</strong>&nbsp;&#151; <strong>H6</strong> (header) используются для создания
+        <em>заголовков</em> в документе. Пример отображения заголовков:</p>
+
+      <div style="text-align: center; color: purple">
+
+        <h1>Заголовок документа (H1)</h1>
+
+        <h2>Часть 1. Заголовок части (H2)</h2>
+
+        <h3>Глава 1. Заголовок главы (H3)</h3>
+
+        <h4>1.1. Заголовок H4</h4>
+
+        <h5>1.1.1. Заголовок H5</h5>
+
+        <h6>§1. Заголовок H6</h6>
+
+      </div>
+
+      <p>Все параметры отображения заголовков могут быть изменены через <a href="css01.htm">таблицы
+        стилей</a>.</p>
+
+      <h3><a name="ref134">1.3.4. Фразовые элементы</a></h3>
+
+      <p><em>Фразовые элементы</em>, описанные в этом разделе, определяют <em>логические стили</em>
+        фрагментов текста. Соответствующий <em>физический стиль</em>, т.&nbsp;е. способ отображения
+        данного элемента, может быть изменен таблицами стилей.</p>
+
+      <h4><a name="ref1341">1.3.4.1. Выделение текста: элемент EM</a></h4>
+
+<pre class="syntax"><a name="eem"><strong>Синтаксис</strong>:</a> &lt;EM&gt;&#133;&lt;/EM&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, отображается курсивом (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Отображается курсивом, атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>EM</strong> (emphasis) используется для <em>выделения текста</em>. По умолчанию
+        отображается курсивным шрифтом. Синтезаторы речи могут использовать для выделения текста увеличение
+        громкости, изменение тембра и т.&nbsp;п. Поскольку данный элемент определяет логический стиль,
+        который может быть переопределен в таблицах стилей, его применение предпочтительнее, чем применение
+        элемента <a href="#ei"><strong>I</strong></a> (курсивный шрифт).</p>
+
+      <p>Например, начало предыдущего абзаца на языке HTML выглядит так:</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;Элемент &lt;STRONG&gt;EM&lt;/STRONG&gt;
+используется для <strong>&lt;EM&gt;</strong>выделения текста<strong>&lt;/EM&gt;</strong>.&lt;/P&gt;</pre>
+      </div>
+
+      <h4><a name="ref1342">1.3.4.2. Сильное выделение: элемент STRONG</a></h4>
+
+<pre class="syntax"><a name="estrong"><strong>Синтаксис</strong>:</a> &lt;STRONG&gt;&#133;&lt;/STRONG&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, отображается полужирным шрифтом (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Отображается полужирным шрифтом, атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>STRONG</strong> (strong emphasis) используется для <em>сильного выделения текста</em>.
+        По умолчанию отображается полужирным шрифтом. Синтезаторы речи могут использовать для сильного
+        выделения текста увеличение громкости, изменение тембра и т.&nbsp;п. Поскольку данный элемент
+        определяет логический стиль, который может быть переопределен в таблицах стилей, его применение
+        предпочтительнее, чем применение элемента <a href="#eb"><strong>B</strong></a> (полужирный
+        шрифт).</p>
+
+      <p>Например, начало предыдущего абзаца на языке HTML выглядит так:</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;Элемент <strong>&lt;STRONG&gt;</strong>STRONG<strong>&lt;/STRONG&gt;</strong> (strong emphasis)
+используется для &lt;EM&gt;сильного выделения текста&lt;/EM&gt;.&lt;/P&gt;</pre>
+      </div>
+
+      <h4><a name="ref1343">1.3.4.3. Ссылка: элемент CITE</a></h4>
+
+<pre class="syntax"><a name="ecite"><strong>Синтаксис</strong>:</a> &lt;CITE&gt;&#133;&lt;/CITE&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, отображается курсивом (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Отображается курсивом, атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>CITE</strong> используется для <em>ссылок</em> на названия книг, журналов,
+        газет и других источников. По умолчанию он отображается курсивным шрифтом. Поскольку данный
+        элемент определяет логический стиль, который может быть переопределен в таблицах стилей, его
+        применение предпочтительнее, чем применение элемента <a href="#ei"><strong>I</strong></a>
+        (курсивный шрифт). Пример: следующий фрагмент документа</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;Во вчерашнем номере <strong>&lt;CITE&gt;</strong>Московского комсомольца<strong>&lt;/CITE&gt;</strong> напечатана рецензия
+на новую книгу В. Пелевина <strong>&lt;CITE&gt;</strong>Чапаев и Пустота<strong>&lt;/CITE&gt;</strong>.&lt;/P&gt;</pre>
+      </div>
+
+      <p class="noindent">будет отображаться так:</p>
+
+      <p><samp>Во вчерашнем номере <cite>Московского комсомольца</cite> напечатана рецензия на новую
+        книгу В. Пелевина <cite>Чапаев и Пустота</cite>.</samp></p>
+
+      <h4><a name="ref1344">1.3.4.4. Определение термина: элемент DFN</a></h4>
+
+<pre class="syntax"><a name="edfn"><strong>Синтаксис</strong>:</a> &lt;DFN&gt;&#133;&lt;/DFN&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, отображается курсивом (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается.</pre>
+
+      <p>Элемент <strong>DFN</strong> (definition) указывает на <em>определение термина</em>. По умолчанию
+        он отображается курсивным шрифтом. Поскольку данный элемент определяет логический стиль, который
+        может быть переопределен в таблицах стилей, его применение предпочтительнее, чем применение
+        элемента <a href="#ei"><strong>I</strong></a> (курсивный шрифт). Пример: следующий
+        фрагмент документа</p>
+
+      <div class="code">
+<pre class="code"><strong>&lt;DFN&gt;</strong>Unicode - это международный стандарт кодировки символов.<strong>&lt;/DFN&gt;</strong></pre>
+      </div>
+
+      <p class="noindent">будет отображаться так:</p>
+
+      <p><samp><i>Unicode - это международный стандарт кодировки символов.</i></samp></p>
+
+      <h4><a name="ref1345">1.3.4.5. Фрагмент программного кода: элемент CODE</a></h4>
+
+<pre class="syntax"><a name="ecode"><strong>Синтаксис</strong>:</a> &lt;CODE&gt;&#133;&lt;/CODE&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, отображается телетайпным шрифтом (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Отображается телетайпным шрифтом, атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>CODE</strong> указывает на <em>программный код</em>. По умолчанию он отображается
+        телетайпным шрифтом. Поскольку данный элемент определяет логический стиль, который может быть
+        переопределен в таблицах стилей, его применение предпочтительнее, чем применение элемента <a href="#ett"><strong>TT</strong></a>
+        (телетайпный шрифт). Поскольку расположение пробелов существенно для чтения программного кода,
+        элемент <strong>CODE</strong> обычно употребляется в сочетании с элементом <a href="#epre"><strong>PRE</strong></a>.</p>
+
+      <p>Пример: следующий фрагмент документа</p>
+
+      <div class="code">
+<pre class="code">&lt;PRE&gt;<strong>&lt;CODE&gt;</strong>
+function makearray(n) {
+  this.length = n;
+  for(var i = 1; i &lt;= n; i++)
+    this[i] = 0;
+  return this;
+}
+<strong>&lt;/CODE&gt;</strong>&lt;/PRE&gt;</pre>
+      </div>
+
+      <p class="noindent">будет отображаться так:</p>
+
+      <pre><samp><tt>function makearray(n) {
+  this.length = n;
+  for(var i = 1; i &lt;= n; i++)
+    this[i] = 0;
+  return this;
+}</tt></samp></pre>
+
+      <h4><a name="ref1346">1.3.4.6. Пример вывода результатов: элемент SAMP</a></h4>
+
+<pre class="syntax"><a name="esamp"><strong>Синтаксис</strong>:</a> &lt;SAMP&gt;&#133;&lt;/SAMP&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, отображается телетайпным шрифтом (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Отображается телетайпным шрифтом, атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>SAMP</strong> (sample) указывает на <em>вывод результатов работы программы</em>.
+        По умолчанию он отображается телетайпным шрифтом. Поскольку данный элемент определяет логический
+        стиль, который может быть переопределен в таблицах стилей, его применение предпочтительнее,
+        чем применение элемента <a href="#ett"><strong>TT</strong></a> (телетайпный шрифт).
+        Пример: следующий фрагмент документа</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;При обнаружении синтаксической ошибки компилятор выдает следующее сообщение:&lt;/P&gt;
+&lt;P&gt;<strong>&lt;SAMP&gt;</strong>Syntax error<strong>&lt;/SAMP&gt;</strong>&lt;/P&gt;</pre>
+      </div>
+
+      <p class="noindent">будет отображаться так:</p>
+
+      <samp>
+      <p>При обнаружении синтаксической ошибки компилятор выдает следующее сообщение:</p>
+      <p><tt>Syntax error</tt></p>
+      </samp>
+
+      <h4><a name="ref1347">1.3.4.7. Пример ввода данных: элемент KBD</a></h4>
+
+<pre class="syntax"><a name="ekbd"><strong>Синтаксис</strong>:</a> &lt;KBD&gt;&#133;&lt;/KBD&gt; (текстовый элемент)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, отображается телетайпным шрифтом (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Отображается телетайпным шрифтом, атрибут <strong>dir</strong> игнорируется (3.0+)</pre>
+
+      <p>Элемент <strong>KBD</strong> (keyboard) указывает на <em>текст, вводимый пользователем</em>
+        с клавиатуры. По умолчанию он отображается телетайпным шрифтом. Поскольку данный элемент определяет
+        логический стиль, который может быть переопределен в таблицах стилей, его применение предпочтительнее,
+        чем применение элемента <a href="#ett"><strong>TT</strong></a> (телетайпный шрифт).
+        Пример: следующий фрагмент документа</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;В ответ на запрос введите <strong>&lt;KBD&gt;</strong>Y<strong>&lt;/KBD&gt;</strong> или <strong>&lt;KBD&gt;</strong>N<strong>&lt;/KBD&gt;</strong>.&lt;/P&gt;</pre>
+      </div>
+
+      <p classpt&quot;
+  type=&quot;application/postscript&quot;
+  href=&quot;manual.ps&quot;&gt; </pre>
+      </div>
+
+      <p><a name="link-alt-stylesheet"></a>В частности, альтернативная внешняя таблица стилей может быть задана элементом:</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK rel=&quot;Alternate StyleSheet&quot; href=&quot;style.css&quot; type=&quot;text/css&quot; media=&quot;...&quot;&gt;</pre>
+      </div>
+
+      <h4><a name="ref1236">1.2.3.6. Внутренние таблицы стилей: элемент STYLE</a></h4>
+
+<pre class="syntax"><a name="estyle"><strong>Синтаксис</strong>:</a> &lt;STYLE&gt;&#133;&lt;/STYLE&gt;
+<strong>Атрибуты</strong>:  <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>
+           <strong>type</strong> = <a href="html01.htm#contenttype">тип файла</a> (тип таблицы стилей)
+           media = <a href="html01.htm#mediadesc">устройства</a> (устройства для отображения документа)
+           title = <a href="html01.htm#text">текст</a> (титул таблицы стилей)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>lang</strong> и <strong>dir</strong> игнорируются;
+              допустимые значения <strong>media</strong>: screen, print и all (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>lang</strong>, <strong>dir</strong> и <strong>media</strong> игнорируются (4.0+)</pre>
+
+      <p>Элемент <strong>STYLE</strong> позволяет включать в документ <em>внутренние таблицы стилей</em>.
+        Заголовок документа может содержать любое количество этих элементов. Старые обозреватели не
+        поддерживают элементы <strong>STYLE</strong>, поэтому рекомендуется заключать содержимое элемента
+        <strong>STYLE</strong> в комментарий, как показано ниже.</p>
+
+      <p>Обязательный атрибут <strong>type</strong> указывает на тип таблицы стилей, т.&nbsp;е. на язык,
+        на котором описываются стили. Для каскадных таблиц стилей этот атрибут всегда должен иметь значение
+        <strong>&quot;text/css&quot;</strong>. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;HEAD&gt;
+  <strong>&lt;STYLE type=&quot;text/css&quot;&gt;</strong>
+  &lt;!--
+    H1 {border-width: 1; border: solid; text-align: center}
+  --&gt;
+  <strong>&lt;/STYLE&gt;</strong>
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+  &lt;H1&gt;Этот заголовок имеет указанный выше стиль&lt;/H1&gt;
+&lt;/BODY&gt;</pre>
+      </div>
+
+      <p>HTML позволяет авторам создавать документы, учитывающие особенности устройств, на которых документ
+        будет отображаться. Для того, чтобы использовать разные таблицы стилей для различных устройств,
+        включите в элемент <strong>STYLE</strong> атрибут <strong>media</strong>:</p>
+
+      <div class="code">
+<pre class="code"><strong>&lt;STYLE type=&quot;text/css&quot; media=&quot;screen&quot;&gt;</strong>
+&lt;!--
+  H1 {color: blue}
+--&gt;
+<strong>&lt;/STYLE&gt;</strong>
+<strong>&lt;STYLE type=&quot;text/css&quot; media=&quot;print&quot;&gt;</strong>
+&lt;!--
+  H1 {text-align: center}
+--&gt;
+<strong>&lt;/STYLE&gt;</strong></pre>
+      </div>
+
+      <h3><a name="ref124">1.2.4. Тело документа: элемент BODY</a></h3>
+
+<pre class="syntax"><a name="ebody"><strong>Синтаксис</strong>:</a> &lt;BODY&gt;&#133;&lt;/BODY&gt; (оба тега не обязательны)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a>
+           onload = <a href="html01.htm#script">сценарий</a> (документ загружен)
+           onunload = <a href="html01.htm#script">сценарий</a> (документ выгружен)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>lang</strong> и <strong>dir</strong> игнорируются
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>lang</strong> и <strong>dir</strong> игнорируются</pre>
+
+      <p><em>Тело документа</em> содержит HTML-элементы, предназначенные для отображения обозревателем.
+        Тело заключается в теги <strong>&lt;BODY&gt;</strong>&#133;<strong>&lt;/BODY&gt;</strong> или
+        <strong>&lt;<a href="html07.htm#eframeset">FRAMESET</a>&gt;</strong>&#133;<strong>&lt;/FRAMESET&gt;</strong>,
+        если документ содержит фреймы (о них см. <a href="html07.htm#ref17">Главу 1.7</a>). Напомним,
+        что наше описание не включает <a href="html01.htm#deprecated">морально устаревшие элементы и
+        атрибуты</a>. Поэтому элемент <strong>BODY</strong> должен использовать только общие атрибуты
+        и два нестандартных обработчика событий:</p>
+
+      <ul>
+        <li><strong>onload</strong>&nbsp;&#151; происходит, когда обозреватель завершил загрузку документа
+          в окно;</li>
+        <li><strong>onunload</strong>&nbsp;&#151; происходит, когда обозреватель завершил удаление документа
+          из окна.</li>
+      </ul>
+
+      <p>Все остальные атрибуты тела документа являются морально устаревшими и должны заменяться на
+        <a href="css01.htm">стили CSS</a>, например:</p>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;STYLE type=&quot;text/css&quot;&gt;
+  BODY { background: white; color: black}
+  A:link { color: red }
+  A:visited { color: maroon }
+  A:active { color: purple }
+&lt;/STYLE&gt;
+&lt;/HEAD&gt;
+<strong>&lt;BODY&gt;</strong>
+  <em>&#133;тело документа&#133;</em>
+<strong>&lt;/BODY&gt;</strong>
+&lt;/HTML&gt;</pre>
+      </div>
+
+      <h3><a name="ref125">1.2.5. Блочные и текстовые элементы</a></h3>
+
+      <p>Большинство элементов HTML, используемых в теле документа, подразделяются на <em>блочные</em>
+        (block-level) и <em>текстовые</em> (inline) элементы. <em>Блочные элементы</em> могут содержать
+        как текстовые элементы, так и другие блочные элементы. При отображении они всегда выводятся
+        как отдельный абзац. <em>Текстовые элементы</em> могут содержать только текст и другие текстовые
+        элементы, но не могут содержать блочных элементов. При отображении они выводятся в текущей строке.</p>
+
+      <p>Ниже при описании каждого из элементов HTML мы указываем, к какому из этих двух типов он относится.</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+ сок имен кБ     Шr Нo  Шr Нo  ЂLK4ЎU  ЂLK4ЎU      <p class="note"><strong>Примечание</strong>. Большинство обозревателей не поддерживают списки
+        классов, попросту игнорируя такой атрибут <strong>class</strong>.</p>
+
+      <p>Атрибут <strong>class</strong> особенно полезен в <a href="css02.htm#ref222">селекторах стилей</a>.
+        Рассмотрим следующий пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;STYLE type=&quot;text/css&quot;&gt;
+  p { font-size: medium }
+  p.<strong>note</strong> { font-size: small }
+&lt;/STYLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+&lt;P&gt;Обычный абзац&lt;/P&gt;
+&lt;P <strong>class=&quot;note&quot;</strong>&gt;Примечание&lt;/P&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;</pre>
+      </div>
+
+      <p>Здесь в заголовке документа заданы размеры шрифта для обычных абзацев и для абзацев класса
+        <strong>note</strong> (примечание). Теперь для того, чтобы включить в текст примечание, достаточно
+        присвоить соответствующему абзацу (т.&nbsp;е. элементу <a href="html03.htm#ep"><strong>P</strong></a>)
+        атрибут <strong>class=&quot;note&quot;</strong>. Именно так построены все примечания в данном
+        справочнике.</p>
+
+      <p>Этот атрибут применим ко всем элементам, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>,
+        <a href="html02.htm#ehead"><strong>HEAD</strong></a>, <a href="html02.htm#ehtml"><strong>HTML</strong></a>,
+        <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+        <a href="html09.htm#escript"><strong>SCRIPT</strong></a>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>
+        и <strong><a href="html02.htm#etitle">TITLE</a>.</strong></p>
+
+      <h4><a name="ref1143">1.1.4.3. Стиль элемента: атрибут style</a></h4>
+
+<pre class="syntax"><a name="astyle"><strong>Синтаксис</strong>: style</a> = <a href="#stylesheet">таблица стилей</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (3.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Полное соответствие стандарту (4.0+)</pre>
+
+      <p>Атрибут <strong>style</strong> позволяет задать стиль элемента внутри его начального тега,
+        например:</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;Популярным экранным шрифтом является
+  &lt;SPAN <strong>style=&quot;font-family: Verdana&quot;</strong>&gt;Verdana&lt;/SPAN&gt;.&lt;/P&gt;</pre>
+      </div>
+
+      <p>Для использования этого атрибута в заголовок документа должен быть включен метаописатель</p>
+
+      <div class="code">
+<pre class="code">&lt;META http-equiv=&quot;Content-Style-Type&quot; content=&quot;text/css&quot;&gt;</pre>
+      </div>
+
+      <p>В большинстве случаев употребление атрибутов <a href="#aclass"><strong>class</strong></a> и
+        <a href="#aid"><strong>id</strong></a> предпочтительнее, т.&nbsp;к. они обеспечивают разделение
+        содержимого документа и стиля его отображения, что обычно упрощает сопровождение разработки.</p>
+
+      <p>Этот атрибут применим ко всем элементам, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>,
+        <a href="html02.htm#ehead"><strong>HEAD</strong></a>, <a href="html02.htm#ehtml"><strong>HTML</strong></a>,
+        <a href="html02.htm#emeta"><strong>META</strong></a>, <a href="html06.htm#eparam"><strong>PARAM</strong></a>,
+        <a href="html09.htm#escript"><strong>SCRIPT</strong></a>, <a href="html02.htm#estyle"><strong>STYLE</strong></a>
+        и <strong><a href="html02.htm#etitle">TITLE</a>.</strong></p>
+
+      <h4><a name="ref1144">1.1.4.4. Титул элемента: атрибут title</a></h4>
+
+<pre class="syntax"><a name="atitle"><strong>Синтаксис</strong>: title</a> = <a href="#text">текст</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту, выводится как подсказка (4.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Атрибут <strong>title</strong> определяет титул элемента и часто используется обозревателями
+        как подсказка (tooltip), которая выводится на экран, когда курсор помещается на данный элемент.
+        Он особенно полезен в элементах <a href="html06.htm#ea"><strong>A</strong></a>, <a href="html02.htm#elink"><strong>LINK</strong></a>,
+        <a href="html06.htm#eimg"><strong>IMG</strong></a> и <a href="html06.htm#eobject"><strong>OBJECT</strong></a>,
+        в которых он указывает на титул связанного или вложенного ресурса. Приведем несколько примеров.</p>
+
+      <p>Ссылка на почтовый ящик:</p>
+
+      <div class="code">
+<pre class="code">&lt;A href=&quot;mailto:yurylukach@homepage.com&quot;
+  <strong>title=&quot;Пошлите мне свои замечания&quot;</strong>&gt;yurylukach@homepage.com&lt;/A&gt;</pre>
+      </div>
+
+      <p>Ссылка на Веб-страницу:</p>
+
+      <div class="code">
+<pre class="code">&lt;A href=&quot;http://www-genome.wi.mit.edu/ftp/pub/software/www/cgi_docs.html&quot;
+  <strong>title=&quot;Библиотека CGI-сценариев&quot;</strong>&gt;CGI.pm&lt;/A&gt;</pre>
+      </div>
+
+      <p>Ссылка на альтернативную Веб-страницу:</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK rel=&quot;Alternate&quot; href=&quot;index.ru.html&quot; hreflang=ru lang=ru <strong>title=&quot;Русская версия&quot;</strong>&gt;</pre>
+      </div>
+
+      <p>Ссылка на аплет:</p>
+
+      <div class="code">
+<pre class="code">&lt;OBJECT classid=&quot;java:Audio.class&quot; codetype=&quot;application/java&quot;
+  style=&quot;width: 400; height: 250&quot;
+  standby=&quot;Готовы слушать музыку?&quot; <strong>title=&quot;Моя любимая песня&quot;</strong>&gt;
+  &lt;IMG src=&quot;music.gif&quot; alt=&quot;&quot; <strong>title=&quot;Beatles' Yesterday&quot;</strong>&gt;
+  Yesterday – моя &lt;EM&gt;любимая&lt;/EM&gt; песня!
+&lt;/OBJECT&gt;</pre>
+      </div>
+
+      <p>Атрибут <strong>title</strong> полезен также с элементами <a href="html03.htm#eabbr"><strong>ABBR</strong></a>
+        и <a href="html03.htm#eacronym"><strong>ACRONYM</strong></a>, где он позволяет дать расшифровку
+        сокращения. Примеры:</p>
+
+      <div class="code">
+<pre class="code">&lt;P&gt;Он весит 80 &lt;ABBR <strong>title=&quot;килограммов&quot;</strong> lang=ru&gt;кг&lt;/ABBR&gt;.&lt;/P&gt;
+&lt;ACRONYM <strong>title=&quot;Организация Объединенных Наций&quot;</strong>&gt;ООН&lt;/ACRONYM&gt;</pre>
+      </div>
+
+      <h4><a name="ref1145">1.1.4.5. Язык элемента: атрибут lang</a></h4>
+
+<pre class="syntax"><a name="alang"><strong>Синтаксис</strong>: lang</a> = <a href="#languagecode">код языка</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Распознается, но игнорируется (2.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Распознается, но игнорируется (3.0+)</pre>
+
+      <p>Атрибут <strong>lang</strong> определяет естественный язык, на котором написаны значения остальных
+        атрибутов данного элемента и его содержимое (а также всех вложенных элементов, не имеющих своего
+        атрибута <strong>lang</strong>). Хотя этот атрибут поддерживается не слишком широко, он находит
+        все большее применение, например:</p>
+
+      <ul>
+        <li>некоторые поисковые системы индексируют документы по их языку;</li>aт      Xk Нo  Xk Нo                  ользовать правила произношения, определяемые конкретным языком;</li>
+        <li>обозреватели могут в зависимости от языка использовать различные шрифты, учитывать правила
+          переноса слов, проверять правописание и т.&nbsp;д.</li>
+      </ul>
+
+      <p>Значение атрибута <strong>lang</strong> не зависит от регистра. Список его возможных значений
+        приведен в <a href="langs.htm">Приложении 8</a>.</p>
+
+      <p>Использование <strong>lang</strong> также позволяет авторам легко менять стиль текста в зависимости
+        от языка. Например, один из языков в двуязычном документе может изображаться курсивом или произноситься
+        другим голосом в синтезаторе речи. Текст такого документа должен оформляться следующим образом:</p>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+  &lt;TITLE&gt;Welcome - Добро пожаловать&lt;/TITLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+  &lt;H1&gt;&lt;SPAN <strong>lang=en</strong>&gt;Welcome&lt;/SPAN&gt; - &lt;SPAN <strong>lang=ru</strong>&gt;Добро пожаловать&lt;/SPAN&gt;&lt;/H1&gt;
+  &lt;P <strong>lang=en</strong>&gt;This paragraph is in English.&lt;/P&gt;
+  &lt;P <strong>lang=ru</strong>&gt;Этот абзац на русском языке.&lt;/P&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;</pre>
+      </div>
+
+      <p>Основной язык документа может быть задан атрибутом <strong>lang</strong> в элементе <a href="html02.htm#ehtml"><strong>HTML</strong></a>
+        или в поле <a href="http.htm#http-headers">заголовка HTTP <strong>Content-Language</strong></a>.</p>
+
+      <p>Этот атрибут применим ко всем элементам, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>,
+        <a href="html03.htm#ebr"><strong>BR</strong></a>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+        <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+        <a href="html06.htm#eparam"><strong>PARAM</strong></a> и <strong><a href="html09.htm#escript">SCRIPT</a>.</strong></p>
+
+      <p class="note"><strong>Примечание</strong>. Атрибут <strong>lang</strong> не должен использоваться
+        для задания направления вывода текста&nbsp;&#151; оно задается атрибутом <a href="#adir"><strong>dir</strong></a>.</p>
+
+      <h4><a name="ref1146">1.1.4.6. Направление вывода текста: атрибут dir</a></h4>
+
+<pre class="syntax"><a name="adir"><strong>Синтаксис</strong>: dir</a> = <dfn>ltr | rtl</dfn></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Атрибут <strong>dir</strong> определяет направление вывода текста: слева направо (dir=&quot;<dfn>ltr</dfn>&quot;,
+        по умолчанию) или справа налево (dir=&quot;<dfn>rtl</dfn>&quot;). Всем символам в кодировке
+        Unicode приписано направление, с тем, чтобы текст отображался правильно. Так, латинские и русские
+        буквы выводятся слева направо, а еврейские и арабские – справа налево.</p>
+
+      <p>Стандарт Unicode определяет двунаправленный алгоритм, который должен применяться всякий раз,
+        когда документ содержит символы, выводимые справа налево. Хотя обычно этот алгоритм дает правильное
+        изображение текста, существуют ситуации, когда направление вывода текста приходится задавать
+        явно с помощью атрибута <strong>dir</strong>.</p>
+
+      <p>Допустим, например, что русское предложение содержит ивритскую фразу, которая содержит английскую
+        цитату. В этом случае направление вывода ивритской фразы потребует явного указания направления:
+        ивритская фраза, включая английскую цитату, должна быть заключена в элемент <a href="html10.htm#espan"><strong>SPAN</strong></a>
+        или <a href="html10.htm#ebdo"><strong>BDO</strong></a> с атрибутом dir=&quot;<dfn>rtl</dfn>&quot;.</p>
+
+      <p>Этот атрибут применим ко всем элементам, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>,
+        <a href="html03.htm#ebr"><strong>BR</strong></a>, <a href="html07.htm#eframe"><strong>FRAME</strong></a>,
+        <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>, <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>,
+        <a href="html06.htm#eparam"><strong>PARAM</strong></a> и <strong><a href="html09.htm#escript">SCRIPT</a>.</strong></p>
+
+      <h4><a name="ref1147">1.1.4.7. Обработчики событий</a></h4>
+
+<pre class="syntax"><a name="aevent"><strong>Синтаксис</strong>: имя_события</a> = <a href="#script">сценарий</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Полное соответствие стандарту (4.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Полное соответствие стандарту (3.0+)</pre>
+
+      <p>HTML поддерживает обработку многих событий, которые могут происходить на компьютере-клиенте.
+        Для обработки события нужно присвоить элементу соответствующий атрибут, имя которого является
+        именем этого события, а значением – сценарий (либо вызов функции, либо набор операторов). Значение
+        такого атрибута может содержать специальные символы.</p>
+
+      <p>Следующий пример использует операторы языка JavaScript для обработки двух событий, связанных
+        с кнопкой &quot;Submit&quot;, а именно выводит подсказку в строке состояния, когда курсор мыши
+        попадает на кнопку, и очищает строку состояния, когда курсор мыши оказывается за ее пределами.
+        Обратите внимание, что значения атрибутов заключены в одинарные кавычки из-за того, что двойные
+        кавычки использованы внутри них. Подробно правила обработки событий описаны в <a href="dhtml11.htm#ref411">гл. 4.11.</a></p>
+
+      <div class="code">
+<pre class="code">&lt;INPUT type=submit
+  onmouseover='window.status=&quot;Вы заполнили всю форму?&quot;;'
+  onmouseout='window.status=&quot;&quot;;'&gt;</pre>
+      </div>
+
+      <p>Если документ содержит обработку событий, то язык сценариев, принятый по умолчанию, должен
+        быть задан в заголовке документа в метаописателе</p>
+
+      <div class="code">
+<pre class="code">&lt;META http-equiv=&quot;Content-Script-Type&quot; content=&quot;text/javascript&quot;&gt;</pre>
+      </div>
+
+      <p>Следующие атрибуты событий применимы ко всем элементам, кроме <a href="html02.htm#ebase"><strong>BASE</strong></a>,
+        <a href="html10.htm#ebdo"><strong>BDO</strong></a>, <strong><a href="html03.htm#ebr">BR</a></strong>,
+        <a href="html07.htm#eframe"><strong>FRAME</strong></a>, <a href="html07.htm#eframeset"><strong>FRAMESET</strong></a>,
+        <a href="html02.htm#ehead"><strong>HEAD</strong></a>, <a href="html02.htm#ehtml"><strong>HTML</strong></a>,
+        <a href="html07.htm#eiframe"><strong>IFRAME</strong></a>, <a href="html02.htm#emeta"><strong>META</strong></a>,
+        <a href="html06.htm#eparam"><strong>PARAM</strong></a>, <strong><a href="html09.htm#escript">SCRIPT</a></strong>,
+        <a href="html02.htm#estyle"><strong>STYLE</strong></a> и <a href="html02.htm#etitle"><strong>TITLE</strong></a>.
+        Все они связаны либо с нажатием клавиш на клавиатуре, либо с движением мыши и нажатием ее кнопок.</p>
+
+      <div class="indent">
+        <table cellspacing="0" border="1" cellpadding="5">
+          <caption><a name="table14">Таблица 1.4.<br>
+          Стандартные события в HTML</a></caption>
+          <tr>
+            <th>Имя события</th>
+            <th>Происходит</th>
+          </tr>
+          <tr>
+            <td>onclick</td>
+            <td>при щелчке кнопки мыши на элементе</td>
+          </tr>
+          <tr>
+            <td>ondblclick</td>
+            <td>при двойном щелчке кнопки мыши на элементе</td>
+          </tr>
+          <tr>
+            <td>onmousedown</td>
+            <td>при нажатии кнопки мыши на элементе</td>
+          </tr>
+          <tr>
+            <td>onmouseup</td>
+            <td>при отпускании кнопки мыши на элементе</td>
+          </tr>
+          <tr>
+            <td>onmouseover</td>
+            <td>при попадании курсора мыши на элемент</td>
+          </tr>
+          <tr>
+            <td>onmousemove</td>
+            <td>при движении курсора мыши по элементу</td>
+          </tr>
+          <tr>
+            <td>onmouseout</td>
+            <td>при попадании курсора мыши за пределы элемента</td>
+          </tr>
+          <tr>
+            <td>onkeypress</td>
+            <td>при нажатии и отпускании клавиши на элементе</td>
+          </tr>
+          <tr>
+            <td>onkeydown</td>
+            <td>при нажатии клавиши на элементе</td>
+          </tr>
+          <tr>
+            <td>onkeyup</td>
+            <td>при отпускании клавиши на элементе</td>
+          </tr>
+        </table>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+adioЂ»       »                C2ЎU  l»      яяяяяяяя    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: HTML - Введение в HTML</title>
+<link rel="Prev" href="notation.htm" title="Условные обозначения">
+<link rel="Next" href="html02.htm" title="Структура HTML-документа">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h1><a name="ref1">Часть I.<br>
+        Веб-страницы: язык HTML</a></h1>
+
+      <p class="epigraph">&quot;Язык&nbsp;&#151; мясистый снаряд во рту, служащий для подкладки зубам
+        пищи, для распознания вкуса ея, а также для словесной речи, или, у животных, для отдельных звуков.&quot;</p>
+
+      <p class="epauthor">Владимир Даль</p>
+
+      

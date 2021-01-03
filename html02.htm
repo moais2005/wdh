@@ -1,0 +1,564 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: HTML - Структура HTML-документа</title>
+<link rel="Prev" href="html01.htm" title="Введение в HTML">
+<link rel="Next" href="html03.htm" title="Отображение текста">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref12">Глава 1.2. Структура HTML-документа</a></h2>
+
+      <p>Любой HTML-документ состоит из трех основных секций:</p>
+
+      <ul>
+        <li>строки, содержащей <em>декларацию типа документа</em>;</li>
+        <li><em>заголовка</em> документа (заключенного в теги &lt;<strong>HEAD</strong>&gt;&#133;&lt;<strong>/HEAD</strong>&gt;);</li>
+        <li><em>тела</em> документа (заключенного в теги &lt;<strong>BODY</strong>&gt;&#133;&lt;<strong>/BODY</strong>&gt;
+          или &lt;<strong>FRAMESET</strong>&gt;&#133;&lt;<strong>/FRAMESET</strong>&gt;);</li>
+      </ul>
+
+      <p>Перед каждой секцией и после нее могут находиться символы пробела, табуляции, новой строки
+        и комментарии. Заголовок и тело документа должны быть заключены в теги &lt;<strong>HTML</strong>&gt;&#133;&lt;<strong>/HTML</strong>&gt;.</p>
+
+      <p>Пример простого HTML-документа:</p>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;TITLE&gt;Мой первый HTML-документ&lt;/TITLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+&lt;P&gt;Это HTML-документ.&lt;/P&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;</pre>
+      </div>
+
+      <p>Поясним подробнее содержимое каждой секции.</p>
+
+      <h3><a name="ref121">1.2.1. Декларация типа документа</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Игнорируется
+           <img src="images/nn.gif" alt="Netscape Navigator"> Игнорируется</pre>
+
+      <p>Рекомендуется начинать любой HTML-документ со строки, содержащей декларацию типа документа
+        (DTD, document type declaration). HTML 4.0 поддерживает три типа таких деклараций:</p>
+
+      <ul>
+        <li>Документ <em>строго соответствует</em> стандарту HTML 4.0, т.&nbsp;е. не содержит ни морально
+          устаревших элементов, ни фреймов. Декларация имеет вид:</li>
+      </ul>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;
+  &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</pre>
+      </div>
+
+      <ul>
+        <li>Документ является <em>переходным</em> к стандарту HTML 4.0, т.&nbsp;е. может содержать морально
+          устаревшие элементы. Декларация имеет вид:</li>
+      </ul>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;
+  &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</pre>
+      </div>
+
+      <ul>
+        <li>Документ <em>содержит фреймы</em>. Декларация имеет вид:</li>
+      </ul>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Frameset//EN&quot;
+  &quot;http://www.w3.org/TR/html4/frameset.dtd&quot;&gt;</pre>
+      </div>
+
+      <p>Поясним структуру приведенных деклараций. Каждая из них говорит о том, что последующий документ
+        является HTML-документом, созданным в соответствии со стандартом HTML 4.0, разработанном <a href="organs.htm#w3c">W3C</a>.
+        Последние две буквы первой строки декларации обозначают язык DTD, который всегда является английским
+        ( &quot;EN&quot;). Вторая строка декларации содержит <a href="html01.htm#uri">URI</a>, откуда
+        обозреватель может загрузить данную DTD.</p>
+
+      <p class="note"><strong>Примечания</strong>.</p>
+
+      <ol>
+        <li class="note">Многие авторы оформляют эту декларацию в укороченном виде, опуская URI, т.&nbsp;е.
+          так, как указано в приведенном выше примере.</li>
+        <li class="note">Декларация типа документа является рекомендуемой, но не обязательной частью
+          HTML-документа, поскольку старые обозреватели ее игнорируют. Первым обозревателем, учитывающим ее,
+          стал Netscape 6, который при отсутствии DTD отображает документы в режиме совместимости с Netscape 4,
+          а при ее наличии&nbsp;&#151; в соответствии с Веб-стандартами. Internet Explorer 6
+          также поддерживает два режима отображения в зависимости от заданной DTD.</li>
+      </ol>
+
+      <p><img src="images/plus.gif" alt="WDH+"> См. также WDH+:
+        <a target="_blank" href="http://go.suncloud.ru/to.asp?workshop/extreme/doctype/doctype.htm">&lt;!DOCTYPE ...&gt; начинает работать</a>.</p>
+
+      <h3><a name="ref122">1.2.2. Элемент HTML</a></h3>
+
+<pre class="syntax"><a name="ehtml"><strong>Синтаксис</strong>:</a> &lt;HTML&gt;&#133;&lt;/HTML&gt; (оба тега не обязательны)
+<strong>Атрибуты</strong>:  <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>lang</strong> и <strong>dir</strong> игнорируются
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>lang</strong> и <strong>dir</strong> игнорируются</pre>
+
+      <p>Этот элемент указывает, что последующий документ является HTML-документом. Он следует за декларацией
+        типа документа и включает в себя все остальное содержимое документа. Он часто содержит атрибут
+        <a href="html01.htm#alang"><strong>lang</strong></a>, задающий базовый язык документа. Иными
+        словами, типичный HTML-документ имеет следующее строение:</p>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;
+  &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+<strong>&lt;HTML lang=&quot;en&quot;&gt;</strong>
+  <em>&#133;Заголовок и тело документа&#133;</em>
+<strong>&lt;/HTML&gt;</strong></pre>
+      </div>
+
+      <h3><a name="ref123">1.2.3. Заголовок документа</a></h3>
+
+      <h4><a name="ref1231">1.2.3.1. Элемент HEAD</a></h4>
+
+<pre class="syntax"><a name="ehead"><strong>Синтаксис</strong>:</a> &lt;HEAD&gt;&#133;&lt;/HEAD&gt; (оба тега не обязательны)
+<strong>Атрибуты</strong>:  <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>
+           profile = <a href="html01.htm#uri">URI</a> (URI словаря метаданных)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>lang</strong>, <strong>dir</strong> и <strong>profile</strong> игнорируются
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>lang</strong>, <strong>dir</strong> и <strong>profile</strong> игнорируются</pre>
+
+      <p>Заголовок документа, заключенный в элемент <strong>HEAD</strong>, содержит информацию об общих
+        свойствах документа и не отображается обозревателями. Заголовок может включать в себя следующую
+        информацию:</p>
+
+      <ul>
+        <li>единственный титул документа (<a href="#etitle"><strong>TITLE</strong></a>);</li>
+        <li>метаописатели документа (<a href="#emeta"><strong>META</strong></a>);</li>
+        <li>базовый URI внешних ссылок (<a href="#ebase"><strong>BASE</strong></a>);</li>
+        <li>ссылки на другие документы (<a href="#elink"><strong>LINK</strong></a>);</li>
+        <li>внутренние таблицы стилей (<a href="#estyle"><strong>STYLE</strong></a>);</li>
+        <li>сценарии клиента (<a href="html09.htm#escript"><strong>SCRIPT</strong></a>).</li>
+      </ul>
+
+      <p>Элемент <strong>HEAD</strong> может иметь атрибут <strong>profile</strong>, указывающий местонахождения
+        словаря метаданных. Предполагается, что такой словарь должен содержать имена метапеременных,
+        значения которых определяются элементами <a href="#emeta"><strong>META</strong></a>
+        и <a href="#elink"><strong>LINK</strong></a> в заголовке документа, но пока работа
+        по спецификации формата словарей метаданных не завершена.</p>
+
+      <h4><a name="ref1232">1.2.3.2. Титул документа: элемент TITLE</a></h4>
+
+<pre class="syntax"><a name="etitle"><strong>Синтаксис</strong>:</a> &lt;TITLE&gt;&#133;&lt;/TITLE&gt;
+<strong>Атрибуты</strong>:  <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты игнорируются, титул отображается в заголовке обозревателя
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты игнорируются, титул отображается в заголовке обозревателя</pre>
+
+      <p>Каждый HTML-документ должен иметь единственный <em>титул</em>, который отображается обозревателями
+        в строке заголовка. Текст титула может содержать специальные символы, но не должен содержать
+        других элементов. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;HEAD&gt;
+  <strong>&lt;TITLE&gt;</strong>Справочник Веб-разработчика<strong>&lt;/TITLE&gt;</strong>
+&lt;/HEAD&gt;</pre>
+      </div>
+
+      <p>Титул документа должен кратко отражать суть его содержимого; рекомендуемый размер титула&nbsp;&#151;
+        не более 60 символов.</p>
+
+      <h4><a name="ref1233">1.2.3.3. Метаописатели документа: элемент META</a></h4>
+
+<pre class="syntax"><a name="emeta"><strong>Синтаксис</strong>:</a> &lt;META&gt; (содержимого и конечного тега нет)
+<strong>Атрибуты</strong>:  <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a> (для атрибута <strong>content</strong>)
+           http-equiv = <a href="html01.htm#name">NAME</a> (<a href="http.htm#http-headers">заголовок сообщения HTTP</a>)
+           name = <a href="html01.htm#name">NAME</a> (название свойства)
+           <strong>content</strong> = <a href="html01.htm#cdata">CDATA</a> (значение свойства)
+           scheme = <a href="html01.htm#cdata">CDATA</a> (имя схемы, интерпретирующей значение свойства)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>lang</strong>, <strong>dir</strong> и <strong>scheme</strong> игнорируются (2.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>lang</strong>, <strong>dir</strong> и <strong>scheme</strong> игнорируются (4.0+)</pre>
+
+      <p>Элемент <strong>META</strong> содержит <em>метаописатели</em> таких свойств документа, как
+        имя автора документа, его описание, ключевые слова и т.&nbsp;д. Спецификация HTML 4.0 не содержит
+        стандартного списка этих свойств, поэтому авторы пока свободны в их определении.</p>
+
+      <p>Каждый элемент <strong>META</strong> содержит пару атрибутов: <em>название свойства</em> (<strong>name</strong>)
+        и <em>значение свойства</em> (<strong>content</strong>), например, следующий метаописатель задает
+        имя автора документа:</p>
+
+      <div class="code">
+<pre class="code">&lt;META name=&quot;Author&quot; content=&quot;Ю. С. Лукач&quot;&gt;</pre>
+      </div>
+
+      <p>Дополнительно он может содержать атрибут <strong>lang</strong>, указывающий язык, на котором
+        написано значение свойства:</p>
+
+      <div class="code">
+<pre class="code">&lt;META name=&quot;Author&quot; lang=&quot;en&quot; content=&quot;Yury S. Lukach&quot;&gt;</pre>
+      </div>
+
+      <p>Многие поисковые системы используют свойства <strong>description</strong> (описание документа)
+        и <strong>keywords</strong> (ключевые слова) для извлечения дополнительной информации о документе.
+        При этом описание должно быть кратким (не длиннее 200 символов), а список ключевых слов разделяться
+        запятыми:</p>
+
+      <div class="code">
+<pre class="code">&lt;META name=&quot;Description&quot; content=&quot;Web Developer's Handbook. HTML Reference.&quot;&gt;
+&lt;META name=&quot;Keywords&quot; content=&quot;Web development, HTML reference&quot;&gt;</pre>
+      </div>
+
+      <p>Некоторые поисковые системы поддерживают также свойство <strong>robots</strong>, содержащее
+        указания для роботов, собирающих информацию о документах в Сети. Значение свойства <strong>robots</strong>&nbsp;&#151;
+        это список следующих директив, разделенных запятыми:</p>
+
+      <div class="indent">
+        <table cellspacing="0" border="1" cellpadding="5">
+          <tr>
+            <td>index</td>
+            <td>эта страница должна быть индексирована</td>
+          </tr>
+          <tr>
+            <td>noindex</td>
+            <td>эта страница не должна быть индексирована</td>
+          </tr>
+          <tr>
+            <td>follow</td>
+            <td>прослеживать гиперссылки на странице</td>
+          </tr>
+          <tr>
+            <td>nofollow</td>
+            <td>не прослеживать гиперссылки на странице</td>
+          </tr>
+          <tr>
+            <td>all</td>
+            <td>= index, follow (принято по умолчанию)</td>
+          </tr>
+          <tr>
+            <td>none</td>
+            <td>= noindex, nofollow</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Например, следующий метаописатель указывает поисковым роботам, что данный документ индексировать
+        не нужно, но гиперссылки, которые в нем содержаться, следует просмотреть.</p>
+
+      <div class="code">
+<pre class="code">&lt;META name=&quot;robots&quot; content=&quot;noindex,follow&quot;&gt;</pre>
+      </div>
+
+      <p>Вместо атрибута <strong>name</strong> метаописатель может содержать атрибут <strong>http-equiv</strong>
+        для указания того, что данное свойство является <a href="http.htm#http-headers">заголовком сообщения
+        HTTP</a>. Такие метаописатели указывают обозревателю, как следует отображать данный документ.
+        Существует три базовых свойства документа, которые задаются таким образом:</p>
+
+      <ul>
+        <li>кодировка символов документа (см. <a href="charsets.htm">Приложение 7</a>):</li>
+      </ul>
+
+      <div class="code">
+<pre class="code">&lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=windows-1251&quot;&gt;</pre>
+      </div>
+
+      <ul>
+        <li>язык таблиц стилей, принятый по умолчанию:</li>
+      </ul>
+
+      <div class="code">
+<pre class="code">&lt;META http-equiv=&quot;Content-Style-Type&quot; content=&quot;text/css&quot;&gt;</pre>
+      </div>
+
+      <ul>
+        <li>язык программирования сценариев, принятый по умолчанию:</li>
+      </ul>
+
+      <div class="code">
+<pre class="code">&lt;META http-equiv=&quot;Content-Script-Type&quot; content=&quot;text/javascript&quot;&gt;</pre>
+      </div>
+
+      <p>Кроме того, атрибут <strong>http-equiv</strong> используется в следующих конструкциях:</p>
+
+      <div class="code">
+<pre class="code">&lt;META http-equiv=&quot;Expires&quot; content=&quot;Sun, 7 May 2000 12:04:32 GMT&quot;&gt;</pre>
+      </div>
+
+      <ul>
+        <li>задает дату и время истечения срока действия документа: полезен для того, чтобы заставить
+          обозреватель загрузить документ не из кэш-памяти, а с сервера;</li>
+      </ul>
+
+      <div class="code">
+<pre class="code">&lt;META http-equiv=&quot;Refresh&quot; content=&quot;10; URL=http://www.newserver.com/newpage.htm&quot;&gt;</pre>
+      </div>
+
+      <ul>
+        <li>указывает серверу, что через 10 секунд после завершения загрузки текущего документа нужно
+          загрузить вместо него <strong>http://www.newserver.com/newpage.htm</strong>.</li>
+      </ul>
+
+      <p>Метаописатели могут также содержать атрибут <strong>scheme</strong>, задающий формат значения
+        свойства и предусмотренный для использования совместно со <a href="#ehead">словарями
+        метаданных</a>. В настоящее время этот атрибут не обозревателями не поддерживается.</p>
+
+      <h4><a name="ref1234">1.2.3.4. Базовый URI документа: элемент BASE</a></h4>
+
+<pre class="syntax"><a name="ebase"><strong>Синтаксис</strong>:</a> &lt;BASE&gt; (содержимого и конечного тега нет)
+<strong>Атрибуты</strong>:  <strong>href</strong> = <a href="html01.htm#uri">URI</a> (базовый URI документа)
+           target = <a href="html01.htm#frametarget">фрейм</a> (имя фрейма для отображения ссылок)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту
+           <img src="images/nn.gif" alt="Netscape Navigator"> Соответствует стандарту</pre>
+
+      <p>Элемент <strong>BASE</strong> задает в обязательном атрибуте <strong>href</strong> базовый
+        URI для данного документа, который используется обозревателем для приведения относительных URI
+        к полным. Подробности см. в <a href="uri.htm#reluri">Приложении 2</a>.</p>
+
+      <p>Если документ не содержит элемента <strong>BASE</strong>, то его собственный URI считается
+        базовым по умолчанию. В большинстве случаев этого вполне достаточно, поэтому на практике элемент
+        <strong>BASE</strong> употребляется только в двух ситуациях:</p>
+
+      <ul>
+        <li>когда документ хранится в нескольких узлах Сети, и мы хотим указать &quot;эталонное&quot;
+          хранилище;</li>
+        <li>когда URI документа неизвестен (например, при его получении по электронной почте).</li>
+      </ul>
+
+      <p>Рассмотрим следующий пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;
+  &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+  &lt;TITLE&gt;Наша продукция&lt;/TITLE&gt;
+  <strong>&lt;BASE href=&quot;http://www.bestseller.com/products/intro.html&quot;&gt;</strong>
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+  &lt;P&gt;Лучшие в мире &lt;A href=&quot;../images/hornhoof.gif&quot;&gt;рога и копыта&lt;/A&gt;!
+&lt;/BODY&gt;
+&lt;/HTML&gt;</pre>
+      </div>
+
+      <p>С учетом базового URI ссылка <strong>&quot;../images/hornhoof.gif&quot;</strong> в этом примере
+        соответствует полному URI <strong>&quot;http://www.bestseller.com/images/hornhoof.gif&quot;</strong>.</p>
+
+      <p>Необязательный атрибут <strong>target</strong> используется только во <a href="html07.htm#ref17">фреймовых
+        документах</a> и задает <a href="html01.htm#frametarget">имя фрейма</a>, в котором должны отображаться
+        по умолчанию все документы, на которые в данном документе имеются ссылки.</p>
+
+      <h4><a name="ref1235">1.2.3.5. Взаимосвязь документов: элемент LINK</a></h4>
+
+<pre class="syntax"><a name="elink"><strong>Синтаксис</strong>:</a> &lt;LINK&gt; (содержимого и конечного тега нет)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a>
+           rel = <a href="html01.htm#linktypes">типы ссылок</a> (прямая ссылка)
+           rev = <a href="html01.htm#linktypes">типы ссылок</a> (обратная ссылка)
+           href = <a href="html01.htm#uri">URI</a> (URI ссылки)
+           target = <a href="html01.htm#frametarget">фрейм</a> (имя фрейма для отображения ссылки)
+           type = <a href="html01.htm#contenttype">тип файла</a> (тип файла, на который указывает ссылка)
+           media = <a href="html01.htm#mediadesc">устройства</a> (устройства для отображения ссылки)
+           hreflang = <a href="html01.htm#languagecode">код языка</a> (язык ссылки)
+           charset = <a href="html01.htm#charset">кодировка</a> (кодировка ссылки)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>type</strong>, <strong>hreflang</strong> и <strong>charset</strong> игнорируются;
+              допустимые значения <strong>media</strong>: screen, print и all (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>type</strong>, <strong>media</strong>, <strong>hreflang</strong> и <strong>charset</strong> игнорируются (4.0+)</pre>
+
+      <p>Элемент <strong>LINK</strong> определяет <em>взаимосвязь</em> между документами. Заголовок
+        документа может содержать любое количество этих элементов. Многие обозреватели не поддерживают
+        элементы <strong>LINK</strong>, поэтому авторы не должны полагаться на то, что обозреватель
+        сделает перечисленные в них ссылки доступными пользователю.</p>
+
+      <p>Каждый элемент <strong>LINK</strong> должен содержать атрибут <strong>rel</strong> или <strong>rev</strong>
+        и атрибут <strong>href</strong>. При этом атрибут <strong>rel</strong> определяет прямую ссылку,
+        а атрибут <strong>rev</strong>&nbsp;&#151; обратную ссылку. Например,</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK rel=&quot;Glossary&quot; href=&quot;glossary.html&quot;&gt;</pre>
+      </div>
+
+      <p class="noindent">означает, что документ <strong>glossary.html</strong> является глоссарием
+        терминов для текущего документа (прямая ссылка), а</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK rev=&quot;Subsection&quot; href=&quot;section2.html&quot;&gt;</pre>
+      </div>
+
+      <p class="noindent">означает, что текущий документ является подразделом документа <strong>section2.html</strong>
+        (обратная ссылка). Значением атрибутов <strong>rel</strong> и <strong>rev</strong> является
+        список <a href="html01.htm#linktypes">типов ссылок</a>, разделенных пробелами.</p>
+      
+      <p><a name="link-stylesheet"></a>Важным применением элемента <strong>LINK</strong> является подключение к документу
+        <a href="css01.htm#ref2121">внешней таблицы стилей</a>. В этом случае элемент <strong>LINK</strong> имеет вид:</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK rel=&quot;StyleSheet&quot; href=&quot;style.css&quot; type=&quot;text/css&quot;&gt;</pre>
+      </div>
+
+      <p>Такой элемент может дополнительно содержать атрибут <strong>media</strong> для указания того,
+        к отображению на каких <a href="html01.htm#mediadesc">устройствах</a> применяется данная таблица
+        стилей:</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK rel=&quot;StyleSheet&quot; href=&quot;aural.css&quot; type=&quot;text/css&quot; media=&quot;aural&quot;&gt;</pre>
+      </div>
+
+      <p>Необязательный атрибут <strong>target</strong> используется только во <a href="html07.htm#ref17">фреймовых
+        документах</a> и задает <a href="html01.htm#frametarget">имя фрейма</a>, в котором должна отображаться
+        по умолчанию цель ссылки.</p>
+
+      <p>Наконец, атрибуты <strong>hreflang</strong> и <strong>charset</strong> указывают на <a href="html01.htm#languagecode">язык</a>
+        и <a href="html01.htm#charset">кодировку</a> ссылки и предназначены для указания поисковым системам,
+        где искать альтернативные версии данного документа. Для этого используется тип ссылки <strong>Alternate</strong>:</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK
+  rel=&quot;Alternate&quot;
+  type=&quot;text/html&quot;
+  href=&quot;indexru.htm&quot;
+  hreflang=&quot;ru&quot;
+  charset=&quot;windows-1251&quot;
+  lang=&quot;ru&quot; title=&quot;Русская версия&quot;&gt;
+&lt;LINK
+  rel=&quot;Alternate&quot;
+  type=&quot;text/html&quot;
+  href=&quot;indexfr.htm&quot;
+  hreflang=&quot;fr&quot;
+  lang=&quot;fr&quot; title=&quot;Version francaise&quot;&gt;</pre>
+      </div>
+
+      <p>Тип ссылки <strong>Alternate</strong> используется также для указания на версии текущего документа,
+        предназначенного для отображения другими типами устройств. Например, указатель на версию документа
+        для печати может иметь вид:</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK
+  rel=&quot;Alternate&quot;
+  media=&quot;print&quot;
+  lang=&quot;ru&quot; title=&quot;Справочник в формате PostScript&quot;
+  type=&quot;application/postscript&quot;
+  href=&quot;manual.ps&quot;&gt; </pre>
+      </div>
+
+      <p><a name="link-alt-stylesheet"></a>В частности, альтернативная внешняя таблица стилей может быть задана элементом:</p>
+
+      <div class="code">
+<pre class="code">&lt;LINK rel=&quot;Alternate StyleSheet&quot; href=&quot;style.css&quot; type=&quot;text/css&quot; media=&quot;...&quot;&gt;</pre>
+      </div>
+
+      <h4><a name="ref1236">1.2.3.6. Внутренние таблицы стилей: элемент STYLE</a></h4>
+
+<pre class="syntax"><a name="estyle"><strong>Синтаксис</strong>:</a> &lt;STYLE&gt;&#133;&lt;/STYLE&gt;
+<strong>Атрибуты</strong>:  <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>
+           <strong>type</strong> = <a href="html01.htm#contenttype">тип файла</a> (тип таблицы стилей)
+           media = <a href="html01.htm#mediadesc">устройства</a> (устройства для отображения документа)
+           title = <a href="html01.htm#text">текст</a> (титул таблицы стилей)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>lang</strong> и <strong>dir</strong> игнорируются;
+              допустимые значения <strong>media</strong>: screen, print и all (5.0+)
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>lang</strong>, <strong>dir</strong> и <strong>media</strong> игнорируются (4.0+)</pre>
+
+      <p>Элемент <strong>STYLE</strong> позволяет включать в документ <em>внутренние таблицы стилей</em>.
+        Заголовок документа может содержать любое количество этих элементов. Старые обозреватели не
+        поддерживают элементы <strong>STYLE</strong>, поэтому рекомендуется заключать содержимое элемента
+        <strong>STYLE</strong> в комментарий, как показано ниже.</p>
+
+      <p>Обязательный атрибут <strong>type</strong> указывает на тип таблицы стилей, т.&nbsp;е. на язык,
+        на котором описываются стили. Для каскадных таблиц стилей этот атрибут всегда должен иметь значение
+        <strong>&quot;text/css&quot;</strong>. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;HEAD&gt;
+  <strong>&lt;STYLE type=&quot;text/css&quot;&gt;</strong>
+  &lt;!--
+    H1 {border-width: 1; border: solid; text-align: center}
+  --&gt;
+  <strong>&lt;/STYLE&gt;</strong>
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+  &lt;H1&gt;Этот заголовок имеет указанный выше стиль&lt;/H1&gt;
+&lt;/BODY&gt;</pre>
+      </div>
+
+      <p>HTML позволяет авторам создавать документы, учитывающие особенности устройств, на которых документ
+        будет отображаться. Для того, чтобы использовать разные таблицы стилей для различных устройств,
+        включите в элемент <strong>STYLE</strong> атрибут <strong>media</strong>:</p>
+
+      <div class="code">
+<pre class="code"><strong>&lt;STYLE type=&quot;text/css&quot; media=&quot;screen&quot;&gt;</strong>
+&lt;!--
+  H1 {color: blue}
+--&gt;
+<strong>&lt;/STYLE&gt;</strong>
+<strong>&lt;STYLE type=&quot;text/css&quot; media=&quot;print&quot;&gt;</strong>
+&lt;!--
+  H1 {text-align: center}
+--&gt;
+<strong>&lt;/STYLE&gt;</strong></pre>
+      </div>
+
+      <h3><a name="ref124">1.2.4. Тело документа: элемент BODY</a></h3>
+
+<pre class="syntax"><a name="ebody"><strong>Синтаксис</strong>:</a> &lt;BODY&gt;&#133;&lt;/BODY&gt; (оба тега не обязательны)
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html01.htm#alang">lang</a>, <a href="html01.htm#adir">dir</a>, <a href="html01.htm#aevent">события</a>
+           onload = <a href="html01.htm#script">сценарий</a> (документ загружен)
+           onunload = <a href="html01.htm#script">сценарий</a> (документ выгружен)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Атрибуты <strong>lang</strong> и <strong>dir</strong> игнорируются
+           <img src="images/nn.gif" alt="Netscape Navigator"> Атрибуты <strong>lang</strong> и <strong>dir</strong> игнорируются</pre>
+
+      <p><em>Тело документа</em> содержит HTML-элементы, предназначенные для отображения обозревателем.
+        Тело заключается в теги <strong>&lt;BODY&gt;</strong>&#133;<strong>&lt;/BODY&gt;</strong> или
+        <strong>&lt;<a href="html07.htm#eframeset">FRAMESET</a>&gt;</strong>&#133;<strong>&lt;/FRAMESET&gt;</strong>,
+        если документ содержит фреймы (о них см. <a href="html07.htm#ref17">Главу 1.7</a>). Напомним,
+        что наше описание не включает <a href="html01.htm#deprecated">морально устаревшие элементы и
+        атрибуты</a>. Поэтому элемент <strong>BODY</strong> должен использовать только общие атрибуты
+        и два нестандартных обработчика событий:</p>
+
+      <ul>
+        <li><strong>onload</strong>&nbsp;&#151; происходит, когда обозреватель завершил загрузку документа
+          в окно;</li>
+        <li><strong>onunload</strong>&nbsp;&#151; происходит, когда обозреватель завершил удаление документа
+          из окна.</li>
+      </ul>
+
+      <p>Все остальные атрибуты тела документа являются морально устаревшими и должны заменяться на
+        <a href="css01.htm">стили CSS</a>, например:</p>
+
+      <div class="code">
+<pre class="code">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;STYLE type=&quot;text/css&quot;&gt;
+  BODY { background: white; color: black}
+  A:link { color: red }
+  A:visited { color: maroon }
+  A:active { color: purple }
+&lt;/STYLE&gt;
+&lt;/HEAD&gt;
+<strong>&lt;BODY&gt;</strong>
+  <em>&#133;тело документа&#133;</em>
+<strong>&lt;/BODY&gt;</strong>
+&lt;/HTML&gt;</pre>
+      </div>
+
+      <h3><a name="ref125">1.2.5. Блочные и текстовые элементы</a></h3>
+
+      <p>Большинство элементов HTML, используемых в теле документа, подразделяются на <em>блочные</em>
+        (block-level) и <em>текстовые</em> (inline) элементы. <em>Блочные элементы</em> могут содержать
+        как текстовые элементы, так и другие блочные элементы. При отображении они всегда выводятся
+        как отдельный абзац. <em>Текстовые элементы</em> могут содержать только текст и другие текстовые
+        элементы, но не могут содержать блочных элементов. При отображении они выводятся в текущей строке.</p>
+
+      <p>Ниже при описании каждого из элементов HTML мы указываем, к какому из этих двух типов он относится.</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

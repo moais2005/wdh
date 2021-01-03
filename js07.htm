@@ -1,0 +1,403 @@
+ентификаторов, разделенных точками.</p>
+
+      <p>Любое имя перед своим использованием должно быть <em>декларировано</em>. Java допускает декларации
+        следующих имен:</p>
+      <ul>
+        <li>составное имя пакета, указанное в операторе <tt>package</tt>;</li>
+        <li>составное имя типа, указанное в операторе <tt>import</tt>;</li>
+        <li>имя класса или интерфейса, указанное в определении соответствующего типа;</li>
+        <li>имя члена ссылочного типа, который может быть внутренним классом, внутренним интерфейсом, полем или методом;</li>
+        <li>имя параметра метода, конструктора класса или обработчика исключений;</li>
+        <li>имя локальной переменной, объявленной в блоке или операторе <tt>for</tt>.</li>
+      </ul>
+
+      <p><em>Областью видимости</em> декларации является та часть программы, в которой к именованной единице можно
+        обращаться, пользуясь ее простым именем. Правила формирования областей видимости для различных имен приводятся
+        вслед за их описанием в соответствующих главах этой части.</p>
+      <p>Java допускает "затенение имен", т.&nbsp;е. повторное использование ранее декларированного
+        имени внутри его области видимости; в этом случае мы вынуждены использовать составное имя для
+        обращения к первой из декларированных единиц с этим именем. Рассмотрим такой пример:</p>
+
+      <div class="code">
+<pre class="code">class Test {
+  static int x = 1;
+
+  public static void main(String[] args) {
+    int x = 0;
+    System.out.print("x=" + x + ", Test.x=" + Test.x);
+  }
+}
+</pre>
+      </div>
+
+      <p>В этом примере содержатся следующие декларации:</p>
+      <ul>
+        <li>декларация класса <tt>Test</tt>;</li>
+        <li>декларация его члена&nbsp;&#151; статической целой переменной <tt>x</tt>;</li>
+        <li>декларация его члена&nbsp;&#151; метода <tt>main</tt>;</li>
+        <li>декларация параметра <tt>args</tt> метода <tt>main</tt>;</li>
+        <li>декларация локальной целой переменной <tt>x</tt> в методе <tt>main</tt>.</li>
+      </ul>
+      <p>Декларация статической переменной (т.&nbsp;е. переменной класса)имеет своей областью видимости все тело
+        этого класса. Иными словами, обычно в теле класса <tt>Test</tt> мы можем обращаться к статической переменной
+        <tt>x</tt> по ее простому имени. Однако, в данном случае ее имя "затенено" в теле метода <tt>main</tt> декларацией
+        локальной переменной с тем же именем и требует обращения с использованием составного имени. Поэтому наш пример
+        напечатает следующую строку:</p>
+
+<pre><samp>x=0, Test.x=1</samp></pre>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Пакеты</title>
+<link rel="Prev" href="java05.htm" title="Идентификаторы и имена">
+<link rel="Next" href="java07.htm" title="Классы">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref56">Глава 5.6. Пакеты</a></h2>
+
+      <h3><a name="ref561">5.6.1. Понятие пакета</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Классы</title>
+<link rel="Prev" href="java06.htm" title="Пакеты">
+<link rel="Next" href="java08.htm" title="Интерфейсы">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref57">Глава 5.7. Классы</a></h2>
+
+      <h3><a name="ref571">5.7.1. Декларация класса</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Интерфейсы</title>
+<link rel="Prev" href="java07.htm" title="Классы">
+<link rel="Next" href="java09.htm" title="Массивы">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref58">Глава 5.8. Интерфейсы</a></h2>
+
+      <h3><a name="ref581">5.8.1. Декларация интерфейса</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Массивы</title>
+<link rel="Prev" href="java08.htm" title="Интерфейсы">
+<link rel="Next" href="java10.htm" title="Генерация и обработка исключений">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref59">Глава 5.9. Массивы</a></h2>
+
+      <h3><a name="ref591">5.9.1. Типы массивов</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Генерация и обработка исключений</title>
+<link rel="Prev" href="java09.htm" title="Массивы">
+<link rel="Next" href="java11.htm" title="Блоки и операторы">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref510">Глава 5.10. Генерация и обработка исключений</a></h2>
+
+      <h3><a name="ref5101">5.10.1. Понятие исключения</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Блоки и операторы</title>
+<link rel="Prev" href="java10.htm" title="Генерация и обработка исключений">
+<link rel="Next" href="java12.htm" title="Выражения">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref511">Глава 5.11. Блоки и операторы</a></h2>
+
+      <h3><a name="ref5111">5.11.1. Блоки</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Выражения</title>
+<link rel="Prev" href="java11.htm" title="Блоки и операторы">
+<link rel="Next" href="java13.htm" title="Потоки и блокировки">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref512">Глава 5.12. Выражения</a></h2>
+
+      <h3><a name="ref5121">5.12.1. Правила выполнения выражений</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Потоки и блокировки</title>
+<link rel="Prev" href="java12.htm" title="Выражения">
+<link rel="Next" href="java14.htm" title="Стандартные пакеты: java.lang">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref513">Глава 5.13. Потоки и блокировки</a></h2>
+
+      <h3><a name="ref5131">5.13.1. Основные понятия</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Стандартные пакеты: java.lang</title>
+<link rel="Prev" href="java13.htm" title="Потоки и блокировки">
+<link rel="Next" href="java15.htm" title="Стандартные пакеты: java.util">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref514">Глава 5.14. Стандартные пакеты: java.lang</a></h2>
+
+      <h3><a name="ref5141">5.14.1. Обзор пакета</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Стандартные пакеты: java.util</title>
+<link rel="Prev" href="java14.htm" title="Стандартные пакеты: java.lang">
+<link rel="Next" href="java16.htm" title="Стандартные пакеты: java.io">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <p><em>Документ в процессе разработки!</em></p>
+
+      <h2><a name="ref515">Глава 5.15. Стандартные пакеты: java.util</a></h2>
+
+      <h3><a name="ref5151">5.15.1. Обзор пакета</a></h3>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Java - Стандартные пакеты: java.io</title>
+<link rel="Prev" href="java15.htm" title="Стандартные пакеты: java.util">
+<link rel="Next" href="java17.htm" title="Стандартные пакеты: java.net">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: cente

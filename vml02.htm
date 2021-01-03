@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: VML - Базовые элементы</title>
+<link rel="Prev" href="vml01.htm" title="Введение в язык VML">
+<link rel="Next" href="vml03.htm" title="Графические примитивы">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+<style>v\:* { behavior: url(#default#VML) }</style>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+    <tr><td>
+
+      <h2><a name="ref102">Глава 10.2. Базовые элементы</a></h2>
+
+      <h3><a name="ref1021">10.2.1. Фигуры общего вида: элемент shape</a></h3>
+      
+<pre class="syntax"><a name="eshape"><strong>Синтаксис</strong>:</a> &lt;v:shape&gt;&#133;&lt;/v:shape&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css06.htm#pheight">height</a>, <a href="css05.htm#pleft">left</a>, <a href="css04.htm#pmargin-bottom">margin-bottom</a>, <a href="css04.htm#pmargin-left">margin-left</a>, <a href="css04.htm#pmargin-right">margin-right</a>, <a href="css04.htm#pmargin-top">margin-top</a>,
+           <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css06.htm#pwidth">width</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           adj = <a href="vml01.htm#string">string</a> (список выравнивающих значений)
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки фигуры)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)
+           path = <a href="vml01.htm#string">string</a> (описание формы фигуры)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет рамки фигуры)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод рамки фигуры)
+           strokeweight = <a href="css01.htm#length">размер</a> (ширина рамки фигуры)
+           type = <a href="vml01.htm#string">string</a> (указатель на shapetype)</pre>
+
+      <p>Элемент <strong>shape</strong> описывает геометрическую фигуру общего вида. Он может использоваться самостоятельно или
+        внутри элемента <strong><a href="#egroup">group</a></strong>. Для отображения фигуры мы должны, как минимум, задать позицию и размер ее объемлющего
+        прямоугольника (свойства стилей <strong>position</strong>, <strong>left</strong>, <strong>top</strong>, <strong>height</strong>
+        и <strong>width</strong>) и форму фигуры (атрибут <strong>path</strong>). Пример простой фигуры без внутренних элементов:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:shape style='position: relative; top: 0; left: 3em; width: 175; height: 175'
+  strokecolor="red" strokeweight="2px" fillcolor="blue"
+  coordorigin="0 0" coordsize="175 175"
+  path="m 8,65 l 72,65,92,11,112,65,174,65,122,100,142,155,92,121,42,155,60,100 x e"
+/&gt;</pre>
+      </div>
+
+<v:shape style='position: relative; top: 0; left: 3em; width: 175; height: 175'
+  strokecolor="red" strokeweight="2px" fillcolor="blue" coordorigin="0 0" coordsize="175 175"
+  path="m 8,65 l 72,65,92,11,112,65,174,65,122,100,142,155,92,121,42,155,60,100 x e"
+/>
+
+      <p>Поясним назначение атрибутов этого элемента.</p>
+      <ul>
+        <li>Атрибут <strong>path</strong> определяет форму фигуры. Он подробно описан в <a href="vml04.htm#ref1041">п. 10.4.1</a>
+          (атрибут <strong>v</strong> элемента <strong><a href="vml04.htm#epath">path</a></strong>).</li>
+        <li>Атрибут <strong>type</strong> является закладкой и указывает на <strong>id</strong> элемента
+          <strong><a href="#eshapetype">shapetype</a></strong>, определяющего свойства данной фигуры (см. пример в <a href="#ref1022">п. 10.2.2</a>).</li>
+        <li>Атрибут <strong>adj</strong> задает список выравнивающих значений для формул. Он подробно описан в <a href="vml04.htm#ref1042">п. 10.4.2</a>.</li>
+        <li>Если атрибут <strong>filled</strong> равен <strong>true</strong>, то <strong>fillcolor</strong> задает цвет
+          заливки фигуры. Если он равен <strong>false</strong>, то заливка не производится.</li>
+        <li>Если атрибут <strong>stroked</strong> равен <strong>true</strong>, то <strong>strokecolor</strong> задает цвет рамки фигуры,
+          а <strong>strokeweight</strong>&nbsp;&#151; ее ширину. Если он равен <strong>false</strong>, то фигура выводится без рамки.</li>
+      </ul>
+
+      <p>Элемент <strong>shape</strong> может содержать графические примитивы и следующие внутренние 
+        элементы: <strong><a href="vml05.htm#eextrusion">extrusion</a></strong>, <strong><a href="vml04.htm#efill">fill</a></strong>, 
+        <strong><a href="vml04.htm#eformulas">formulas</a></strong>, <strong><a href="vml04.htm#ehandles">handles</a></strong>, 
+        <strong><a href="vml05.htm#eimagedata">imagedata</a></strong>, <strong><a href="vml04.htm#epath">path</a></strong>, 
+        <strong><a href="vml05.htm#eshadow">shadow</a></strong>, <strong><a href="vml05.htm#eskew">skew</a></strong>, 
+        <strong><a href="vml05.htm#estroke">stroke</a></strong>, <strong><a href="vml05.htm#etextbox">textbox</a></strong> 
+        и <strong><a href="vml05.htm#etextpath">textpath</a></strong>. При этом элементы <strong><a href="vml04.htm#efill">fill</a></strong>, 
+        <strong><a href="vml04.htm#epath">path</a></strong> и <strong><a href="vml05.htm#estroke">stroke</a></strong> 
+        переопределяют значения соответствующих атрибутов <strong>shape</strong>.</p>
+
+      <h3><a name="ref1022">10.2.2. Заготовка фигуры: элемент shapetype</a></h3>
+      
+<pre class="syntax"><a name="eshapetype"><strong>Синтаксис</strong>:</a> &lt;v:shapetype&gt;&#133;&lt;/v:shapetype&gt;
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           adj = <a href="vml01.htm#string">string</a> (список выравниваний для формул)
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки фигуры)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)
+           path = <a href="vml01.htm#string">string</a> (описание формы фигуры)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет рамки фигуры)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод рамки фигуры)
+           strokeweight = <a href="css01.htm#length">размер</a> (ширина рамки фигуры)</pre>
+
+      <p>Элемент <strong>shapetype</strong> предназначен для создания заготовок фигур, которые в дальнейшем могут быть отображены с помощью элемента <strong><a href="#eshape">shape</a></strong>.
+        Он идентичен элементу <strong><a href="#eshape">shape</a></strong>, за исключением атрибута <strong>type</strong>. Приведенный выше пример с использованием этого элемента можно записать так:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:shapetype <strong>id="star"</strong>
+  strokecolor="red" strokeweight="2px" fillcolor="blue"
+  coordorigin="0 0" coordsize="175 175"
+  path="m 8,65 l 72,65,92,11,112,65,174,65,122,100,142,155,92,121,42,155,60,100 x e"
+/&gt;
+&lt;v:shape style='position: relative; top: 0; left: 3em; width: 175; height: 175'
+  <strong>type="#star"</strong> /&gt;
+&lt;v:shape style='position: relative; top: 0; left: 3em; width: 100; height: 100'
+  <strong>type="#star"</strong> /&gt;</pre>
+      </div>
+
+<v:shapetype id="star"
+  strokecolor="red" strokeweight="2px" fillcolor="blue" coordorigin="0 0" coordsize="175 175"
+  path="m 8,65 l 72,65,92,11,112,65,174,65,122,100,142,155,92,121,42,155,60,100 x e"
+/>
+<v:shape style='position: relative; top: 0; left: 3em; width: 175; height: 175' type="#star" />
+<v:shape style='position: relative; top: 0; left: 3em; width: 100; height: 100' type="#star" />
+
+      <p>Здесь создается заготовка фигуры с идентификатором <tt>star</tt>, а затем применяется для
+        создания двух одинаковых фигур разного размера. Обратите внимание, что свойства CSS элемента
+        <strong><a href="#eshapetype">shapetype</a></strong> не наследуются, а потому задаются не в нем, а в элементах <strong><a href="#eshape">shape</a></strong>,
+        использующих данную заготовку.</p>
+
+      <p>Элемент <strong><a href="#eshape">shape</a></strong> использует значения тех атрибутов заготовки, которые в нем явно не переопределены.</p>
+
+      <h3><a name="ref1023">10.2.3. Группы фигур: элемент group</a></h3>
+      
+<pre class="syntax"><a name="egroup"><strong>Синтаксис</strong>:</a> &lt;v:group&gt;&#133;&lt;/v:group&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css06.htm#pheight">height</a>, <a href="css05.htm#pleft">left</a>, <a href="css04.htm#pmargin-bottom">margin-bottom</a>, <a href="css04.htm#pmargin-left">margin-left</a>, <a href="css04.htm#pmargin-right">margin-right</a>, <a href="css04.htm#pmargin-top">margin-top</a>,
+           <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css06.htm#pwidth">width</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a></pre>
+
+      <p>Элемент <strong>group</strong> предназначен для группировки фигур. Созданная таким образом группа фигур позиционируется и преобразуется единым образом.
+        В состав группы могут входить элементы <strong>group</strong>, <strong><a href="#eshape">shape</a></strong>, <strong><a href="#eshapetype">shapetype</a></strong> и графические примитивы. Пример группы:</p>
+      <div class="code">
+<pre class="code">&lt;v:group style='position:relative; left:3em; top:0; width:200pt; height:200pt'
+  coordsize="1000,1000" coordorigin="-500,-500">
+  &lt;v:oval style='position:absolute; left:0; top:0; width:400; height:300'
+    fillcolor="red" />
+  &lt;v:roundrect style='position:absolute; left:0; top:0; width:250; height:200'
+    fillcolor="green" />
+&lt;/v:group></pre>
+      </div>
+
+<v:group style='position:relative; left:3em; top:0; width:200pt; height:200pt'
+  coordsize="1000,1000" coordorigin="-500,-500">
+  <v:oval style='position:absolute; left:0; top:0; width:400; height:300' fillcolor="red" />
+  <v:roundrect style='position:absolute; left:0; top:0; width:250; height:200' fillcolor="green" />
+</v:group>
+
+      <h3><a name="ref1024">10.2.4. Фреймы: элемент vmlframe</a></h3>
+      
+      <pre class="syntax"><a name="evmlframe"><strong>Синтаксис</strong>:</a> &lt;v:vmlframe&gt;&#133;&lt;/v:vmlframe&gt;
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>
+           clip = <a href="vml01.htm#bool">boolean</a> (обрезка графического образа)
+           origin = <a href="vml01.htm#v2d">vector2d</a> (начало координат)
+           size = <a href="vml01.htm#v2d">vector2d</a> (размер фрейма)
+           src = <a href="vml01.htm#string">string</a> (гиперссылка на содержимое фрейма)</pre>
+
+      <p>Элемент <strong>vmlframe</strong> определяет фрейм в окне обозревателя. Содержимое фрейма задается атрибутом
+        <strong>src</strong>, который должен содержать гиперссылку. Гиперссылка может быть либо закладкой, указывающей
+        на объект, содержащийся в текущем HTML-документе, либо указателем на внешний файл. В последнем случае внешний файл
+        должен быть XML-файлом, например:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:vmlframe src="ext.vml#img01"
+  style='position:relative; top:0; left:0; width:50; height:50'&gt;
+/&gt;
+
+EXT.VML:
+
+&lt;xml xmlns:v = "urn:schemas-microsoft-com:vml"&gt;
+&lt;v:image id="img01" src="photo.jpg"
+  style='height:100; width:100; top:50; left:50'
+/&gt;
+&lt;/xml&gt;</pre>
+      </div>
+
+      <p>Способ отображения объекта во фрейме задается атрибутом <strong>clip</strong>. Если <strong>clip</strong>
+        равно <strong>true</strong>, то объект отображается без масштабирования, а его части, выходящие за пределы
+        фрейма обрезаются. В этом случае начало координат задается атрибутом <strong>origin</strong>, а размер фрейма
+        атрибутом <strong>size</strong>. Если же <strong>clip</strong> равно <strong>false</strong>, то производится
+        масштабирование объекта так, чтобы он целиком поместился во фрейм. В этом случае атрибуты <strong>origin</strong>
+        и <strong>size</strong> игнорируются. По умолчанию <strong>clip</strong> равно <strong>false</strong>.В следующем
+        примере мы сначала рисуем овал, а затем отображаем его в двух фреймах: первый раз с обрезкой, второй раз с масштабированием.</p>
+
+      <div class="code">
+<pre class="code">&lt;!-- исходная фигура -->
+&lt;v:oval id="oval01"
+   style='width:100pt; height:50pt'
+   fillcolor="green" strokecolor="red" strokeweight="2pt"
+/>
+&lt;!-- фрейм с обрезкой -->
+&lt;v:vmlframe src="#oval01" clip="true" size="50pt,50pt" origin="0,0"
+  style='border:2pt solid; width:50pt; height:50pt'
+/>
+&lt;!-- фрейм с масштабированием -->
+&lt;v:vmlframe src="#oval01" clip="false"
+  style='border:2pt solid; width:50pt; height:50pt'
+/></pre>
+      </div>
+
+<v:oval id="oval01"
+   style='width:100pt; height:50pt'
+   fillcolor="green" strokecolor="red" strokeweight="2pt"
+/>
+&nbsp;
+<v:vmlframe src="#oval01" clip="true" size="50pt,50pt" origin="0,0"
+  style='border:2pt solid; width:50pt; height:50pt'
+/>
+&nbsp;
+<v:vmlframe src="#oval01" clip="false"
+  style='border:2pt solid; width:50pt; height:50pt'
+/>
+
+      <h3><a name="ref1025">10.2.5. Фон: элемент background</a></h3>
+      
+<pre class="syntax"><a name="ebackground"><strong>Синтаксис</strong>:</a> &lt;v:background&gt;&#133;&lt;/v:background&gt;
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки фигуры)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)</pre>
+
+      <p>Элемент <strong>background</strong> предназначен для заливки фона страницы. Атрибуты <strong>filled</strong> и <strong>fillcolor</strong>
+        задают заливку фона и имеют тот же смысл, что в элементе <strong><a href="#eshape">shape</a></strong>. Кроме того, этот элемент может содержать
+        подэлемент <strong><a href="vml04.htm#efill">fill</a></strong>, задающий более сложные варианты заливки. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:background fillcolor="red">
+  &lt;v:fill type="gradient" />
+&lt;/v:background></pre>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: VML - Графические примитивы</title>
+<link rel="Prev" href="vml02.htm" title="Базовые элементы">
+<link rel="Next" href="vml04.htm" title="Вспомогательные элементы">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+<style>v\:* { behavior: url(#default#VML) }</style>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+    <tr><td>
+
+      <h2><a name="ref103">Глава 10.3. Графические примитивы</a></h2>
+      
+      <p>Графические примитивы&nbsp;&#151; это конкретные фигуры, чаще всего употребляющиеся при рисовании.
+        Они имеют все атрибуты элемента <strong><a href="vml02.htm#eshape">shape</a></strong>, за исключением атрибута <strong>type</strong>.
+        При этом атрибуты <strong><a href="vml02.htm#eshape">shape</a></strong>, не имеющие смысла для данного примитива, игнорируются. Кроме того,
+        каждый из графических примитивов имеет собственные атрибуты в зависимости от создаваемой им фигуры.
+        Графические примитивы могут содержать те же внутренние элементы, что и элемент <strong><a href="vml02.htm#eshape">shape</a></strong>.</p>
+
+      <h3><a name="ref1031">10.3.1. Отрезки: элемент line</a></h3>
+      
+<pre class="syntax"><a name="eline"><strong>Синтаксис</strong>:</a> &lt;v:line&gt;&#133;&lt;/v:line&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css05.htm#pleft">left</a>, <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           from = <a href="vml01.htm#v2d">vector2d</a> (начальная точка)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет линии)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод линии)
+           strokeweight = <a href="css01.htm#length">размер</a> (толщина линии)
+           to = <a href="vml01.htm#v2d">vector2d</a> (конечная точка)</pre>
+
+      <p>Элемент <strong>line</strong> выводит отрезок прямой. Начальная и конечная точка отрезка задаются соответственно атрибутами
+      <strong>from</strong> и <strong>to</strong>, а цвет и толщина линии&nbsp;&#151; атрибутами <strong>strokecolor</strong> и
+      <strong>strokeweight</strong>. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:line style='position:relative; left:3em; top:0'
+   strokecolor="red" strokeweight="2px" from="0 0" to="100 0"
+/></pre>
+      </div>
+
+<v:line style='position:relative; left:3em; top:0'
+  strokecolor="red" strokeweight="2px" from="0 0" to="100 0" /><br>
+
+      <h3><a name="ref1032">10.3.2. Ломаные: элемент polyline</a></h3>
+      
+<pre class="syntax"><a name="epolyline"><strong>Синтаксис</strong>:</a> &lt;v:polyline&gt;&#133;&lt;/v:polyline&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css05.htm#pleft">left</a>, <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)
+           points = <a href="vml01.htm#string">string</a> (массив координат ломаной)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет линии)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод линии)
+           strokeweight = <a href="css01.htm#length">размер</a> (толщина линии)</pre>
+
+      <p>Элемент <strong>polyline</strong> выводит ломаную, т.&nbsp;е. серию соединенных отрезков. Координаты точек задаются атрибутом
+      <strong>points</strong>, который имеет вид "<em>x1 y1 &#133; xN yN</em>", а цвет и толщина линий&nbsp;&#151; атрибутами <strong>strokecolor</strong> и
+      <strong>strokeweight</strong>. Если задан атрибут <strong>fillcolor</strong>, то производится заливка полученной фигуры. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:polyline style='position:relative; left:3em; top:0' fillcolor="blue"
+  strokecolor="red" strokeweight="2px" points="0 0 20 20 40 0 60 20" 
+/></pre>
+      </div>
+
+<v:polyline style='position:relative; left:3em; top:0' fillcolor="blue"
+  strokecolor="red" strokeweight="2px" points="0 0 20 20 40 0 60 20" /><br>
+
+      <h3><a name="ref1033">10.3.3. Кривые Безье: элемент curve</a></h3>
+      
+<pre class="syntax"><a name="ecurve"><strong>Синтаксис</strong>:</a> &lt;v:curve&gt;&#133;&lt;/v:curve&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css05.htm#pleft">left</a>, <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           control1 = <a href="vml01.htm#v2d">vector2d</a> (первая управляющая точка)
+           control2 = <a href="vml01.htm#v2d">vector2d</a> (вторая управляющая точка)
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)
+           from = <a href="vml01.htm#v2d">vector2d</a> (начальная точка)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет линии)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод линии)
+           strokeweight = <a href="css01.htm#length">размер</a> (толщина линии)
+           to = <a href="vml01.htm#v2d">vector2d</a> (конечная точка)</pre>
+
+      <p>Элемент <strong>curve</strong> выводит кубическую кривую Безье. Кривая задается четырьмя точками
+      <strong>from</strong>, <strong>control1</strong>, <strong>control2</strong> и <strong>to</strong>.
+      Цвет и толщина линии задаются атрибутами <strong>strokecolor</strong> и <strong>strokeweight</strong>.
+      Если задан атрибут <strong>fillcolor</strong>, то производится заливка полученной фигуры. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:curve style='position:relative; left:3em; top:0'
+  fillcolor="blue" strokecolor="red" strokeweight="2px"
+  from="10pt,10pt" to="100pt,10pt" control1="40pt,30pt" control2="70pt,30pt"
+/></pre>
+      </div>
+
+<v:curve style='position:relative; left:3em; top:0'
+  fillcolor="blue" strokecolor="red" strokeweight="2px"
+  from="10pt,10pt" to="100pt,10pt" control1="40pt,30pt" control2="70pt,30pt"/><br>
+
+      <h3><a name="ref1034">10.3.4. Прямоугольники: элемент rect</a></h3>
+      
+<pre class="syntax"><a name="erect"><strong>Синтаксис</strong>:</a> &lt;v:rect&gt;&#133;&lt;/v:rect&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css06.htm#pheight">height</a>, <a href="css05.htm#pleft">left</a>, <a href="css04.htm#pmargin-bottom">margin-bottom</a>, <a href="css04.htm#pmargin-left">margin-left</a>, <a href="css04.htm#pmargin-right">margin-right</a>, <a href="css04.htm#pmargin-top">margin-top</a>,
+           <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css06.htm#pwidth">width</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки фигуры)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет рамки фигуры)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод рамки фигуры)
+           strokeweight = <a href="css01.htm#length">размер</a> (ширина рамки фигуры)</pre>
+
+      <p>Элемент <strong>rect</strong> выводит прямоугольник. Положение и размер прямоугольника задаются стилями CSS.
+      Цвет и толщина рамки задаются атрибутами <strong>strokecolor</strong> и <strong>strokeweight</strong>.
+      Если задан атрибут <strong>fillcolor</strong>, то производится заливка полученной фигуры. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:rect style='position:relative; left:3em; top:0; height:100px; width:100px'
+  strokecolor="red" strokeweight="2px" fillcolor="blue"
+/></pre>
+      </div>
+
+<v:rect style='position:relative; left:3em; top:0; height:100px; width:100px'
+  strokecolor="red" strokeweight="2px" fillcolor="blue" /><br>
+
+      <h3><a name="ref1035">10.3.5. Прямоугольники со скругленными углами: элемент roundrect</a></h3>
+      
+<pre class="syntax"><a name="eroundrect"><strong>Синтаксис</strong>:</a> &lt;v:roundrect&gt;&#133;&lt;/v:roundrect&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css06.htm#pheight">height</a>, <a href="css05.htm#pleft">left</a>, <a href="css04.htm#pmargin-bottom">margin-bottom</a>, <a href="css04.htm#pmargin-left">margin-left</a>, <a href="css04.htm#pmargin-right">margin-right</a>, <a href="css04.htm#pmargin-top">margin-top</a>,
+           <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css06.htm#pwidth">width</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           arcsize = <a href="vml01.htm#number">number</a> (скругление)
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки фигуры)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет рамки фигуры)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод рамки фигуры)
+           strokeweight = <a href="css01.htm#length">размер</a> (ширина рамки фигуры)</pre>
+
+      <p>Элемент <strong>roundrect</strong> выводит прямоугольник со скругленными углами. Положение и размер прямоугольника задаются стилями CSS.
+      Скругление улов задается атрибутом <strong>arcsize</strong>, который должен быть числом от 0 до 1 и понимается как процент от половины
+      меньшей стороны прямоугольника. Если его значение равно 0, то углы будут квадратными, если он равен 1, то меньшая сторона образует полукруг.
+      Цвет и толщина рамки задаются атрибутами <strong>strokecolor</strong> и <strong>strokeweight</strong>.
+      Если задан атрибут <strong>fillcolor</strong>, то производится заливка полученной фигуры. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:roundrect style='position:relative; left:3em; top:0; height:50px; width:100px'
+  strokecolor="red" strokeweight="2px" fillcolor="blue" arcsize="30%"
+/></pre>
+      </div>
+
+<v:roundrect style='position:relative; left:3em; top:0; height:50px; width:100px'
+  strokecolor="red" strokeweight="2px" fillcolor="blue" arcsize="30%" /><br>
+
+      <h3><a name="ref1036">10.3.6. Эллипсы: элемент oval</a></h3>
+      
+<pre class="syntax"><a name="eoval"><strong>Синтаксис</strong>:</a> &lt;v:oval&gt;&#133;&lt;/v:oval&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css06.htm#pheight">height</a>, <a href="css05.htm#pleft">left</a>, <a href="css04.htm#pmargin-bottom">margin-bottom</a>, <a href="css04.htm#pmargin-left">margin-left</a>, <a href="css04.htm#pmargin-right">margin-right</a>, <a href="css04.htm#pmargin-top">margin-top</a>,
+           <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css06.htm#pwidth">width</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки фигуры)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет рамки фигуры)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод рамки фигуры)
+           strokeweight = <a href="css01.htm#length">размер</a> (ширина рамки фигуры)</pre>
+
+      <p>Элемент <strong>oval</strong> выводит эллипс. Положение и размер эллипса задаются стилями CSS.
+      Цвет и толщина рамки задаются атрибутами <strong>strokecolor</strong> и <strong>strokeweight</strong>.
+      Если задан атрибут <strong>fillcolor</strong>, то производится заливка полученной фигуры. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:oval style='position:relative; left:3em; top:0; height:50px; width:100px'
+  strokecolor="red" strokeweight="2px" fillcolor="blue"
+/></pre>
+      </div>
+
+<v:oval style='position:relative; left:3em; top:0; height:50px; width:100px'
+  strokecolor="red" strokeweight="2px" fillcolor="blue" /><br>
+
+      <h3><a name="ref1037">10.3.7. Эллиптические дуги: элемент arc</a></h3>
+      
+<pre class="syntax"><a name="earc"><strong>Синтаксис</strong>:</a> &lt;v:arc&gt;&#133;&lt;/v:arc&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css06.htm#pheight">height</a>, <a href="css05.htm#pleft">left</a>, <a href="css04.htm#pmargin-bottom">margin-bottom</a>, <a href="css04.htm#pmargin-left">margin-left</a>, <a href="css04.htm#pmargin-right">margin-right</a>, <a href="css04.htm#pmargin-top">margin-top</a>,
+           <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css06.htm#pwidth">width</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           endangle = <a href="vml01.htm#number">number</a> (конечный угол)
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки фигуры)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)
+           startangle = <a href="vml01.htm#number">number</a> (начальный угол)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет рамки фигуры)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод рамки фигуры)
+           strokeweight = <a href="css01.htm#length">размер</a> (ширина рамки фигуры)</pre>
+
+      <p>Элемент <strong>arc</strong> выводит дугу эллипса. Положение и размер эллипса задаются стилями CSS,
+      а начало и конец дуги задаются атрибутами <strong>startangle</strong> и <strong>endangle</strong>. 
+      Цвет и толщина рамки задаются атрибутами <strong>strokecolor</strong> и <strong>strokeweight</strong>.
+      Если задан атрибут <strong>fillcolor</strong>, то производится заливка полученной фигуры. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:arc style='position:relative; left:3em; top:0; height:50px; width:100px'
+  strokecolor="red" strokeweight="2px" fillcolor="blue" startangle="-90" endangle="90"
+/></pre>
+      </div>
+
+<v:arc style='position:relative; left:3em; top:0; height:50px; width:100px'
+  strokecolor="red" strokeweight="2px" fillcolor="blue" startangle="-90" endangle="90" /><br>
+
+      <h3><a name="ref1038">10.3.8. Внешние графические образы: элемент image</a></h3>
+      
+<pre class="syntax"><a name="eimage"><strong>Синтаксис</strong>:</a> &lt;v:image&gt;&#133;&lt;/v:image&gt;
+<strong>Стили</strong>:     <a href="vml01.htm#pflip">flip</a>, <a href="css06.htm#pheight">height</a>, <a href="css05.htm#pleft">left</a>, <a href="css04.htm#pmargin-bottom">margin-bottom</a>, <a href="css04.htm#pmargin-left">margin-left</a>, <a href="css04.htm#pmargin-right">margin-right</a>, <a href="css04.htm#pmargin-top">margin-top</a>,
+           <a href="css05.htm#pposition">position</a>, <a href="vml01.htm#protation">rotation</a>, <a href="css05.htm#ptop">top</a>, <a href="css06.htm#pvisibility">visibility</a>, <a href="css06.htm#pwidth">width</a>, <a href="css05.htm#pz-index">z-index</a>
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>, <a href="html01.htm#aclass">class</a>, <a href="html01.htm#astyle">style</a>, <a href="html01.htm#atitle">title</a>, <a href="html06.htm#eimg">alt</a>, <a href="html06.htm#ea">href</a>, <a href="html06.htm#ea">target</a>, <a href="vml01.htm#ref1015">coordsize</a>, <a href="vml01.htm#ref1015">coordorigin</a>
+           bilevel = <a href="vml01.htm#bool">boolean</a> (черно-белое изображение)
+           blacklevel = <a href="vml01.htm#number">number</a> (интенсивность черного цвета)
+           chromakey = <a href="vml01.htm#color">цвет</a> (прозрачный цвет)
+           cropbottom = <a href="vml01.htm#number">number</a> (обрезка снизу)
+           cropleft = <a href="vml01.htm#number">number</a> (обрезка слева)
+           cropright = <a href="vml01.htm#number">number</a> (обрезка справа)
+           croptop = <a href="vml01.htm#number">number</a> (обрезка сверху)
+           fillcolor = <a href="vml01.htm#color">цвет</a> (цвет заливки фигуры)
+           filled = <a href="vml01.htm#bool">boolean</a> (заливка цветом)
+           gain = <a href="vml01.htm#number">number</a> (интенсивность белого цвета)
+           gamma = <a href="vml01.htm#number">number</a> (контрастность)
+           grayscale = <a href="vml01.htm#bool">boolean</a> (изображение в серой гамме)
+           src = <a href="vml01.htm#string">string</a> (гиперссылка на графический файл)
+           strokecolor = <a href="vml01.htm#color">цвет</a> (цвет рамки фигуры)
+           stroked = <a href="vml01.htm#bool">boolean</a> (вывод рамки фигуры)
+           strokeweight = <a href="css01.htm#length">размер</a> (ширина рамки фигуры)</pre>
+
+      <p>Элемент <strong>image</strong> выводит графический образ из внешнего графического файла, заданного атрибутом <strong>src</strong>. Положение и размер образа задаются стилями CSS.
+      Цвет и толщина рамки задаются атрибутами <strong>strokecolor</strong> и <strong>strokeweight</strong> (<strong>stroked</strong> должно быть установлено в <strong>true</strong>).
+      Если <strong>filled</strong> равно <strong>true</strong> и задан атрибут <strong>fillcolor</strong>, то прозрачные точки заливаются заданным цветом. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:image style='position:relative; left:3em; top:0; height:50px; width:35px'
+  src="images/leaf.gif"
+/></pre>
+      </div>
+
+<v:image style='position:relative; left:3em; top:0; height:50px; width:35px'
+  src="images/leaf.gif" /><br>
+  
+      <p>Остальные атрибуты имеют следующее назначение.</p>
+      <ul>
+        <li>Если <strong>bilevel</strong> равно <strong>true</strong>, то изображение преобразуется в черно-белое.</li>
+        <li>Атрибут <strong>blacklevel</strong> задает интенсивность черного цвета. По умолчанию он равен 0. Значение -0.5
+          преобразует все цвета в черный, а значение +0.5 в белый.</li>
+        <li>Атрибут <strong>chromakey</strong> указывает, какой цвет должен считаться прозрачным.</li>
+        <li>Атрибуты <strong>cropbottom</strong>, <strong>cropleft</strong>, <strong>cropright</strong> и <strong>croptop</strong>
+          принимают значение от -1 до 1 и по умолчанию равны 0. Положительные значения этих атрибутов означают обрезку
+          соответствующего процента изображения снизу, слева, справа или сверху. Отрицательные значения сжимают изображение,
+          добавляя к нему пустое пространство соответствующего размера.</li>
+        <li>Атрибут <strong>gain</strong> управляет яркостью белого цвета в диапазоне от 0 до бесконечности. По умолчанию он
+          равен 1; значения, меньшие 1, делают изображение более серым, а большие 1&nbsp;&#151; более светлым.</li>
+        <li>Атрибут <strong>gamma</strong> управляет контрастностью изображения в диапазоне от 0 до бесконечности. По умолчанию он
+          равен 0; значения, меньшие 1, повышают контрастность, а большие 1 ее понижают. Осмысленные значения этого атрибута варьируются от 0.3 до 3.</li>
+        <li>Если <strong>grayscale</strong> равно <strong>true</strong>, то изображение преобразуется в серую гамму.</li>
+      </ul>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

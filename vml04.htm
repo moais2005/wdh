@@ -1,0 +1,862 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: VML - Вспомогательные элементы</title>
+<link rel="Prev" href="vml03.htm" title="Графические примитивы">
+<link rel="Next" href="vml05.htm" title="Вспомогательные элементы (продолжение)">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+<style>v\:* { behavior: url(#default#VML) }</style>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+    <tr><td>
+
+      <h2><a name="ref104">Глава 10.4. Вспомогательные элементы</a></h2>
+
+      <p>Описанные в этой главе элементы VML употребляются внутри элементов <strong><a href="vml02.htm#eshape">shape</a></strong>, <strong><a href="vml02.htm#eshapetype">shapetype</a></strong> и графических примитивов
+      и определяют их графическое содержимое.</p>
+
+      <h3><a name="ref1041">10.4.1. Форма фигуры: элемент path</a></h3>
+
+<pre class="syntax"><a name="epath"><strong>Синтаксис</strong>:</a> &lt;v:path&gt;&#133;&lt;/v:path&gt;
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>
+           arrowok = <a href="vml01.htm#bool">boolean</a> (вывод стрелок)
+           fillok = <a href="vml01.htm#bool">boolean</a> (заливка фигуры)
+           gradientshapeok = <a href="vml01.htm#bool">boolean</a> (градиентная заливка)
+           limo = <a href="vml01.htm#v2d">vector2d</a> (точка вытягивания фигуры)
+           shadowok = <a href="vml01.htm#bool">boolean</a> (вывод тени)
+           strokeok = <a href="vml01.htm#bool">boolean</a> (вывод рамки)
+           textboxrect = <a href="vml01.htm#string">string</a> (текстовый прямоугольник)
+           textpathok = <a href="vml01.htm#bool">boolean</a> (вывод текста)
+           v = <a href="vml01.htm#string">string</a> (форма фигуры)</pre>
+
+      <p>Элемент <strong>path</strong> может употребляться в элементах <strong><a href="vml02.htm#eshape">shape</a></strong> и <strong><a href="vml02.htm#eshapetype">shapetype</a></strong> для задания формы фигуры.
+        Форма фигуры задается атрибутом <strong>v</strong>, который эквивалентен атрибуту <strong>path</strong> базовых элементов.
+        Этот атрибут является строкой, содержащей следующие команды движения пера по экрану (cpx и cpy обозначают координаты текущей точки):</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+  <tr>
+    <th>Команда</th>
+    <th>Название</th>
+    <th>Параметры</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td><strong><tt>m</tt></strong></td>
+    <td><tt>moveto</tt></td>
+    <td>2</td>
+    <td>Начинает новый подпуть с заданной точки (x,y).</td>
+  </tr>
+  <tr>
+    <td><strong><tt>l</tt></strong></td>
+    <td><tt>lineto</tt></td>
+    <td>2*</td>
+    <td>Рисует отрезок от текущей точки до заданной точки (x,y), которая становится новой текущей точкой.
+      Может содержать несколько пар (x,y), задавая рисование ломаной.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>c</tt></strong></td>
+    <td><tt>curveto</tt></td>
+    <td>6*</td>
+    <td>Рисует кубическую кривую Безье от текущей точки. Параметры имеют вид: первая управляющая точка,
+      вторая управляющая точка, конечная точка. Конечная точка становится новой текущей точкой.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>x</tt></strong></td>
+    <td><tt>close</tt></td>
+    <td>0</td>
+    <td>Замыкает текущий подпуть, проводя отрезок из текущей точки в начальную точку, заданную командой <tt>moveto</tt>.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>e</tt></strong></td>
+    <td><tt>end</tt></td>
+    <td>0</td>
+    <td>Заканчивает текущий набор подпутей и заливает его. Последующие наборы подпутей заливаются независимо от данного.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>t</tt></strong></td>
+    <td><tt>rmoveto</tt></td>
+    <td>2*</td>
+    <td>Начинает новый подпуть с точки (cpx+x,cpy+y).</td>
+  </tr>
+  <tr>
+    <td><strong><tt>r</tt></strong></td>
+    <td><tt>rlineto</tt></td>
+    <td>2*</td>
+    <td>Рисует отрезок от текущей точки до точки (cpx+x,cpy+y), которая становится новой текущей точкой.
+      Может содержать несколько пар относительных координат, задавая рисование ломаной.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>v</tt></strong></td>
+    <td><tt>rcurveto</tt></td>
+    <td>6*</td>
+    <td>Рисует кубическую кривую Безье от текущей точки. Параметры задают координаты относительно (cpx,cpy).</td>
+  </tr>
+  <tr>
+    <td><strong><tt>nf</tt></strong></td>
+    <td><tt>nofill</tt></td>
+    <td>0</td>
+    <td>Текущий набор путей не будет заливаться.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>ns</tt></strong></td>
+    <td><tt>nostroke</tt></td>
+    <td>0</td>
+    <td>Текущий набор путей не будет иметь рамки.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>ae</tt></strong></td>
+    <td><tt>angleellipseto</tt></td>
+    <td>6*</td>
+    <td>Рисует сегмент эллипса. Параметры имеют вид: центр (x,y), ширина, высота, начальный угол, конечный угол.
+      Из текущей точки в начальную точку сегмента проводится отрезок.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>al</tt></strong></td>
+    <td><tt>angleellipse</tt></td>
+    <td>6*</td>
+    <td>То же, что <tt>angleellipseto</tt>, но без рисования отрезка.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>at</tt></strong></td>
+    <td><tt>arcto</tt></td>
+    <td>8*</td>
+    <td>Рисует дугу эллипса. Первые четыре параметра задают описанный прямоугольник эллипса,
+      а вторые четыре&nbsp;&#151; начальный и конечный радиальные вектора. Из текущей точки в начальную точку дуги проводится отрезок.
+      Дуга рисуется против часовой стрелки.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>ar</tt></strong></td>
+    <td><tt>arc</tt></td>
+    <td>8*</td>
+    <td>То же, что <tt>arcto</tt>, но без рисования отрезка.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>wa</tt></strong></td>
+    <td><tt>clockwisearcto</tt></td>
+    <td>8*</td>
+    <td>То же, что <tt>arcto</tt>, но дуга рисуется по часовой стрелке.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>wr</tt></strong></td>
+    <td><tt>clockwisearc</tt></td>
+    <td>8*</td>
+    <td>То же, что <tt>arc</tt>, но дуга рисуется по часовой стрелке.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>qx</tt></strong></td>
+    <td><tt>ellipticalqaudrantx</tt></td>
+    <td>2*</td>
+    <td>Рисует квадрант эллипса из текущей точки в заданную, начиная с горизонтального направления.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>qy</tt></strong></td>
+    <td><tt>ellipticalquadranty</tt></td>
+    <td>2*</td>
+    <td>Рисует квадрант эллипса из текущей точки в заданную, начиная с вертикального направления.</td>
+  </tr>
+  <tr>
+    <td><strong><tt>qb</tt></strong></td>
+    <td><tt>quadraticbezier</tt></td>
+    <td>2+2*</td>
+    <td>Определяет одну или несколько квадратичных кривых Безье. Параметры имеют вид: управляющая точка*, конечная точка.
+      Промежуточные точки на кривой получаются интерполяцией между управляющими точками, как в спецификации шрифтов OpenType.</td>
+  </tr>
+</table>
+
+      <p>Параметры могут отделяться пробелами или запятыми. Пример:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:shape coordorigin="0 0" coordsize="200 200"  fillcolor="green"
+  strokecolor="red" style='position:relative; left:3em; top:0; width:50; height:50'&gt;
+  &lt;v:path v="m 1,1 l 1,200, 200,200, 200,1 x e"/&gt;
+&lt;/v:shape&gt;</pre>
+      </div>
+
+<v:shape coordorigin="0 0" coordsize="200 200" fillcolor="green"
+  strokecolor="red" style='position:relative; left:3em; top:0; width:50; height:50'>
+  <v:path v="m 1,1 l 1,200, 200,200, 200,1 x e" />
+</v:shape>
+
+      <p>Опишем назначение остальных атрибутов.</p>
+      <ul>
+        <li>Если <strong>arrowok</strong> равно <strong>true</strong> и рамка имеет стрелки, то
+          стрелки будут рисоваться. Этот атрибут перекрывает все атрибуты, связанные со стрелками,
+          в родительском элементе и элементе <strong><a href="vml05.htm#estroke">stroke</a></strong>. По умолчанию он равен <strong>false</strong>.
+          Пример:</li>
+
+      <div class="code">
+<pre class="code">&lt;v:line from="40 0" to="200 0" strokecolor="black">
+  &lt;v:stroke startarrow="block" endarrow="block"/>
+  &lt;v:path arrowok="true"/>
+&lt;/v:line></pre>
+      </div>
+
+<v:line from="40 0" to="200 0" strokecolor="black">
+  <v:stroke startarrow="block" endarrow="block"/>
+  <v:path arrowok="true"/>
+</v:line>
+
+        <li>Если <strong>fillok</strong> равно <strong>false</strong>, то заливка фигуры не производится. Этот атрибут перекрывает все атрибуты, связанные с заливкой,
+          в родительском элементе и элементе <strong><a href="#efill">fill</a></strong>. По умолчанию он равен <strong>true</strong>.</li>
+        <li>Если <strong>gradientshapeok</strong> равно <strong>true</strong>, то производится концентрическая градиентная заливка фигуры.
+          По умолчанию этот атрибут равен <strong>false</strong>. Он имеет смысл только для элемента <strong><a href="#efill">fill</a></strong>, имеющего <strong>type</strong>, равный
+          <strong>gradientradial</strong>. Пример:</li>
+
+      <div class="code">
+<pre class="code">&lt;v:rect strokecolor="red"
+  style='position:relative; top:0; left:3em; width:50; height:50'>
+  &lt;v:fill type="gradientradial" color="blue" color2="yellow"/>
+  &lt;v:path gradientshapeok="true"/>
+&lt;/v:rect></pre>
+      </div>
+
+<v:rect strokecolor="red"
+  style='position:relative; top:0; left:3em; width:50; height:50'>
+  <v:fill type="gradientradial" color="blue" color2="yellow"/>
+  <v:path gradientshapeok="true"/>
+</v:rect>
+
+        <li>Атрибут <strong>limo</strong> определяет точку вытягивания на границе фигуры; по умолчанию он равен (0, 0).
+        Точка вытягивания указывает, где и как пользователь может вытягивать фигуру в графическом редакторе.</li>
+        <li>Если <strong>shadowok</strong> равно <strong>true</strong> и фигура имеет тень, то тень выводится. Этот атрибут перекрывает все атрибуты, связанные с тенью,
+          в родительском элементе и элементе <strong><a href="vml05.htm#eshadow">shadow</a></strong>. По умолчанию он равен <strong>true</strong>. Пример:</li>
+
+      <div class="code">
+<pre class="code">&lt;v:rect strokecolor="red" fillcolor="green"
+  style='position:relative; top:0; left:3em; width:50; height:50'>
+  &lt;v:shadow on="true" offset="5pt,5pt" color="blue"/&gt;
+  &lt;v:path shadowok="true"/&gt;
+ &lt;/v:rect></pre>
+      </div>
+
+<v:rect strokecolor="red" fillcolor="green"
+  style='position:relative; top:0; left:3em; width:50; height:50'>
+  <v:shadow on="true" offset="5pt,5pt" color="blue"/>
+  <v:path shadowok="true"/>
+</v:rect>
+
+        <li>Если <strong>strokeok</strong> равно <strong>true</strong>, то будет рисоваться рамка фигуры.
+          Этот атрибут перекрывает все атрибуты, связанные с рамкой, в родительском элементе и элементе <strong><a href="vml05.htm#estroke">stroke</a></strong>.
+          По умолчанию он равен <strong>true</strong>.</li>
+
+        <li>Атрибут <strong>textboxrect</strong> определяет текстовые прямоугольники для использования элементом <strong><a href="vml05.htm#etextbox">textbox</a></strong>.
+          Каждый прямоугольник задается четырьмя координатами; определения прямоугольников разделяются точкой с запятой.</li>
+
+      <div class="code">
+<pre class="code">&lt;v:shape strokecolor="red" coordorigin="0 0" coordsize="200 200"
+  style='position:relative; top:0; left:3em; width:50; height:50'>
+  &lt;v:path v="m 1,1 l 1,200, 200,200, 200,1 x e" textboxrect="10 70 190 190"/>
+  &lt;v:textbox>VML&lt;/v:textbox>
+&lt;/v:shape></pre>
+      </div>
+
+<v:shape strokecolor="red" coordorigin="0 0" coordsize="200 200"
+  style='position:relative; top:0; left:3em; width:50; height:50'>
+  <v:path v="m 1,1 l 1,200, 200,200, 200,1 x e" textboxrect="10 70 190 190"/>
+  <v:textbox>VML</v:textbox>
+</v:shape>
+
+        <li>Если <strong>textpathok</strong> равно <strong>true</strong> и родительский элемент содержит 
+          <strong><a href="vml05.htm#etextpath">textpath</a></strong>, то он будет рисоваться. По умолчанию 
+          этот атрибут равен <strong>false</strong>.</li>
+      </ul>
+
+      <h3><a name="ref1042">10.4.2. Формулы: элемент formulas</a></h3>
+
+<pre class="syntax"><a name="eformulas"><strong>Синтаксис</strong>:</a> &lt;v:formulas&gt;&#133;&lt;/v:formulas&gt;</pre>
+
+      <p>Элемент <strong>formulas</strong> может употребляться в элементах <strong><a href="vml02.htm#eshape">shape</a></strong> и <strong><a href="vml02.htm#eshapetype">shapetype</a></strong> для задания формул.
+        Он не имеет атрибутов и состоит из набора подэлементов вида <code>&lt;v:f eqn="<em>operation v p1 p2</em>"/&gt;</code>.
+        Каждый такой подэлемент задает одну формулу, которая состоит из названия операции и аргументов (от 1 до 3), которые
+        принято обозначать v, p1 и p2.</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+  <tr>
+    <th>Операция</th>
+    <th>Параметры</th>
+    <th>Результат</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td><tt><strong>val</strong></tt></td>
+    <td align="center">1</td>
+    <td>v</td>
+    <td>Определяет одно значение через другое.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>sum</strong></tt></td>
+    <td align="center">3</td>
+    <td>v + p1 - p2</td>
+    <td>Используется для сложения и вычитания.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>product</strong></tt></td>
+    <td align="center">3</td>
+    <td>v * p1 / p2</td>
+    <td>Используется для умножения и деления.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>mid</strong></tt></td>
+    <td align="center">2</td>
+    <td>(v + p1) / 2</td>
+    <td>Среднее значение.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>abs</strong></tt></td>
+    <td align="center">1</td>
+    <td>abs(v)</td>
+    <td>Абсолютное значение.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>min</strong></tt></td>
+    <td align="center">2</td>
+    <td>min(v, p1)</td>
+    <td>Наименьшее из двух чисел.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>max</strong></tt></td>
+    <td align="center">2</td>
+    <td>max(v, p1)</td>
+    <td>Наибольшее из двух чисел.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>if</strong></tt></td>
+    <td align="center">3</td>
+    <td>v &gt; 0 ? p1 : p2</td>
+    <td>Проверка условия.</td></tr>
+  <tr>
+    <td><tt><strong>mod</strong></tt></td>
+    <td align="center">3</td>
+    <td><nobr>sqrt(v^2 + p1^2 + p2^2)</nobr></td>
+    <td>Длина вектора.</td></tr>
+  <tr>
+    <td><tt><strong>atan2</strong></tt></td>
+    <td align="center">2</td>
+    <td>atan2(p1, v)</td>
+    <td>Полярный угол. Результат в градусах·2<sup><sup>16</sup></sup>.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>sin</strong></tt></td>
+    <td align="center">2</td>
+    <td>v * sin(p1)</td>
+    <td>Синус, аргумент в градусах·2<sup><sup>16</sup></sup>.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>cos</strong></tt></td>
+    <td align="center">2</td>
+    <td>v * cos(p1)</td>
+    <td>Косинус, аргумент в градусах·2<sup><sup>16</sup></sup>.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>cosatan2</strong></tt></td>
+    <td align="center">3</td>
+    <td>v * cos(atan2(p2, p1)</td>
+    <td>Операция с повышенной точностью в промежуточных вычислениях.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>sinatan2</strong></tt></td>
+    <td align="center">3</td>
+    <td>v * sin(atan2(p2, p1)</td>
+    <td>Операция с повышенной точностью в промежуточных вычислениях.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>sqrt</strong></tt></td>
+    <td align="center">1</td>
+    <td>sqrt(v)</td>
+    <td>Положительное значение квадратного корня.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>sumangle</strong></tt></td>
+    <td align="center">3</td>
+    <td>v + p1*2<sup><sup>16</sup></sup> + p2*2<sup><sup>16</sup></sup></td>
+    <td>v&nbsp;&#151; угол в градусах (умноженный на 2<sup><sup>16</sup></sup>),<br>p1 и p2&nbsp;&#151; углы в градусах.</td></tr>
+  <tr>
+    <td><tt><strong>ellipse</strong></tt></td>
+    <td align="center">3</td>
+    <td>p2 * sqrt(1-(v/p1)^2)</td>
+    <td>Эллипс.</td></tr>
+  <tr>
+    <td><tt><strong>tan</strong></tt></td>
+    <td align="center">2</td>
+    <td>v * tan(p1)</td>
+    <td>Тангенс, аргумент в градусах·2<sup><sup>16</sup></sup>.</td>
+  </tr>
+</table>
+
+      <p>Результатом вычисления формулы всегда является 32-битовое целое число. Аргументами формул
+        могут быть либо целые числа в диапазоне от 0 до 65535 (т.&nbsp;е. беззнаковые 16-битовые числа),
+        либо результаты предыдущих формул, либо выравнивающие значения, заданные в атрибуте <strong>adj</strong>
+        элемента <strong><a href="vml02.htm#eshape">shape</a></strong>, либо предопределенные константы. Синтаксис аргументов следует следующим правилам:</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+  <tr>
+    <th>Аргумент</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td><tt><strong>@</strong><em>n</em></tt></td>
+    <td>Значение формулы <em>n</em>, где <em>n</em> должно быть меньше номера текущей формулы, считая с 0.
+      Общее число формул в элементе не более 128.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>#</strong><em>n</em></tt></td>
+    <td>Выравнивающее значение <i>n</i>, где <i>n</i> должно быть числом от 0 до 7.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>width</strong></tt></td>
+    <td>Ширина, заданная атрибутом <strong>coordsize</strong>.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>height</strong></tt></td>
+    <td>Высота, заданная атрибутом <strong>coordsize</strong>.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>xcenter</strong></tt></td>
+    <td>Абсцисса центра локальных координат, <strong>coordorigin</strong>.x + <strong>coordsize</strong>.w/2.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>ycenter</strong></tt></td>
+    <td>Ордината центра локальных координат, <strong>coordorigin</strong>.y + <strong>coordsize</strong>.h/2.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>xlimo</strong></tt></td>
+    <td>Абсцисса атрибута <strong>limo</strong>.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>ylimo</strong></tt></td>
+    <td>Ордината атрибута <strong>limo</strong>.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>hasstroke</strong></tt></td>
+    <td>1, если образ имеет рамку, и 0 в противном случае. (Значение атрибута <strong>on</strong> элемента <strong><a href="vml05.htm#estroke">stroke</a></strong>.)</td>
+  </tr>
+  <tr>
+    <td><tt><strong>hasfill</strong></tt></td>
+    <td>1, если образ имеет заливку, и 0 в противном случае. (Значение атрибута <strong>on</strong> элемента <strong><a href="#efill">fill</a></strong>.)</td>
+  </tr>
+  <tr>
+    <td><tt><strong>pixellinewidth</strong></tt></td>
+    <td>Толщина линии в пикселях.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>pixelwidth</strong></tt></td>
+    <td>Ширина фигуры в пикселях.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>pixelheight</strong></tt></td>
+    <td>Высота фигуры в пикселях.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>emuwidth</strong></tt></td>
+    <td>Ширина <strong>coordsize</strong> в EMU.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>emuheight</strong></tt></td>
+    <td>Высота <strong>coordsize</strong> в EMU.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>emuwidth2</strong></tt></td>
+    <td>Половина ширины <strong>coordsize</strong> в EMU.</td>
+  </tr>
+  <tr>
+    <td><tt><strong>emuheight2</strong></tt></td>
+    <td>Половина высоты <strong>coordsize</strong> в EMU.</td>
+  </tr>
+</table>
+
+      <p><a name="emu">Здесь EMU (English Metrical Unit)</a>&nbsp;&#151; наименьшая единица измерения, используемая в VML для внутреннего хранения данных.
+        Она определяется так: 1 сантиметр = 360000 EMU.</p>
+
+      <p>Пример использования формул:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:shape style='position:relative; top:0; left:3em; width:1in; height:1in'
+  strokecolor="red" strokeweight="2pt" coordsize="21600,21600" adj="17520"
+  path="m 10800,0 qx 0,10800, 10800,21600, 21600,10800, 10800,0 x e
+        m 7340,6445 qx 6215,7570, 7340,8695, 8465,7570, 7340,6445 x nf e
+        m 14260,6445 qx 13135,7570, 14260,8695, 15385,7570, 14260,6445 x nf e
+        m 4960,@0 c 8853,@3, 12747,@3, 16640,@0 nf e">
+  &lt;v:formulas>
+    &lt;v:f eqn="sum 33030 0 #0"/>
+    &lt;v:f eqn="prod #0 4 3"/>
+    &lt;v:f eqn="prod @0 1 3"/>
+    &lt;v:f eqn="sum @1 0 @2"/>
+  &lt;/v:formulas>
+&lt;/v:shape></pre>
+      </div>
+
+<v:shape style='position:relative; top:0; left:3em; width:1in; height:1in'
+  strokecolor="red" strokeweight="2pt" coordsize="21600,21600" adj="17520"
+  path="m 10800,0 qx 0,10800, 10800,21600, 21600,10800, 10800,0 x e
+        m 7340,6445 qx 6215,7570, 7340,8695, 8465,7570, 7340,6445 x nf e
+        m 14260,6445 qx 13135,7570, 14260,8695, 15385,7570, 14260,6445 x nf e
+        m 4960,@0 c 8853,@3, 12747,@3, 16640,@0 nf e">
+  <v:formulas>
+    <v:f eqn="sum 33030 0 #0"/>
+    <v:f eqn="prod #0 4 3"/>
+    <v:f eqn="prod @0 1 3"/>
+    <v:f eqn="sum @1 0 @2"/>
+  </v:formulas>
+</v:shape>
+
+      <h3><a name="ref1043">10.4.3. Настройки: элемент handles</a></h3>
+
+<pre class="syntax"><a name="ehandles"><strong>Синтаксис</strong>:</a> &lt;v:handles&gt;&#133;&lt;/v:handles&gt;</pre>
+
+      <p>Элемент <strong>handles</strong> может употребляться в элементах <strong><a href="vml02.htm#eshape">shape</a></strong> и <strong><a href="vml02.htm#eshapetype">shapetype</a></strong> для задания пользовательских настроек.
+        Точнее говоря, он позволяет определить несколько участков фигуры, за которые пользователь
+        может потянуть в графическом редакторе, чтобы изменить значения атрибута <strong>adj</strong>.
+        Этот элемент не имеет атрибутов и состоит из набора подэлементов <strong>h</strong> (от одного до четырех), каждый из которых
+        описывает один участок настройки.</p>
+
+<pre class="syntax"><a name="eh"><strong>Синтаксис</strong>:</a> &lt;v:h/&gt;
+<strong>Атрибуты</strong>:  invx = <a href="vml01.htm#bool">boolean</a> (инвертировать абсциссу)
+           invy = <a href="vml01.htm#bool">boolean</a> (инвертировать ординату)
+           map = <a href="vml01.htm#v2d">vector2d</a> (область отображения)
+           polar = <a href="vml01.htm#v2d">vector2d</a> (центр полярных координат)
+           position = <a href="vml01.htm#v2d">vector2d</a> (координаты настройки)
+           radiusrange = <a href="vml01.htm#v2d">vector2d</a> (диапазон полярного радиуса)
+           switch = <a href="vml01.htm#bool">boolean</a> (обмен координат)
+           xrange = <a href="vml01.htm#v2d">vector2d</a> (диапазон абсцисс)
+           yrange = <a href="vml01.htm#v2d">vector2d</a> (диапазон ординат)</pre>
+
+      <p>Опишем подробно назначение этих атрибутов.</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+  <tr>
+    <th>Атрибут</th>
+    <th>Тип</th>
+    <th>По умолчанию</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td><strong>position</strong></td>
+    <td>vector2d</td>
+    <td>0, 0</td>
+    <td>Позиция настройки (x,y). Значения могут быть константами, формулами, выравнивающими значениями или ключевыми словами
+      <tt>center</tt>, <tt>topleft</tt>, <tt>bottomright</tt>. Если значение задано константой, формулой или ключевым словом,
+      то позиция настройки в данном измерении фиксирована. Если же значение задано выравнивающим значением (например, #2), то
+      настройка может двигаться в данном измерении, и соответствующее настроечное значение определяется позицией настройки.
+      Если задан атрибут <strong>polar</strong>, то данный атрибут содержит радиус и угол вместо x и y.</td>
+  </tr>
+  <tr>
+    <td><strong>polar</strong></td>
+    <td>vector2d</td>
+    <td>&nbsp;</td>
+    <td>Этот атрибут указывает, что настройка имеет полярные координаты и задает их центр.</td>
+  </tr>
+  <tr>
+    <td><strong>map</strong></td>
+    <td>vector2d</td>
+    <td>0, 1000</td>
+    <td>Позиция (x,y) настройки отображается из диапазона <strong>coordsize</strong> в данный диапазон.</td>
+  </tr>
+  <tr>
+    <td><strong>invx</strong></td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Позиция настройки по оси x инвертируется, т.&nbsp;е. x = <strong>coordorigin</strong>.x + <strong>coordsize</strong>.x - x.</td>
+  </tr>
+  <tr>
+    <td><strong>invy</strong></td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Позиция настройки по оси y инвертируется, т.&nbsp;е. y = <strong>coordorigin</strong>.y + <strong>coordsize</strong>.y - y.</td>
+  </tr>
+  <tr>
+    <td><strong>switch</strong></td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Если высота фигуры больше ее ширины, то координаты (x,y) позиции настройки меняются местами.
+      Это полезно для фигур, имеющих атрибут <strong>limo</strong>.</td>
+  </tr>
+  <tr>
+    <td><strong>xrange</strong></td>
+    <td>vector2d</td>
+    <td>0,0</td>
+    <td>Диапазон значений, в которых может меняться настройка по оси x. Каждое значение может быть
+      константой или формулой. Если значение опущено, то настройка может двигаться в данном направлении без ограничений.</td>
+  </tr>
+  <tr>
+    <td><strong>yrange</strong></td>
+    <td>vector2d</td>
+    <td>0,0</td>
+    <td>Диапазон значений, в которых может меняться настройка по оси y. Каждое значение может быть
+      константой или формулой. Если значение опущено, то настройка может двигаться в данном направлении без ограничений.</td>
+  </tr>
+  <tr>
+    <td><strong>radiusrange</strong></td>
+    <td>vector2d</td>
+    <td>0,0</td>
+    <td>Диапазон значений, в которых может меняться радиус настройки. Каждое значение может быть
+      константой или формулой. Если значение опущено, то настройка может двигаться в данном направлении без ограничений.
+      Этот атрибут имеет смысл только при заданном атрибуте <strong>polar</strong>.</td>
+  </tr>
+</table>
+
+      <p>Пример использования настроек:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:shape style='position:relative; top:0; left:3em; width:90pt; height:54pt'
+  strokecolor="red" strokeweight="2pt" coordsize="21600,21600" adj="16200,5400"
+  path="m @0,0 l @0,@1, 0,@1, 0,@2, @0,@2, @0,21600, 21600,10800 x e">
+  &lt;v:formulas>
+     &lt;v:f eqn="val #0"/>
+     &lt;v:f eqn="val #1"/>
+     &lt;v:f eqn="sum height 0 #1"/>
+     &lt;v:f eqn="sum 10800 0 #1"/>
+     &lt;v:f eqn="sum width 0 #0"/>
+     &lt;v:f eqn="prod @4 @3 10800"/>
+     &lt;v:f eqn="sum width 0 @5"/>
+   &lt;/v:formulas>
+   &lt;v:handles>
+     &lt;v:h position="#0,#1" xrange="0,21600" yrange="0,10800"/>
+   &lt;/v:handles>
+&lt;/v:shape></pre>
+      </div>
+
+<v:shape style='position:relative; top:0; left:3em; width:90pt; height:54pt'
+  strokecolor="red" strokeweight="2pt" coordsize="21600,21600" adj="16200,5400"
+  path="m @0,0 l @0,@1, 0,@1, 0,@2, @0,@2, @0,21600, 21600,10800 x e">
+  <v:formulas>
+     <v:f eqn="val #0"/>
+     <v:f eqn="val #1"/>
+     <v:f eqn="sum height 0 #1"/>
+     <v:f eqn="sum 10800 0 #1"/>
+     <v:f eqn="sum width 0 #0"/>
+     <v:f eqn="prod @4 @3 10800"/>
+     <v:f eqn="sum width 0 @5"/>
+   </v:formulas>
+   <v:handles>
+     <v:h position="#0,#1" xrange="0,21600" yrange="0,10800"/>
+   </v:handles>
+</v:shape>
+
+      <h3><a name="ref1044">10.4.4. Заливка фигуры: элемент fill</a></h3>
+
+<pre class="syntax"><a name="efill"><strong>Синтаксис</strong>:</a> &lt;v:fill&gt;&#133;&lt;/v:fill&gt;
+<strong>Атрибуты</strong>:  <a href="html01.htm#aid">id</a>
+           alignshape = <a href="vml01.htm#bool">boolean</a> (выравнивание заливки)
+           angle = <a href="vml01.htm#number">number</a> (угол градиентной заливки)
+           aspect = <a href="vml01.htm#string">string</a> (сохранение пропорций)
+           color = <a href="vml01.htm#color">цвет</a> (цвет заливки)
+           color2 = <a href="vml01.htm#color">цвет</a> (второй цвет заливки)
+           colors = <a href="vml01.htm#string">string</a> (массив цветов для градиентной заливки)
+           focus = <a href="vml01.htm#number">number</a> (центр линейной градиентной заливки)
+           focusposition = <a href="vml01.htm#v2d">vector2d</a> (центр радиальной градиентной заливки)
+           focussize = <a href="vml01.htm#v2d">vector2d</a> (размер фокуса радиальной градиентной заливки)
+           method = <a href="vml01.htm#string">string</a> (метод градиентной заливки)
+           on = <a href="vml01.htm#bool">boolean</a> (вывод заливки)
+           opacity = <a href="vml01.htm#number">number</a> (прозрачность цвета заливки)
+           origin = <a href="vml01.htm#v2d">vector2d</a> (центр образа заливки)
+           position = <a href="vml01.htm#v2d">vector2d</a> (позиция образа заливки)
+           size = <a href="vml01.htm#v2d">vector2d</a> (размер образа заливки)
+           src = <a href="vml01.htm#string">string</a> (гиперссылка на графический файл)
+           type = <a href="vml01.htm#string">string</a> (тип заливки)</pre>
+
+      <p>Элемент <strong>fill</strong> может употребляться в элементах <strong><a href="vml02.htm#eshape">shape</a></strong>, <strong><a href="vml02.htm#eshapetype">shapetype</a></strong>,
+        <strong><a href="vml02.htm#ebackground">background</a></strong> и большинстве графических
+        примитивов для задания заливки фигуры. Тип заливки задается атрибутом <strong>type</strong>, который может принимать следующие значения:</p>
+
+<div class="indent">
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Значение</th>
+    <th>Описание</th>
+    <th>Пример</th>
+  </tr>
+  <tr>
+    <td><strong>solid</strong></td>
+    <td>Сплошная заливка цветом. Принято по умолчанию.</td>
+    <td><v:rect style='position:relative; top:0; left:0; width:100; height:50'>
+        <v:fill type="solid" color="blue"/></v:rect></td>
+  </tr>
+  <tr>
+    <td><strong>gradient</strong></td>
+    <td>Линейная градиентная заливка.</td>
+    <td><v:rect style='position:relative; top:0; left:0; width:100; height:50'>
+        <v:fill type="gradient" color="blue" color2="yellow"/></v:rect></td>
+  </tr>
+  <tr>
+    <td><strong>gradientradial</strong></td>
+    <td>Радиальная градиентная заливка.</td>
+    <td><v:rect style='position:relative; top:0; left:0; width:100; height:50'>
+        <v:fill type="gradientradial" color="blue" color2="yellow" focusposition="50%,50%"/></v:rect></td>
+  </tr>
+  <tr>
+    <td><strong>tile</strong></td>
+    <td>Заполнение фигуры изображением.</td>
+    <td><v:rect style='position:relative; top:0; left:0; width:100; height:50'>
+        <v:fill type="tile" src="images/vml.gif"/></v:rect></td>
+  </tr>
+  <tr>
+    <td><strong>pattern</strong></td>
+    <td>Заполнение изображением с учетом цветов заливки.</td>
+    <td><v:rect style='position:relative; top:0; left:0; width:100; height:50'>
+        <v:fill type="pattern" src="images/vml.gif" color="blue" color2="yellow"/></v:rect></td>
+  </tr>
+  <tr>
+    <td><strong>frame</strong></td>
+    <td>Изображение растягивается для заполнения фигуры.</td>
+    <td><v:rect style='position:relative; top:0; left:0; width:100; height:50'>
+        <v:fill type="frame" src="images/vml.gif"/></v:rect></td>
+  </tr>
+</table>
+</div>
+
+      <p>Все типы заливки делятся на три группы: сплошная заливка (<tt>solid</tt>), градиентная заливка
+        (<tt>gradient</tt> и <tt>gradientradial</tt>) и заливка изображением (<tt>tile</tt>, <tt>pattern</tt>
+        и <tt>frame</tt>). Атрибуты, определяющие заливку, соответственно можно также разбить на три группы:
+        общие для всех типов, относящиеся к градиентной заливке и относящиеся к заливке изображением.</p>
+
+      <p>Общими атрибутами являются:</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+  <tr>
+    <th>Атрибут</th>
+    <th>Тип</th>
+    <th>По умолчанию</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td><strong>on</strong></td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Разрешает или запрещает вывод заливки. Этот атрибут перекрывает атрибут <strong>filled</strong>
+      родительского элемента.</td>
+  </tr>
+  <tr>
+    <td><strong>color</strong></td>
+    <td>цвет</td>
+    <td>"white"</td>
+    <td>Основной цвет заливки. Этот атрибут перекрывает атрибут <strong>fillcolor</strong>
+      родительского элемента.</td>
+  </tr>
+  <tr>
+    <td><strong>opacity</strong></td>
+    <td>number</td>
+    <td>1.0</td>
+    <td>Прозрачность заливки в диапазоне от 0 до 1.</td>
+  </tr>
+  <tr>
+    <td><strong>color2</strong></td>
+    <td>цвет</td>
+    <td>"white"</td>
+    <td>Второй цвет заливки. Имеет смысл для градиентной заливки и для типа <tt>pattern</tt>.</td>
+  </tr>
+</table>
+
+      <p>Атрибуты градиентной заливки:</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+  <tr>
+    <th>Атрибут</th>
+    <th>Тип</th>
+    <th>По умолчанию</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td><strong>colors</strong></td>
+    <td>string</td>
+    <td>null</td>
+    <td>Массив промежуточных цветов заливки и их относительные позиций вдоль градиента, например "30% red, 70% blue, 90% green".
+      Цвет <strong>color</strong> соответствует 0%, <strong>color2</strong> соответствует 100%.</td>
+  </tr>
+  <tr>
+    <td><strong>angle</strong></td>
+    <td>number</td>
+    <td>0</td>
+    <td>Угол градиента. 0 соответствует горизонтали слева направо, положительные углы отсчитываются против часовой стрелки.</td>
+  </tr>
+  <tr>
+    <td><strong>focus</strong></td>
+    <td>number</td>
+    <td>0</td>
+    <td>Центр линейной заливки в диапазоне от -100% до 100%. Значение 100% (или -100%) меняет местами <strong>color</strong> и <strong>color2</strong>,
+      значение 50% означает цвет <strong>color</strong> на обоих концах и <strong>color2</strong> в середине, а значение -50%
+      означает цвет <strong>color2</strong> на обоих концах и <strong>color</strong> в середине.</td>
+  </tr>
+  <tr>
+    <td><strong>focusposition</strong></td>
+    <td>vector2d</td>
+    <td>0,0</td>
+    <td>Центр фокуса радиальной заливки в процентах от ширины и высоты фигуры. 50%,50% соответствуют центру фигуры.</td>
+  </tr>
+  <tr>
+    <td><strong>focussize</strong></td>
+    <td>vector2d</td>
+    <td>0,0</td>
+    <td>Размер фокуса радиальной заливки в процентах от ширины и высоты фигуры.</td>
+  </tr>
+  <tr>
+    <td><strong>method</strong></td>
+    <td>string</td>
+    <td>"sigma"</td>
+    <td>Способ генерации градиентной заливки. Принимает значения "none", "linear", "sigma" и "any".</td>
+  </tr>
+</table>
+
+      <p>Атрибуты заливки изображением:</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+  <tr>
+    <th>Атрибут</th>
+    <th>Тип</th>
+    <th>По умолчанию</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td><strong>src</strong></td>
+    <td>string</td>
+    <td>null</td>
+    <td>Гиперссылка на графический файл, содержащий изображение.</td>
+  </tr>
+  <tr>
+    <td><strong>size</strong></td>
+    <td>vector2d</td>
+    <td>фактический размер</td>
+    <td>Размер изображения.</td>
+  </tr>
+  <tr>
+    <td><strong>origin</strong></td>
+    <td>vector2d</td>
+    <td>центр изображения</td>
+    <td>Центр изображения относительно его верхнего левого угла в процентах от его размеров.</td>
+  </tr>
+  <tr>
+    <td><strong>position</strong></td>
+    <td>vector2d</td>
+    <td>центр фигуры</td>
+    <td>Позиция изображения внутри фигуры в процентах от его размеров.</td>
+  </tr>
+  <tr>
+    <td><strong>aspect</strong></td>
+    <td>string</td>
+    <td>"ignore"</td>
+    <td>Сохранение пропорций изображения. Принимает значения "ignore" (игнорировать пропорции),
+      "atleast" (изображение не меньше, чем <strong>size</strong>) и "atmost" (изображение не больше, чем <strong>size</strong>).</td>
+  </tr>
+  <tr>
+    <td><strong>alignshape</strong></td>
+    <td>boolean</td>
+    <td>true</td>
+    <td><strong>true</strong> означает выравнивание изображения вдоль фигуры, <strong>false</strong>&nbsp;&#151; выравнивание вдоль окна.</td>
+  </tr>
+</table>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

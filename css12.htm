@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: CSS - Страничные устройства вывода</title>
+<link rel="Prev" href="css11.htm" title="Генерация содержимого, нумерация и списки">
+<link rel="Next" href="css13.htm" title="Звуковые таблицы стилей">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h2><a name="ref212">Глава 2.12. Страничные устройства вывода</a></h2>
+
+      <h3><a name="ref2121">2.12.1. Общее описание</a></h3>
+
+      <p><em>Страничные устройства вывода</em> (например, бумага в принтере или страницы, выводимые
+        на экран дисплея) отличаются от непрерывных устройств тем, что документ разбивается на отдельные
+        страницы. Для работы с такими устройствами в CSS введена <em>модель страницы</em>, которая позволяет
+        авторам задавать размеры страницы и ее границ, а также управлять переходом на новую страницу.
+        Модель страницы позволяет указать, как элементы документа должны располагаться в <em>прямоугольнике
+        страницы</em>, имеющем фиксированные размеры. При этом размеры прямоугольника не обязательно
+        совпадают с размерами реальной страницы, на которую будет произведено окончательное отображение
+        документа. CSS не определяет, как именно обозреватель будет преобразовывать прямоугольник страницы
+        в реальные страницы, но позволяет задать их размер и ориентацию.</p>
+
+      <h3><a name="ref2122">2.12.2. Директива @page</a></h3>
+
+      <p>Директива <strong>@page</strong> предназначена для задания свойств страниц. Она имеет следующий
+        вид:</p>
+
+<pre class="syntax">@page [селектор-страницы] {
+  правило;
+  ...
+  правило;
+}</pre>
+
+      <p>Селектор-страницы&nbsp;&#151; это либо <a href="#ref2123">имя страницы</a>, либо один из следующих
+        псевдоклассов:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>:first</dfn></td>
+            <td>Первая страница документа</td>
+          </tr>
+          <tr>
+            <td><dfn>:left</dfn></td>
+            <td>Левая страница (для двусторонней печати)</td>
+          </tr>
+          <tr>
+            <td><dfn>:right</dfn></td>
+            <td>Правая страница (для двусторонней печати)</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Правила, указанные в директивы <strong>@page</strong> с селектором <dfn>:left</dfn> или <dfn>:right</dfn>,
+        перекрывают правила директивы <strong>@page</strong> без селекторов. Правила, указанные в директивы
+        <strong>@page</strong> с селектором <dfn>:first</dfn>, перекрывают правила директивы <strong>@page</strong>
+        с селектором <dfn>:left</dfn> или <dfn>:right</dfn> (это зависит от направления вывода текста).
+        Наконец, правила, указанные в директивы <strong>@page</strong> с именем страницы, перекрывают
+        правила остальных директив <strong>@page</strong>.</p>
+
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Синтаксически соответствует стандарту, но поддерживается только
+               шаблонами печати MSHTML (5.5+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <h4><a name="ref21221">2.12.2.1. Задание границ страницы</a></h4>
+
+      <p>Для задания границ прямоугольника страницы используются свойства <a href="css04.htm#pmargin-left"><strong>margin-left</strong></a>,
+        <a href="css04.htm#pmargin-right"><strong>margin-right</strong></a>, <a href="css04.htm#pmargin-top"><strong>margin-top</strong></a>,
+        <a href="css04.htm#pmargin-bottom"><strong>margin-bottom</strong></a> и <a href="css04.htm#pmargin"><strong>margin</strong></a>.
+        Пример:</p>
+
+      <div class="code">
+<pre class="code">@page { margin: 2cm }	/* Все границы равны 2 см */</pre>
+      </div>
+
+      <h4><a name="ref21222">2.12.2.2. Размер страницы: свойство size</a></h4>
+
+<pre class="syntax"><strong><a name="psize">Синтаксис</a></strong>:  size: <a href="css01.htm#length">&lt;размер&gt;</a>{1,2} | <dfn>auto</dfn> | <dfn>portait</dfn> | <dfn>landscape</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>auto</dfn>
+<strong>Применимо</strong>:  к страницам
+<strong>Наследуемо</strong>: не определено
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные страничные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>size</strong> задает <em>размер и ориентацию прямоугольника страницы</em>.
+        Размеры страницы могут быть либо абсолютными, либо относительными. Абсолютные размеры задаются
+        одним или двумя значениями типа <a href="css01.htm#length">&lt;размер&gt;</a>. Если задано одно
+        значение, то оно определяет размер страницы и по вертикали, и по горизонтали. Если заданы два
+        значения, то первое определяет ширину страницы, а второе&nbsp;&#151; ее высоту.</p>
+
+      <p>Относительные размеры задаются одним из следующих ключевых слов:</p>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+          <td><dfn>auto</dfn></td>
+          <td>Прямоугольник страницы совпадает с реальным листом по размеру и ориентации.</td>
+        </tr>
+        <tr>
+          <td><dfn>portrait</dfn></td>
+          <td>Прямоугольник страницы совпадает с реальным листом по размеру; ориентация книжная.</td>
+        </tr>
+        <tr>
+          <td><dfn>landscape</dfn></td>
+          <td>Прямоугольник страницы совпадает с реальным листом по размеру; ориентация альбомная.</td>
+        </tr>
+      </table>
+
+      <p>Примеры:</p>
+
+      <div class="code">
+<pre class="code">@page { size: 8.5in 11in }
+@page { size: portrait; margin: 10% }</pre>
+      </div>
+
+      <h4><a name="ref21223">2.12.2.3. Пометки: свойство marks</a></h4>
+
+<pre class="syntax"><strong><a name="pmarks">Синтаксис</a></strong>:  marks: [<dfn>crop</dfn> || <dfn>cross</dfn>] | <dfn>none</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>none</dfn>
+<strong>Применимо</strong>:  к страницам
+<strong>Наследуемо</strong>: не определено
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные страничные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>В высокой печати часто используются специальные пометки на полях страницы. Свойство <strong>marks</strong>
+        позволяет задать <em>тип пометок на странице</em>. Оно может принимать следующие значения:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <td><dfn>none</dfn></td>
+            <td>Не печатать пометки.</td>
+          </tr>
+          <tr>
+            <td><dfn>crop</dfn></td>
+            <td>Пометки, указывающие место обреза страницы.</td>
+          </tr>
+          <tr>
+            <td><dfn>cross</dfn></td>
+            <td>Пометки, используемые для выравнивания страниц.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Пример:</p>
+
+      <div class="code">
+<pre class="code">@page { marks: crop cross }	/* Печатать оба типа пометок */</pre>
+      </div>
+
+      <h3><a name="ref2123">2.12.3. Имена страниц: свойство page</a></h3>
+
+<pre class="syntax"><strong><a name="ppage">Синтаксис</a></strong>:  page: &lt;идентификатор&gt; | <dfn>auto</dfn>
+<strong>Начально</strong>:   <dfn>auto</dfn>
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные страничные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>page</strong> позволяет присвоить элементу <em>имя страницы</em> с тем, чтобы
+        использовать свойства директивы <a href="#ref2122"><strong>@page</strong></a>, селектором которой
+        является данное имя. Например, следующие правила указывают, что все таблицы документа необходимо
+        печатать в альбомной ориентации:</p>
+
+      <div class="code">
+<pre class="code">@page rotated { size: landscape }
+TABLE { <strong>page: rotated</strong>; ... }</pre>
+      </div>
+
+      <p>По умолчанию это свойство имеет значение <dfn>auto</dfn>, поэтому к элементам, не имеющих имен
+        страниц, применяются правила директивы <a href="#ref2122"><strong>@page</strong></a> без именного
+        селектора.</p>
+
+      <h3><a name="ref2124">2.12.4. Управление разрывами страниц</a></h3>
+
+      <h4><a name="ref21241">2.12.4.1. Разрыв страницы перед элементом: свойство page-break-before</a></h4>
+
+<pre class="syntax"><strong><a name="ppage-break-before">Синтаксис</a></strong>:  page-break-before: <dfn>auto</dfn> | <dfn>always</dfn> | <dfn>avoid</dfn> | <dfn>left</dfn> | <dfn>right</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>auto</dfn>
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные страничные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Поддерживаются auto, always и &quot;&quot; вместо avoid (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>page-break-before</strong> управляет <em>разрывом страницы перед печатью</em>
+        данного элемента. Оно может принимать следующие значения:</p>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+          <td><dfn>auto</dfn></td>
+          <td>Разрыв страницы производится обычным образом, после заполнения страницы.</td>
+        </tr>
+        <tr>
+          <td><dfn>always</dfn></td>
+          <td>Всегда начинать печать данного элемента с новой страницы.</td>
+        </tr>
+        <tr>
+          <td><dfn>avoid</dfn></td>
+          <td>Никогда не делать разрыва страницы перед данным элементом.</td>
+        </tr>
+        <tr>
+          <td><dfn>left</dfn></td>
+          <td>Один или два разрыва страницы, чтобы данный элемент всегда печатался на левой странице.</td>
+        </tr>
+        <tr>
+          <td><dfn>right</dfn></td>
+          <td>Один или два разрыва страницы, чтобы данный элемент всегда печатался на правой странице.</td>
+        </tr>
+      </table>
+
+      <p>Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { page-break-before: always }</pre>
+      </div>
+
+      <h4><a name="ref21242">2.12.4.2. Разрыв страницы после элемента: свойство page-break-after</a></h4>
+
+<pre class="syntax"><strong><a name="ppage-break-after">Синтаксис</a></strong>:  page-break-after: <dfn>auto</dfn> | <dfn>always</dfn> | <dfn>avoid</dfn> | <dfn>left</dfn> | <dfn>right</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>auto</dfn>
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: нет
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные страничные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Поддерживаются auto, always и &quot;&quot; вместо avoid (4.0+)
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>page-break-after</strong> управляет <em>разрывом страницы после печати</em>
+        данного элемента. Оно может принимать следующие значения:</p>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+          <td><dfn>auto</dfn></td>
+          <td>Разрыв страницы производится обычным образом, после заполнения страницы.</td>
+        </tr>
+        <tr>
+          <td><dfn>always</dfn></td>
+          <td>Всегда начинать печать следующего элемента с новой страницы.</td>
+        </tr>
+        <tr>
+          <td><dfn>avoid</dfn></td>
+          <td>Никогда не делать разрыва страницы после данного элемента.</td>
+        </tr>
+        <tr>
+          <td><dfn>left</dfn></td>
+          <td>Один или два разрыва страницы, чтобы следующий элемент всегда печатался на левой странице.</td>
+        </tr>
+        <tr>
+          <td><dfn>right</dfn></td>
+          <td>Один или два разрыва страницы, чтобы следующий элемент всегда печатался на правой странице.</td>
+        </tr>
+      </table>
+
+      <p>Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { page-break-after: avoid }</pre>
+      </div>
+
+      <h4><a name="ref21243">2.12.4.3. Разрыв страницы внутри элемента: свойство page-break-inside</a></h4>
+
+<pre class="syntax"><strong><a name="ppage-break-inside">Синтаксис</a></strong>:  page-break-inside: <dfn>auto</dfn> | <dfn>avoid</dfn> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   <dfn>auto</dfn>
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные страничные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>page-break-inside</strong> управляет <em>разрывами страницы при печати</em>
+        данного элемента. Оно может принимать следующие значения:</p>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+          <td><dfn>auto</dfn></td>
+          <td>Разрыв страницы производится обычным образом, после заполнения страницы.</td>
+        </tr>
+        <tr>
+          <td><dfn>avoid</dfn></td>
+          <td>Никогда не делать разрыва страницы внутри данного элемента.</td>
+        </tr>
+      </table>
+
+      <p>Пример:</p>
+
+      <div class="code">
+<pre class="code">H1 { page-break-after: avoid }</pre>
+      </div>
+
+      <h4><a name="ref21244">2.12.4.4. Количество строк в конце страницы: свойство orphans</a></h4>
+
+<pre class="syntax"><strong><a name="porphans">Синтаксис</a></strong>:  orphans: <a href="css01.htm#integer">&lt;целое&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   2
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные страничные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>orphans</strong> задает <em>минимальное количество строк абзаца</em>, которое
+        должно остаться <em>в конце страницы </em>при печати данного элемента. Пример:</p>
+
+      <div class="code">
+<pre class="code">P { orphans: 3 }</pre>
+      </div>
+
+      <h4><a name="ref21245">2.12.4.5. Количество строк в начале страницы: свойство widows</a></h4>
+
+<pre class="syntax"><strong><a name="pwidows">Синтаксис</a></strong>:  widows: <a href="css01.htm#integer">&lt;целое&gt;</a> | <a href="css03.htm#inherit"><dfn>inherit</dfn></a>
+<strong>Начально</strong>:   2
+<strong>Применимо</strong>:  к блочным элементам
+<strong>Наследуемо</strong>: да
+<strong>Проценты</strong>:   не используются
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные страничные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Свойство <strong>widows</strong> задает <em>минимальное количество строк абзаца</em>, которое
+        должно остаться <em>в начале страницы </em>при печати данного элемента. Пример:</p>
+
+      <div class="code">
+<pre class="code">P { widows: 3 }</pre>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

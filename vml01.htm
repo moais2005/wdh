@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: VML - Введение в язык VML</title>
+<link rel="Prev" href="xsl12.htm" title="Описание свойств (продолжение)">
+<link rel="Next" href="vml02.htm" title="Базовые элементы">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+<style>v\:* { behavior: url(#default#VML) }</style>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h1><a name="ref10">Часть X.<br>
+        Векторная графика: языки VML и SVG</a></h1>
+
+      <p class="epigraph">&quot;Каждый художник, который изображает небо зеленым, а траву голубой, должен быть подвергнут стерилизации.&quot;</p>
+
+      <p class="epauthor">Адольф Гитлер</p>
+
+      <h2><a name="ref101">Глава 10.1. Введение в язык VML</a></h2>
+
+      <h3><a name="ref1011">10.1.1. VML и SVG</a></h3>
+
+      <p>VML (Vector Markup Language)&nbsp;&#151; это XML-приложение, разработанное корпорацией
+        Microsoft для кодирования двумерной векторной графики. Поддержка VML в настоящее время осуществляется
+        только обозревателем Internet Explorer 5.x и пакетом Microsoft Office 2000.</p>
+
+      <p>Microsoft передал в мае 1998 г. спецификацию этого языка W3C в качестве предложения для стандартизации,
+        однако W3C предложил в качестве стандарта собственную спецификацию SVG (Scalable Vector Graphics).
+        Полной программной реализации SVG пока нет, но этот язык несомненно будет в ближайшее время поддержан
+        многими системами. Поэтому мы решили дать описание обоих языков векторной графики&nbsp;&#151; и VML, и SVG.
+        VML описан в первых пяти главах этой части, а SVG&nbsp;&#151; начиная с <a href="svg06.htm">гл. 10.6</a>.</p>
+
+      <p>Приведенное ниже описание VML соответствует его описанию в
+        <a target="_blank" href="http://msdn.microsoft.com/library/default.asp?url=/workshop/author/vml/default.asp">MSDN Library</a>  <img src="images/extref.gif" alt="Внешняя ссылка">.
+        Мы описываем только те возможности VML, которые поддерживаются Веб-обозревателем; расширения VML, добавленные в Microsoft Office 2000, не рассматриваются.
+        Для того, чтобы видеть, как элементы VML отображаются на экране, эту и последующие главы следует просматривать в обозревателе Internet Explorer 5.x.</p>
+
+      <h3><a name="ref1012">10.1.2. Включение VML в HTML-документы</a></h3>
+
+      <p>Как мы уже сказали, VML&nbsp;&#151; это XML-приложение, т.&nbsp;е. специализированный язык, построенный по
+        правилам XML. Для включения элементов VML в свою HTML-страницу мы должны сделать две вещи.</p>
+
+      <p>Во-первых, нужно задать <a href="xml03.htm#ref832">пространство имен</a> VML, чтобы анализатор HTML мог понять,
+        когда ему вызывать XML-процессор для разбора конструкций VML. Для этого тег HTML нашей страницы нужно записать так:</p>
+
+      <div class="code">
+<pre class="code">&lt;html xmlns:v="urn:schemas-microsoft-com:vml"&gt;</pre>
+      </div>
+
+      <p>Теперь префикс <tt>v:</tt> в теге будет означать, что этот тег описывает VML-, а не HTML-элемент.</p>
+
+      <p>Во-вторых, мы должны указать обозревателю, как отображать обнаруженные в документе элементы VML. VML реализован
+      в Microsoft Internet Explorer как встроенная реакция (default behavior). Поэтому в заголовок документа нужно включить
+      следующие строки:</p>
+
+      <div class="code">
+<pre class="code">&lt;style&gt;
+v\:* { behavior: url(#default#VML) }
+&lt;/style&gt;</pre>
+      </div>
+
+      <p>Эта таблица стилей указывает, что теги с префиксом <tt>v:</tt> обрабатываются встроенной реакцией VML.</p>
+
+      <h3><a name="ref1013">10.1.3. Краткий обзор VML</a></h3>
+
+      <p>VML имеет всего два основных элемента: <strong><a href="vml02.htm#eshape">shape</a></strong> и <strong><a href="vml02.htm#egroup">group</a></strong>. Элемент <strong><a href="vml02.htm#eshape">shape</a></strong> описывает отдельную
+        графическую фигуру, а элемент <strong><a href="vml02.htm#egroup">group</a></strong> позволяет объединять несколько фигур в группу с тем, чтобы в дальнейшем
+        применять к этой группе различные преобразования. Элемент <strong><a href="vml02.htm#eshape">shape</a></strong> может иметь атрибут <strong>path</strong>, который
+        задает форму фигуры как набор отрезков и плавных кривых, и дополнительные атрибуты, задающие рамку фигуры, ее заливку,
+        текст и т.&nbsp;п. Кроме того, основные элементы могут содержать подэлементы, которые задают содержимое фигур и групп.</p>
+
+      <p>Помимо названных, в VML включены еще несколько элементов верхнего уровня. Таковы элемент <strong><a href="vml02.htm#eshapetype">shapetype</a></strong>,
+        позволяющий описать некую фигуру, а затем многократно отображать ее на экране, и элементы, реализующие основные
+        графические примитивы: <strong><a href="vml03.htm#eline">line</a></strong> (отрезок), <strong><a href="vml03.htm#epolyline">polyline</a></strong> (ломаная), <strong><a href="vml03.htm#ecurve">curve</a></strong> (кривая Безье), <strong><a href="vml03.htm#erect">rect</a></strong> (прямоугольник),
+        <strong><a href="vml03.htm#eroundrect">roundrect</a></strong> (прямоугольник со скругленными углами), <strong><a href="vml03.htm#eoval">oval</a></strong> (эллипс), <strong><a href="vml03.htm#earc">arc</a></strong> (дуга эллипса) и <strong><a href="vml03.htm#eimage">image</a></strong>
+        (внешний графический образ).</p>
+
+      <p>Поясним введенные понятия примером. Следующий элемент задает отображение прямоугольника со скругленными углами,
+        залитого желтым цветом и имеющего синюю рамку. (При написании VML-элементов важно помнить, что их синтаксис должен следовать
+        синтаксическим правилам XML, а не HTML.)</p>
+
+      <div class="code">
+<pre class="code">&lt;v:roundrect style='position:relative; left: 3em; top: 0; width: 200px; height: 75px'
+  arcsize=&quot;0.25&quot; fillcolor=&quot;yellow&quot; strokecolor=&quot;blue&quot; strokeweight=&quot;2px&quot;/&gt;</pre>
+      </div>
+
+      <p>Отображаться этот прямоугольник будет так:</p>
+
+<v:roundrect style='position:relative; left: 3em; top: 0; width: 200px; height: 75px'
+  arcsize="0.25" fillcolor="yellow" strokecolor="blue" strokeweight="2px"/>
+  
+      <h3><a name="ref1014">10.1.4. Каскадные стили</a></h3>
+
+      <p>Из приведенного примера видно, что свойства отображаемой фигуры частично задаются стилями CSS, а частично
+        собственными атрибутами VML. Элементы VML поддерживают все стандартные свойства CSS, а также два
+        дополнительных свойства, позволяющие нам поворачивать и опрокидывать фигуры.</p>
+
+      <h4><a name="ref10141">10.1.4.1. Поворот фигуры: свойство rotation</a></h4>
+
+<pre class="syntax"><strong><a name="protation">Синтаксис</a></strong>:  rotation: <a href="css01.htm#angle">&lt;угол&gt;</a>
+<strong>Начально</strong>:   <dfn>0</dfn>
+<strong>Применимо</strong>:  ко всем элементам VML
+<strong>Сценарии</strong>:   <em>элемент</em>.rotation = "<em>выражение</em>"</pre>
+
+      <p>Свойство <strong>rotation</strong> задает <em>угол поворота фигуры</em>. Его значением является угол в диапазоне от -360deg до 360deg,
+        при этом положительный угол означает поворот по часовой стрелке. Отметим, что после поворота фигура позиционируется заново в
+        соответствии с новыми координатами объемлющего ее прямоугольника. Кроме того, обратите внимание, что в сценариях это свойство является
+        свойством не атрибута <strong>style</strong>, а самого элемента.</p>
+
+      <p>Пример: при добавлении к стилям описанного выше прямоугольника свойства <code>rotation: 10deg</code> получим:</p>
+
+<v:roundrect style='position:relative; left: 3em; top: 0; width: 200px; height: 75px; rotation: 10deg'
+  arcsize="0.25" fillcolor="yellow" strokecolor="blue" strokeweight="2px"/>
+  
+      <h4><a name="ref10142">10.1.4.2. Опрокидывание фигуры: свойство flip</a></h4>
+
+<pre class="syntax"><strong><a name="pflip">Синтаксис</a></strong>:  flip: <dfn>x</dfn> | <dfn>y</dfn> | <dfn>xy</dfn> | <dfn>yx</dfn>
+<strong>Начально</strong>:   нет
+<strong>Применимо</strong>:  ко всем элементам VML
+<strong>Сценарии</strong>:   <em>элемент</em>.style.flip = "<em>выражение</em>"</pre>
+
+      <p>Свойство <strong>flip</strong> задает <em>опрокидывание фигуры</em>. Значение <dfn>x</dfn> означает
+        опрокидывание относительно оси y, а <dfn>y</dfn>&nbsp;&#151; опрокидывание относительно оси x. Оба
+        эти значения могут быть заданы одновременно.</p>
+
+      <p>Пример: добавим к стилям нашего прямоугольника еще и свойство <code>flip: x</code>:</p>
+
+<v:roundrect style='position:relative; left: 3em; top: 0; width: 200px; height: 75px; rotation: 10deg; flip: x'
+  arcsize="0.25" fillcolor="yellow" strokecolor="blue" strokeweight="2px"/>
+  
+      <h3><a name="ref1015">10.1.5. Локальные координаты</a></h3>
+      
+      <p>Элементы <strong><a href="vml02.htm#eshape">shape</a></strong> и <strong><a href="vml02.htm#egroup">group</a></strong> являются <a href="css04.htm#ref241">объемлющими прямоугольниками</a>
+        для своего содержимого. Внутри этого прямоугольника мы можем определить <em>локальную систему координат</em>
+        с помощью атрибутов <strong>coordsize</strong> и <strong>coordorigin</strong>. В этом случае все позиционирующие свойства CSS
+        будут задаваться в локальных координатах, т.&nbsp;е. в числах, а не в единицах <a href="css01.htm#length">размеров CSS</a>.</p>
+
+      <p>Атрибут <strong>coordsize</strong> задает ширину и высоту объемлющего прямоугольника в локальных координатах, а
+        атрибут <strong>coordorigin</strong> задает локальные координаты его верхнего левого угла. Пусть, например, группа
+        задана следующим образом:</p>
+
+      <div class="code">
+<pre class="code">&lt;v:group style='width: 300px; height: 250px' coordsize="100,1000" 
+  coordorigin="-50,-500"&gt; &#133; &lt;/v:group&gt;</pre>
+      </div>
+
+      <p>Здесь объемлющий прямоугольник имеет ширину 300px и высоту 250px. Все это пространство преобразуется в локальную
+        систему координат, в которой ось x принимает значения от -50 до +50, а ось y&nbsp;&#151; от -500 до +500. Начало
+        локальных координат (0, 0) находится в центре прямоугольника. Теперь размеры и позиции всех графических объектов
+        внутри этой группы будут задаваться в локальных координатах. Это позволяет нам в дальнейшем изменить размеры
+        объемлющего прямоугольника, не изменяя значений атрибутов расположенных в нем объектов, и получить правильное
+        отображение измененной группы.</p>
+
+      <p>На практике рекомендуется задавать значения <strong>coordsize</strong> пропорциональными ширине и высоте объемлющего прямоугольника,
+        поскольку в противном случае отображение будет искажено из-за анизотропности координатных осей. Если атрибут <strong>coordorigin</strong>
+        не задан, то координатами левого верхнего угла прямоугольника является точка (0, 0).</p>
+
+      <p>Важно также подчеркнуть, что объемлющий прямоугольник не является областью отсечения изображения, т.&nbsp;е. внутренние
+        элементы могут выходить за его пределы. Объемлющий прямоугольник просто задает правила преобразования локальных
+        координат в экранные.</p>
+
+      <h3><a name="ref1016">10.1.6. Атрибуты элементов VML</a></h3>
+
+      <h4><a name="ref10161">10.1.6.1. Типы атрибутов</a></h4>
+
+      <p>Атрибуты элементов VML имеют следующие базовые типы:</p>
+
+      <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+          <th>Тип</th>
+          <th>Описание</th>
+        </tr>
+        <tr>
+          <td><a name="bool">Boolean</a></td>
+          <td>Атрибут принимает значения <strong>true</strong> (истина) и <strong>false</strong> (ложь).</td>
+        </tr>
+        <tr>
+          <td><a name="number">Number</a></td>
+          <td>Числовые значения (целые или дробные) и <a href="css01.htm#length">размеры CSS</a>.</td>
+        </tr>
+        <tr>
+          <td><a name="string">String</a></td>
+          <td>Строковые значения, которые обычно ограничены определенным набором возможных значений.</td>
+        </tr>
+        <tr>
+          <td><a name="v2d">Vector2D</a></td>
+          <td>Двумерная координата вида "x,y" или "x y". В сценариях доступна либо целиком, как строка,
+            либо как объект со свойствами <tt>x</tt> и <tt>y</tt>.</td>
+        </tr>
+        <tr>
+          <td><a name="v3d">Vector3D</a></td>
+          <td>Трехмерная координата вида "x,y,z" или "x y z". В сценариях доступна либо целиком, как строка,
+            либо как объект со свойствами <tt>x</tt>, <tt>y</tt> и <tt>z</tt>.</td>
+        </tr>
+      </table>
+
+      <p class="note"><a name="color"><strong>Примечание.</strong></a> Цвета являются разновидностью строковых значений и задаются так же, <a href="css01.htm#color">как в CSS</a>,
+        но с одним важным отличием: дополнительные имена цветов из <a href="colors.htm#table92a">Таблицы П9.2</a> в VML не распознаются.</p>
+      
+      <h4><a name="ref10162">10.1.6.2. Общие атрибуты</a></h4>
+
+      <p>Ряд атрибутов применим ко всем базовым элементам VML. Сюда относятся:</p>
+
+      <ul>
+        <li>базовые атрибуты HTML <a href="html01.htm#aclass"><strong>class</strong></a>, <a href="html01.htm#aid"><strong>id</strong></a>,
+          <a href="html01.htm#astyle"><strong>style</strong></a> и <a href="html01.htm#atitle"><strong>title</strong></a>;</li>
+        <li>атрибуты HTML <a href="html06.htm#eimg"><strong>alt</strong></a> (альтернативный текст, который выводится вместо элемента),
+          <a href="html06.htm#ea"><strong>href</strong></a> (URI ресурса, который загружается при щелчке мыши на объекте) и <a href="html06.htm#ea"><strong>target</strong></a>
+          (фрейм, в который загружается этот ресурс);</li>
+        <li>атрибуты <a href="#ref1015"><strong>coordsize</strong></a> и <a href="#ref1015"><strong>coordorigin</strong></a>, задающие локальную систему координат.</li>
+      </ul>
+      
+      <h3><a name="ref1017">10.1.7. Объектная модель VML</a></h3>
+
+      <p>Элементы VML доступны в объектной модели HTML-документа так же, как и остальные элементы дерева документа. Например,
+        мы можем включить в документ следующий текст:</p>
+
+      <div class="code">
+<pre class="code">&lt;div id="myDiv">&lt;/div>
+
+&lt;script language="JScript">
+var r = myDiv.appendChild(document.createElement("v:rect"));
+r.style.position = "absolute";
+r.style.top = 50;
+r.style.left = 50;
+r.style.width = 100;
+r.style.height = 100;
+r.fillcolor = "red";
+&lt;/script></pre>
+      </div>
+
+      <p>Приведенный сценарий создаст элемент <strong><a href="vml03.htm#erect">rect</a></strong>, настроит его атрибуты и выведет внутри элемента <strong>DIV</strong>:</p>
+
+<v:rect style="position: relative; left:3em; top:0; width:100; height:100" fillcolor="red"/>
+
+      <p>Подэлементы базовых элементов VML доступны как их атрибуты. Например, для искажения полученного квадрата
+        мы можем добавить к нему подэлемент <strong><a href="vml05.htm#eskew">skew</a></strong>, но в большинстве случаев создать этот подэлемент
+        проще добавлением к сценарию следующих строк:</p>
+
+      <div class="code">
+<pre class="code">r.skew.matrix = "1,0.5,0,0.7,0,0";
+r.skew.on = true;</pre>
+      </div>
+
+      <p>В результате получим:</p>
+
+<v:rect style="position: relative; left:3em; top:0; width:100; height:100" fillcolor="red">
+  <v:skew matrix = "1,0.5,0,0.7,0,0" on="true"/>
+</v:rect>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

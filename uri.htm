@@ -1,0 +1,982 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Унифицированные идентификаторы ресурсов</title>
+<link rel="Prev" href="faq.htm" title="Вопросы и ответы">
+<link rel="Next" href="unicode.htm" title="Стандарт Unicode 3.0">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h1><a name="uri">Приложение 2.<br>
+        Унифицированные идентификаторы ресурсов</a></h1>
+
+      <h2><a name="fulluri">Полные URI</a></h2>
+
+      <p>Любой ресурс в Сети, будь то HTML-документ, графический образ, видеоклип или программа, имеет
+        уникальный адрес, по которому этот ресурс может быть найден. Такой универсальный адрес называется
+        <em>унифицированным идентификатором ресурса</em> (URI, Universal Resource Identifier). Общий
+        вид URI таков:</p>
+
+      <pre><var>протокол</var>://<var>авторизация</var>/<var>путь</var>?<var>запрос</var></pre>
+
+      <p class="noindent">причем обязательным элементом здесь является только <var>протокол</var>, а
+        наличие или отсутствие остальных элементов определяются конкретным протоколом. Элементы URI
+        имеют следующий смысл:</p>
+
+      <ul>
+        <li><var>протокол</var>&nbsp;&#151; именованная схема доступа к ресурсу;</li>
+        <li><var>авторизация</var>&nbsp;&#151; авторизация доступа к ресурсу;</li>
+        <li><var>путь</var>&nbsp;&#151; путь доступа к ресурсу на сервере;</li>
+        <li><var>запрос</var>&nbsp;&#151; строка информации, передаваемая ресурсу для интерпретации.</li>
+      </ul>
+
+      <div style="margin-left: 2em">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption><a name="table21a">Таблица П2.1. Имена стандартных протоколов</a></caption>
+          <tr>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Порт IP</th>
+          </tr>
+          <tr>
+            <td>file</td>
+            <td>Дисковые файлы сервера или клиента</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><a href="glossary.htm#ftp">ftp</a></td>
+            <td>Протокол передачи файлов (FTP, File Transfer Protocol)</td>
+            <td>20, 21</td>
+          </tr>
+          <tr>
+            <td>gopher</td>
+            <td>Протоколы Gopher и Gopher+</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><a href="http.htm">http</a></td>
+            <td>Протокол передачи гипертекста (<a href="http.htm">HTTP, HyperText Transfer Protocol</a>)</td>
+            <td>80</td>
+          </tr>
+          <tr>
+            <td><a href="glossary.htm#email">mailto</a></td>
+            <td>Электронная почта (SMTP, Simple Mail Transfer Protocol)</td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <td>news</td>
+            <td>Группы новостей USENET</td>
+            <td>144</td>
+          </tr>
+          <tr>
+            <td>nntp</td>
+            <td>Группы новостей USENET с доступом NNTP (Network News Transfer Protocol)</td>
+            <td>119</td>
+          </tr>
+          <tr>
+            <td>prospero</td>
+            <td>Служба каталогов Prospero</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>telnet</td>
+            <td>Интерактивные сеансы TELNET</td>
+            <td>23</td>
+          </tr>
+          <tr>
+            <td>wais</td>
+            <td>Информационная система WAIS (Wide Area Information Servers)</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Авторизация в общем виде выглядит так:</p>
+
+      <pre><var>пользователь</var>@<var>сервер</var>:<var>порт</var></pre>
+
+      <p>где</p>
+
+      <ul>
+        <li><var>пользователь</var>&nbsp;&#151; имя пользователя и, возможно, его пароль, определяющие
+          права доступа к ресурсу;</li>
+        <li><var>сервер</var>&nbsp;&#151; имя сервера, на котором расположен ресурс;</li>
+        <li><var>порт</var>&nbsp;&#151; номер IP-порта.</li>
+      </ul>
+
+      <p>Обязательным компонентом авторизации является только <var>сервер</var>. Сервер может быть задан
+        либо <a href="#domainname">именем домена</a>, либо <a href="faq.htm#ipaddress">IP-адресом</a>.
+        Порт указывается крайне редко, т.&nbsp;к. TCP/IP определяет стандартные номера портов для всех
+        основных протоколов (см. <a target="_blank" href="#table21a">Таблицу П2.1</a> и <a  target="_blank" href="http://www.faqs.org/rfcs/rfc1700.html">RFC
+        1700</a> <img src="images/extref.gif" alt="Внешняя ссылка">).</p>
+
+      <p>Отметим, что <var>пользователь</var> иногда передается в виде <strong>имя:пароль</strong>,
+        что является рискованным с точки зрения сохранения данной информации в тайне.</p>
+
+      <p>Проиллюстрируем приведенное описание на типичных примерах:</p>
+
+      <dl>
+        <dt><strong>file://\D:\Doc\HTML4\intro\intro.html</strong></dt>
+        <dd>доступ к локальному файлу Windows</dd>
+        <dt><strong>ftp://ftp.is.co.za/rfc/rfc1808.txt</strong></dt>
+        <dd>доступ к файлу по протоколу <a href="glossary.htm#ftp">FTP</a></dd>
+        <dt><strong>gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles</strong></dt>
+        <dd>доступ к службам Gopher и Gopher+</dd>
+        <dt><strong>http://www.math.uio.no/faq/compression-faq/part1.html</strong></dt>
+        <dd>доступ к HTML-документу по протоколу <a href="http.htm">HTTP</a></dd>
+        <dt><strong>http://www.webdev.com/cgi-bin/load.cgi?name=xxx&amp;id=56789</strong></dt>
+        <dd>запуск <a href="cgi01.htm">CGI-сценария</a> с двумя параметрами</dd>
+        <dt><strong>mailto:mduerst@ifi.unizh.ch</strong></dt>
+        <dd>доступ к адресу <a href="glossary.htm#email">электронной почты</a></dd>
+        <dt><strong>news:comp.infosystems.www.servers.unix</strong></dt>
+        <dd>доступ к группам новостей USENET</dd>
+        <dt><strong>telnet://melvyl.ucop.edu/</strong></dt>
+        <dd>доступ к интерактивным службам по протоколу TELNET</dd>
+        <dt><strong>wais://quake.think.com/wais-discussion-archives?salinger</strong></dt>
+        <dd>поиск на информационном сервере WAIS ключевого слова salinger</dd>
+      </dl>
+
+      <p class="note"><strong>Примечание</strong>. И в литературе, и в устном общении часто употребляются
+        термины URL (Uniform Resource Locator) и URN (Uniform Resource Name). Мы используем вместо них
+        единый термин URI, как это рекомендовано в <a  target="_blank" href="http://www.ietf.org/rfc/rfc2396.txt">RFC
+        2396</a> <img src="images/extref.gif" alt="Внешняя ссылка">; этот же
+        термин употребляется во всех документах W3C.</p>
+
+      <h2><a name="reluri">Относительные URI</a></h2>
+
+      <p>Относительные URI отличаются от полных тем, что не содержат элемента <var>протокол</var>. Они
+        применяются в тех случаях, когда тем или иным способом определен <em>базовый URI</em> для набора
+        ресурсов, и URI этих ресурсов указываются относительно базового URI. Например, в HTML-документе
+        базовый URI задается элементом <strong>BASE</strong> в заголовке документа, либо совпадает с
+        URI самого документа, если элемента <strong>BASE</strong> нет. Не описывая алгоритм приведения
+        относительных URI к полным, приведем три простых примера, дающих понимание этого алгоритма,
+        достаточное для практического применения. Пусть базовый URI имеет вид</p>
+
+      <pre><strong>http://www.web.com/faq/part1.html</strong></pre>
+
+      <p>Тогда</p>
+
+      <pre><strong>part2.html</strong> эквивалентен <strong>http://www.web.com/faq/part2.html</strong></pre>
+      <pre><strong>next-faq/part3.html</strong> эквивалентен <strong>http://www.web.com/faq/next-faq/part3.html</strong></pre>
+      <pre><strong>../images/logo.gif</strong> эквивалентен <strong>http://www.web.com/images/logo.gif</strong></pre>
+
+      <p>Две точки с последующей дробной чертой (<strong>../</strong>) означают, что нужно перейти по
+        дереву каталогов на один уровень вверх.</p>
+
+      <h2><a name="fragid">Закладки</a></h2>
+
+      <p>Если ресурс является HTML-документом, то его URI может содержать дополнительный элемент:</p>
+
+      <pre>http://<var>сервер</var>/<var>путь</var>?<var>запрос</var>#<var>закладка</var></pre>
+
+      <p>Закладка&nbsp;&#151; это поименованная позиция в HTML-документе, на которую могут ссылаться
+        другие документы. Для создания закладки используется анкер вида</p>
+
+      <div class="code">
+<pre class="code">&lt;A name=&quot;имя_закладки&quot;&gt;...&lt;/A&gt;</pre>
+      </div>
+
+      <p>Пример ссылки на закладку в документе:</p>
+
+      <div class="code">
+<pre class="code">&lt;A href=&quot;http://www.math.uio.no/faq/compression-faq/part1.html#ref1&quot;&gt;
+   Щелкните для перехода к ссылке 1 части 1&lt;/A&gt;</pre>
+      </div>
+
+      <p>В простейшем случае URI может состоять только из закладки. Это означает, что поиск закладки
+        должен производиться в текущем документе:</p>
+
+      <div class="code">
+<pre class="code">&lt;A href=&quot;#glossary&quot;&gt;Глоссарий&lt;/a&gt;</pre>
+      </div>
+
+      <h2><a name="encoding">Кодировка и декодировка URI</a></h2>
+
+      <p>Все элементы URI должны состоять только из символов базовой латиницы. Для того, чтобы включить
+        в них другие символы (например, при передаче <a href="cgi01.htm">CGI-сценарию</a> запроса на
+        поиск русской фразы), следует преобразовать каждый символ, не принадлежащий к базовой латинице,
+        в формат <a href="unicode.htm#utf8">UTF-8</a>, и полученные байты представить в виде <strong>%xx</strong>,
+        где <strong>xx</strong>&nbsp;&#151; шестнадцатеричный код байта. Например, символ тильда (&quot;~&quot;)
+        должен быть представлен как <strong>%7e</strong>.</p>
+
+      <p>Программы, которые формируют URI ресурсов в виде текстовых строк, должны кодировать URI согласно
+        описанным правилам перед тем, как передавать их любому протоколу Интернета, и декодировать их
+        после получения.</p>
+
+      <h2><a name="domainname">Имена доменов</a></h2>
+
+      <p>Имя домена в Интернете&nbsp;&#151; это последовательность имен, разделенных точками, например
+        <strong>www.faqs.org</strong>. Эти имена выбираются создателями доменов достаточно произвольным
+        образом, за одним исключением. Крайнее справа имя (в нашем примере <strong>org</strong>) называется
+        <em>доменом высшего уровня</em> и должно быть либо <em>типом организации</em>-владельца домена,
+        либо <em>обозначением страны</em>, где расположен домен.</p>
+
+      <div class="center">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption><a name="table22a">Таблица П2.2. Зарегистрированные типы организаций</a></caption>
+          <tr>
+            <td>com</td>
+            <td>Коммерческие организации</td>
+          </tr>
+          <tr>
+            <td>edu</td>
+            <td>Учреждения образования</td>
+          </tr>
+          <tr>
+            <td>int</td>
+            <td>Международные организации и базы данных</td>
+          </tr>
+          <tr>
+            <td>net</td>
+            <td>Компьютеры сетевых провайдеров</td>
+          </tr>
+          <tr>
+            <td>org</td>
+            <td>Неправительственные и некоммерческие организации</td>
+          </tr>
+          <tr>
+            <td>gov</td>
+            <td>Учреждения и организации правительства США</td>
+          </tr>
+          <tr>
+            <td>mil</td>
+            <td>Вооруженные силы США</td>
+          </tr>
+        </table>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption><a name="table23a">Таблица П2.3. Зарегистрированные обозначения стран и территорий</a></caption>
+          <tr>
+            <td>Австралия</td>
+            <td>au</td>
+            <td>Мадагаскар</td>
+            <td>mg</td>
+          </tr>
+          <tr>
+            <td>Австрия</td>
+            <td>at</td>
+            <td>Макао (Аомынь) (<em>Порт.</em>)</td>
+            <td>mo</td>
+          </tr>
+          <tr>
+            <td>Азербайджан</td>
+            <td>az</td>
+            <td>Македония</td>
+            <td>mk</td>
+          </tr>
+          <tr>
+            <td>Албания</td>
+            <td>al</td>
+            <td>Малави</td>
+            <td>mw</td>
+          </tr>
+          <tr>
+            <td>Алжир</td>
+            <td>dz</td>
+            <td>Малайзия</td>
+            <td>my</td>
+          </tr>
+          <tr>
+            <td>Ангилья (<em>Брит.</em>)</td>
+            <td>ai</td>
+            <td>Мали</td>
+            <td>ml</td>
+          </tr>
+          <tr>
+            <td>Ангола</td>
+            <td>ao</td>
+            <td>Мальдивская Республика</td>
+            <td>mv</td>
+          </tr>
+          <tr>
+            <td>Андорра</td>
+            <td>ad</td>
+            <td>Мальта</td>
+            <td>mt</td>
+          </tr>
+          <tr>
+            <td>Антарктика</td>
+            <td>aq</td>
+            <td>Маоре (Майотта) (<em>Фр.</em>)</td>
+            <td>yt</td>
+          </tr>
+          <tr>
+            <td>Антигуа и Барбуда</td>
+            <td>ag</td>
+            <td>Марокко</td>
+            <td>ma</td>
+          </tr>
+          <tr>
+            <td>Антильские острова (<em>Нид.</em>)</td>
+            <td>an</td>
+            <td>Мартиника (<em>Фр.</em>)</td>
+            <td>mq</td>
+          </tr>
+          <tr>
+            <td>Аргентина</td>
+            <td>ar</td>
+            <td>Маршалловы Острова (<em>опека США</em>)</td>
+            <td>mh</td>
+          </tr>
+          <tr>
+            <td>Армения</td>
+            <td>am</td>
+            <td>Мексика</td>
+            <td>mx</td>
+          </tr>
+          <tr>
+            <td>Аруба, остров (<em>Нид.</em>)</td>
+            <td>aw</td>
+            <td>Мелкие отдаленные острова США</td>
+            <td>um</td>
+          </tr>
+          <tr>
+            <td>Афганистан</td>
+            <td>af</td>
+            <td>Микронезия (<em>опека США</em>)</td>
+            <td>fm</td>
+          </tr>
+          <tr>
+            <td>Багамские Острова</td>
+            <td>bs</td>
+            <td>Мозамбик</td>
+            <td>mz</td>
+          </tr>
+          <tr>
+            <td>Бангладеш</td>
+            <td>bd</td>
+            <td>Молдова</td>
+            <td>md</td>
+          </tr>
+          <tr>
+            <td>Барбадос</td>
+            <td>bb</td>
+            <td>Монако</td>
+            <td>mc</td>
+          </tr>
+          <tr>
+            <td>Бахрейн</td>
+            <td>bh</td>
+            <td>Монголия</td>
+            <td>mn</td>
+          </tr>
+          <tr>
+            <td>Беларусь</td>
+            <td>by</td>
+            <td>Монтсеррат (<em>Брит.</em>)</td>
+            <td>ms</td>
+          </tr>
+          <tr>
+            <td>Белиз</td>
+            <td>bz</td>
+            <td>Мьянма (Бирма)</td>
+            <td>mm</td>
+          </tr>
+          <tr>
+            <td>Бельгия</td>
+            <td>be</td>
+            <td>Намибия (<em>ЮАР</em>)</td>
+            <td>na</td>
+          </tr>
+          <tr>
+            <td>Бенин</td>
+            <td>bj</td>
+            <td>Науру</td>
+            <td>nr</td>
+          </tr>
+          <tr>
+            <td>Бермудские Острова (<em>Брит.</em>)</td>
+            <td>bm</td>
+            <td>Непал</td>
+            <td>np</td>
+          </tr>
+          <tr>
+            <td>Болгария</td>
+            <td>bg</td>
+            <td>Нигер</td>
+            <td>ne</td>
+          </tr>
+          <tr>
+            <td>Боливия</td>
+            <td>bo</td>
+            <td>Нигерия</td>
+            <td>ng</td>
+          </tr>
+          <tr>
+            <td>Босния и Герцеговина</td>
+            <td>ba</td>
+            <td>Нидерланды</td>
+            <td>nl</td>
+          </tr>
+          <tr>
+            <td>Ботсвана</td>
+            <td>bw</td>
+            <td>Никарагуа</td>
+            <td>ni</td>
+          </tr>
+          <tr>
+            <td>Бразилия</td>
+            <td>br</td>
+            <td>Ниуэ (<em>Н. Зел.</em>)</td>
+            <td>nu</td>
+          </tr>
+          <tr>
+            <td>Британская территория в Индийском океане</td>
+            <td>io</td>
+            <td>Новая Зеландия</td>
+            <td>nz</td>
+          </tr>
+          <tr>
+            <td>Бруней</td>
+            <td>bn</td>
+            <td>Новая Каледония (<em>Фр.</em>)</td>
+            <td>nc</td>
+          </tr>
+          <tr>
+            <td>Буве, остров</td>
+            <td>bv</td>
+            <td>Норвегия</td>
+            <td>no</td>
+          </tr>
+          <tr>
+            <td>Буркина-Фасо</td>
+            <td>bf</td>
+            <td>Норфолк, остров (<em>Австрал.</em>)</td>
+            <td>nf</td>
+          </tr>
+          <tr>
+            <td>Бурунди</td>
+            <td>bi</td>
+            <td>Объединенные Арабские Эмираты</td>
+            <td>ae</td>
+          </tr>
+          <tr>
+            <td>Бутан</td>
+            <td>bt</td>
+            <td>Оман</td>
+            <td>om</td>
+          </tr>
+          <tr>
+            <td>Вануату</td>
+            <td>vu</td>
+            <td>Пакистан</td>
+            <td>pk</td>
+          </tr>
+          <tr>
+            <td>Ватикан</td>
+            <td>va</td>
+            <td>Палау (<em>опека США</em>)</td>
+            <td>pw</td>
+          </tr>
+          <tr>
+            <td>Великобритания</td>
+            <td>gb</td>
+            <td>Панама</td>
+            <td>pa</td>
+          </tr>
+          <tr>
+            <td>Венгрия</td>
+            <td>hu</td>
+            <td>Папуа-Новая Гвинея</td>
+            <td>pg</td>
+          </tr>
+          <tr>
+            <td>Венесула</td>
+            <td>ve</td>
+            <td>Парагвай</td>
+            <td>py</td>
+          </tr>
+          <tr>
+            <td>Виргинские острова (<em>Брит.</em>)</td>
+            <td>vg</td>
+            <td>Перу</td>
+            <td>pe</td>
+          </tr>
+          <tr>
+            <td>Виргинские острова (<em>США</em>)</td>
+            <td>vi</td>
+            <td>Питкэрн (<em>Брит.</em>)</td>
+            <td>pn</td>
+          </tr>
+          <tr>
+            <td>Восточное Самоа (<em>США</em>)</td>
+            <td>as</td>
+            <td>Польша</td>
+            <td>pl</td>
+          </tr>
+          <tr>
+            <td>Восточный Тимор</td>
+            <td>tp</td>
+            <td>Португалия</td>
+            <td>pt</td>
+          </tr>
+          <tr>
+            <td>Вьетнам</td>
+            <td>vn</td>
+            <td>Пуэрто-Рико (<em>США</em>)</td>
+            <td>pr</td>
+          </tr>
+          <tr>
+            <td>Габон</td>
+            <td>ga</td>
+            <td>Реюньон (<em>Фр.</em>)</td>
+            <td>re</td>
+          </tr>
+          <tr>
+            <td>Гаити</td>
+            <td>ht</td>
+            <td>Рождества (Кристмас), остров (<em>Австрал.</em>)</td>
+            <td>cx</td>
+          </tr>
+          <tr>
+            <td>Гайана</td>
+            <td>gy</td>
+            <td>Российская Федерация</td>
+            <td>ru</td>
+          </tr>
+          <tr>
+            <td>Гамбия</td>
+            <td>gm</td>
+            <td>Руанда</td>
+            <td>rw</td>
+          </tr>
+          <tr>
+            <td>Гана</td>
+            <td>gh</td>
+            <td>Румыния</td>
+            <td>ro</td>
+          </tr>
+          <tr>
+            <td>Гваделупа (<em>Фр.</em>)</td>
+            <td>gp</td>
+            <td>Сальвадор</td>
+            <td>sv</td>
+          </tr>
+          <tr>
+            <td>Гватемала</td>
+            <td>gt</td>
+            <td>Сан-Марино</td>
+            <td>sm</td>
+          </tr>
+          <tr>
+            <td>Гвиана (<em>Фр.</em>)</td>
+            <td>gf</td>
+            <td>Сан-Томе и Принсипи</td>
+            <td>st</td>
+          </tr>
+          <tr>
+            <td>Гвинея</td>
+            <td>gn</td>
+            <td>Саудовская Аравия</td>
+            <td>sa</td>
+          </tr>
+          <tr>
+            <td>Гвинея-Бисау</td>
+            <td>gw</td>
+            <td>Свазиленд</td>
+            <td>sz</td>
+          </tr>
+          <tr>
+            <td>Германия</td>
+            <td>de</td>
+            <td>Свальбард и Ян-Майен, острова (<em>Норв.</em>)</td>
+            <td>sj</td>
+          </tr>
+          <tr>
+            <td>Гибралтар (<em>Брит.</em>)</td>
+            <td>gi</td>
+            <td>Святой Елены, остров (<em>Брит.</em>)</td>
+            <td>sh</td>
+          </tr>
+          <tr>
+            <td>Гондурас</td>
+            <td>hn</td>
+            <td>Северные Марианские Острова (<em>опека США</em>)</td>
+            <td>mp</td>
+          </tr>
+          <tr>
+            <td>Гонконг (Сянган) (<em>Брит.</em>)</td>
+            <td>hk</td>
+            <td>Сейшельские Острова</td>
+            <td>sc</td>
+          </tr>
+          <tr>
+            <td>Гренада</td>
+            <td>gd</td>
+            <td>Сенегал</td>
+            <td>sn</td>
+          </tr>
+          <tr>
+            <td>Гренландия (<em>Дат.</em>)</td>
+            <td>gl</td>
+            <td>Сен-Пьер и Микелон (<em>Фр.</em>)</td>
+            <td>pm</td>
+          </tr>
+          <tr>
+            <td>Греция</td>
+            <td>gr</td>
+            <td>Сент-Винсент и Гренадины</td>
+            <td>vc</td>
+          </tr>
+          <tr>
+            <td>Грузия</td>
+            <td>ge</td>
+            <td>Сент-Китс и Невис</td>
+            <td>kn</td>
+          </tr>
+          <tr>
+            <td>Гуам, остров (<em>США</em>)</td>
+            <td>gu</td>
+            <td>Сент-Люсия</td>
+            <td>lc</td>
+          </tr>
+          <tr>
+            <td>Дания</td>
+            <td>dk</td>
+            <td>Сингапур</td>
+            <td>sg</td>
+          </tr>
+          <tr>
+            <td>Джибути</td>
+            <td>dj</td>
+            <td>Сирия</td>
+            <td>sy</td>
+          </tr>
+          <tr>
+            <td>Доминика</td>
+            <td>dm</td>
+            <td>Словакия</td>
+            <td>sk</td>
+          </tr>
+          <tr>
+            <td>Доминиканская Республика</td>
+            <td>do</td>
+            <td>Словения</td>
+            <td>si</td>
+          </tr>
+          <tr>
+            <td>Египет</td>
+            <td>eg</td>
+            <td>Соединенные Штаты Америки</td>
+            <td>us</td>
+          </tr>
+          <tr>
+            <td>Заир</td>
+            <td>cd</td>
+            <td>Соломоновы Острова</td>
+            <td>sb</td>
+          </tr>
+          <tr>
+            <td>Замбия</td>
+            <td>zm</td>
+            <td>Сомали</td>
+            <td>so</td>
+          </tr>
+          <tr>
+            <td>Западная Сахара</td>
+            <td>eh</td>
+            <td>Судан</td>
+            <td>sd</td>
+          </tr>
+          <tr>
+            <td>Западное Самоа</td>
+            <td>ws</td>
+            <td>Суринам</td>
+            <td>sr</td>
+          </tr>
+          <tr>
+            <td>Зимбабве</td>
+            <td>zw</td>
+            <td>Сьерра-Леоне</td>
+            <td>sl</td>
+          </tr>
+          <tr>
+            <td>Израиль</td>
+            <td>il</td>
+            <td>Таджикистан</td>
+            <td>tj</td>
+          </tr>
+          <tr>
+            <td>Индия</td>
+            <td>in</td>
+            <td>Таиланд</td>
+            <td>th</td>
+          </tr>
+          <tr>
+            <td>Индонезия</td>
+            <td>id</td>
+            <td>Тайвань (<em>провинция Китая</em>)</td>
+            <td>tw</td>
+          </tr>
+          <tr>
+            <td>Иордания</td>
+            <td>jo</td>
+            <td>Танзания</td>
+            <td>tz</td>
+          </tr>
+          <tr>
+            <td>Ирак</td>
+            <td>iq</td>
+            <td>Теркс и Кайкос, острова (<em>Брит.</em>)</td>
+            <td>tc</td>
+          </tr>
+          <tr>
+            <td>Иран</td>
+            <td>ir</td>
+            <td>Того</td>
+            <td>tg</td>
+          </tr>
+          <tr>
+            <td>Ирландия</td>
+            <td>ie</td>
+            <td>Токелау (Юнион) (<em>Н. Зел.</em>)</td>
+            <td>tk</td>
+          </tr>
+          <tr>
+            <td>Исландия</td>
+            <td>is</td>
+            <td>Тонга</td>
+            <td>to</td>
+          </tr>
+          <tr>
+            <td>Испания</td>
+            <td>es</td>
+            <td>Тринидад и Тобаго</td>
+            <td>tt</td>
+          </tr>
+          <tr>
+            <td>Италия</td>
+            <td>it</td>
+            <td>Тувалу</td>
+            <td>tv</td>
+          </tr>
+          <tr>
+            <td>Йемен</td>
+            <td>ye</td>
+            <td>Тунис</td>
+            <td>tn</td>
+          </tr>
+          <tr>
+            <td>Кабо-Верде (Острова Зеленого Мыса)</td>
+            <td>cv</td>
+            <td>Туркменистан</td>
+            <td>tm</td>
+          </tr>
+          <tr>
+            <td>Казахстан</td>
+            <td>kz</td>
+            <td>Турция</td>
+            <td>tr</td>
+          </tr>
+          <tr>
+            <td>Кайман, острова (<em>Брит.</em>)</td>
+            <td>ky</td>
+            <td>Уганда</td>
+            <td>ug</td>
+          </tr>
+          <tr>
+            <td>Камбоджа</td>
+            <td>kh</td>
+            <td>Узбекистан</td>
+            <td>uz</td>
+          </tr>
+          <tr>
+            <td>Камерун</td>
+            <td>cm</td>
+            <td>Украина</td>
+            <td>ua</td>
+          </tr>
+          <tr>
+            <td>Канада</td>
+            <td>ca</td>
+            <td>Уоллис и Футуна, острова (<em>Фр.</em>)</td>
+            <td>wf</td>
+          </tr>
+          <tr>
+            <td>Катар</td>
+            <td>qa</td>
+            <td>Уругвай</td>
+            <td>uy</td>
+          </tr>
+          <tr>
+            <td>Кения</td>
+            <td>ke</td>
+            <td>Фарерские острова (<em>Дат.</em>)</td>
+            <td>fo</td>
+          </tr>
+          <tr>
+            <td>Кипр</td>
+            <td>cy</td>
+            <td>Фиджи</td>
+            <td>fj</td>
+          </tr>
+          <tr>
+            <td>Кирибати</td>
+            <td>ki</td>
+            <td>Филлипины</td>
+            <td>ph</td>
+          </tr>
+          <tr>
+            <td>Китай</td>
+            <td>cn</td>
+            <td>Финляндия</td>
+            <td>fi</td>
+          </tr>
+          <tr>
+            <td>Кокосовые (Килинг) острова (<em>Австрал.</em>)</td>
+            <td>cc</td>
+            <td>Фолклендские (Мальвинские) острова (<em>Брит.</em>)</td>
+            <td>fk</td>
+          </tr>
+          <tr>
+            <td>Колумбия</td>
+            <td>co</td>
+            <td>Франция</td>
+            <td>fr</td>
+          </tr>
+          <tr>
+            <td>Коморские Острова</td>
+            <td>km</td>
+            <td>Французская Полинезия</td>
+            <td>pf</td>
+          </tr>
+          <tr>
+            <td>Конго</td>
+            <td>cg</td>
+            <td>Французские Южные Территории</td>
+            <td>tf</td>
+          </tr>
+          <tr>
+            <td>Корейская Народно-Демократическая Республика</td>
+            <td>kp</td>
+            <td>Херд и Макдональд, острова</td>
+            <td>hm</td>
+          </tr>
+          <tr>
+            <td>Корея, Республика (Южная Корея)</td>
+            <td>kr</td>
+            <td>Хорватия</td>
+            <td>hr</td>
+          </tr>
+          <tr>
+            <td>Коста-Рика</td>
+            <td>cr</td>
+            <td>Центральноафриканская республика</td>
+            <td>cf</td>
+          </tr>
+          <tr>
+            <td>Кот-д'Ивуар (Берег Слоновой Кости)</td>
+            <td>ci</td>
+            <td>Чад</td>
+            <td>td</td>
+          </tr>
+          <tr>
+            <td>Куба</td>
+            <td>cu</td>
+            <td>Чешская Республика</td>
+            <td>cz</td>
+          </tr>
+          <tr>
+            <td>Кувейт</td>
+            <td>kw</td>
+            <td>Чили</td>
+            <td>cl</td>
+          </tr>
+          <tr>
+            <td>Кука острова (<em>Н. Зел.</em>)</td>
+            <td>ck</td>
+            <td>Швейцария</td>
+            <td>ch</td>
+          </tr>
+          <tr>
+            <td>Кыргызстан</td>
+            <td>kg</td>
+            <td>Швеция</td>
+            <td>se</td>
+          </tr>
+          <tr>
+            <td>Лаос</td>
+            <td>la</td>
+            <td>Шри-Ланка</td>
+            <td>lk</td>
+          </tr>
+          <tr>
+            <td>Латвия</td>
+            <td>lv</td>
+            <td>Эквадор</td>
+            <td>ec</td>
+          </tr>
+          <tr>
+            <td>Лесото</td>
+            <td>ls</td>
+            <td>Экваториальная Гвинея</td>
+            <td>gq</td>
+          </tr>
+          <tr>
+            <td>Либерия</td>
+            <td>lr</td>
+            <td>Эритрея</td>
+            <td>er</td>
+          </tr>
+          <tr>
+            <td>Ливан</td>
+            <td>lb</td>
+            <td>Эстония</td>
+            <td>ee</td>
+          </tr>
+          <tr>
+            <td>Ливия</td>
+            <td>ly</td>
+            <td>Эфиопия</td>
+            <td>et</td>
+          </tr>
+          <tr>
+            <td>Литва</td>
+            <td>lt</td>
+            <td>Югославия</td>
+            <td>yu</td>
+          </tr>
+          <tr>
+            <td>Лихтенштейн</td>
+            <td>li</td>
+            <td>Южная Георгия и Южные Сандвичевы острова</td>
+            <td>gs</td>
+          </tr>
+          <tr>
+            <td>Люксембург</td>
+            <td>lu</td>
+            <td>Южно-Африканская Республика</td>
+            <td>za</td>
+          </tr>
+          <tr>
+            <td>Маврикий</td>
+            <td>mu</td>
+            <td>Ямайка</td>
+            <td>jm</td>
+          </tr>
+          <tr>
+            <td>Мавритания</td>
+            <td>mr</td>
+            <td>Япония</td>
+            <td>jp</td>
+          </tr>
+        </table>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

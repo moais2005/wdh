@@ -1,0 +1,728 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Юрий Лукач">
+<meta name="Description" content="Справочник Веб-разработчика: современные технологии WWW">
+<meta name="Keywords" content="WWW, Веб, разработка, программирование, HTML, DHTML, CSS, Java, JavaScript, CGI, PERL, ASP, XML, XSL, VML, VRML">
+<title>WDH: Стандарт Unicode 3.0</title>
+<link rel="Prev" href="uri.htm" title="Унифицированные идентификаторы ресурсов">
+<link rel="Next" href="mime.htm" title="Типы файлов MIME">
+<link rel="Copyright" href="cpyright.htm" title="Сведения об авторских правах">
+<link rev="Made" href="mailto:yury@suncloud.ru" title="Обратная связь">
+<script type="text/javascript" src="global/load.js"></script>
+<script type="text/javascript" src="global/link.js"></script>
+</head>
+
+<body onLoad="initDoc(); addBanner(true)">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0">
+  <tr><td><div id="divHeader"></div></td></tr>
+  <tr><td id="tdBanner" style="text-align: center"><script type="text/javascript">addBanner(false);</script></td></tr>
+  <tr><td>
+
+      <h1><a name="unicode">Приложение 3. Стандарт Unicode 3.0</a></h1>
+
+      <h2><a name="general">Общее описание</a></h2>
+
+      <p>Стандарт Unicode был разработан с целью создания единой кодировки символов всех современных
+        и многих древних письменных языков. Каждый символ в этом стандарте кодируется 16 битами, что
+        позволяет ему охватить несравненно большее количество символов, чем принятые ранее 7- и 8-битовые
+        кодировки. Еще одним важным отличием Unicode от других систем кодировки является то, что он
+        не только приписывает каждому символу уникальный код, но и определяет различные характеристики
+        этого символа, например:</p>
+
+      <ul>
+        <li>тип символа (прописная буква, строчная буква, цифра, знак препинания и т.&nbsp;д.);</li>
+        <li>атрибуты символа (отображение слева направо или справа налево, пробел, разрыв строки и т.&nbsp;д.);</li>
+        <li>соответствующая прописная или строчная буква (для строчных и прописных букв соответственно);</li>
+        <li>соответствующее числовое значение (для цифровых символов).</li>
+      </ul>
+
+      <p>Подробное описание стандарта Unicode можно найти по адресу <a target="_blank" href="http://www.unicode.org/">http://www.unicode.org/</a>
+        <img src="images/extref.gif" alt="Внешняя ссылка">.</p>
+
+      <p><img src="images/plus.gif" alt="WDH+"> См. также WDH+:
+        <a target="_blank" href="http://go.suncloud.ru/to.asp?wdh+/encoding/encoding.htm">О кодировках символов</a>
+        и <a target="_blank" href="http://go.suncloud.ru/to.asp?wdh+/unicode/unicode.htm">Unicode и письменности мира</a>.</p>
+
+      <h2><a name="subsets">Стандартные подмножества</a></h2>
+
+      <p>Весь диапазон кодов от 0 до FFFF разбит на несколько <em>стандартных подмножеств</em>, каждое
+        из которых соответствует либо алфавиту какого-то языка, либо группе специальных символов, сходных
+        по своим функциям. В приведенной ниже таблице содержится перечень всех подмножеств Unicode 3.0.
+        В таблице использованы следующие сокращения:</p>
+
+      <ul>
+        <li>IPA = International Phonetical Alphabet = Международная фонетическая транскрипция;</li>
+        <li>CJK = China, Japan &amp; Korea = Китай, Япония и Корея.</li>
+      </ul>
+
+      <table cellspacing="0" border="1" cellpadding="5" width="100%">
+        <caption><a name="table31a">Таблица П3.1. Стандартные подмножества Unicode 3.0</a></caption>
+        <tr>
+          <th style=" width: 16%">Диапазон</th>
+          <th style="width: 60%" colspan="2">Описание</th>
+          <th style="width: 24%">Коды UTF-8</th>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">00&nbsp;&#151; 7F</td>
+          <td style="width: 30%">Basic Latin</td>
+          <td style="width: 30%">Базовая латиница</td>
+          <td style="text-align: center; width: 24%">00&nbsp;&#151; 7F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">80&nbsp;&#151; FF</td>
+          <td style="width: 30%">Latin-1 Supplement</td>
+          <td style="width: 30%">Латиница-1 дополнительная</td>
+          <td style="text-align: center; width: 24%">C2 80&nbsp;&#151; C3 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">100&nbsp;&#151; 17F</td>
+          <td style="width: 30%">Latin Extended-A</td>
+          <td style="width: 30%">Расширенная латиница-A</td>
+          <td style="text-align: center; width: 24%">C4 80&nbsp;&#151; C5 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">180&nbsp;&#151; 24F</td>
+          <td style="width: 30%">Latin Extended-B</td>
+          <td style="width: 30%">Расширенная латиница-B</td>
+          <td style="text-align: center; width: 24%">C6 80&nbsp;&#151; C9 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">250&nbsp;&#151; 2AF</td>
+          <td style="width: 30%">IPA Extensions</td>
+          <td style="width: 30%">Фонетические знаки</td>
+          <td style="text-align: center; width: 24%">C9 90&nbsp;&#151; CA AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2B0&nbsp;&#151; 2FF</td>
+          <td style="width: 30%">Spacing Modifier Letters</td>
+          <td style="width: 30%">Символы изменения пробела</td>
+          <td style="text-align: center; width: 24%">CA B0&nbsp;&#151; CB BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">300&nbsp;&#151; 36F</td>
+          <td style="width: 30%">Combining Diacritical Marks</td>
+          <td style="width: 30%">Диакритические знаки</td>
+          <td style="text-align: center; width: 24%">CC 80&nbsp;&#151; CD AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">370&nbsp;&#151; 3FF</td>
+          <td style="width: 30%">Greek</td>
+          <td style="width: 30%">Греческое и коптское письмо</td>
+          <td style="text-align: center; width: 24%">CD B0&nbsp;&#151; CF BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">400&nbsp;&#151; 4FF</td>
+          <td style="width: 30%">Cyrillic</td>
+          <td style="width: 30%">Кириллица</td>
+          <td style="text-align: center; width: 24%">D0 80&nbsp;&#151; D3 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">500&nbsp;&#151; 52F</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">D4 80&nbsp;&#151; D4 AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">530&nbsp;&#151; 58F</td>
+          <td style="width: 30%">Armenian</td>
+          <td style="width: 30%">Армянское письмо</td>
+          <td style="text-align: center; width: 24%">D4 B0&nbsp;&#151; D6 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">590&nbsp;&#151; 5FF</td>
+          <td style="width: 30%">Hebrew</td>
+          <td style="width: 30%">Ивритское письмо</td>
+          <td style="text-align: center; width: 24%">D6 90&nbsp;&#151; D7 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">600&nbsp;&#151; 6FF</td>
+          <td style="width: 30%">Arabic</td>
+          <td style="width: 30%">Арабское письмо</td>
+          <td style="text-align: center; width: 24%">D8 80&nbsp;&#151; DB BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">700&nbsp;&#151; 74F</td>
+          <td style="width: 30%">Syriac</td>
+          <td style="width: 30%">Сирийское письмо</td>
+          <td style="text-align: center; width: 24%">DC 80&nbsp;&#151; DD 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">750&nbsp;&#151; 77F</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">DD 90&nbsp;&#151; DD BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">780&nbsp;&#151; 7BF</td>
+          <td style="width: 30%">Thaana</td>
+          <td style="width: 30%">Тана (мальдивское письмо)</td>
+          <td style="text-align: center; width: 24%">DE 80&nbsp;&#151; DE BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">7C0&nbsp;&#151; 8FF</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">DF 80&nbsp;&#151; E0 A3 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">900&nbsp;&#151; 97F</td>
+          <td style="width: 30%">Devanagari</td>
+          <td style="width: 30%">Деванагари</td>
+          <td style="text-align: center; width: 24%">E0 A4 80&nbsp;&#151; E0 A5 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">980&nbsp;&#151; 9FF</td>
+          <td style="width: 30%">Bengali</td>
+          <td style="width: 30%">Бенгали</td>
+          <td style="text-align: center; width: 24%">E0 A6 80&nbsp;&#151; E0 A7 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">A00&nbsp;&#151; A7F</td>
+          <td style="width: 30%">Gurmukhi</td>
+          <td style="width: 30%">Гурмукхи</td>
+          <td style="text-align: center; width: 24%">E0 A8 80&nbsp;&#151; E0 A9 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">A80&nbsp;&#151; AFF</td>
+          <td style="width: 30%">Gujarati</td>
+          <td style="width: 30%">Гуджарати</td>
+          <td style="text-align: center; width: 24%">E0 AA 80&nbsp;&#151; E0 AB BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">B00&nbsp;&#151; B7F</td>
+          <td style="width: 30%">Oriya</td>
+          <td style="width: 30%">Ория</td>
+          <td style="text-align: center; width: 24%">E0 AC 80&nbsp;&#151; E0 AD BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">B80&nbsp;&#151; BFF</td>
+          <td style="width: 30%">Tamil</td>
+          <td style="width: 30%">Тамили</td>
+          <td style="text-align: center; width: 24%">E0 AE 80&nbsp;&#151; E0 AF BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">C00&nbsp;&#151; C7F</td>
+          <td style="width: 30%">Telugu</td>
+          <td style="width: 30%">Телугу</td>
+          <td style="text-align: center; width: 24%">E0 B0 80&nbsp;&#151; E0 B1 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">C80&nbsp;&#151; CFF</td>
+          <td style="width: 30%">Kannada</td>
+          <td style="width: 30%">Каннада</td>
+          <td style="text-align: center; width: 24%">E0 B2 80&nbsp;&#151; E0 B3 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">D00&nbsp;&#151; D7F</td>
+          <td style="width: 30%">Malayalam</td>
+          <td style="width: 30%">Малаялам</td>
+          <td style="text-align: center; width: 24%">E0 B4 80&nbsp;&#151; E0 B5 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">D80&nbsp;&#151; DFF</td>
+          <td style="width: 30%">Sinhala</td>
+          <td style="width: 30%">Сингальское письмо</td>
+          <td style="text-align: center; width: 24%">E0 B6 80&nbsp;&#151; E0 B7 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">E00&nbsp;&#151; E7F</td>
+          <td style="width: 30%">Thai</td>
+          <td style="width: 30%">Тайское (сиамское) письмо</td>
+          <td style="text-align: center; width: 24%">E0 B8 80&nbsp;&#151; E0 B9 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">E80&nbsp;&#151; EFF</td>
+          <td style="width: 30%">Lao</td>
+          <td style="width: 30%">Лаосское письмо</td>
+          <td style="text-align: center; width: 24%">E0 BA 80&nbsp;&#151; E0 BB BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">F00&nbsp;&#151; FFF</td>
+          <td style="width: 30%">Tibetan</td>
+          <td style="width: 30%">Тибетское письмо</td>
+          <td style="text-align: center; width: 24%">E0 BC 80&nbsp;&#151; E0 BF BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1000&nbsp;&#151; 109F</td>
+          <td style="width: 30%">Myanmar</td>
+          <td style="width: 30%">Бирманское письмо</td>
+          <td style="text-align: center; width: 24%">E1 80 80&nbsp;&#151; E1 82 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">10A0&nbsp;&#151; 10FF</td>
+          <td style="width: 30%">Georgian</td>
+          <td style="width: 30%">Грузинское письмо</td>
+          <td style="text-align: center; width: 24%">E1 82 A0&nbsp;&#151; E1 83 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1100&nbsp;&#151; 11FF</td>
+          <td style="width: 30%">Hangul Jamo</td>
+          <td style="width: 30%">Корейское письмо</td>
+          <td style="text-align: center; width: 24%">E1 84 80&nbsp;&#151; E1 87 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1200&nbsp;&#151; 137F</td>
+          <td style="width: 30%">Ethiopic</td>
+          <td style="width: 30%">Эфиопское письмо</td>
+          <td style="text-align: center; width: 24%">E1 88 80&nbsp;&#151; E1 8D BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1380&nbsp;&#151; 139F</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">E1 8E 80&nbsp;&#151; E1 8E 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">13A0&nbsp;&#151; 13FF</td>
+          <td style="width: 30%">Cherokee</td>
+          <td style="width: 30%">Чероки письмо</td>
+          <td style="text-align: center; width: 24%">E1 8E A0&nbsp;&#151; E1 8F BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1400&nbsp;&#151; 167F</td>
+          <td style="width: 30%">Unified Canadian Aboriginal Syllabics</td>
+          <td style="width: 30%">Слоговое письмо алгонкинских народов</td>
+          <td style="text-align: center; width: 24%">E1 90 80&nbsp;&#151; E1 99 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1680&nbsp;&#151; 169F</td>
+          <td style="width: 30%">Ogham</td>
+          <td style="width: 30%">Огамическое письмо</td>
+          <td style="text-align: center; width: 24%">E1 9A 80&nbsp;&#151; E1 9A 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">16A0&nbsp;&#151; 16FF</td>
+          <td style="width: 30%">Runic</td>
+          <td style="width: 30%">Руническое письмо</td>
+          <td style="text-align: center; width: 24%">E1 9A A0&nbsp;&#151; E1 9B BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1700&nbsp;&#151; 177F</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">E1 9C 80&nbsp;&#151; E1 9D BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1780&nbsp;&#151; 17FF</td>
+          <td style="width: 30%">Khmer</td>
+          <td style="width: 30%">Кхмерское письмо</td>
+          <td style="text-align: center; width: 24%">E1 9E 80&nbsp;&#151; E1 9F BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1800&nbsp;&#151; 18AF</td>
+          <td style="width: 30%">Mongolian</td>
+          <td style="width: 30%">Монгольское письмо</td>
+          <td style="text-align: center; width: 24%">E1 A0 80&nbsp;&#151; E1 A2 AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">18B0&nbsp;&#151; 1DFF</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">E1 A2 B0&nbsp;&#151; E1 B7 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1E00&nbsp;&#151; 1EFF</td>
+          <td style="width: 30%">Latin Extended Additional</td>
+          <td style="width: 30%">Дополнительная латиница</td>
+          <td style="text-align: center; width: 24%">E1 B8 80&nbsp;&#151; E1 BB BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">1F00&nbsp;&#151; 1FFF</td>
+          <td style="width: 30%">Greek Extended</td>
+          <td style="width: 30%">Греческое расширенное письмо</td>
+          <td style="text-align: center; width: 24%">E1 BC 80&nbsp;&#151; E1 BF BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2000&nbsp;&#151; 206F</td>
+          <td style="width: 30%">General Punctuation</td>
+          <td style="width: 30%">Знаки пунктуации</td>
+          <td style="text-align: center; width: 24%">E2 80 80&nbsp;&#151; E2 81 AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2070&nbsp;&#151; 209F</td>
+          <td style="width: 30%">Subscripts and Superscripts</td>
+          <td style="width: 30%">Верхние и нижние индексы</td>
+          <td style="text-align: center; width: 24%">E2 81 B0&nbsp;&#151; E2 82 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">20A0&nbsp;&#151; 20CF</td>
+          <td style="width: 30%">Currency Symbols</td>
+          <td style="width: 30%">Денежные символы</td>
+          <td style="text-align: center; width: 24%">E2 82 A0&nbsp;&#151; E2 83 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">20D0&nbsp;&#151; 20FF</td>
+          <td style="width: 30%">Combining Diacritical Marks for Symbols</td>
+          <td style="width: 30%">Диакритические знаки для символов</td>
+          <td style="text-align: center; width: 24%">E2 83 90&nbsp;&#151; E2 83 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2100&nbsp;&#151; 214F</td>
+          <td style="width: 30%">Letterlike Symbols</td>
+          <td style="width: 30%">Буквенные символы</td>
+          <td style="text-align: center; width: 24%">E2 84 80&nbsp;&#151; E2 85 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2150&nbsp;&#151; 218F</td>
+          <td style="width: 30%">Number Forms</td>
+          <td style="width: 30%">Числовые символы</td>
+          <td style="text-align: center; width: 24%">E2 85 90&nbsp;&#151; E2 86 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2190&nbsp;&#151; 21FF</td>
+          <td style="width: 30%">Arrows</td>
+          <td style="width: 30%">Стрелки</td>
+          <td style="text-align: center; width: 24%">E2 86 90&nbsp;&#151; E2 87 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2200&nbsp;&#151; 22FF</td>
+          <td style="width: 30%">Mathematical Operators</td>
+          <td style="width: 30%">Математические операторы</td>
+          <td style="text-align: center; width: 24%">E2 88 80&nbsp;&#151; E2 8B BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2300&nbsp;&#151; 23FF</td>
+          <td style="width: 30%">Miscellaneous Technical</td>
+          <td style="width: 30%">Технические символы</td>
+          <td style="text-align: center; width: 24%">E2 8C 80&nbsp;&#151; E2 8F BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2400&nbsp;&#151; 243F</td>
+          <td style="width: 30%">Control Pictures</td>
+          <td style="width: 30%">Значки управляющих кодов</td>
+          <td style="text-align: center; width: 24%">E2 90 80&nbsp;&#151; E2 90 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2440&nbsp;&#151; 245F</td>
+          <td style="width: 30%">Optical Character Recognition</td>
+          <td style="width: 30%">Оптическое распознавание образов</td>
+          <td style="text-align: center; width: 24%">E2 91 80&nbsp;&#151; E2 91 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2460&nbsp;&#151; 24FF</td>
+          <td style="width: 30%">Enclosed Alphanumerics</td>
+          <td style="width: 30%">Буквы и цифры в кружочках</td>
+          <td style="text-align: center; width: 24%">E2 91 A0&nbsp;&#151; E2 93 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2500&nbsp;&#151; 257F</td>
+          <td style="width: 30%">Box Drawing</td>
+          <td style="width: 30%">Символы рамок</td>
+          <td style="text-align: center; width: 24%">E2 94 80&nbsp;&#151; E2 95 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2580&nbsp;&#151; 259F</td>
+          <td style="width: 30%">Block Elements</td>
+          <td style="width: 30%">Символы заполнения</td>
+          <td style="text-align: center; width: 24%">E2 96 80&nbsp;&#151; E2 96 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">25A0&nbsp;&#151; 25FF</td>
+          <td style="width: 30%">Geometric Shapes</td>
+          <td style="width: 30%">Геометрические символы</td>
+          <td style="text-align: center; width: 24%">E2 96 A0&nbsp;&#151; E2 97 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2600&nbsp;&#151; 26FF</td>
+          <td style="width: 30%">Miscellaneous Symbols</td>
+          <td style="width: 30%">Различные значки</td>
+          <td style="text-align: center; width: 24%">E2 98 80&nbsp;&#151; E2 9B BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2700&nbsp;&#151; 27BF</td>
+          <td style="width: 30%">Dingbats</td>
+          <td style="width: 30%">Значки Dingbats</td>
+          <td style="text-align: center; width: 24%">E2 9C 80&nbsp;&#151; E2 9E BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">27C0&nbsp;&#151; 27FF</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">E2 9F 80&nbsp;&#151; E2 9F BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2800&nbsp;&#151; 28FF</td>
+          <td style="width: 30%">Braille Patterns</td>
+          <td style="width: 30%">Шрифт Брайля</td>
+          <td style="text-align: center; width: 24%">E2 A0 80&nbsp;&#151; E2 A3 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2900&nbsp;&#151; 2E7F</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">E2 A4 80&nbsp;&#151; E2 B9 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2E80&nbsp;&#151; 2EFF</td>
+          <td style="width: 30%">CJK Radicals Supplement</td>
+          <td style="width: 30%">Дополнительные ключи к иероглифам</td>
+          <td style="text-align: center; width: 24%">E2 BA 80&nbsp;&#151; E2 BB BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2F00&nbsp;&#151; 2FDF</td>
+          <td style="width: 30%">Kangxi Radicals</td>
+          <td style="width: 30%">Кандзи (ключи к иероглифам)</td>
+          <td style="text-align: center; width: 24%">E2 BC 80&nbsp;&#151; E2 BF 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2FE0&nbsp;&#151; 2FEF</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">E2 BF A0&nbsp;&#151; E2 BF AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">2FF0&nbsp;&#151; 2FFF</td>
+          <td style="width: 30%">Ideographic Description Characters</td>
+          <td style="width: 30%">Описания идеограмм</td>
+          <td style="text-align: center; width: 24%">E2 BF B0&nbsp;&#151; E2 BF BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">3000&nbsp;&#151; 303F</td>
+          <td style="width: 30%">CJK Symbols and Punctuation</td>
+          <td style="width: 30%">Идеографические символы и знаки препинания</td>
+          <td style="text-align: center; width: 24%">E3 80 80&nbsp;&#151; E3 80 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">3040&nbsp;&#151; 309F</td>
+          <td style="width: 30%">Hiragana</td>
+          <td style="width: 30%">Хирагана (японское письмо)</td>
+          <td style="text-align: center; width: 24%">E3 81 80&nbsp;&#151; E3 82 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">30A0&nbsp;&#151; 30FF</td>
+          <td style="width: 30%">Katakana</td>
+          <td style="width: 30%">Катакана (японское письмо)</td>
+          <td style="text-align: center; width: 24%">E3 82 A0&nbsp;&#151; E3 83 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">3100&nbsp;&#151; 312F</td>
+          <td style="width: 30%">Bopomofo</td>
+          <td style="width: 30%">Китайское слоговое письмо</td>
+          <td style="text-align: center; width: 24%">E3 84 80&nbsp;&#151; E3 84 AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">3130&nbsp;&#151; 318F</td>
+          <td style="width: 30%">Hangul Compatibility Jamo</td>
+          <td style="width: 30%">Корейское совместимое письмо</td>
+          <td style="text-align: center; width: 24%">E3 84 B0&nbsp;&#151; E3 86 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">3190&nbsp;&#151; 319F</td>
+          <td style="width: 30%">Kanbun</td>
+          <td style="width: 30%">Камбун</td>
+          <td style="text-align: center; width: 24%">E3 86 90&nbsp;&#151; E3 86 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">31A0&nbsp;&#151; 31BF</td>
+          <td style="width: 30%">Bopomofo Extended</td>
+          <td style="width: 30%">Китайское расширенное слоговое письмо</td>
+          <td style="text-align: center; width: 24%">E3 86 A0&nbsp;&#151; E3 86 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">31C0&nbsp;&#151; 31FF</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">E3 87 80&nbsp;&#151; E3 87 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">3200&nbsp;&#151; 32FF</td>
+          <td style="width: 30%">Enclosed CJK Letters and Months</td>
+          <td style="width: 30%">Дальневосточные буквы и месяцы в кружочках</td>
+          <td style="text-align: center; width: 24%">E3 88 80&nbsp;&#151; E3 8B BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">3300&nbsp;&#151; 33FF</td>
+          <td style="width: 30%">CJK Compatibility</td>
+          <td style="width: 30%">Дальневосточные совместимые символы</td>
+          <td style="text-align: center; width: 24%">E3 8C 80&nbsp;&#151; E3 8F BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">3400&nbsp;&#151; 4DB5</td>
+          <td style="width: 30%">CJK Unified Ideographs Extension A</td>
+          <td style="width: 30%">Унифицированные иероглифы, расширение А</td>
+          <td style="text-align: center; width: 24%">E3 90 80&nbsp;&#151; E4 B6 B5</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">4DB6&nbsp;&#151; 4DFF</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">E4 B6 B6&nbsp;&#151; E4 B7 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">4E00&nbsp;&#151; 9FFF</td>
+          <td style="width: 30%">CJK Unified Ideographs</td>
+          <td style="width: 30%">Унифицированные иероглифы</td>
+          <td style="text-align: center; width: 24%">E4 B8 80&nbsp;&#151; E9 BF BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">A000&nbsp;&#151; A48F</td>
+          <td style="width: 30%">Yi Syllables</td>
+          <td style="width: 30%">Слоговое письмо ицзу (и)</td>
+          <td style="text-align: center; width: 24%">EA 80 80&nbsp;&#151; EA 92 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">A490&nbsp;&#151; A4CF</td>
+          <td style="width: 30%">Yi Radicals</td>
+          <td style="width: 30%">Ключи письма ицзу (и)</td>
+          <td style="text-align: center; width: 24%">EA 92 90&nbsp;&#151; EA 93 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">A4D0&nbsp;&#151; ABFF</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">EA 93 90&nbsp;&#151; EA AF BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">AC00&nbsp;&#151; D7A3</td>
+          <td style="width: 30%">Hangul Syllables</td>
+          <td style="width: 30%">Корейское слоговое письмо</td>
+          <td style="text-align: center; width: 24%">EA B0 80&nbsp;&#151; ED 9E A3</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">D7A4&nbsp;&#151; D7FF</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">ED 9E A4&nbsp;&#151; ED 9F BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">D800&nbsp;&#151; DB7F</td>
+          <td style="width: 30%">High Surrogates</td>
+          <td style="width: 30%">Первый байт суррогатных символов</td>
+          <td style="text-align: center; width: 24%">ED A0 80&nbsp;&#151; ED AD BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">DB80&nbsp;&#151; DBFF</td>
+          <td style="width: 30%">High Private Use Surrogates</td>
+          <td style="width: 30%">Первый байт личных суррогатных символов</td>
+          <td style="text-align: center; width: 24%">ED AE 80&nbsp;&#151; ED AF BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">DC00&nbsp;&#151; DFFF</td>
+          <td style="width: 30%">Low Surrogates</td>
+          <td style="width: 30%">Второй байт суррогатных символов</td>
+          <td style="text-align: center; width: 24%">ED B0 80&nbsp;&#151; ED BF BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">E000&nbsp;&#151; F8FF</td>
+          <td style="width: 30%">Private Use Area</td>
+          <td style="width: 30%">Область личных символов</td>
+          <td style="text-align: center; width: 24%">EE 80 80&nbsp;&#151; EF A3 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">F900&nbsp;&#151; FAFF</td>
+          <td style="width: 30%">CJK Compatibility Ideographs</td>
+          <td style="width: 30%">Совместимые иероглифы</td>
+          <td style="text-align: center; width: 24%">EF A4 80&nbsp;&#151; EF AB BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FB00&nbsp;&#151; FB4F</td>
+          <td style="width: 30%">Alphabetic Presentation Forms</td>
+          <td style="width: 30%">Декоративные варианты букв</td>
+          <td style="text-align: center; width: 24%">EF AC 80&nbsp;&#151; EF AD 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FB50&nbsp;&#151; FDFF</td>
+          <td style="width: 30%">Arabic Presentation Forms-A</td>
+          <td style="width: 30%">Арабское декоративное письмо-A</td>
+          <td style="text-align: center; width: 24%">EF AD 90&nbsp;&#151; EF B7 BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FE00&nbsp;&#151; FE1F</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>резерв</em></td>
+          <td style="text-align: center; width: 24%">EF B8 80&nbsp;&#151; EF B8 9F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FE20&nbsp;&#151; FE2F</td>
+          <td style="width: 30%">Combining Half Marks</td>
+          <td style="width: 30%">Диакритические знаки половинной ширины</td>
+          <td style="text-align: center; width: 24%">EF B8 A0&nbsp;&#151; EF B8 AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FE30&nbsp;&#151; FE4F</td>
+          <td style="width: 30%">CJK Compatibility Forms</td>
+          <td style="width: 30%">Декоративные дальневосточные формы</td>
+          <td style="text-align: center; width: 24%">EF B8 B0&nbsp;&#151; EF B9 8F</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FE50&nbsp;&#151; FE6F</td>
+          <td style="width: 30%">Small Form Variants</td>
+          <td style="width: 30%">Малые варианты символов</td>
+          <td style="text-align: center; width: 24%">EF B9 90&nbsp;&#151; EF B9 AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FE70&nbsp;&#151; FEFE</td>
+          <td style="width: 30%">Arabic Presentation Forms-B</td>
+          <td style="width: 30%">Арабское декоративное письмо-B</td>
+          <td style="text-align: center; width: 24%">EF B9 B0&nbsp;&#151; EF BB BE</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FEFF</td>
+          <td style="width: 30%">Zero Width No-break Space</td>
+          <td style="width: 30%">Неразрывный пробел нулевой ширины</td>
+          <td style="text-align: center; width: 24%">EF BB BF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FF00&nbsp;&#151; FFEF</td>
+          <td style="width: 30%">Halfwidth and Fullwidth Forms</td>
+          <td style="width: 30%">Символы полной и половинной ширины</td>
+          <td style="text-align: center; width: 24%">EF BC 80&nbsp;&#151; EF BF AF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FFF0&nbsp;&#151; FFFD</td>
+          <td style="width: 30%">Specials</td>
+          <td style="width: 30%">Специальные символы</td>
+          <td style="text-align: center; width: 24%">EF BF B0&nbsp;&#151; EF BF BD</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; width: 16%">FFFE&nbsp;&#151; FFFF</td>
+          <td colspan="2" style="text-align: center; width: 60%"><em>не используются</em></td>
+          <td style="text-align: center; width: 24%">EF BF BE&nbsp;&#151; EF BF BF</td>
+        </tr>
+      </table>
+
+      <h2><a name="utf8">Формат UTF-8</a></h2>
+
+      <p>Стандарт Unicode является основой для хранения и текста во многих современных компьютерных
+        системах. Однако, он не совместим с большинством Интернет-протоколов, поскольку его коды могут
+        содержать любые байтовые значения, а протоколы обычно используют байты 00 - 1F и FE - FF в качестве
+        служебных. Для достижения совместимости были разработаны несколько <em>форматов преобразования
+        Unicode</em> (UTFs, Unicode Transformation Formats), из которых на сегодня наиболее распространенным
+        является UTF-8. Этот формат определяет следующие правила преобразования каждого кода Unicode
+        в набор байтов (от одного до трех), пригодных для транспортировки Интернет-протоколами.</p>
+
+      <div style="margin-left: 2em">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Диапазон Unicode</th>
+            <th>Двоичный код символа</th>
+            <th>Байты UTF-8 (двоичные)</th>
+          </tr>
+          <tr>
+            <td>0000 - 007F</td>
+            <td>00000000 0zzzzzzz</td>
+            <td>0zzzzzzzz</td>
+          </tr>
+          <tr>
+            <td>0080 - 07FF</td>
+            <td>00000yyy yyzzzzzz</td>
+            <td>110yyyyy 10zzzzzz</td>
+          </tr>
+          <tr>
+            <td>0800 - FFFF</td>
+            <td>xxxxyyyy yyzzzzzz</td>
+            <td>1110xxxx 10yyyyyy 10zzzzzz</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>Здесь x,y,z обозначают биты исходного кода, которые должны извлекаться, начиная с младшего,
+        и заноситься в байты результата справа налево, пока не будут заполнены все указанные позиции.</p>
+
+      <p>Подробное описание формата UTF-8 содержится в <a target="_blank" href="http://www.faqs.org/rfcs/rfc2279.html">RFC
+        2279</a> <img src="images/extref.gif" alt="Внешняя ссылка">.</p>
+
+      <h2><a name="utf16">Формат UTF-16</a></h2>
+
+      <p>Дальнейшее развитие стандарта Unicode связано с добавлением новых <em>языковых плоскостей</em>, т.&nbsp;е.
+        символов в диапазонах 10000 - 1FFFF, 20000 - 2FFFF и т.&nbsp;д., куда предполагается включать кодировку для письменностей
+        мертвых языков, не попавших в таблицу, приведенную выше. Для кодирования этих дополнительных символов
+        был разработан новый формат UTF-16 (см. <a target="_blank" href="http://www.faqs.org/rfcs/rfc2781.html">RFC 2781</a>
+        <img src="images/extref.gif" alt="Внешняя ссылка">).
+        Мы не приводим его подробного описания по единственной причине: для базовой языковой плоскости, т.&nbsp;е. для
+        символов с кодами от 0000 до FFFF, он совпадает с Unicode. Поэтому, если вы не собираетесь писать Веб-страницы
+        на языке шумеров или майя, можете смело отождествлять два эти формата.</p>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>

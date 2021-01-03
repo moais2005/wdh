@@ -1,0 +1,1519 @@
+         <caption style="text-align: left">Свойства интерфейса CSSRule</caption>
+          <tr>
+            <th>Свойство</th>
+            <th>Изменяемое</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssrule-csstext">cssText</a></tt></td>
+            <td>Да</td>
+            <td>DOM 2</td>
+            <td>Текст оператора.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssrule-parentrule">parentRule</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Директива, содержащая данный оператор.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssrule-parentstylesheet">parentStyleSheet</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Таблица стилей, содержащая данный оператор.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssrule-type">type</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Тип оператора.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hcssrule-csstext">Свойство cssText</a></h4>
+
+<pre class="syntax"><strong><a name="pcssrule-csstext">Синтаксис</a></strong>:  <em>объект</em>.cssText
+<strong>Изменяемое</strong>: да
+<strong>Иcключения</strong>: SYNTAX_ERR, INVALID_MODIFICATION_ERR, HIERARCHY_REQUEST_ERR,
+            NO_MODIFICATION_ALLOWED_ERR (при записи)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Нестандартная.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>cssText</strong> позволяет читать или задавать текстовое представление данного оператора.
+        При задании нового текста оператора возможна генерация перечисленных выше исключений. Следующий пример выводит
+        на экран текст первого оператора первой таблицы стилей документа:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].cssText);</pre>
+      </div>
+
+      <p>В Internet Explorer этот оператор должен выглядеть так:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].rules[0].style.cssText);</pre>
+      </div>
+
+      <h4><a name="hcssrule-parentrule">Свойство parentRule</a></h4>
+
+<pre class="syntax"><strong><a name="pcssrule-parentrule">Синтаксис</a></strong>:  <em>объект</em>.parentRule
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Если данный оператор вложен в другой оператор CSS (например, в директиву <strong><a href="css01.htm#ref216">@media</a></strong>),
+        то свойство <strong>parentRule</strong> возвращает объект <tt>CSSRule</tt> для оператора, содержащего данный. В противном случае
+        возвращается <strong>null</strong>. Пример:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].parentRule);</pre>
+      </div>
+
+      <p>В объектной модели MSHTML директивы CSS недоступны, и ссылку на оператор, содержащий данный, получить невозможно.</p>
+
+      <h4><a name="hcssrule-parentstylesheet">Свойство parentStyleSheet</a></h4>
+
+<pre class="syntax"><strong><a name="pcssrule-parentstylesheet">Синтаксис</a></strong>:  <em>объект</em>.parentStyleSheet
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>parentStyleSheet</strong> возвращает объект <tt><a href="#ref4915">CSSStyleSheet</a></tt>, соответствующий таблице стилей,
+        содержащее данный оператор. Пример:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].parentStyleSheet);</pre>
+      </div>
+
+      <p>В MSHTML правила CSS не содержат ссылки на свою таблицу стилей.</p>
+
+      <h4><a name="hcssrule-type">Свойство type</a></h4>
+
+<pre class="syntax"><strong><a name="pcssrule-type">Синтаксис</a></strong>:  <em>объект</em>.type
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>type</strong> возвращает целое число, означающее тип данного оператора CSS в соответствии со следующей таблицей:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption><a name="table45">Таблица 4.5. Типы операторов CSS</a></caption>
+          <tr>
+            <th>Название</th>
+            <th>Значение</th>
+            <th>Интерфейс</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt>UNKNOWN_RULE</tt></td>
+            <td>0</td>
+            <td><tt><a href="#ref4913">CSSUnknownRule</a></tt></td>
+            <td>Неизвестный оператор</td>
+          </tr>
+          <tr>
+            <td><tt>STYLE_RULE</tt></td>
+            <td>1</td>
+            <td><tt><a href="#ref497">CSSStyleRule</a></tt></td>
+            <td>Правило CSS</td>
+          </tr>
+          <tr>
+            <td><tt>CHARSET_RULE</tt></td>
+            <td>2</td>
+            <td><tt><a href="#ref4912">CSSCharsetRule</a></tt></td>
+            <td>Директива <strong><a href="css01.htm#ref2132">@charset</a></strong></td>
+          </tr>
+          <tr>
+            <td><tt>IMPORT_RULE</tt></td>
+            <td>3</td>
+            <td><tt><a href="#ref4911">CSSImportRule</a></tt></td>
+            <td>Директива <strong><a href="css03.htm#ref233">@import</a></strong></td>
+          </tr>
+          <tr>
+            <td><tt>MEDIA_RULE</tt></td>
+            <td>4</td>
+            <td><tt><a href="#ref498">CSSMediaRule</a></tt></td>
+            <td>Директива <strong><a href="css01.htm#ref216">@media</a></strong></td>
+          </tr>
+          <tr>
+            <td><tt>FONT_FACE_RULE</tt></td>
+            <td>5</td>
+            <td><tt><a href="#ref499">CSSFontFaceRule</a></tt></td>
+            <td>Директива <strong><a href="css08.htm#ref2832">@font-face</a></strong></td>
+          </tr>
+          <tr>
+            <td><tt>PAGE_RULE</tt></td>
+            <td>6</td>
+            <td><tt><a href="#ref4910">CSSPageRule</a></tt></td>
+            <td>Директива <strong><a href="css12.htm#ref2122">@page</a></strong></td>
+          </tr>
+        </table>
+      </div>
+
+      <p>В объектной модели MSHTML доступны только правила CSS, но не директивы, поэтому данное свойство лишено смысла и не поддерживается.</p>
+
+      <h3><a name="ref497">4.9.7. Правила CSS: интерфейс CSSStyleRule</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Нестандартная.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Интерфейс <tt>CSSStyleRule</tt>&nbsp;&#151; это интерфейс, производный от <tt><a href="#ref496">CSSRule</a></tt> и
+        соответствующий одному <a href="css01.htm#cssrule">правилу языка CSS</a>. Напомним, что правило CSS состоит из селектора
+        и блока деклараций. Поэтому данный интерфейс имеет два дополнительных свойства:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Свойства интерфейса CSSStyleRule</caption>
+          <tr>
+            <th>Свойство</th>
+            <th>Изменяемое</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssstylerule-selectortext">selectorText</a></tt></td>
+            <td>Да</td>
+            <td>DOM 2</td>
+            <td>Текст селектора.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssstylerule-style">style</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Блок деклараций.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hcssstylerule-selectortext">Свойство selectorText</a></h4>
+
+<pre class="syntax"><strong><a name="pcssstylerule-selectortext">Синтаксис</a></strong>:  <em>объект</em>.selectorText
+<strong>Изменяемое</strong>: да
+<strong>Иcключения</strong>: SYNTAX_ERR, NO_MODIFICATION_ALLOWED_ERR (при записи)</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Нестандартная.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>selectorText</strong> позволяет читать или задавать текст селектора данного правила.
+        При задании нового текста селектора возможна генерация перечисленных выше исключений. Следующий пример выводит
+        на экран текст селектора первого оператора первой таблицы стилей документа:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].selectorText);</pre>
+      </div>
+
+      <p>В Internet Explorer этот оператор должен выглядеть так:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].rules[0].selectorText);</pre>
+      </div>
+
+      <h4><a name="hcssstylerule-style">Свойство style</a></h4>
+
+<pre class="syntax"><strong><a name="pcssstylerule-style">Синтаксис</a></strong>:  <em>объект</em>.style
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Нестандартная.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>style</strong> возвращает объект <tt><a href="dhtml10.htm#ref4108">CSSStyleDeclaration</a></tt>, содержащий блок деклараций
+        данного правила. Пример чтения значения отдельного свойства CSS:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].style.fontFamily);</pre>
+      </div>
+
+      <p>В Internet Explorer этот оператор должен выглядеть так:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].rules[0].style.fontFamily);</pre>
+      </div>
+
+      <h3><a name="ref498">4.9.8. Директива @media: интерфейс CSSMediaRule</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Интерфейс <tt>CSSMediaRule</tt>&nbsp;&#151; это интерфейс, производный от <tt><a href="#ref496">CSSRule</a></tt> и
+        соответствующий <a href="css01.htm#ref216">директиве @media</a>. Он имеет следующие дополнительные свойства и методы:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Свойства интерфейса CSSMediaRule</caption>
+          <tr>
+            <th>Свойство</th>
+            <th>Изменяемое</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssmediarule-cssrules">cssRules</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Коллекция правил директивы.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssmediarule-media">media</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Коллекция устройств отображения.</td>
+          </tr>
+        </table>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Методы интерфейса CSSMediaRule</caption>
+          <tr>
+            <th>Метод</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#mcssmediarule-deleterule">deleteRule</a></tt></td>
+            <td>DOM 2</td>
+            <td>Удаляет заданное правило.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#mcssmediarule-insertrule">insertRule</a></tt></td>
+            <td>DOM 2</td>
+            <td>Вставляет новое правило.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hcssmediarule-cssrules">Свойство cssRules</a></h4>
+
+<pre class="syntax"><strong><a name="pcssmediarule-cssrules">Синтаксис</a></strong>:  <em>объект</em>.cssRules
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>cssRules</strong> возвращает объект <tt><a href="#ref4914">CSSRuleList</a></tt>, содержащий список правил данной директивы. Пример:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].cssRules.length);</pre>
+      </div>
+
+      <h4><a name="hcssmediarule-media">Свойство media</a></h4>
+
+<pre class="syntax"><strong><a name="pcssmediarule-media">Синтаксис</a></strong>:  <em>объект</em>.media
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>media</strong> возвращает объект <tt><a href="#ref492">MediaList</a></tt>, содержащий список устройств отображения данной директивы. Пример:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].media.length);</pre>
+      </div>
+
+      <h4><a name="hcssmediarule-deleterule">Метод deleteRule</a></h4>
+
+<pre class="syntax"><strong><a name="mcssmediarule-deleterule">Синтаксис</a></strong>:  <em>объект</em>.deleteRule(index)
+<strong>Аргументы</strong>:  index&nbsp;&#151; числовое выражение
+<strong>Исключения</strong>: INDEX_SIZE_ERR, NO_MODIFICATION_ALLOWED_ERR</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Метод <strong>deleteRule</strong> удаляет правило с номером <tt>index</tt> из коллекции <tt><a href="#pcssmediarule-cssrules">cssRules</a></tt>.
+        Индекс должен лежать в диапазоне от 0 до <tt>cssRules.length-1</tt> включительно. Пример:</p>
+
+      <div class="code">
+<pre class="code">document.styleSheets[0].cssRules[0].deleteRule(0);</pre>
+      </div>
+
+      <h4><a name="hcssmediarule-insertrule">Метод insertRule</a></h4>
+
+<pre class="syntax"><strong><a name="mcssmediarule-insertrule">Синтаксис</a></strong>:  <em>объект</em>.insertRule(rule, index)
+<strong>Аргументы</strong>:  rule&nbsp;&#151; выражение типа <a href="dhtml02.htm#domstring">DOMString</a>
+            index&nbsp;&#151; числовое выражение
+<strong>Исключения</strong>: HIERARCHY_REQUEST_ERR, INDEX_SIZE_ERR, NO_MODIFICATION_ALLOWED_ERR,
+            SYNTAX_ERR</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Метод <strong>insertRule</strong> вставляет новое правило в коллекцию <tt><a href="#pcssmediarule-cssrules">cssRules</a></tt>
+        перед правилом с номером <tt>index</tt>. Текст правила, включая селектор и декларацию, задается аргументом <tt>rule</tt>. 
+        Индекс должен лежать в диапазоне от 0 до <tt>cssRules.length</tt>; если он равен <tt>cssRules.length</tt>, то новое правило
+        добавляется в конец коллекции. Пример:</p>
+
+      <div class="code">
+<pre class="code">document.styleSheets[0].cssRules[0].insertRule("BODY { color: red }", 0);</pre>
+      </div>
+
+      <h3><a name="ref499">4.9.9. Директива @font-face: интерфейс CSSFontFaceRule</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Интерфейс <tt>CSSFontFaceRule</tt>&nbsp;&#151; это интерфейс, производный от <tt><a href="#ref496">CSSRule</a></tt> и
+        соответствующий <a href="css08.htm#ref2832">директиве @font-face</a>. Он имеет одно дополнительное свойство <tt>style</tt>.</p>
+
+      <h4><a name="hcssfontfacerule-style">Свойство style</a></h4>
+
+<pre class="syntax"><strong><a name="pcssfontfacerule-style">Синтаксис</a></strong>:  <em>объект</em>.style
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>style</strong> возвращает объект <tt><a href="dhtml10.htm#ref4108">CSSStyleDeclaration</a></tt>, содержащий блок деклараций
+        данной директивы. Пример чтения значения отдельного дескриптора шрифта:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].style.fontFamily);</pre>
+      </div>
+
+      <h3><a name="ref4910">4.9.10. Директива @page: интерфейс CSSPageRule</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Интерфейс <tt>CSSPageRule</tt>&nbsp;&#151; это интерфейс, производный от <tt><a href="#ref496">CSSRule</a></tt> и
+        соответствующий <a href="css12.htm#ref2122">директиве @page</a>. Он имеет два дополнительных свойства
+        <tt><a href="#pcssstylerule-selectortext">selectorText</a></tt> и <tt><a href="#pcssstylerule-style">style</a></tt>,
+        которые соответствуют одноименным свойствам интерфейса <a href="#ref497">CSSStyleRule</a>.</p>
+
+      <h3><a name="ref4911">4.9.11. Директива @import: интерфейс CSSImportRule</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Интерфейс <tt>CSSImportRule</tt>&nbsp;&#151; это интерфейс, производный от <tt><a href="#ref496">CSSRule</a></tt> и
+        соответствующий <a href="css03.htm#ref233">директиве @import</a>. Он имеет следующие дополнительные свойства:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Свойства интерфейса CSSImportRule</caption>
+          <tr>
+            <th>Свойство</th>
+            <th>Изменяемое</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssimportrule-href">href</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>URI импортируемой таблицы стилей.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssimportrule-media">media</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Коллекция устройств отображения.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcssimportrule-stylesheet">styleSheet</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Указатель на импортируемую таблицу стилей.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hcssimportrule-href">Свойство href</a></h4>
+
+<pre class="syntax"><strong><a name="pcssimportrule-href">Синтаксис</a></strong>:  <em>объект</em>.href
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>href</strong> возвращает URI файла импортируемой таблицы стилей, например,</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].href);</pre>
+      </div>
+
+      <h4><a name="hcssimportrule-media">Свойство media</a></h4>
+
+<pre class="syntax"><strong><a name="pcssimportrule-media">Синтаксис</a></strong>:  <em>объект</em>.media
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>media</strong> возвращает объект <tt><a href="#ref492">MediaList</a></tt>, содержащий список устройств отображения данной директивы. Пример:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].media.length);</pre>
+      </div>
+
+      <h4><a name="hcssimportrule-stylesheet">Свойство styleSheet</a></h4>
+
+<pre class="syntax"><strong><a name="pcssimportrule-stylesheet">Синтаксис</a></strong>:  <em>объект</em>.styleSheet
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>styleSheet</strong> возвращает объект <tt><a href="#ref4915">CSSStyleSheet</a></tt>, соответствующий таблице стилей,
+        импортируемой данной директивой. Если таблица стилей еще не загружена (или не будет загружена из-за того, что текущего
+        устройства отображения нет в списке устройств директивы), то возвращается <strong>null</strong>. Пример:</p>
+
+      <div class="code">
+<pre class="code">alert(document.styleSheets[0].cssRules[0].styleSheet);</pre>
+      </div>
+
+      <h3><a name="ref4912">4.9.12. Директива @charset: интерфейс CSSCharsetRule</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Интерфейс <tt>CSSCharsetRule</tt>&nbsp;&#151; это интерфейс, производный от <tt><a href="#ref496">CSSRule</a></tt> и
+        соответствующий <a href="css01.htm#ref2132">директиве @charset</a>. Он имеет одно дополни      <p>Свойство <strong>currentTarget</strong> возвращает объект <tt><a href="#ref4112">EventTarget</a></tt>, соответствующий
+        узлу, чьи обработчики событий сейчас активизируются. Это свойство особенно полезно при перехвате и просачивании событий.</p>
+
+      <h4><a name="heventphase">Свойство eventPhase</a></h4>
+
+<pre class="syntax"><strong><a name="peventphase">Синтаксис</a></strong>:  <em>событие</em>.eventPhase
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>eventPhase</strong> возвращает текущую фазу обработки события, которая задается целым числом в
+        соответствии со следующей таблицей:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Название</th>
+            <th>Значение</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt>CAPTURING_PHASE</tt></td>
+            <td>1</td>
+            <td>Фаза обработки перехвата события.</td>
+          </tr>
+          <tr>
+            <td><tt>AT_TARGET</tt></td>
+            <td>2</td>
+            <td>Фаза активизации перехватчиков события узла.</td>
+          </tr>
+          <tr>
+            <td><tt>BUBBLING_PHASE</tt></td>
+            <td>3</td>
+            <td>Фаза обработки просачивания события.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4><a name="htarget">Свойство target</a></h4>
+
+<pre class="syntax"><strong><a name="ptarget">Синтаксис</a></strong>:  <em>событие</em>.target
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>target</strong> возвращает объект <tt><a href="#ref4112">EventTarget</a></tt>, соответствующий
+        узлу, для которого это событие было сгенерировано.</p>
+
+      <h4><a name="htimestamp">Свойство timeStamp</a></h4>
+
+<pre class="syntax"><strong><a name="ptimestamp">Синтаксис</a></strong>:  <em>событие</em>.timeStamp
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>timeStamp</strong> возвращает объект <tt><a href="dhtml02.htm#domtimestamp">DOMTimeStamp</a></tt>,
+        соответствующий времени генерации данного события. Для некоторых операционных систем и типов событий это значение
+        может быть недоступно; в таких случаях данное свойство должно возвращать 0.</p>
+
+      <h4><a name="htype">Свойство type</a></h4>
+
+<pre class="syntax"><strong><a name="ptype">Синтаксис</a></strong>:  <em>событие</em>.type
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>type</strong> возвращает название данного события в формате <tt><a href="dhtml02.htm#domstring">DOMString</a></tt>.
+        Это название должно быть <a href="xml01.htm#ref8134">именем языка XML</a>, не зависящим от регистра, но и MSHTML, и Gecko возвращают
+        название события строчными буквами, например: "click", "keydown", "resize".</p>
+
+      <h4><a name="hinitevent">Метод initEvent</a></h4>
+
+<pre class="syntax"><strong><a name="minitevent">Синтаксис</a></strong>:  <em>узел</em>.initEvent(eventType, canBubble, isCancelable)
+<strong>Аргументы</strong>:  eventType&nbsp;&#151; выражение типа <a href="dhtml02.htm#domstring">DOMString</a>
+            canBubble, isCancelable&nbsp;&#151; логические выражения</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Метод <strong>initEvent</strong> используется для инициализации параметров события, созданного методом <tt><a href="dhtml02.htm#mcreateevent">createEvent</a></tt>.
+        Он должен вызываться до того, как данное событие будет сгенерировано методом <tt><a href="#mdispatchevent">dispatchEvent</a></tt>,
+        и изменяет только те параметры события, которые задаются его аргументами. Аргумент <tt>eventType</tt> задает название данного события
+        в формате <tt><a href="dhtml02.htm#domstring">DOMString</a></tt>; это название должно быть <a href="xml01.htm#ref8134">именем языка XML</a>.
+        Аргументы <tt>canBubble</tt> и <tt>isCancelable</tt> указывают соответственно, является ли данное событие <a href="#ref41113">просачивающимся</a>
+        и <a href="#ref41114">отменяемым</a>.</p>
+
+      <h4><a name="hpreventdefault">Метод preventDefault</a></h4>
+
+<pre class="syntax"><strong><a name="mpreventdefault">Синтаксис</a></strong>:  <em>узел</em>.preventDefault()</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Метод <strong>preventDefault</strong> сообщает системе, что нужно отменить обработку данного события, принятую по умолчанию. Если
+        событие не является <a href="#ref41114">отменяемым</a>, то вызов этого метода игнорируется. Этот метод может быть вызван в
+        любой фазе обработки события.</p>
+
+      <h4><a name="hstoppropagation">Метод stopPropagation</a></h4>
+
+<pre class="syntax"><strong><a name="mstoppropagation">Синтаксис</a></strong>:  <em>узел</em>.stopPropagation()</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Метод <strong>stopPropagation</strong> сообщает системе, что нужно прекратить распространение данного события.
+         После его вызова завершается активация обработчиков событий текущего узла, и дальнейшее распространение события не происходит.
+         Этот метод может быть вызван в любой фазе обработки события.</p>
+
+      <h3><a name="ref4116">4.11.6. События пользовательского интерфейса: интерфейс UIEvent</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Интерфейс <tt>UIEvent</tt> является производным от интерфейса <tt><a href="#ref4115">Event</a></tt> и содержит
+        дополнительную информацию о событиях пользовательского интерфейса.</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Свойства интерфейса UIEvent</caption>
+          <tr>
+            <th>Свойство</th>
+            <th>Изменяемое</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#pdetail">detail</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Дополнительные сведения о событии.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pview">view</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Окно отображения документа.</td>
+          </tr>
+        </table>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Методы интерфейса UIEvent</caption>
+          <tr>
+            <th>Метод</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#minituievent">initUIEvent</a></tt></td>
+            <td>DOM 2</td>
+            <td>Инициализирует событие.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hdetail">Свойство detail</a></h4>
+
+<pre class="syntax"><strong><a name="pdetail">Синтаксис</a></strong>:  <em>событие</em>.detail
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>detail</strong> возвращает число, содержащее дополнительные сведения о данном событии. Его
+        значение зависит от типа события, как описано ниже.</p>
+
+      <h4><a name="hview">Свойство view</a></h4>
+
+<pre class="syntax"><strong><a name="pview">Синтаксис</a></strong>:  <em>событие</em>.view
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>view</strong> возвращает указатель на объект <tt><a href="dhtml13.htm#ref4131">AbstractView</a></tt>, соответствующий окну отображения документа,
+        в котором сгенерировано данное событие.</p>
+
+      <h4><a name="hinituievent">Метод initUIEvent</a></h4>
+
+<pre class="syntax"><strong><a name="minituievent">Синтаксис</a></strong>:  <em>узел</em>.initUIEvent(eventType, canBubble, isCancelable, view, detail)
+<strong>Аргументы</strong>:  eventType&nbsp;&#151; выражение типа <a href="dhtml02.htm#domstring">DOMString</a>
+            canBubble, isCancelable&nbsp;&#151; логические выражения
+            view&nbsp;&#151; выражение типа <a href="dhtml13.htm#ref4131">AbstractView</a>
+            detail&nbsp;&#151; числовое выражение</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Метод <strong>initUIEvent</strong> используется для инициализации параметров события пользовательского интерфейса, созданного методом 
+        <tt><a href="dhtml02.htm#mcreateevent">createEvent</a></tt>. Он должен вызываться до того, как данное событие будет сгенерировано методом
+        <tt><a href="#mdispatchevent">dispatchEvent</a></tt>, и изменяет только те параметры события, которые задаются его аргументами. Аргумент <tt>eventType</tt>
+        задает название данного события в формате <tt><a href="dhtml02.htm#domstring">DOMString</a></tt>; это название должно быть <a href="xml01.htm#ref8134">именем языка XML</a>.
+        Аргументы <tt>canBubble</tt> и <tt>isCancelable</tt> указывают соответственно, является ли данное событие <a href="#ref41113">просачивающимся</a>
+        и <a href="#ref41114">отменяемым</a>. Аргумент <tt>view</tt> задает окно отображения документа, а аргумент <tt>detail</tt>&nbsp;&#151; дополнительные сведения о событии.</p>
+
+      <h4><a name="uievents">Типы событий пользовательского интерфейса</a></h4>
+
+      <p>DOM 2 определяет три типа событий пользовательского интерфейса (которые пока обозревателями не поддерживаются):</p>
+
+      <dl>
+        <dt><strong><a name="edomfocusin">DOMFocusIn</a></strong></dt>
+        <dd>Это событие генерируется, когда объект получает фокус (например, при наведении на него курсора мыши или при попадании на него последовательными нажатиями клавиши Tab).
+          Оно аналогично событию <strong><a href="#efocus">focus</a></strong> в HTML, но применимо к любым объектам, способным получать фокус, а не только к управляющим элементам форм.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>false</strong>;</li>
+            <li>контекст: нет.</li>
+          </ul>
+        </dd>
+        <dt><strong><a name="edomfocusout">DOMFocusOut</a></strong></dt>
+        <dd>Это событие генерируется, когда объект теряет фокус (например, при удалении с него курсора мыши или при уходе с него нажатием клавиши Tab).
+          Оно аналогично событию <strong><a href="#eblur">blur</a></strong> в HTML, но применимо к любым объектам, способным получать фокус, а не только к управляющим элементам форм.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>false</strong>;</li>
+            <li>контекст: нет.</li>
+          </ul>
+        </dd>
+        <dt><strong><a name="edomactivate">DOMActivate</a></strong></dt>
+        <dd>Это событие генерируется при активизации элемента (например, щелчком мыши или нажатием клавиши).
+          Способ активизации указывается в свойстве <tt>detail</tt>: 1 означает обычную активизацию (одинарный щелчок мыши или
+          нажатие клавиши Enter), 2 означает гиперактивизацию (двойной щелчок мыши или нажатие Shift+Enter).
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>true</strong>;</li>
+            <li>контекст: <tt>detail</tt>.</li>
+          </ul>
+        </dd>
+      </dl>
+
+      <h3><a name="ref4117">4.11.7. События мыши: интерфейс MouseEvent</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Интерфейс <tt>MouseEvent</tt> является производным от интерфейса <tt><a href="#ref4116">UIEvent</a></tt> и содержит
+        дополнительную информацию о событиях, генерируемых мышью.</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Свойства интерфейса MouseEvent</caption>
+          <tr>
+            <th>Свойство</th>
+            <th>Изменяемое</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#paltkey">altKey</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Состояние клавиши Alt.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pbutton">button</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Номер кнопки мыши, изменившей состояние.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pclientx">clientX</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Горизонтальная координата события в клиентской области.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pclienty">clientY</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Вертикальная координата события в клиентской области.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pctrlkey">ctrlKey</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Состояние клавиши Ctrl.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pmetakey">metaKey</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Состояние клавиши Meta.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#prelatedtarget">relatedTarget</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Вторичная цель события.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pscreenx">screenX</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Горизонтальная координата события на экране.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pscreeny">screenY</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Вертикальная координата события на экране.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pshiftkey">shiftKey</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Состояние клавиши Shift.</td>
+          </tr>
+        </table>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Методы интерфейса MouseEvent</caption>
+          <tr>
+            <th>Метод</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#minitmouseevent">initMouseEvent</a></tt></td>
+            <td>DOM 2</td>
+            <td>Инициализирует событие.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="haltkey">Свойство altKey</a></h4>
+
+<pre class="syntax"><strong><a name="paltkey">Синтаксис</a></strong>:  <em>событие</em>.altKey
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>altKey</strong> возвращает <strong>true</strong>, если в момент генерации события была нажата клавиша Alt, и <strong>false</strong> в противном случае.</p>
+
+      <h4><a name="hbutton">Свойство button</a></h4>
+
+<pre class="syntax"><strong><a name="pbutton">Синтаксис</a></strong>:  <em>событие</em>.button
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Нестандартная.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>button</strong> возвращает номер кнопки мыши, нажатие или отпускание которой вызвало генерацию события.
+        При этом 0 означает левую кнопку, 1&nbsp;&#151; среднюю кнопку, 2&nbsp;&#151; правую кнопку. Если мышь сконфигурирована для
+        левой руки, то значения этого свойства присваиваются в обратном порядке.</p>
+
+      <h4><a name="hclientx">Свойство clientX</a></h4>
+
+<pre class="syntax"><strong><a name="pclientx">Синтаксис</a></strong>:  <em>событие</em>.clientX
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>clientX</strong> возвращает число, равное горизонтальной координате точки, в которой произошла генерация события,
+        относительно клиентской области обозревателя.</p>
+
+      <h4><a name="hclienty">Свойство clientY</a></h4>
+
+<pre class="syntax"><strong><a name="pclienty">Синтаксис</a></strong>:  <em>событие</em>.clientY
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>clientY</strong> возвращает число, равное вертикальной координате точки, в которой произошла генерация события,
+        относительно клиентской области обозревателя.</p>
+
+      <h4><a name="hctrlkey">Свойство ctrlKey</a></h4>
+
+<pre class="syntax"><strong><a name="pctrlkey">Синтаксис</a></strong>:  <em>событие</em>.ctrlKey
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>ctrlKey</strong> возвращает <strong>true</strong>, если в момент генерации события была нажата клавиша Ctrl, и <strong>false</strong> в противном случае.</p>
+
+      <h4><a name="hmetakey">Свойство metaKey</a></h4>
+
+<pre class="syntax"><strong><a name="pmetakey">Синтаксис</a></strong>:  <em>событие</em>.metaKey
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>metaKey</strong> возвращает <strong>true</strong>, если в момент генерации события была нажата клавиша Meta, и <strong>false</strong> в противном случае.</p>
+
+      <h4><a name="hrelatedtarget">Свойство relatedTarget</a></h4>
+
+<pre class="syntax"><strong><a name="prelatedtarget">Синтаксис</a></strong>:  <em>событие</em>.relatedTarget
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>relatedTarget</strong> возвращает вторичный объект <tt><a href="#ref4112">EventTarget</a></tt>, связанный с данным событием.
+        В настоящее время этот атрибут используется в событии <strong>mouseover</strong> для указания узла, который курсор мыши покинул, и в событии
+        <strong>mouseout</strong> для указания узла, на который курсор мыши попал.</p>
+
+      <h4><a name="hscreenx">Свойство screenX</a></h4>
+
+<pre class="syntax"><strong><a name="pscreenx">Синтаксис</a></strong>:  <em>событие</em>.screenX
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>screenX</strong> возвращает число, равное горизонтальной координате точки, в которой произошла генерация события,
+        относительно экрана.</p>
+
+      <h4><a name="hscreeny">Свойство screenY</a></h4>
+
+<pre class="syntax"><strong><a name="pscreeny">Синтаксис</a></strong>:  <em>событие</em>.screenY
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>screenY</strong> возвращает число, равное вертикальной координате точки, в которой произошла генерация события,
+        относительно экрана.</p>
+
+      <h4><a name="hshiftkey">Свойство shiftKey</a></h4>
+
+<pre class="syntax"><strong><a name="pshiftkey">Синтаксис</a></strong>:  <em>событие</em>.shiftKey
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Соответствует стандарту.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>shiftKey</strong> возвращает <strong>true</strong>, если в момент генерации события была нажата клавиша Shift, и <strong>false</strong> в противном случае.</p>
+
+      <h4><a name="hinitmouseevent">Метод initMouseEvent</a></h4>
+
+<pre class="syntax"><strong><a name="minitmouseevent">Синтаксис</a></strong>:  <em>узел</em>.initMouseEvent(eventType, canBubble, isCancelable, view, detail,
+                                screenX, screenY, clientX, clientY, ctrlKey, altKey,
+                                shiftKey, metaKey, button, relatedTarget)
+<strong>Аргументы</strong>:  eventType&nbsp;&#151; выражение типа <a href="dhtml02.htm#domstring">DOMString</a>
+            canBubble, isCancelable&nbsp;&#151; логические выражения
+            view&nbsp;&#151; выражение типа <a href="dhtml13.htm#ref4131">AbstractView</a>
+            detail, screenX, screenY, clientX, clientY, button&nbsp;&#151; числовые выражения
+            ctrlKey, altKey, shiftKey, metaKey&nbsp;&#151; логические выражения
+            relatedTarget&nbsp;&#151; выражение типа <tt><a href="#ref4112">EventTarget</a></tt></pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Метод <strong>initMouseEvent</strong> используется для инициализации параметров события мыши, созданного методом <tt><a href="dhtml02.htm#mcreateevent">createEvent</a></tt>.
+        Он должен вызываться до того, как данное событие будет сгенерировано методом <tt><a href="#mdispatchevent">dispatchEvent</a></tt>,
+        и изменяет только те параметры события, которые задаются его аргументами. Аргумент <tt>eventType</tt> задает название данного события
+        в формате <tt><a href="dhtml02.htm#domstring">DOMString</a></tt>; это название должно быть <a href="xml01.htm#ref8134">именем языка XML</a>.
+        Аргументы <tt>canBubble</tt> и <tt>isCancelable</tt> указывают соответственно, является ли данное событие <a href="#ref41113">просачивающимся</a>
+        и <a href="#ref41114">отменяемым</a>. Аргумент <tt>view</tt> задает окно отображения документа, аргумент <tt>detail</tt>&nbsp;&#151; количество щелчков мыши,
+        а остальные аргументы задают значения одноименных свойств события.</p>
+
+      <h4><a name="mouseevents">Типы событий мыши</a></h4>
+
+      <p>DOM 2 определяет следующие типы событий мыши:</p>
+
+      <dl>
+        <dt><strong><a name="eclick">click</a></strong></dt>
+        <dd>Это событие генерируется при щелчке мышью на элементе. Щелчок определяется как нажатие и отпускание кнопки мыши на одной и той же
+          точке экрана. Соответствующая последовательность генерируемых событий: <strong>mousedown</strong>, <strong>mouseup</strong>, <strong>click</strong>.
+          При двойном или множественном щелчке в одной точке количество щелчков заносится в свойство события <tt><a href="#pdetail">detail</a></tt>.
+          Это событие применимо к большинству элементов.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>true</strong>;</li>
+            <li>контекст: <tt>screenX</tt>, <tt>screenY</tt>, <tt>clientX</tt>, <tt>clientY</tt>, <tt>altKey</tt>, <tt>ctrlKey</tt>, <tt>shiftKey</tt>, <tt>metaKey</tt>, <tt>button</tt>, <tt>detail</tt>.</li>
+          </ul>
+        </dd>
+        <dt><strong><a name="emousedown">mousedown</a></strong></dt>
+        <dd>Это событие генерируется при нажатии кнопки мыши на элементе. Это событие применимо к большинству элементов.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>true</strong>;</li>
+            <li>контекст: <tt>screenX</tt>, <tt>screenY</tt>, <tt>clientX</tt>, <tt>clientY</tt>, <tt>altKey</tt>, <tt>ctrlKey</tt>, <tt>shiftKey</tt>, <tt>metaKey</tt>, <tt>button</tt>, <tt>detail</tt>.</li>
+          </ul>
+        </dd>
+        <dt><strong><a name="emouseup">mouseup</a></strong></dt>
+        <dd>Это событие генерируется при отпускании кнопки мыши на элементе. Это событие применимо к большинству элементов.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>true</strong>;</li>
+            <li>контекст: <tt>screenX</tt>, <tt>screenY</tt>, <tt>clientX</tt>, <tt>clientY</tt>, <tt>altKey</tt>, <tt>ctrlKey</tt>, <tt>shiftKey</tt>, <tt>metaKey</tt>, <tt>button</tt>, <tt>detail</tt>.</li>
+          </ul>
+        </dd>
+        <dt><strong><a name="emouseover">mouseover</a></strong></dt>
+        <dd>Это событие генерируется при попадании курсора мыши на элемент. Это событие применимо к большинству элементов.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>true</strong>;</li>
+            <li>контекст: <tt>screenX</tt>, <tt>screenY</tt>, <tt>clientX</tt>, <tt>clientY</tt>, <tt>altKey</tt>, <tt>ctrlKey</tt>, <tt>shiftKey</tt>, <tt>metaKey</tt>,
+            <tt>relatedTarget</tt> (элемент, который курсор мыши покинул).</li>
+          </ul>
+        </dd>
+        <dt><strong><a name="emouseout">mouseout</a></strong></dt>
+        <dd>Это событие генерируется при покидании курсором мыши элемента. Это событие применимо к большинству элементов.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>true</strong>;</li>
+            <li>контекст: <tt>screenX</tt>, <tt>screenY</tt>, <tt>clientX</tt>, <tt>clientY</tt>, <tt>altKey</tt>, <tt>ctrlKey</tt>, <tt>shiftKey</tt>, <tt>metaKey</tt>,
+            <tt>relatedTarget</tt> (элемент, на который курсор мыши попал).</li>
+          </ul>
+        </dd>
+        <dt><strong><a name="emousemove">mousemove</a></strong></dt>
+        <dd>Это событие генерируется при движении курсора мыши по элементу. Это событие применимо к большинству элементов.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>false</strong>;</li>
+            <li>контекст: <tt>screenX</tt>, <tt>screenY</tt>, <tt>clientX</tt>, <tt>clientY</tt>, <tt>altKey</tt>, <tt>ctrlKey</tt>, <tt>shiftKey</tt>, <tt>metaKey</tt>.</li>
+          </ul>
+        </dd>
+      </dl>
+
+      <h3><a name="ref4118">4.11.8. События клавиатуры: интерфейс KeyEvent</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Нестандартная.
+           <img src="images/gecko.gif" alt="Gecko"> Нестандартная.</pre>
+
+      <p>Интерфейс <tt>KeyEvent</tt> является производным от интерфейса <tt><a href="#ref4116">UIEvent</a></tt> и содержит
+        дополнительную информацию о событиях, генерируемых клавиатурой. DOM 2 не содержит спецификации этого интерфейса, она
+        будет включена в DOM 3. Поэтому здесь мы приводим описание реализации интерфейса <tt>KeyEvent</tt> в Gecko (см.
+        <a href="http://www.mozilla.org/editor/key-event-spec.html" target="_blank">"Key Events in SeaMonkey"</a>).</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Свойства интерфейса KeyEvent</caption>
+          <tr>
+            <th>Свойство</th>
+            <th>Изменяемое</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#paltkey">altKey</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Состояние клавиши Alt.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pcharcode">charCode</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Код Unicode клавиши.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pctrlkey">ctrlKey</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Состояние клавиши Ctrl.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pkeycode">keyCode</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Виртуальный код клавиши.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pmetakey">metaKey</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Состояние клавиши Meta.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pshiftkey">shiftKey</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Состояние клавиши Shift.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hcharcode">Свойство charCode</a></h4>
+
+<pre class="syntax"><strong><a name="pcharcode">Синтаксис</a></strong>:  <em>событие</em>.charCode
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>charCode</strong> действительно только для события <strong>keypress</strong>. Если нажатая клавиша
+        соответствует символу Unicode, то данное свойство возвращает код этого символа. Если же клавиша является служебной
+        или событие отлично от <strong>keypress</strong>, то возвращается 0.</p>
+
+      <h4><a name="hkeycode">Свойство keyCode</a></h4>
+
+<pre class="syntax"><strong><a name="pkeycode">Синтаксис</a></strong>:  <em>событие</em>.keyCode
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Нестандартная.
+           <img src="images/gecko.gif" alt="Gecko"> Соответствует стандарту.</pre>
+
+      <p>Свойство <strong>keyCode</strong> возвращает виртуальный код клавищи, вызвавшей событие, или 0, если <tt><a href="#pcharcode">charCode</a></tt> не равно нулю.
+        Список виртуальных кодов клавиш содержится в <a href="keycodes.htm#table181a">Таблице П18.1</a>.</p>
+
+      <h4><a name="keyevents">Типы событий клавиатуры</a></h4>
+
+      <p>Клавиатура всегда генерирует три отдельных события: <strong>keydown</strong> (нажатие клавиши), <strong>keypress</strong> (удержание нажатой клавиши)
+        и <strong>keyup</strong> (отпускание клавиши). Длительное нажатие клавиши приводит к тому, что событие <strong>keypress</strong> генерируется многократно.</p>
+
+      <dl>
+        <dt><strong><a name="ekeydown">keydown</a></strong></dt>
+        <dd>Генерируется при нажатии клавиши. Виртуальный код клавиши заносится в <tt>keyCode</tt>, <tt>charCode</tt> обнуляется.
+          Это событие применимо к большинству элементов.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>true</strong>;</li>
+            <li>контекст: <tt>altKey</tt>, <tt>ctrlKey</tt>, <tt>shiftKey</tt>, <tt>metaKey</tt>, <tt>keyCode</tt>.</li>
+          </ul>
+        </dd>
+        <dt><strong><a name="ekeypress">keypress</a></strong></dt>
+        <dd>Генерируется при удержании нажатой клавиши. Свойства <tt>keyCode</tt> и <tt>charCode</tt> формируются как описано выше.
+          Это событие применимо к большинству элементов.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>true</strong>;</li>
+            <li>контекст: <tt>altKey</tt>, <tt>ctrlKey</tt>, <tt>shiftKey</tt>, <tt>metaKey</tt>, <tt>keyCode</tt>, <tt>charCode</tt>.</li>
+          </ul>
+        </dd>
+        <dt><strong><a name="ekeyup">keyup</a></strong></dt>
+        <dd>Генерируется при отпускании клавиши. Виртуальный код клавиши заносится в <tt>keyCode</tt>, <tt>charCode</tt> обнуляется.
+          Это событие применимо к большинству элементов.
+          <ul>
+            <li><tt>bubbles</tt>: <strong>true</strong>;</li>
+            <li><tt>cancelable</tt>: <strong>true</strong>;</li>
+            <li>контекст: <tt>altKey</tt>, <tt>ctrlKey</tt>, <tt>shiftKey</tt>, <tt>metaKey</tt>, <tt>keyCode</tt>.</li>
+          </ul>
+        </dd>
+      </dl>
+
+      <h3><a name="ref4119">4.11.9. События изменения документа: интерфейс MutationEvent</a></h3>
+
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Интерфейс <tt>MutationEvent</tt> является производным от интерфейса <tt><a href="#ref4115">Event</a></tt> и содержит
+        дополнительную информацию о событиях, порожденных изменением структуры документа.</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Свойства интерфейса MutationEvent</caption>
+          <tr>
+            <th>Свойство</th>
+            <th>Изменяемое</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#pattrchange">attrChange</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Тип изменения атрибута.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pattrname">attrName</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Название изменившегося атрибута.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pnewvalue">newValue</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Новое значение атрибута или текста.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#pprevvalue">prevValue</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Старое значение атрибута или текста.</td>
+          </tr>
+          <tr>
+            <td><tt><a href="#prelatednode">relatedNode</a></tt></td>
+            <td>Нет</td>
+            <td>DOM 2</td>
+            <td>Вторичный узел, связанный с событием.</td>
+          </tr>
+        </table>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <caption style="text-align: left">Методы интерфейса MutationEvent</caption>
+          <tr>
+            <th>Метод</th>
+            <th>Модель</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt><a href="#minitmutationevent">initMutationEvent</a></tt></td>
+            <td>DOM 2</td>
+            <td>Инициализирует событие.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="vindent"><a name="hattrchange">Свойство attrChange</a></h4>
+
+<pre class="syntax"><strong><a name="pattrchange">Синтаксис</a></strong>:  <em>событие</em>.attrChange
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>attrChange</strong> возвращает тип изменения атрибута для события <strong><a href="#edomattrmodified">DOMAttrModified</a></strong>.
+        Тип изменения атрибута задается целым числом в соответствии со следующей таблицей:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Название</th>
+            <th>Значение</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td><tt>MODIFICATION</tt></td>
+            <td>1</td>
+            <td>Изменено значение атрибута.</td>
+          </tr>
+          <tr>
+            <td><tt>ADDITION</tt></td>
+            <td>2</td>
+            <td>Добавлен новый атрибут.</td>
+          </tr>
+          <tr>
+            <td><tt>REMOVAL</tt></td>
+            <td>3</td>
+            <td>Удален атрибут.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4><a name="hattrname">Свойство attrName</a></h4>
+
+<pre class="syntax"><strong><a name="pattrname">Синтаксис</a></strong>:  <em>событие</em>.attrName
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>attrName</strong> возвращает строку, содержащую название изменившегося атрибута для события <strong><a href="#edomattrmodified">DOMAttrModified</a></strong>.</p>
+
+      <h4><a name="hnewvalue">Свойство newValue</a></h4>
+
+<pre class="syntax"><strong><a name="pnewvalue">Синтаксис</a></strong>:  <em>событие</em>.newValue
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>newValue</strong> возвращает строку, содержащую новое значение узла <tt><a href="dhtml04.htm#ref441">Attr</a></tt>
+        для события <strong><a href="#edomattrmodified">DOMAttrModified</a></strong> или новое значение узла <tt><a href="dhtml04.htm#ref443">CharacterData</a></tt> для события
+        <strong><a href="#edomcharacterdatamodified">DOMCharacterDataModified</a></strong>.</p>
+
+      <h4><a name="hprevvalue">Свойство prevValue</a></h4>
+
+<pre class="syntax"><strong><a name="pprevvalue">Синтаксис</a></strong>:  <em>событие</em>.prevValue
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>prevValue</strong> возвращает строку, содержащую предыдущее значение узла <tt><a href="dhtml04.htm#ref441">Attr</a></tt>
+        для события <strong><a href="#edomattrmodified">DOMAttrModified</a></strong> или предыдущее значение узла <tt><a href="dhtml04.htm#ref443">CharacterData</a></tt> для события
+        <strong><a href="#edomcharacterdatamodified">DOMCharacterDataModified</a></strong>.</p>
+
+      <h4><a name="hrelatednode">Свойство relatedNode</a></h4>
+
+<pre class="syntax"><strong><a name="prelatednode">Синтаксис</a></strong>:  <em>событие</em>.relatedNode
+<strong>Изменяемое</strong>: нет</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Свойство <strong>relatedNode</strong> возвращает указатель на объект <tt><a href="dhtml03.htm#ref431">Node</a></tt>,
+        соответствующий вторичному узлу, связанному с данным событием. Какой именно узел является вторичным, зависит от события и
+        описано ниже для каждого из событий.</p>
+
+      <h4><a name="hinitmutationevent">Метод initMutationEvent</a></h4>
+
+<pre class="syntax"><strong><a name="minitmutationevent">Синтаксис</a></strong>:  <em>узел</em>.initMutationEvent(eventType, canBubble, isCancelable, relatedNode,
+                                   prevValue, newValue, attrName, attrChange)
+<strong>Аргументы</strong>:  eventType, prevValue, newValue, attrName&nbsp;&#151; выражения типа <a href="dhtml02.htm#domstring">DOMString</a>
+            canBubble, isCancelable&nbsp;&#151; логические выражения
+            relatedNode&nbsp;&#151; выражение типа <a href="dhtml03.htm#ref431">Node</a>
+            attrChange&nbsp;&#151; числовое выражение</pre>
+<pre class="support"><strong>Поддержка</strong>: <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается.
+           <img src="images/gecko.gif" alt="Gecko"> Не поддерживается.</pre>
+
+      <p>Метод <strong>initMutationEvent</strong> используется для инициализации параметров события изменения документа, созданного методом
+        <tt><a href="dhtml02.htm#mcreateevent">createEvent</a></tt>. Он должен вызываться до того, как данное событие будет сгенерировано методом
+        <tt><a href="#mdispatchevent">dispatchEvent</a></tt>, и изменяет только те параметры события, которые задаются его аргументами. Аргумент <tt>eventType</tt>
+        задает название данного события в формате <tt><a href="dhtml02.htm#domstring">DOMString</a></tt>; это название должно быть <a href="xml01.htm#ref8134">именем языка XML</a>.
+        Аргументы <tt>canBubble</tt> и <tt>isCancelable</tt> указывают соответственно, является ли данное событие <a href="#ref41113">просачивающимся</a>
+        и <a href="#ref41114">отменяемым</a>. Остальные аргументы задают значения одноименных свойств события.</p>
+
+      <h4><a name="mutationvents">Типы событий изменения документа</a></h4>
+
+      <p>DOM 2 определяет следующие типы событий изменения документа (которые обозревателями пока не поддерживаются):</p>
+
+      <dl>
+        <dt><strong><a name="edomsubtreemodified">DOMSubtreeModified</a></strong></dt>
+        <dd>Это событие носит общий характер и может использоваться вместо конкретных событий, описанных далее.
+          В зависимости от реализации оно может генерироваться либо после каждой модификации документа, либо после
+          группы взаимосвязанных изменений. Целью этого события является наименьший общий предок узлов, подвергшихся модификации.
+          <ul>
+            <li><tt>bub         <td><strong>face</strong> (морально устаревший)</td>
+            <td>Да</td>
+            <td>Да</td>
+          </tr>
+          <tr>
+            <td><tt>size</tt></td>
+            <td><tt><a href="dhtml02.htm#domstring">DOMString</a></tt></td>
+            <td><strong>size</strong> (морально устаревший)</td>
+            <td>Да</td>
+            <td>Да</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4><a name="ref4855">4.8.5.5. Интерфейс HTMLIsIndexElement</a></h4>
+
+      <p>Интерфейс <tt>HTMLIsIndexElement</tt> соответствует элементу <strong><a href="deprecat.htm#eisindex">ISINDEX</a></strong>. Он имеет следующие свойства:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Свойство</th>
+            <th>Тип</th>
+            <th>Атрибут</th>
+            <th>MSHTML</th>
+            <th>Gecko</th>
+          </tr>
+          <tr>
+            <td><tt>form</tt></td>
+            <td><tt><a href="#ref4831">HTMLFormElement</a></tt></td>
+            <td>Указатель на элемент <strong><a href="html08.htm#eform">FORM</a></strong>, содержащий данный элемент, или <strong>null</strong> (неизменяемый).</td>
+            <td>Да</td>
+            <td>Да</td>
+          </tr>
+          <tr>
+            <td><tt>prompt</tt></td>
+            <td><tt><a href="dhtml02.htm#domstring">DOMString</a></tt></td>
+            <td><strong>prompt</strong> (морально устаревший)</td>
+            <td>Да</td>
+            <td>Да</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4><a name="ref4856">4.8.5.6. Интерфейс HTMLMenuElement</a></h4>
+
+      <p>Интерфейс <tt>HTMLMenuElement</tt> соответствует элементу <strong><a href="deprecat.htm#emenu">MENU</a></strong>. Он имеет единственное свойство:</p>
+
+      <div class="indent">
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>Свойство</th>
+            <th>Тип</th>
+            <th>Атрибут</th>
+            <th>MSHTML</th>
+            <th>Gecko</th>
+          </tr>
+          <tr>
+            <td><tt>compact</tt></td>
+            <td>логический</td>
+            <td><strong>compact</strong> (морально устаревший)</td>
+            <td>Игнорируется</td>
+            <td>Игнорируется</td>
+          </tr>
+        </table>
+      </div>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+ бz      r Нo  r Нo  `бK4ЎU  `бK4ЎU  ong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>A<a href="css02.htm#ref2293">:active</a> { <a href="css07.htm#pcolor"><strong>color</strong></a>:
+            <a href="css01.htm#color">цвет</a> }</td>
+          <td>цвет активной гиперссылки</td>
+        </tr>
+        <tr>
+          <td><strong>background</strong> = <a href="html01.htm#uri">URI</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>BODY { <strong><a href="css07.htm#pbackground-image">background-image</a></strong>: url(<a href="css01.htm#uri">URI</a>)
+            }</td>
+          <td>файл фона документа</td>
+        </tr>
+        <tr>
+          <td><strong>bgcolor</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>BODY { <strong><a href="css07.htm#pbackground-color">background-color</a></strong>: <a href="css01.htm#color">цвет</a>
+            }</td>
+          <td>цвет фона документа</td>
+        </tr>
+        <tr>
+          <td><strong>bgcolor</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html05.htm#etable"><strong>TABLE</strong></a>, <a href="html05.htm#etr"><strong>TR</strong></a>,
+            <a href="html05.htm#etd"><strong>TD</strong></a>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td><a href="css07.htm#pbackground-color"><strong>background-color</strong></a>: <a href="css01.htm#color">цвет</a></td>
+          <td>цвет фона элемента</td>
+        </tr>
+        <tr>
+          <td><strong>border</strong> = <a href="html01.htm#pixels">пиксели</a></td>
+          <td><a href="html06.htm#eimg"><strong>IMG</strong></a>, <a href="html06.htm#eobject"><strong>OBJECT</strong></a></td>
+          <td><a href="css04.htm#pborder-width"><strong>border-width</strong></a>: thin | medium | thick
+            | <a href="css01.htm#length">размер</a></td>
+          <td>ширина рамки</td>
+        </tr>
+        <tr>
+          <td><strong>clear</strong> = <dfn>none</dfn> | <dfn>left</dfn> | <dfn>right</dfn> | <dfn>all</dfn></td>
+          <td><a href="html03.htm#ebr"><strong>BR</strong></a></td>
+          <td><a href="css05.htm#pclear"><strong>clear</strong></a>: <dfn>none</dfn> | <dfn>left</dfn>
+            | <dfn>right</dfn> | <dfn>both</dfn></td>
+          <td>тип обтекания текста</td>
+        </tr>
+        <tr>
+          <td><strong>color</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="#ebasefont"><strong>BASEFONT</strong></a>, <a href="#efont"><strong>FONT</strong></a></td>
+          <td><a href="css07.htm#pcolor"><strong>color</strong></a>: <a href="css01.htm#color">цвет</a></td>
+          <td>цвет шрифта</td>
+        </tr>
+        <tr>
+          <td><strong>compact</strong> = <dfn>compact</dfn></td>
+          <td><a href="#edir"><strong>DIR</strong></a>, <a href="html04.htm#edl"><strong>DL</strong></a>,
+            <a href="#emenu"><strong>MENU</strong></a>, <a href="html04.htm#eol"><strong>OL</strong></a>,
+            <a href="html04.htm#eul"><strong>UL</strong></a></td>
+          <td><a href="css11.htm#plist-style-position"><strong>list-style-position</strong></a>: <dfn>inside</dfn></td>
+          <td>компактное отображение списков</td>
+        </tr>
+        <tr>
+          <td><strong>face</strong> = <a href="html01.htm#cdata">CDATA</a></td>
+          <td><a href="#ebasefont"><strong>BASEFONT</strong></a>, <a href="#efont"><strong>FONT</strong></a></td>
+          <td><a href="css08.htm#pfont-family"><strong>font-family</strong></a>: список <a href="css01.htm#string">строк</a>
+            через запятую</td>
+          <td>гарнитура шрифта</td>
+        </tr>
+        <tr>
+          <td><strong>height</strong> = <a href="html01.htm#length">размер</a></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html05.htm#etd"><strong>TD</strong></a>,
+            <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td><a href="css06.htm#pheight"><strong>height</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>высота элемента</td>
+        </tr>
+        <tr>
+          <td><strong>hspace</strong> = <a href="html01.htm#pixels">пиксели</a></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html06.htm#eimg"><strong>IMG</strong></a>,
+            <a href="html06.htm#eobject"><strong>OBJECT</strong></a></td>
+          <td><a href="css04.htm#pmargin-left"><strong>margin-left</strong></a>: <a href="css01.htm#length">размер</a>;<br>
+            <a href="css04.htm#pmargin-right"><strong>margin-right</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>горизонтальный промежуток</td>
+        </tr>
+        <tr>
+          <td><strong>language</strong> = <a href="html01.htm#cdata">CDATA</a></td>
+          <td><a href="html09.htm#escript"><strong>SCRIPT</strong></a></td>
+          <td><em>нет</em></td>
+          <td>язык сценария</td>
+        </tr>
+        <tr>
+          <td><strong>link</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>A<a href="css02.htm#ref2292">:link</a> { <a href="css07.htm#pcolor"><strong>color</strong></a>:
+            <a href="css01.htm#color">цвет</a> }</td>
+          <td>цвет гиперссылок</td>
+        </tr>
+        <tr>
+          <td><strong>noshade</strong> = <dfn>noshade</dfn></td>
+          <td><a href="html10.htm#ehr"><strong>HR</strong></a></td>
+          <td><em>нет</em></td>
+          <td>отображение сплошным цветом</td>
+        </tr>
+        <tr>
+          <td><strong>nowrap</strong> = <dfn>nowrap</dfn></td>
+          <td><a href="html05.htm#etd"><strong>TD</strong></a>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td><a href="css09.htm#pwhite-space"><strong>white-space</strong></a>: <dfn>nowrap</dfn></td>
+          <td>без переноса слов на новую строку</td>
+        </tr>
+        <tr>
+          <td><strong>size</strong> = <a href="html01.htm#pixels">пиксели</a></td>
+          <td><a href="html10.htm#ehr"><strong>HR</strong></a></td>
+          <td><a href="css06.htm#pheight"><strong>height</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>высота разделителя</td>
+        </tr>
+        <tr>
+          <td><strong>size</strong> = <a href="html01.htm#cdata">CDATA</a></td>
+          <td><a href="#ebasefont"><strong>BASEFONT</strong></a>, <a href="#efont"><strong>FONT</strong></a></td>
+          <td><a href="css08.htm#pfont-size"><strong>font-size</strong></a>: <a href="css01.htm#number">число</a></td>
+          <td>размер шрифта</td>
+        </tr>
+        <tr>
+          <td><strong>start</strong> = <a href="html01.htm#number">число</a></td>
+          <td><a href="html04.htm#eol"><strong>OL</strong></a></td>
+          <td><em>нет</em></td>
+          <td>начальный номер элементов списка</td>
+        </tr>
+        <tr>
+          <td><strong>text</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>BODY { <a href="css07.htm#pcolor"><strong>color</strong></a>: <a href="css01.htm#color">цвет</a>
+            }</td>
+          <td>цвет текста документа</td>
+        </tr>
+        <tr>
+          <td><strong>type</strong> = 1 | a | A | i | I</td>
+          <td><a href="html04.htm#eol"><strong>OL</s U  css11.htб\      @{G4ЎU  xr Нo  @{G4ЎU  @{G4ЎU  ype</strong></a>: <dfn>decimal</dfn>
+            |<br>
+            <dfn>lower-latin</dfn> | <dfn>upper-latin</dfn> |<br>
+            <dfn>lower-roman</dfn> | <dfn>upper-roman</dfn></td>
+          <td>тип нумерованного списка</td>
+        </tr>
+        <tr>
+          <td><strong>type</strong> = <dfn>disc</dfn> | <dfn>square</dfn> | <dfn>circle</dfn></td>
+          <td><a href="html04.htm#eul"><strong>UL</strong></a></td>
+          <td><a href="css11.htm#plist-style-type"><strong>list-style-type</strong></a>: <dfn>disc</dfn>|
+            <br>
+            <dfn>square</dfn> | <dfn>circle</dfn></td>
+          <td>тип маркированного списка</td>
+        </tr>
+        <tr>
+          <td><strong>type</strong> = <dfn>disc</dfn> | <dfn>square</dfn> | <dfn>circle</dfn> | 1 |
+            a | A | i | I</td>
+          <td><a href="html04.htm#eli"><strong>LI</strong></a></td>
+          <td><a href="css11.htm#plist-style-type"><strong>list-style-type</strong></a>: <dfn>disc</dfn>
+            |<br>
+            <dfn>square</dfn> | <dfn>circle</dfn> | <dfn>decimal</dfn> |<br>
+            <dfn>lower-latin</dfn> | <dfn>upper-latin</dfn> |<br>
+            <dfn>lower-roman</dfn> | <dfn>upper-roman</dfn></td>
+          <td>тип маркера элемента списка</td>
+        </tr>
+        <tr>
+          <td><strong>value</strong> = <a href="html01.htm#number">число</a></td>
+          <td><a href="html04.htm#eli"><strong>LI</strong></a></td>
+          <td><em>нет</em></td>
+          <td>изменение нумерации элементов списка</td>
+        </tr>
+        <tr>
+          <td><strong>version</strong> = <a href="html01.htm#cdata">CDATA</a></td>
+          <td><a href="html02.htm#ehtml"><strong>HTML</strong></a></td>
+          <td><em>нет</em></td>
+          <td>версия языка HTML</td>
+        </tr>
+        <tr>
+          <td><strong>vlink</strong> = <a href="html01.htm#color">цвет</a></td>
+          <td><a href="html02.htm#ebody"><strong>BODY</strong></a></td>
+          <td>A<a href="css02.htm#ref2292">:visited</a> { <a href="css07.htm#pcolor"><strong>color</strong></a>:
+            <a href="css01.htm#color">цвет</a> }</td>
+          <td>цвет посещенных гиперссылок</td>
+        </tr>
+        <tr>
+          <td><strong>vspace</strong> = <a href="html01.htm#pixels">пиксели</a></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html06.htm#eimg"><strong>IMG</strong></a>,
+            <a href="html06.htm#eobject"><strong>OBJECT</strong></a></td>
+          <td><a href="css04.htm#pmargin-top"><strong>margin-top</strong></a>: <a href="css01.htm#length">размер</a>;
+            <a href="css04.htm#pmargin-bottom"><strong>margin-bottom</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>вертикальный промежуток</td>
+        </tr>
+        <tr>
+          <td><strong>width</strong> = <a href="html01.htm#length">размер</a></td>
+          <td><a href="#eapplet"><strong>APPLET</strong></a>, <a href="html10.htm#ehr"><strong>HR</strong></a>,
+            <a href="html05.htm#etd"><strong>TD</strong></a>, <a href="html05.htm#eth"><strong>TH</strong></a></td>
+          <td><a href="css06.htm#pwidth"><strong>width</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>ширина элемента</td>
+        </tr>
+        <tr>
+          <td><strong>width</strong> = <a href="html01.htm#number">число</a></td>
+          <td><a href="html03.htm#epre"><strong>PRE</strong></a></td>
+          <td><a href="css06.htm#pwidth"><strong>width</strong></a>: <a href="css01.htm#length">размер</a></td>
+          <td>ширина текста</td>
+        </tr>
+      </table>
+
+    </td></tr>
+  <tr><td><div id="divFooter"></div></td></tr>
+</table>
+</body>
+</html>
+ rc="images/nn.Q     Шr Нo  Шr Нo  рUK4ЎU  рUK4ЎU  живается</pre>
+
+      <p>Этот дескриптор задает <em>список имен семейств шрифтов</em> и принимает те же значения, что
+        и свойство <a href="#pfont-family"><strong>font-family</strong></a>.</p>
+
+<pre class="syntax"><strong><a name="dfont-style">Синтаксис</a></strong>:  font-style: <dfn>all</dfn> | [<dfn>normal</dfn> | <dfn>italic</dfn> | <dfn>oblique</dfn>][,[<dfn>normal</dfn> | <dfn>italic</dfn> | <dfn>oblique</dfn>]]*
+<strong>Начально</strong>:   <dfn>all</dfn>
+<strong>Устройства</strong>: <a href="css01.htm#ref215">визуальные</a></pre>
+<pre class="support"><strong>Поддержка</strong>:  <img src="images/ie.gif" alt="Internet Explorer"> Не поддерживается
+            <img src="images/nn.gif" alt="Netscape Navigator"> Не поддерживается</pre>
+
+      <p>Этот дескриптор задает <em>стиль шриф
