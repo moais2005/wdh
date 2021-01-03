@@ -13,14 +13,22 @@
    for(var i=0;i<A.length;i++){B=A[i].split("=");A[i]=[B[0],B[1]]}
    for(var j=0;j<A.length;j++){if(A[j][0]=='page'){ F=A[j][1];break}}
 
+   function isFirefox(){
+     console.log(navigator.userAgent);
+     return navigator.userAgent.indexOf("Firefox")>-1;
+  } 
+
    function loadContentCss() {
      if (isLogoShowed) return;
      isLogoShowed = true;
      const f = document.getElementById("content");
      const d = f.contentDocument || f.contentWindow.document;
      const c = d.body;
-     c.style.background = "url(./images/splash.gif) no-repeat 50%";
-     setTimeout(function() {c.style.background = "";}, 2000);
+     c.style.background = "url(./images/splash.gif) no-repeat 50% 50%";
+     if (isFirefox()) {
+      c.style.background = "url(./images/splash.gif) no-repeat 50% -30%";
+     }
+     //setTimeout(function() {c.style.background = "";}, 2000);
    }
   </script> 
  </head>
